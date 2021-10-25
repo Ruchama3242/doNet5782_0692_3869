@@ -83,6 +83,7 @@ using DalObject;
                 ParcelArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                 ParcelArr[i].priority = (IDAL.DO.Priorities)(r.Next() %3);
                 }
+
             
         }
     }

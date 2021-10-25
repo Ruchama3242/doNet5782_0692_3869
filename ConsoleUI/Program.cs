@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace ConsoleUI
 {
     class Program
@@ -8,6 +9,7 @@ namespace ConsoleUI
         enum option { add, update, display, viewList, exit };
         static void Main(string[] args)
         {
+            
             int mainInput;
             Console.WriteLine("Choose one of the following options: " +
                                "for insert options, press 0"+
@@ -78,6 +80,7 @@ namespace ConsoleUI
         /// </summary>
         static void updateOption()
         {
+
             int input;
             Console.WriteLine("To assign a percal to the drone press 0" +
                               "for collection of a package by drone press 1" +
