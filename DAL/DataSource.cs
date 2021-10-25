@@ -1,14 +1,15 @@
 ﻿using System;
+using IDAL.DO;
 
 
 namespace DalObject
 {
     public class DataSource
     {
-        Drone[] static DronesArr = new IDAL.DO.Drone[10];
-               Station[] static StationsArr = new IDAL.DO.Station[5];
-               Customer[] static CustomersArr = new IDAL.DO.Customer[100];
-               Parcel[] static ParcelArr = new IDAL.DO.Parcel[1000];
+             internal static Drone[]  DronesArr = new Drone[10];
+             internal static Station[]  StationsArr = new Station[5];
+            internal  static Customer[]  CustomersArr = new Customer[100];
+              internal static Parcel[]  ParcelArr = new Parcel[1000];
 
         internal class Config
         {
@@ -21,66 +22,69 @@ namespace DalObject
 
         }
 
-        public static void Initialize()
-        {
-            Random r = new Random();
-
-            //lop for updete 5 drone
-            for (int i = DroneIndex; i < 5; i++)
+            public static void Initialize()
             {
-                DronesArr[i].id = r.Next(1111, 9999);
-                DronesArr[i].model = r.Next(1111, 9999);
-                DronesArr[i].weight = r.Next() % 3;
-                DronesArr[i].battery = r.Next() % 3;
-                DronesArr[i].status = r.Next() % 3;
-            }
+                Random r = new Random();
+
+                //lop for updete 5 drone
+                for (int i = Config.droneIndex; i < 5; i++)
+                {
+                    DronesArr[i].ID = r.Next(1111, 9999);
+                    DronesArr[i].model = r.Next(1111, 9999);
+                    DronesArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
+                    DronesArr[i].battery = r.Next(0,100);
+                    DronesArr[i].status = (IDAL.DO.DroneStatus)(r.Next() % 3);
+                }
 
 
-            //lop for 2 station
-            for (int i = stationIndex, string str = 'A' ; i < 2; i++,str++)
-			            {
-                StationArr[i].id = r.Next(1111, 9999);
-                StationArr[i].name = str;
-                StationArr[i].longitude = r.Next(-180, 180);
-                StationArr[i].lattitude = r.Next(-90, 90);
-                StationArr[i].chargeSlots = r.Next(0, 100); ;
-            }
+                //lop for 2 station
+                //string str = "A";
+                for (int i = Config.stationIndex; i < 2; i++)
+                {
+                    StationsArr[i].ID = r.Next(1111, 9999);
+                   // StationsArr[i].name = str;
+                    StationsArr[i].longitude = r.Next(-180, 180);
+                    StationsArr[i].lattitude = r.Next(-90, 90);
+                    StationsArr[i].chargeSlots = r.Next(0, 100);
+                    //str++;
+                }
 
-            //lop for 10 customer
-            for (int i = customerIndex; i < 10; i++)
-            {
-                CustomerArr[i].longitude = r.Next(-180, 180); ;
-                CustomerArr[i].lattitude = r.Next(-90, 90);
-                CustomerArr[i].id = r.Next(212365428, 328987502);
-                CustomerArr[i].phone = r.Next(531325422, 587721219);
-            }
+                //lop for 10 customer
+                for (int i = Config.customerIndex; i < 10; i++)
+                {
+                    CustomersArr[i].longitude = r.Next(-180, 180); ;
+                    CustomersArr[i].lattitude = r.Next(-90, 90);
+                    CustomersArr[i].ID = r.Next(212365428, 328987502);
+                    //add a phone number CustomersArr[i].phone = r.Next(531325422, 587721219);
+                }
 
-            CustomerArr[customerIndex++].name = Ori;
-            CustomerArr[customerIndex++].name = Tom;
-            CustomerArr[customerIndex++].name = May;
-            CustomerArr[customerIndex++].name = Noa;
-            CustomerArr[customerIndex++].name = Odael;
-            CustomerArr[customerIndex++].name = Efrat;
-            CustomerArr[customerIndex++].name = Eliad;
-            CustomerArr[customerIndex++].name = Omer;
-            CustomerArr[customerIndex++].name = Iris;
-            CustomerArr[customerIndex++].name = Rachel;
+                CustomersArr[Config.customerIndex++].name = "Ori";
+                CustomersArr[Config.customerIndex++].name = "Tom";
+                CustomersArr[Config.customerIndex++].name = "May";
+                CustomersArr[Config.customerIndex++].name = "Noa";
+                CustomersArr[Config.customerIndex++].name = "Odeal";
+                CustomersArr[Config.customerIndex++].name = "Efrat";
+                CustomersArr[Config.customerIndex++].name = "Eliad";
+                CustomersArr[Config.customerIndex++].name = "Omer";
+                CustomersArr[Config.customerIndex++].name = "Iris";
+                CustomersArr[Config.customerIndex++].name = "Rachel";
 
 
-            for (int i = parcelIndex; i < 10; i++)
-            {
-                PercalArr[i].id = r.Next(1111, 9999);
-                PercalArr[i].senderid = r.Next(1111, 9999);
-                PercalArr[i].targetId = r.Next(111, 999);
-                DateTime currentDate = DateTime.Now;
-                PercalArr[i].requested = currentDate + 10 * i;
-                PercalArr[i].drineld = 0;
-                PercalArr[i].scheduled = currentDate + 20 * i;
-                PercalArr[i].pickedUp = currentDate + 30 * i;
-                PercalArr[i].delivered = currentDate + 40 * i;
-                PercalArr[i].weight = r.Next() % 3;
-                PercalArr[i].priority = r.Next() % 3;
-            }
+                for (int i = Config.parcelIndex; i < 10; i++)
+                {
+                    ParcelArr[i].ID = r.Next(1111, 9999);
+                ParcelArr[i].senderid = r.Next(1111, 9999);
+                ParcelArr[i].targetId = r.Next(111, 999);
+                    DateTime currentDate = DateTime.Now;
+               // ParcelArr[i].requested = currentDate + 10 * i;
+                ParcelArr[i].drineld = 0;
+              //  ParcelArr[i].scheduled = currentDate + 20 * i;
+               // ParcelArr[i].pickedUp = currentDate + 30 * i;
+              //  ParcelArr[i].delivered = currentDate + 40 * i;
+                ParcelArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
+                ParcelArr[i].priority = (IDAL.DO.Priorities)(r.Next() %3);
+                }
+            
         }
     }
 }

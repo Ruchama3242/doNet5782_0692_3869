@@ -1,9 +1,6 @@
 ﻿using System;
+using IDAL.DO;
 
-namespace IDAL
-{
-    namespace DO
-    {
 
 
         public struct DroneCharge
@@ -19,5 +16,4 @@ namespace IDAL
                 return result;
             }
         }
-    }
-}
+   

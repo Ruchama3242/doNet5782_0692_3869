@@ -1,16 +1,13 @@
 ﻿using System;
 using IDAL.DO;
 
-//namespace IDAL
-//{
-//    namespace DO
-//    {
+
 
 
         public struct Drone
         {
             public int ID { get; set; }
-            public string model { get; set; }
+            public int model { get; set; }
             public WeightCategories weight { get; set; }
             public DroneStatus status { get; set; }
             public double battery { get; set; }
@@ -26,5 +23,5 @@ using IDAL.DO;
                 return result;
             }
         }
-//    }
-//}
+
+ 
