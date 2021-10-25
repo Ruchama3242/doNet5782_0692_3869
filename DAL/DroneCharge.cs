@@ -1,15 +1,23 @@
 ﻿using System;
 
-public struct DroneCharge
+namespace IDAL
 {
-    public int droneID { get; set; }
-    public int stationeld { get; set; }
-
-    public override string ToString()
+    namespace DO
     {
-        String result = " ";
-        result += $" drone ID is {droneID}, \n";
-        result += $"stationeld is {stationeld}, \n";
-        return result;
+
+
+        public struct DroneCharge
+        {
+            public int droneID { get; set; }
+            public int stationeld { get; set; }
+
+            public override string ToString()
+            {
+                String result = " ";
+                result += $" drone ID is {droneID}, \n";
+                result += $"stationeld is {stationeld}, \n";
+                return result;
+            }
+        }
     }
 }

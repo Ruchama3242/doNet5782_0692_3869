@@ -1,20 +1,28 @@
 ﻿using System;
+using IDAL.DO;
+//namespace IDAL
+//{
+//    namespace DO
+//    {
 
-public struct Station
-{
-    public int id { get; set; }
-    public string name { get; set; }
-    public double longitude { get; set; }
-    public double lattitude { get; set; }
-    public int chargeSlots { get; set; }
 
-    public override string ToString()
-    {
-        String result = " ";
-        result += $"ID is {ID}, \n";
-        result += $"Name is {name}, \n";
-        result += $"Latitude is {Latitude}, \n";
-        result += $"charge slolts is {chargeSlots}, \n";
-        return result;
-    }
-}
+        public struct Station
+        {
+            public int ID { get; set; }
+            public string name { get; set; }
+            public double longitude { get; set; }
+            public double lattitude { get; set; }
+            public int chargeSlots { get; set; }
+
+            public override string ToString()
+            {
+                String result = " ";
+                result += $"ID is {ID}, \n";
+                result += $"Name is {name}, \n";
+                result += $"Latitude is {lattitude}, \n";
+                result += $"charge slolts is {chargeSlots}, \n";
+                return result;
+            }
+        }
+//    }
+//}
