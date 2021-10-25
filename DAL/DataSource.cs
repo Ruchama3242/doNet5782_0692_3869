@@ -1,15 +1,14 @@
 ﻿using System;
 using IDAL.DO;
+using DalObject;
 
 
-namespace DalObject
-{
     public class DataSource
     {
              internal static Drone[]  DronesArr = new Drone[10];
              internal static Station[]  StationsArr = new Station[5];
-            internal  static Customer[]  CustomersArr = new Customer[100];
-              internal static Parcel[]  ParcelArr = new Parcel[1000];
+             internal  static Customer[]  CustomersArr = new Customer[100];
+             internal static Parcel[]  ParcelArr = new Parcel[1000];
 
         internal class Config
         {
@@ -87,4 +86,4 @@ namespace DalObject
             
         }
     }
-}
+

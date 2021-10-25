@@ -1,9 +1,10 @@
 ﻿using System;
 
-
-public class Class1
+namespace DalObject
 {
-	public Class1()
-	{
-	}
+    public class DalObject
+    {
+
+    }
 }
+
