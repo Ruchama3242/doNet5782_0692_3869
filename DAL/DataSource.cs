@@ -76,7 +76,7 @@ using DalObject;
                 ParcelArr[i].targetId = r.Next(111, 999);
                     DateTime currentDate = DateTime.Now;
                // ParcelArr[i].requested = currentDate + 10 * i;
-                ParcelArr[i].drineld = 0;
+                ParcelArr[i].droneld = 0;
               //  ParcelArr[i].scheduled = currentDate + 20 * i;
                // ParcelArr[i].pickedUp = currentDate + 30 * i;
               //  ParcelArr[i].delivered = currentDate + 40 * i;

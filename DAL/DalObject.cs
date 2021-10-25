@@ -1,4 +1,5 @@
 ﻿using System;
+using IDAL.DO;
 
 namespace DalObject
 {
@@ -30,7 +31,7 @@ namespace DalObject
         {
             if (DataSource.Config.customerIndex <= 100)
             {
-                DataSource.CustomersArr[DataSource.Config.stationIndex] =c;
+                DataSource.CustomersArr[DataSource.Config.stationIndex] = c;
                 DataSource.Config.customerIndex++;
             }
             else
@@ -126,7 +127,7 @@ namespace DalObject
                 Console.WriteLine("ERROR! parcel not found");
                 return DC;
             }
-            DataSource.DronesArr[index].status =(IDAL.DO.DroneStatus)1;
+            DataSource.DronesArr[index].status = (IDAL.DO.DroneStatus)1;
             DC.droneID = DroneID;
             DC.stationeld = StationID;
             return DC;
@@ -135,5 +136,7 @@ namespace DalObject
         public void BatteryCharged(DroneCharge FuzzedUp)
         {
         }
+
+    }
 }
 
