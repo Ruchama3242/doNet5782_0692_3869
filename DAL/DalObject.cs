@@ -158,17 +158,56 @@ namespace DalObject
             DroneCharge DC = new DroneCharge();
             if (index == -1)
             {
-                Console.WriteLine("ERROR! parcel not found");
+                Console.WriteLine("ERROR! drone not found");
                 return DC;
             }
             DataSource.DronesArr[index].status = (IDAL.DO.DroneStatus)1;
             DC.droneID = DroneID;
             DC.stationeld = StationID;
+            int index2 = 0;
+            for (int i = 0; i < DataSource.Config.stationIndex;  i++)
+            {
+                if (DataSource.StationsArr[i].ID ==StationID)
+                {
+                    index2 = i;
+                    break;
+                }
+            }
+            DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots - 1;
             return DC;
         }
-
+        /// <summary>
+        /// release the drone from the charge slote
+        /// </summary>
+        /// <param name="FuzzedUp"></param>
         public void BatteryCharged(DroneCharge FuzzedUp)
         {
+            int size = DataSource.Config.droneIndex;
+            int index = -1;
+            for (int i = 0; i <= size; i++)
+            {
+                if (DataSource.DronesArr[i].ID == FuzzedUp.droneID)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
+            {
+                Console.WriteLine("ERROR! drone not found");
+            }
+            DataSource.DronesArr[index].status = (IDAL.DO.DroneStatus)0;
+            int index2 = 0;
+            for (int i = 0; i < DataSource.Config.stationIndex; i++)
+            {
+                if (DataSource.StationsArr[i].ID == FuzzedUp.stationeld)
+                {
+                    index2 = i;
+                    break;
+                }
+            }
+            DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots +1;
+
         }
 
         /// <summary>
