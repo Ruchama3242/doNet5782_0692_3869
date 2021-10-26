@@ -48,7 +48,7 @@ namespace IDAL
                 /// <param name="c"></param>
                 public void addCustomer(Customer c)
                 {
-                    if (DataSource.Config.customerIndex <= 100)
+                    if (DataSource.Config.customerIndex <100)
                     {
                         DataSource.CustomersArr[DataSource.Config.stationIndex] = c;
                         DataSource.Config.customerIndex++;
@@ -62,7 +62,7 @@ namespace IDAL
                 /// <param name="Fedex"></param>
                 public void addParcel(Parcel Fedex)
                 {
-                    if (DataSource.Config.parcelIndex <= 1000)
+                    if (DataSource.Config.parcelIndex < 1000)
                     {
                         DataSource.ParcelArr[DataSource.Config.parcelIndex] = Fedex;
                         DataSource.Config.parcelIndex++;
@@ -127,7 +127,7 @@ namespace IDAL
                 {
                     int size = DataSource.Config.parcelIndex;
                     int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    for (int i = 0; i <=size; i++)
                     {
                         if (DataSource.ParcelArr[i].ID == parcelID)
                         {
@@ -201,7 +201,7 @@ namespace IDAL
                     {
                         Console.WriteLine("ERROR! drone not found");
                     }
-                    DataSource.DronesArr[index].status = (IDAL.DO.DroneStatus)0;
+                    DataSource.DronesArr[index].status =(IDAL.DO.DroneStatus)0;
                     int index2 = 0;
                     for (int i = 0; i < DataSource.Config.stationIndex; i++)
                     {
@@ -219,7 +219,7 @@ namespace IDAL
                 /// print a station
                 /// </summary>
                 /// <param name="id"></param>
-                public void printStation(int id)
+                public Station printStation(int id)
                 {
                     Station s;
                     int size = DataSource.Config.stationIndex;
@@ -235,16 +235,15 @@ namespace IDAL
                     if (index == -1)
                     {
                         Console.WriteLine("ERROR! station not found");
-                        return;
                     }
                     s = DataSource.StationsArr[index];
-                    Console.WriteLine(s);
+                    return s;
                 }
                 /// <summary>
                 /// print a drone
                 /// </summary>
                 /// <param name="id"></param>
-                public void printDrone(int id)
+                public Drone printDrone(int id)
                 {
                     Drone d;
                     int size = DataSource.Config.droneIndex;
@@ -260,16 +259,15 @@ namespace IDAL
                     if (index == -1)
                     {
                         Console.WriteLine("ERROR! Drone not found");
-                        return;
                     }
                     d = DataSource.DronesArr[index];
-                    Console.WriteLine(d);
+                    return d;
                 }
                 /// <summary>
                 /// print a customer
                 /// </summary>
                 /// <param name="id"></param>
-                public void printCustomer(int id)
+                public Customer printCustomer(int id)
                 {
                     Customer c;
                     int size = DataSource.Config.customerIndex;
@@ -285,16 +283,15 @@ namespace IDAL
                     if (index == -1)
                     {
                         Console.WriteLine("ERROR! customer not found");
-                        return;
                     }
                     c = DataSource.CustomersArr[index];
-                    Console.WriteLine(c);
+                    return c;
                 }
                 /// <summary>
                 /// print a parcel
                 /// </summary>
                 /// <param name="id"></param>
-                public void printParcel(int id)
+                public Parcel printParcel(int id)
                 {
                     Parcel p;
                     int size = DataSource.Config.parcelIndex;
@@ -310,79 +307,105 @@ namespace IDAL
                     if (index == -1)
                     {
                         Console.WriteLine("ERROR! parcel not found");
-                        return;
                     }
                     p = DataSource.ParcelArr[index];
-                    Console.WriteLine(p);
+                    return p;
                 }
 
                 /// <summary>
                 /// print all stations
                 /// </summary>
-                public void printAllStations()
+                public Station[] printAllStations()
                 {
+                    Station[] arr = new Station[DataSource.Config.stationIndex];
                     for (int i = 0; i < DataSource.Config.stationIndex; i++)
                     {
-                        Station s = DataSource.StationsArr[i];
-                        Console.WriteLine(s);
+                        arr[i] = DataSource.StationsArr[i];
                     }
+                    return arr;
                 }
                 /// <summary>
                 /// print all drones
                 /// </summary>
-                public void printAllDrones()
+                public Drone[] printAllDrones()
                 {
+                    Drone[] arr = new Drone[DataSource.Config.droneIndex];
                     for (int i = 0; i < DataSource.Config.droneIndex; i++)
                     {
-                        Drone d = DataSource.DronesArr[i];
-                        Console.WriteLine(d);
+                        arr[i] = DataSource.DronesArr[i];
                     }
+                    return arr;
                 }
                 /// <summary>
                 /// print all customers
                 /// </summary>
-                public void printAllCustomers()
+                public Customer[] printAllCustomers()
                 {
+                    Customer[] arr = new Customer[DataSource.Config.customerIndex];
                     for (int i = 0; i < DataSource.Config.customerIndex; i++)
                     {
-                        Customer c = DataSource.CustomersArr[i];
-                        Console.WriteLine(c);
+                        arr[i] = DataSource.CustomersArr[i];
                     }
+                    return arr;
                 }
                 /// <summary>
                 /// print all parcels
                 /// </summary>
-                public void printAllParcels()
+                public Parcel[] printAllParcels()
                 {
+                    Parcel[] arr = new Parcel[DataSource.Config.parcelIndex];
                     for (int i = 0; i < DataSource.Config.parcelIndex; i++)
                     {
-                        Parcel p = DataSource.ParcelArr[i];
-                        Console.WriteLine(p);
+                        arr[i] = DataSource.ParcelArr[i];
                     }
+                    return arr;
                 }
                 /// <summary>
                 /// print all parcels that have no yet drone
                 /// </summary>
-                public void printParcelsWithoutDrone()
+                public Parcel[] printParcelsWithoutDrone()
                 {
+                    int count = 0;
                     for (int i = 0; i < DataSource.Config.parcelIndex; i++)
                     {
-                        Parcel p = DataSource.ParcelArr[i];
-                        if (p.droneld == 0)
-                            Console.WriteLine(p);
+                        //Parcel p = DataSource.ParcelArr[i];
+                        if (DataSource.ParcelArr[i].droneld == 0)
+                            count++;
                     }
+                    Parcel[] arr = new Parcel[count];
+                    count = 0;
+                    for (int i = 0; i < DataSource.Config.parcelIndex; i++)
+                    {
+                        if (DataSource.ParcelArr[i].droneld == 0)
+                        {
+                            arr[count] = DataSource.ParcelArr[i];
+                            count++;
+                        }
+                    }
+                    return arr;
                 }
                 /// <summary>
                 /// print all stations with charge slots available
                 /// </summary>
-                public void printStationsWithChargeSlots()
+                public Station[] printStationsWithChargeSlots()
                 {
+                    int count = 0;
                     for (int i = 0; i < DataSource.Config.stationIndex; i++)
                     {
-                        Station s = DataSource.StationsArr[i];
-                        if (s.chargeSlots > 0)
-                            Console.WriteLine(s);
+                        if (DataSource.StationsArr[i].chargeSlots > 0)
+                            count++;
                     }
+                    Station[] arr = new Station[count];
+                    count = 0;
+                    for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    {
+                        if (DataSource.StationsArr[i].chargeSlots > 0)
+                        {
+                            arr[count] = DataSource.StationsArr[i];
+                            count++;
+                        }
+                    }
+                    return arr;
                 }
 
             }
