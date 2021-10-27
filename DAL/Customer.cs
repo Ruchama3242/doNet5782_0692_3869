@@ -1,7 +1,10 @@
 ﻿using System;
 using IDAL.DO;
 
-
+namespace IDAL
+{
+    namespace DO
+    {
 
         public struct Customer
         {
@@ -23,4 +26,6 @@ using IDAL.DO;
             }
 
         }
+    }
+}
    

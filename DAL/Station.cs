@@ -1,5 +1,9 @@
 ﻿using System;
 using IDAL.DO;
+namespace IDAL
+{
+    namespace DO
+    {
 
 
         public struct Station
@@ -20,3 +24,5 @@ using IDAL.DO;
                 return result;
             }
         }
+    }
+}
