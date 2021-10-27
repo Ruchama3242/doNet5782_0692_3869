@@ -1,15 +1,15 @@
 ﻿using System;
-//using IDAL.DO;
-//using IDAL.DalObject;
-//using dalObject;
-//using DalObject;
+using IDAL.DO;
+using IDAL.DO.DalObject;
 
 namespace ConsoleUI
 {
 
     class Program
-    { 
-        
+    {
+        Customer c;
+        dalObject d=new dalObject();
+       
         enum option { add, update, display, viewList, exit };
         static void Main(string[] args)
         {
