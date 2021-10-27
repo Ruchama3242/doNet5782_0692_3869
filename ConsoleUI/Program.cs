@@ -10,7 +10,7 @@ namespace ConsoleUI
     class Program
     {
        
-        public static Object dalObject ;
+        //public static Object dalObject ;
         
         enum option { add, update, display, viewList, exit };
         static void Main(string[] args)
