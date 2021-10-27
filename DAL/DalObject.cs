@@ -8,21 +8,21 @@ namespace IDAL
 
         namespace DalObject
         {
-            public class dalObject
+            public class DalObject
             {
                 /// <summary>
                 /// constructor
                 /// </summary>
-                public dalObject() { DataSource.Initialize(); }
+                public DalObject() { DataSource.Initialize(); }
                 /// <summary>
                 /// add station to the array
                 /// </summary>
                 /// <param name="Victoria"></param>
-                public  static void addStations(Station Victoria)
+                public  static void addStations(Station temp)
                 {
                     if (DataSource.Config.stationIndex <= 4)
                     {
-                        DataSource.StationsArr[DataSource.Config.stationIndex] = Victoria;
+                        DataSource.StationsArr[DataSource.Config.stationIndex] = temp;
                         DataSource.Config.stationIndex++;
                     }
                     else
@@ -31,12 +31,12 @@ namespace IDAL
                 /// <summary>
                 /// add drone to the array
                 /// </summary>
-                /// <param name="FlyBoy"></param>
-                public void addDrone(Drone FlyBoy)
+                /// <param name="spy"></param>
+                public static void addDrone(Drone spy)
                 {
                     if (DataSource.Config.droneIndex <= 9)
                     {
-                        DataSource.DronesArr[DataSource.Config.droneIndex] = FlyBoy;
+                        DataSource.DronesArr[DataSource.Config.droneIndex] = spy;
                         DataSource.Config.droneIndex++;
                     }
                     else
@@ -46,11 +46,11 @@ namespace IDAL
                 /// add customer to the array
                 /// </summary>
                 /// <param name="c"></param>
-                public void addCustomer(Customer c)
+                public static void addCustomer(Customer anonimos)
                 {
                     if (DataSource.Config.customerIndex <100)
                     {
-                        DataSource.CustomersArr[DataSource.Config.stationIndex] = c;
+                        DataSource.CustomersArr[DataSource.Config.stationIndex] = anonimos;
                         DataSource.Config.customerIndex++;
                     }
                     else
@@ -60,13 +60,13 @@ namespace IDAL
                 /// add parcel to the array
                 /// </summary>
                 /// <param name="Fedex"></param>
-                public void addParcel(Parcel Fedex)
+                public static void addParcel(Parcel wow)
                 {
                     if (DataSource.Config.parcelIndex < 1000)
                     {
-                        Fedex.ID = DataSource.Config.runnerID;
+                        wow.ID = DataSource.Config.runnerID;
                         DataSource.Config.runnerID++;
-                        DataSource.ParcelArr[DataSource.Config.parcelIndex] = Fedex;
+                        DataSource.ParcelArr[DataSource.Config.parcelIndex] = wow;
                         DataSource.Config.parcelIndex++;
 
                     }

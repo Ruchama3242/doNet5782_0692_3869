@@ -8,7 +8,7 @@ namespace ConsoleUI
     class Program
     {
         Customer c;
-        dalObject d=new dalObject();
+        //dalObject d=new dalObject();
        
         enum option { add, update, display, viewList, exit };
         static void Main(string[] args)
@@ -61,17 +61,106 @@ namespace ConsoleUI
             switch (input)
             {
                 case 0:
-                    Console.WriteLine("Enter the name of the station");
+                    Station temp = new Station();
                     string nameStation;
+                    int idStation, charge;
+                    double longitudeStation, lattitudeStation;
+                    Console.WriteLine("Enter the name of the station");
                     nameStation = Console.ReadLine();
-                   // dalObject.
-                    //dalObject.addStation(nameStation);
+                    Console.WriteLine("Enter the ID of the station");
+                    idStation = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the longitude of the station");
+                    longitudeStation = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the lettitude of the station");
+                    lattitudeStation = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the charge slot of the station");
+                    charge = int.Parse(Console.ReadLine());
+                    temp.name = nameStation;
+                    temp.ID = idStation;
+                    temp.lattitude = lattitudeStation;
+                    temp.longitude = longitudeStation;
+                    temp.chargeSlots = charge;
+                    DalObject.addStations(temp);
                     break;
+
                 case 1:
+                    Drone myDrone = new Drone();
+                    int myId, myModel;
+                    double battery;
+                    int myWeight,myStatus;
+                    Console.WriteLine("Enter the id of the drone");
+                    myId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the model of the drone");
+                    myModel = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the weight category of the drone (0 to light, 2 to medium, 3 to heavy");
+                    myWeight = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the drone status ( 0 for available, 1 for maintenace, 2 for delivery");
+                    myStatus = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the battery percentage");
+                    battery = double.Parse(Console.ReadLine());
+                    myDrone.ID = myId;
+                    myDrone.model = myModel;
+                    myDrone.weight =(WeightCategories)myWeight;
+                    myDrone.status = (DroneStatus)myStatus;
+                    myDrone.battery = battery;
+                    DalObject.addDrone(myDrone);
                     break;
+
                 case 2:
+                    Customer women= new Customer();
+                    int womenID;
+                    string name, phone;
+                    double longitude, lattitude;
+                    Console.WriteLine("Enter the name of the customer");
+                    name = Console.ReadLine();
+                    Console.WriteLine("Enter the id of the customer");
+                    womenID = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the phone of the customer");
+                    phone= Console.ReadLine();
+                    Console.WriteLine("Enter the longitude ");
+                    longitude = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the lattitude");
+                    lattitude = double.Parse(Console.ReadLine());
+                    women.ID = womenID;
+                    women.name = name;
+                    women.lattitude = lattitude;
+                    women.longitude = longitude;
+                    DalObject.addCustomer(women);
                     break;
+
                 case 3:
+                    Parcel rut = new Parcel();
+                    int id, senderId, targetId, whight, priority, droneId;
+                    DateTime requested, scheduled, pickedUp, delivered;
+                    Console.WriteLine("Enter the id of the percal");
+                    id = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the  sender id of the percal");
+                    senderId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the  target id of the percal");
+                    targetId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the weight category of the percal (0 to light, 2 to medium, 3 to heavy");
+                    whight = int.Parse(Console.ReadLine()); ;
+                    Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency");
+                    priority = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the id of the drone");
+                    droneId = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the time of the requested at format......");
+                    requested = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the time of the scheduled at format......");
+                    scheduled = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the time the packge will collect, at format......");
+                    pickedUp = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter the time the packege delivered, at format......");
+                    delivered = DateTime.Parse(Console.ReadLine());
+                    rut.ID = id;
+                    rut.pickedUp = pickedUp;
+                    rut.priority = (Priorities)priority;
+                    rut.requested = requested;
+                    rut.scheduled = scheduled;
+                    rut.senderID = senderId;
+                    rut.targetId = targetId;
+                    rut.weight = (WeightCategories)whight;
+                    DalObject.addParcel(rut);
                     break;
                 case 4:
                     break;
