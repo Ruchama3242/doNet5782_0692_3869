@@ -8,17 +8,17 @@ namespace IDAL
 
         namespace DalObject
         {
-            public class DalObject
+            public class dalObject
             {
                 /// <summary>
                 /// constructor
                 /// </summary>
-                public DalObject() { DataSource.Initialize(); }
+                public dalObject() { DataSource.Initialize(); }
                 /// <summary>
                 /// add station to the array
                 /// </summary>
                 /// <param name="Victoria"></param>
-                public void addStations(Station Victoria)
+                public  static void addStations(Station Victoria)
                 {
                     if (DataSource.Config.stationIndex <= 4)
                     {

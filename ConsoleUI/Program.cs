@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+//using IDAL.DO;
+//using IDAL.DalObject;
+//using dalObject;
+//using DalObject;
 
 namespace ConsoleUI
 {
+
     class Program
-    { 
+    {
+       
+        public static Object dalObject ;
+        
         enum option { add, update, display, viewList, exit };
         static void Main(string[] args)
         {
@@ -63,7 +66,8 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the name of the station");
                     string nameStation;
                     nameStation = Console.ReadLine();
-                    //DalObject.DalObject.addStations(nameStation);
+                   // dalObject.
+                    //dalObject.addStation(nameStation);
                     break;
                 case 1:
                     break;
