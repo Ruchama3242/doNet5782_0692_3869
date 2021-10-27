@@ -64,8 +64,11 @@ namespace IDAL
                 {
                     if (DataSource.Config.parcelIndex < 1000)
                     {
+                        Fedex.ID = DataSource.Config.runnerID;
+                        DataSource.Config.runnerID++;
                         DataSource.ParcelArr[DataSource.Config.parcelIndex] = Fedex;
                         DataSource.Config.parcelIndex++;
+
                     }
                     else
                         Console.WriteLine("ERROR! overflow in array");

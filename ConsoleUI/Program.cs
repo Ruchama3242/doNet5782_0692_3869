@@ -155,6 +155,7 @@ namespace ConsoleUI
                                       "for list of percal that have not yet been assigned to the drone press 4" +
                                       "for displaying base stations with available charging stations press 5" +
                                       "To return to the main menu, press 6");
+           
             input = int.Parse(Console.ReadLine());
 
             switch (input)

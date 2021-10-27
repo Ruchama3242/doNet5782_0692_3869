@@ -4,7 +4,7 @@ using IDAL.DO.DalObject;
 namespace IDAL
 {
     namespace DO
-    {
+    { 
         namespace DalObject
         {
             public class DataSource
@@ -21,7 +21,7 @@ namespace IDAL
                     internal static int stationIndex = 0;
                     internal static int customerIndex = 0;
                     internal static int parcelIndex = 0;
-                    public int runnerID;
+                    internal static int runnerID;
 
                 }
 
