@@ -16,11 +16,11 @@ namespace IDAL
 
             public override string ToString()
             {
-                String result = " ";
-                result += $"ID is {ID}, \n";
-                result += $"Name is {name}, \n";
-                result += $"Latitude is {lattitude}, \n";
-                result += $"charge slolts is {chargeSlots}, \n";
+                String result = "";
+                result += $"ID is: {ID}, \n";
+                result += $"Name is: {name}, \n";
+                result += $"Latitude is: {lattitude}, \n";
+                result += $"charge slolts is: {chargeSlots}, \n";
                 return result;
             }
         }

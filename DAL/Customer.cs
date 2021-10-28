@@ -16,12 +16,12 @@ namespace IDAL
 
             public override string ToString()
             {
-                String result = " ";
-                result += $"ID is {ID}, \n";
-                result += $"Name is {name}, \n";
-                result += $"Telephone is 0 {phone.Substring(0, 2) + '-' + phone.Substring(2)}, \n";
-                result += $"Lattitude is {lattitude}, \n";
-                result += $"longitude is {longitude}, \n";
+                String result = "";
+                result += $"ID is: {ID}, \n";
+                result += $"Name is: {name}, \n";
+                result += $"Telephone is: {phone.Substring(0, 3) + '-' + phone.Substring(3)}, \n";
+                result += $"Lattitude is: {lattitude}, \n";
+                result += $"longitude is: {longitude}, \n";
                 return result;
             }
 

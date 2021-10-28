@@ -22,7 +22,7 @@ namespace IDAL
             public DateTime delivered { get; set; }
             //public override string ToString()
             //{
-            //    String result = " ";
+            //    String result = "";
             //    result += $"ID is {ID}, \n";
             //    result += $"sender ID is {senderid}, \n";
             //    result += $"target ID is {phone.Substring(0, 3) + '-' + phone.Substring(3)}, \n";
