@@ -76,11 +76,11 @@ namespace IDAL
                     for (int i = Config.parcelIndex; i < 10; i++)
                     {
                         ParcelArr[i].ID = r.Next(1111, 9999);
-                        ParcelArr[i].senderid = r.Next(1111, 9999);
+                        ParcelArr[i].senderID = r.Next(1111, 9999);
                         ParcelArr[i].targetId = r.Next(111, 999);
                         DateTime currentDate = DateTime.Now;
                         // ParcelArr[i].requested = currentDate + 10 * i;
-                        ParcelArr[i].droneld = 0;
+                        ParcelArr[i].droneID = 0;
                         //  ParcelArr[i].scheduled = currentDate + 20 * i;
                         // ParcelArr[i].pickedUp = currentDate + 30 * i;
                         //  ParcelArr[i].delivered = currentDate + 40 * i;
