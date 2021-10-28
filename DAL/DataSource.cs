@@ -41,16 +41,15 @@ namespace IDAL
 
 
                     //lop for 2 station
-                    //string str = "A";
                     for (int i = Config.stationIndex; i < 2; i++)
                     {
                         StationsArr[i].ID = r.Next(1111, 9999);
-                        // StationsArr[i].name = str;
                         StationsArr[i].longitude = r.Next(-180, 180);
                         StationsArr[i].lattitude = r.Next(-90, 90);
                         StationsArr[i].chargeSlots = r.Next(0, 100);
-                        //str++;
-                    }
+                       }
+                    StationsArr[Config.stationIndex++].name = "flower";
+                    StationsArr[Config.stationIndex++].name = "gefen";
 
                     //lop for 10 customer
                     for (int i = Config.customerIndex; i < 10; i++)
@@ -58,35 +57,44 @@ namespace IDAL
                         CustomersArr[i].longitude = r.Next(-180, 180); ;
                         CustomersArr[i].lattitude = r.Next(-90, 90);
                         CustomersArr[i].ID = r.Next(212365428, 328987502);
-                        //add a phone number CustomersArr[i].phone = r.Next(531325422, 587721219);
                     }
-
+                    CustomersArr[Config.customerIndex].phone = "0524453766";
                     CustomersArr[Config.customerIndex++].name = "Ori";
+                    CustomersArr[Config.customerIndex].phone = "0538892543";
                     CustomersArr[Config.customerIndex++].name = "Tom";
+                    CustomersArr[Config.customerIndex].phone = "0529165392";
                     CustomersArr[Config.customerIndex++].name = "May";
+                    CustomersArr[Config.customerIndex].phone = "0524876359";
                     CustomersArr[Config.customerIndex++].name = "Noa";
+                    CustomersArr[Config.customerIndex].phone = "0587363286";
                     CustomersArr[Config.customerIndex++].name = "Odeal";
+                    CustomersArr[Config.customerIndex].phone = "0528362983";
                     CustomersArr[Config.customerIndex++].name = "Efrat";
+                    CustomersArr[Config.customerIndex].phone = "0506376353";
                     CustomersArr[Config.customerIndex++].name = "Eliad";
+                    CustomersArr[Config.customerIndex].phone = "0545273688";
                     CustomersArr[Config.customerIndex++].name = "Omer";
+                    CustomersArr[Config.customerIndex].phone = "0542673566";
                     CustomersArr[Config.customerIndex++].name = "Iris";
+                    CustomersArr[Config.customerIndex].phone = "0524443267";
                     CustomersArr[Config.customerIndex++].name = "Rachel";
 
 
                     for (int i = Config.parcelIndex; i < 10; i++)
                     {
+
                         ParcelArr[i].ID = r.Next(1111, 9999);
                         ParcelArr[i].senderID = r.Next(1111, 9999);
                         ParcelArr[i].targetId = r.Next(111, 999);
-                        DateTime currentDate = DateTime.Now;
-                        // ParcelArr[i].requested = currentDate + 10 * i;
+                        ParcelArr[i].requested = new DateTime(2021,r.Next(1,12),r.Next(1,30));
                         ParcelArr[i].droneID = 0;
-                        //  ParcelArr[i].scheduled = currentDate + 20 * i;
-                        // ParcelArr[i].pickedUp = currentDate + 30 * i;
-                        //  ParcelArr[i].delivered = currentDate + 40 * i;
+                        ParcelArr[i].scheduled = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        ParcelArr[i].pickedUp = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        ParcelArr[i].delivered = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
                         ParcelArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         ParcelArr[i].priority = (IDAL.DO.Priorities)(r.Next() % 3);
                     }
+                    Config.parcelIndex += 10;
 
 
                 }

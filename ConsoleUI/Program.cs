@@ -150,13 +150,13 @@ namespace ConsoleUI
                     priority = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the id of the drone");
                     droneId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the time of the requested at format......");
+                    Console.WriteLine("Enter the time of the requested at format 2011-03-21");
                     requested = DateTime.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the time of the scheduled at format......");
+                    Console.WriteLine("Enter the time of the scheduled at format 2011-03-21");
                     scheduled = DateTime.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the time the packge will collect, at format......");
+                    Console.WriteLine("Enter the time the packge will collect, at format 2011-03-21");
                     pickedUp = DateTime.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the time the packege delivered, at format......");
+                    Console.WriteLine("Enter the time the packege delivered, at format 2011-03-21");
                     delivered = DateTime.Parse(Console.ReadLine());
                     rut.ID = id;
                     rut.pickedUp = pickedUp;
@@ -214,12 +214,13 @@ namespace ConsoleUI
 
                 case 3:
                     int idParcel;
-                    DateTime date;
+                    string date;
                     Console.WriteLine("Enter the id of the percal");
                     idParcel = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the time the package collected, at format....");
-                    date = DateTime.Parse(Console.ReadLine());
-                    DalObject.ParcelReceived(idParcel, date);
+                    Console.WriteLine("Enter the time the package collected, at format 2011-03-21");
+                    date = Console.ReadLine();
+                    DateTime DDay = DateTime.Parse(date);
+                    DalObject.ParcelReceived(idParcel, DDay);
                     break;
 
                 case 4:

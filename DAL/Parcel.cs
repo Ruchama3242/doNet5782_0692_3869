@@ -20,16 +20,21 @@ namespace IDAL
             public DateTime scheduled { get; set; }
             public DateTime pickedUp { get; set; }
             public DateTime delivered { get; set; }
-            //public override string ToString()
-            //{
-            //    String result = "";
-            //    result += $"ID is {ID}, \n";
-            //    result += $"sender ID is {senderid}, \n";
-            //    result += $"target ID is {phone.Substring(0, 3) + '-' + phone.Substring(3)}, \n";
-            //    result += $"Latitude is {Latitude}, \n";
-            //    result += $"longitude is {Longitude}, \n";
-            //    return result;
-            //}
+            public override string ToString()
+            {
+                String result = "";
+                result += $"ID is: {ID}, \n";
+                result += $"sender ID is: {senderID}, \n";
+                result += $"drone ID is: {droneID}, \n";
+                result += $"target ID is: {targetId}, \n";
+                result += $"weight is: {weight}, \n";
+                result += $"priority is: {priority}, \n";
+                result += $"requested date is: {requested}, \n";
+                result += $"schedueld date ID is: {scheduled}, \n";
+                result += $"picke up date  is: {pickedUp}, \n";
+                result += $"delivered date is: {delivered}, \n";
+                return result;
+            }
 
         }
     }
