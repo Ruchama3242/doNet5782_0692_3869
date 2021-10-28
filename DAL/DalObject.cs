@@ -117,8 +117,21 @@ namespace IDAL
                     if (index == -1)
                         Console.WriteLine("ERROR! parcel not found");
                     else
+                {
+
+                    int ind,j;
+                    int droneid = DataSource.ParcelArr[index].droneID;
+                    int size2 = DataSource.Config.droneIndex;
+                    for ( j = 0; j <= size2; j++)
                     {
-                        DataSource.ParcelArr[index].pickedUp = day;
+                        if (DataSource.DronesArr[j].ID == droneid)
+                        {
+                            ind = j;
+                            break;
+                        }
+                    }
+                    DataSource.DronesArr[j].status = IDAL.DO.DroneStatus.delivery;
+                    DataSource.ParcelArr[index].pickedUp = day;
                     }
                 }
                 /// <summary>
@@ -142,7 +155,19 @@ namespace IDAL
                         Console.WriteLine("ERROR! parcel not found");
                     else
                     {
-                        DataSource.ParcelArr[index].delivered = day;
+                    int ind, j;
+                    int droneid = DataSource.ParcelArr[index].droneID;
+                    int size2 = DataSource.Config.droneIndex;
+                    for (j = 0; j <= size2; j++)
+                    {
+                        if (DataSource.DronesArr[j].ID == droneid)
+                        {
+                            ind = j;
+                            break;
+                        }
+                    }
+                    DataSource.DronesArr[j].status = IDAL.DO.DroneStatus.available;
+                    DataSource.ParcelArr[index].delivered = day;
                     }
                 }
                 /// <summary>
@@ -169,7 +194,7 @@ namespace IDAL
                         Console.WriteLine("ERROR! drone not found");
                         return DC;
                     }
-                    DataSource.DronesArr[index].status = (IDAL.DO.DroneStatus)1;
+                    DataSource.DronesArr[index].status = IDAL.DO.DroneStatus.maintenace;
                     DC.droneID = DroneID;
                     DC.stationeld = StationID;
                     int index2 = 0;
@@ -204,7 +229,7 @@ namespace IDAL
                     {
                         Console.WriteLine("ERROR! drone not found");
                     }
-                    DataSource.DronesArr[index].status =(IDAL.DO.DroneStatus)0;
+                    DataSource.DronesArr[index].status =IDAL.DO.DroneStatus.available;
                     int index2 = 0;
                     for (int i = 0; i < DataSource.Config.stationIndex; i++)
                     {

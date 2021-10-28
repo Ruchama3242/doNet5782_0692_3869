@@ -10,7 +10,7 @@ namespace ConsoleUI
         enum option { add=1, update, display, viewList, exit };
         static void Main(string[] args)
         {
-            
+            DalObject da =new DalObject();
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
                               "for insert options, press 1\n"+
@@ -133,7 +133,7 @@ namespace ConsoleUI
                     women.longitude = longitude;
                     DalObject.addCustomer(women);
                     break;
-
+                    
                 case 4:
                     Parcel rut = new Parcel();
                     int id, senderId, targetId, whight, priority, droneId;
@@ -270,7 +270,8 @@ namespace ConsoleUI
                     id= int.Parse(Console.ReadLine());
                     Station loky = new Station();
                     loky = DalObject.printStation(id);
-                    loky.ToString();
+                    //loky.ToString();
+                    Console.WriteLine(loky);
                     break;
 
                 case 2:
@@ -278,7 +279,8 @@ namespace ConsoleUI
                     id = int.Parse(Console.ReadLine());
                     Drone flafy = new Drone();
                     flafy = DalObject.printDrone(id);
-                    flafy.ToString();
+                    //flafy.ToString();
+                    Console.WriteLine(flafy);
                     break;
 
                 case 3:
@@ -286,7 +288,8 @@ namespace ConsoleUI
                     id = int.Parse(Console.ReadLine());
                     Customer anonimy = new Customer();
                     anonimy = DalObject.printCustomer(id);
-                    anonimy.ToString();
+                    //anonimy.ToString();
+                    Console.WriteLine(anonimy);
                     break;
 
                 case 4:
@@ -294,7 +297,8 @@ namespace ConsoleUI
                     id = int.Parse(Console.ReadLine());
                     Parcel yoyo = new Parcel();
                     yoyo = DalObject.printParcel(id);
-                    yoyo.ToString();
+                    //yoyo.ToString();
+                    Console.WriteLine(yoyo);
                     break;
 
                 case 5://return to the main menu
@@ -340,7 +344,7 @@ namespace ConsoleUI
                     Customer[] customerArr;
                     customerArr = DalObject.printAllCustomers();
                     foreach (Customer item in customerArr)
-                        Console.WriteLine(item.ToString());
+                            Console.WriteLine(item.ToString());
                     break;
 
                 case 4:

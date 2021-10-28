@@ -21,7 +21,7 @@ namespace IDAL
                     internal static int stationIndex = 0;
                     internal static int customerIndex = 0;
                     internal static int parcelIndex = 0;
-                    internal static int runnerID;
+                    internal static int runnerID=1000;
 
                 }
 
@@ -29,18 +29,18 @@ namespace IDAL
                 {
                     Random r = new Random();
 
-                    //lop for updete 5 drone
+                    //loop for updete 5 drone
                     for (int i = Config.droneIndex; i < 5; i++)
                     {
                         DronesArr[i].ID = r.Next(1111, 9999);
                         DronesArr[i].model = r.Next(1111, 9999);
                         DronesArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         DronesArr[i].battery = r.Next(0, 100);
-                        DronesArr[i].status = (IDAL.DO.DroneStatus)(r.Next() % 3);
+                        DronesArr[i].status = IDAL.DO.DroneStatus.available;
                     }
 
 
-                    //lop for 2 station
+                    //loop for 2 station
                     for (int i = Config.stationIndex; i < 2; i++)
                     {
                         StationsArr[i].ID = r.Next(1111, 9999);
@@ -83,9 +83,10 @@ namespace IDAL
                     for (int i = Config.parcelIndex; i < 10; i++)
                     {
 
-                        ParcelArr[i].ID = r.Next(1111, 9999);
-                        ParcelArr[i].senderID = r.Next(1111, 9999);
-                        ParcelArr[i].targetId = r.Next(111, 999);
+                        ParcelArr[i].ID = Config.runnerID;
+                        Config.runnerID++;
+                        ParcelArr[i].senderID = CustomersArr[(i + 2) % 9].ID;
+                        ParcelArr[i].targetId = CustomersArr[i].ID; 
                         ParcelArr[i].requested = new DateTime(2021,r.Next(1,12),r.Next(1,30));
                         ParcelArr[i].droneID = 0;
                         ParcelArr[i].scheduled = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
