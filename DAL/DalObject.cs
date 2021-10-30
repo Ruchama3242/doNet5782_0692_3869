@@ -50,7 +50,7 @@ namespace IDAL
                 {
                     if (DataSource.Config.customerIndex <100)
                     {
-                        DataSource.CustomersArr[DataSource.Config.stationIndex] = anonimos;
+                        DataSource.CustomersArr[DataSource.Config.customerIndex] = anonimos;
                         DataSource.Config.customerIndex++;
                     }
                     else

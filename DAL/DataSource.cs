@@ -37,6 +37,7 @@ namespace IDAL
                         DronesArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         DronesArr[i].battery = r.Next(0, 100);
                         DronesArr[i].status = IDAL.DO.DroneStatus.available;
+                        Config.droneIndex++;
                     }
 
 
