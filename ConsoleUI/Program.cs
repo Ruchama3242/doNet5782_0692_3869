@@ -114,7 +114,7 @@ namespace ConsoleUI
 
                 case 3:
                     Customer women= new Customer();
-                    int womenID;
+                    int womenID,temp;
                     string name, phone;
                     double longitude, lattitude;
                     Console.WriteLine("Enter the name of the customer");
@@ -122,7 +122,9 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the id of the customer");
                     womenID = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the phone of the customer");
-                    phone= Console.ReadLine();
+                    temp = int.Parse(Console.ReadLine());
+                    //temp = int.Parse(Console.ReadLine());
+                    phone = (Console.ReadLine());
                     Console.WriteLine("Enter the longitude");
                     longitude = double.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the lattitude");
