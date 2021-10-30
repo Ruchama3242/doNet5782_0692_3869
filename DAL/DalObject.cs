@@ -50,12 +50,7 @@ namespace IDAL
                 {
                     if (DataSource.Config.customerIndex <100)
                     {
-                        DataSource.CustomersArr[DataSource.Config.customerIndex].name = anonimos.name;
-                        DataSource.CustomersArr[DataSource.Config.customerIndex].phone = anonimos.phone;
-                        DataSource.CustomersArr[DataSource.Config.customerIndex].ID = anonimos.ID;
-                        DataSource.CustomersArr[DataSource.Config.customerIndex].lattitude = anonimos.lattitude;
-                        DataSource.CustomersArr[DataSource.Config.customerIndex].longitude = anonimos.longitude;
-                        // DataSource.CustomersArr[DataSource.Config.stationIndex] = anonimos;
+                        DataSource.CustomersArr[DataSource.Config.customerIndex] = anonimos;
                         DataSource.Config.customerIndex++;
                     }
                     else
