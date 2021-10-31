@@ -234,18 +234,20 @@ namespace IDAL
                     {
                         Console.WriteLine("ERROR! drone not found");
                     }
-                    DataSource.DronesArr[index].status =IDAL.DO.DroneStatus.available;
-                    int index2 = 0;
-                    for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    else
                     {
-                        if (DataSource.StationsArr[i].ID == FuzzedUp.stationeld)
+                        DataSource.DronesArr[index].status = IDAL.DO.DroneStatus.available;
+                        int index2 = 0;
+                        for (int i = 0; i < DataSource.Config.stationIndex; i++)
                         {
-                            index2 = i;
-                            break;
+                            if (DataSource.StationsArr[i].ID == FuzzedUp.stationeld)
+                            {
+                                index2 = i;
+                                break;
+                            }
                         }
+                        DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots + 1;
                     }
-                    DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots + 1;
-
                 }
 
                 /// <summary>
@@ -266,11 +268,13 @@ namespace IDAL
                         }
                     }
                     if (index == -1)
+                        throw new Exception("ERROR! station not found");
+                    else
                     {
-                        Console.WriteLine("ERROR! station not found");
+                        s = DataSource.StationsArr[index];
+                        return s;
                     }
-                    s = DataSource.StationsArr[index];
-                    return s;
+                    
                 }
                 /// <summary>
                 /// print a drone
@@ -290,11 +294,12 @@ namespace IDAL
                         }
                     }
                     if (index == -1)
+                        throw new Exception("ERROR! drone not found");
+                    else
                     {
-                        Console.WriteLine("ERROR! Drone not found");
+                        d = DataSource.DronesArr[index];
+                        return d;
                     }
-                    d = DataSource.DronesArr[index];
-                    return d;
                 }
                 /// <summary>
                 /// print a customer
@@ -314,11 +319,12 @@ namespace IDAL
                         }
                     }
                     if (index == -1)
+                        throw new Exception("ERROR! customer not found");
+                    else
                     {
-                        Console.WriteLine("ERROR! customer not found");
+                        c = DataSource.CustomersArr[index];
+                        return c;
                     }
-                    c = DataSource.CustomersArr[index];
-                    return c;
                 }
                 /// <summary>
                 /// print a parcel
@@ -337,12 +343,13 @@ namespace IDAL
                             break;
                         }
                     }
-                    if (index == -1)
+                    if (index == -1) 
+                        throw new Exception("ERROR! parcel not found");
+                    else
                     {
-                        Console.WriteLine("ERROR! parcel not found");
+                        p = DataSource.ParcelArr[index];
+                        return p;
                     }
-                    p = DataSource.ParcelArr[index];
-                    return p;
                 }
 
                 /// <summary>

@@ -273,36 +273,62 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the id of the station");
                     id= int.Parse(Console.ReadLine());
                     Station loky = new Station();
-                    loky = d.printStation(id);
-                    //loky.ToString();
-                    Console.WriteLine(loky);
+                    try
+                    {
+                        loky = d.printStation(id);
+                        Console.WriteLine(loky);
+                    }
+                    catch (Exception e)
+                    {
+
+                        Console.WriteLine("{0}", e);
+                    }
                     break;
 
                 case 2:
                     Console.WriteLine("Enter the id of the drone");
                     id = int.Parse(Console.ReadLine());
                     Drone flafy = new Drone();
-                    flafy = d.printDrone(id);
-                    //flafy.ToString();
-                    Console.WriteLine(flafy);
+                    try
+                    {
+                        flafy = d.printDrone(id);
+                        Console.WriteLine(flafy);
+                    }
+                    catch (Exception e)
+                    {
+
+                        Console.WriteLine("{0}", e);
+                    }
                     break;
 
                 case 3:
                     Console.WriteLine("Enter the id of the customer");
                     id = int.Parse(Console.ReadLine());
                     Customer anonimy = new Customer();
-                    anonimy = d.printCustomer(id);
-                    //anonimy.ToString();
-                    Console.WriteLine(anonimy);
+                    try
+                    {
+                        anonimy = d.printCustomer(id);
+                        Console.WriteLine(anonimy);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0}", e);
+                    }
                     break;
 
                 case 4:
                     Console.WriteLine("Enter the id of the parcel");
                     id = int.Parse(Console.ReadLine());
                     Parcel yoyo = new Parcel();
-                    yoyo = d.printParcel(id);
-                    //yoyo.ToString();
-                    Console.WriteLine(yoyo);
+                    try
+                    {
+                        yoyo = d.printParcel(id);
+                        Console.WriteLine(yoyo);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0}", e);
+                    }
                     break;
 
                 case 5://return to the main menu
