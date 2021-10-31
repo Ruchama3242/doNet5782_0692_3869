@@ -11,6 +11,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             DalObject da =new DalObject();
+          
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
                               "for insert options, press 1\n"+
@@ -24,16 +25,16 @@ namespace ConsoleUI
                 switch (mainInput)
                 {
                     case (int)option.add:
-                        addOption();
+                        addOption(da);
                         break;
                     case (int)option.update:
-                        updateOption();
+                        updateOption(da);
                         break;
                     case (int)option.display:
-                        displayOption();
+                        displayOption(da);
                         break;
                     case (int)option.viewList:
-                        viewListOption();
+                        viewListOption(da);
                         break;
                     case (int)option.exit:
                         Console.WriteLine("BY!!");
@@ -55,7 +56,7 @@ namespace ConsoleUI
         /// <summary>
         /// including al the adding cases
         /// </summary>
-         static void   addOption()
+         static void   addOption(DalObject d)
         {
             int input;
             Console.WriteLine("To add a station, press 1\n" +
@@ -86,7 +87,7 @@ namespace ConsoleUI
                     temp.lattitude = lattitudeStation;
                     temp.longitude = longitudeStation;
                     temp.chargeSlots = charge;
-                    DalObject.addStations(temp);
+                    d.addStations(temp);
                     break;
 
                 case 2:
@@ -109,7 +110,7 @@ namespace ConsoleUI
                     myDrone.weight =(WeightCategories)myWeight;
                     myDrone.status = (DroneStatus)myStatus;
                     myDrone.battery = battery;
-                    DalObject.addDrone(myDrone);
+                    d.addDrone(myDrone);
                     break;
 
                 case 3:
@@ -132,7 +133,7 @@ namespace ConsoleUI
                     women.phone = phone;
                     women.lattitude = lattitude;
                     women.longitude = longitude;
-                    DalObject.addCustomer(women);
+                    d.addCustomer(women);
                     break;
                     
                 case 4:
@@ -145,9 +146,9 @@ namespace ConsoleUI
                     senderId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the  target id of the percal");
                     targetId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the weight category of the percal (0 to light, 1 to medium, 2 to heavy");
+                    Console.WriteLine("Enter the weight category of the percal (0 to light, 1 to medium, 2 to heavy)");
                     whight = int.Parse(Console.ReadLine()); ;
-                    Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency");
+                    Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency)");
                     priority = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the id of the drone");
                     droneId = int.Parse(Console.ReadLine());
@@ -168,7 +169,8 @@ namespace ConsoleUI
                     rut.senderID = senderId;
                     rut.targetId = targetId;
                     rut.weight = (WeightCategories)whight;
-                    DalObject.addParcel(rut);
+                    int newId=d.addParcel(rut);
+                    Console.WriteLine("The id of the parcel is "+newId);
                     break;
 
                 case 5: //return to the main menu
@@ -181,7 +183,7 @@ namespace ConsoleUI
         /// <summary>
         /// including all the update cases
         /// </summary>
-        static void updateOption()
+        static void updateOption(DalObject d)
         {
 
             int input;
@@ -201,7 +203,7 @@ namespace ConsoleUI
                     percalId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the  id of the drone");
                     droneID= int.Parse(Console.ReadLine());
-                    DalObject.ParcelDrone(percalId, droneID);
+                    d.ParcelDrone(percalId, droneID);
                     break;
 
                 case 2:
@@ -211,7 +213,7 @@ namespace ConsoleUI
                     parcelID = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the time for the collection");
                     time = DateTime.Parse(Console.ReadLine());
-                    DalObject.ParcelPickedUp( parcelID, time);
+                    d.ParcelPickedUp( parcelID, time);
                     break;
 
                 case 3:
@@ -222,7 +224,7 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the time the package collected, at format 2011-03-21");
                     date = Console.ReadLine();
                     DateTime DDay = DateTime.Parse(date);
-                    DalObject.ParcelReceived(idParcel, DDay);
+                    d.ParcelReceived(idParcel, DDay);
                     break;
 
                 case 4:
@@ -231,7 +233,7 @@ namespace ConsoleUI
                     idDrone = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the id of the station");
                     idStation = int.Parse(Console.ReadLine());
-                    DalObject.SendToCharge(idDrone, idStation);
+                    d.SendToCharge(idDrone, idStation);
                     break;
                 case 5:
                     int droneId, stationId;
@@ -242,7 +244,7 @@ namespace ConsoleUI
                     stationId = int.Parse(Console.ReadLine());
                     buzz.droneID = droneId;
                     buzz.stationeld = stationId;
-                    DalObject.BatteryCharged(buzz);
+                    d.BatteryCharged(buzz);
                     break;
 
                 case 6: //return to the main menu
@@ -255,7 +257,7 @@ namespace ConsoleUI
         /// <summary>
         /// including all the display cases
         /// </summary>
-        static void displayOption()
+        static void displayOption(DalObject d)
         {
             int input;
             Console.WriteLine("for station press 1\n" +
@@ -271,7 +273,7 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the id of the station");
                     id= int.Parse(Console.ReadLine());
                     Station loky = new Station();
-                    loky = DalObject.printStation(id);
+                    loky = d.printStation(id);
                     //loky.ToString();
                     Console.WriteLine(loky);
                     break;
@@ -280,7 +282,7 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the id of the drone");
                     id = int.Parse(Console.ReadLine());
                     Drone flafy = new Drone();
-                    flafy = DalObject.printDrone(id);
+                    flafy = d.printDrone(id);
                     //flafy.ToString();
                     Console.WriteLine(flafy);
                     break;
@@ -289,7 +291,7 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the id of the customer");
                     id = int.Parse(Console.ReadLine());
                     Customer anonimy = new Customer();
-                    anonimy = DalObject.printCustomer(id);
+                    anonimy = d.printCustomer(id);
                     //anonimy.ToString();
                     Console.WriteLine(anonimy);
                     break;
@@ -298,7 +300,7 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the id of the parcel");
                     id = int.Parse(Console.ReadLine());
                     Parcel yoyo = new Parcel();
-                    yoyo = DalObject.printParcel(id);
+                    yoyo = d.printParcel(id);
                     //yoyo.ToString();
                     Console.WriteLine(yoyo);
                     break;
@@ -313,7 +315,7 @@ namespace ConsoleUI
         /// <summary>
         /// including all the view list cases
         /// </summary>
-        static void viewListOption()
+        static void viewListOption(DalObject d)
         {
             int input;
             Console.WriteLine("for list of station press 1\n" +
@@ -330,41 +332,41 @@ namespace ConsoleUI
             {
                 case 1:
                     Station[] stationArr;
-                    stationArr = DalObject.printAllStations();
+                    stationArr = d.printAllStations();
                     foreach (Station item in stationArr)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 2:
                     Drone[] droneArr;
-                    droneArr = DalObject.printAllDrones();
+                    droneArr = d.printAllDrones();
                     foreach (Drone item in droneArr)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 3:
                     Customer[] customerArr;
-                    customerArr = DalObject.printAllCustomers();
+                    customerArr = d.printAllCustomers();
                     foreach (Customer item in customerArr)
                             Console.WriteLine(item.ToString());
                     break;
 
                 case 4:
                     Parcel[] parcelArr;
-                    parcelArr = DalObject.printAllParcels();
+                    parcelArr = d.printAllParcels();
                     foreach (Parcel item in parcelArr)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 5:
                     Parcel[] NoParcelArr;
-                    NoParcelArr = DalObject.printParcelsWithoutDrone();
+                    NoParcelArr = d.printParcelsWithoutDrone();
                     foreach (Parcel item in NoParcelArr)
                         Console.WriteLine(item.ToString());
                     break;
                 case 6:
                     Station[] avilableStations;
-                    avilableStations = DalObject.printStationsWithChargeSlots();
+                    avilableStations = d.printStationsWithChargeSlots();
                     foreach (Station item in avilableStations)
                         Console.WriteLine(item.ToString());
                     break;

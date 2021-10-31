@@ -19,6 +19,7 @@ namespace IDAL
                 String result = "";
                 result += $"ID is: {ID}, \n";
                 result += $"Name is: {name}, \n";
+                result+= $"Longitude is: {longitude}, \n";
                 result += $"Latitude is: {lattitude}, \n";
                 result += $"charge slolts is: {chargeSlots}, \n";
                 return result;

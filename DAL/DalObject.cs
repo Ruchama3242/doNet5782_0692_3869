@@ -18,7 +18,7 @@ namespace IDAL
                 /// add station to the array
                 /// </summary>
                 /// <param name="Victoria"></param>
-                public  static void addStations(Station temp)
+                public void addStations(Station temp)
                 {
                     if (DataSource.Config.stationIndex <= 4)
                     {
@@ -32,7 +32,7 @@ namespace IDAL
                 /// add drone to the array
                 /// </summary>
                 /// <param name="spy"></param>
-                public static void addDrone(Drone spy)
+                public void addDrone(Drone spy)
                 {
                     if (DataSource.Config.droneIndex <= 9)
                     {
@@ -46,7 +46,7 @@ namespace IDAL
                 /// add customer to the array
                 /// </summary>
                 /// <param name="c"></param>
-                public static void addCustomer(Customer anonimos)
+                public void addCustomer(Customer anonimos)
                 {
                     if (DataSource.Config.customerIndex <100)
                     {
@@ -60,7 +60,7 @@ namespace IDAL
                 /// add parcel to the array
                 /// </summary>
                 /// <param name="Fedex"></param>
-                public static void addParcel(Parcel wow)
+                public int addParcel(Parcel wow)
                 {
                     if (DataSource.Config.parcelIndex < 1000)
                     {
@@ -72,13 +72,14 @@ namespace IDAL
                     }
                     else
                         Console.WriteLine("ERROR! overflow in array");
+                    return wow.ID;
                 }
                 /// <summary>
                 /// update the DroneId to the parcel
                 /// </summary>
                 /// <param name="parcelID"></param>
                 /// <param name="droneID"></param>
-                public static void ParcelDrone(int parcelID, int droneID)
+                public void ParcelDrone(int parcelID, int droneID)
                 {
                     int size = DataSource.Config.parcelIndex;
                     int index = -1;
@@ -102,7 +103,7 @@ namespace IDAL
                 /// </summary>
                 /// <param name="parcelID"></param>
                 /// <param name="day"></param>
-                public static void ParcelPickedUp(int parcelID, DateTime day)
+                public void ParcelPickedUp(int parcelID, DateTime day)
                 {
                     int size = DataSource.Config.parcelIndex;
                     int index = -1;
@@ -139,7 +140,7 @@ namespace IDAL
                 /// </summary>
                 /// <param name="parcelID"></param>
                 /// <param name="day"></param>
-                public  static void ParcelReceived(int parcelID, DateTime day)
+                public void ParcelReceived(int parcelID, DateTime day)
                 {
                     int size = DataSource.Config.parcelIndex;
                     int index = -1;
@@ -176,7 +177,7 @@ namespace IDAL
                 /// <param name="DroneID"></param>
                 /// <param name="StationID"></param>
                 /// <returns></returns>
-                public  static DroneCharge SendToCharge(int DroneID, int StationID)
+                public DroneCharge SendToCharge(int DroneID, int StationID)
                 {
                     int size = DataSource.Config.droneIndex;
                     int index = -1;
@@ -207,13 +208,17 @@ namespace IDAL
                         }
                     }
                     DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots - 1;
+                    DroneCharge d=new DroneCharge();
+                    d.droneID = DroneID;
+                    d.stationeld = StationID;
+                    DataSource.DroneChargeList.Add(d);
                     return DC;
                 }
                 /// <summary>
                 /// release the drone from the charge slote
                 /// </summary>
                 /// <param name="FuzzedUp"></param>
-                public static void BatteryCharged(DroneCharge FuzzedUp)
+                public void BatteryCharged(DroneCharge FuzzedUp)
                 {
                     int size = DataSource.Config.droneIndex;
                     int index = -1;
@@ -247,7 +252,7 @@ namespace IDAL
                 /// print a station
                 /// </summary>
                 /// <param name="id"></param>
-                public static Station printStation(int id)
+                public Station printStation(int id)
                 {
                     Station s;
                     int size = DataSource.Config.stationIndex;
@@ -271,7 +276,7 @@ namespace IDAL
                 /// print a drone
                 /// </summary>
                 /// <param name="id"></param>
-                public static Drone printDrone(int id)
+                public Drone printDrone(int id)
                 {
                     Drone d;
                     int size = DataSource.Config.droneIndex;
@@ -295,7 +300,7 @@ namespace IDAL
                 /// print a customer
                 /// </summary>
                 /// <param name="id"></param>
-                public static Customer printCustomer(int id)
+                public Customer printCustomer(int id)
                 {
                     Customer c;
                     int size = DataSource.Config.customerIndex;
@@ -319,7 +324,7 @@ namespace IDAL
                 /// print a parcel
                 /// </summary>
                 /// <param name="id"></param>
-                public static Parcel printParcel(int id)
+                public Parcel printParcel(int id)
                 {
                     Parcel p;
                     int size = DataSource.Config.parcelIndex;
@@ -343,7 +348,7 @@ namespace IDAL
                 /// <summary>
                 /// print all stations
                 /// </summary>
-                public static Station[] printAllStations()
+                public Station[] printAllStations()
                 {
                     Station[] arr = new Station[DataSource.Config.stationIndex];
                     for (int i = 0; i < DataSource.Config.stationIndex; i++)
@@ -355,7 +360,7 @@ namespace IDAL
                 /// <summary>
                 /// print all drones
                 /// </summary>
-                public static Drone[] printAllDrones()
+                public Drone[] printAllDrones()
                 {
                     Drone[] arr = new Drone[DataSource.Config.droneIndex];
                     for (int i = 0; i < DataSource.Config.droneIndex; i++)
@@ -367,7 +372,7 @@ namespace IDAL
                 /// <summary>
                 /// print all customers
                 /// </summary>
-                public static Customer[] printAllCustomers()
+                public Customer[] printAllCustomers()
                 {
                     Customer[] arr = new Customer[DataSource.Config.customerIndex];
                     for (int i = 0; i < DataSource.Config.customerIndex; i++)
@@ -379,7 +384,7 @@ namespace IDAL
                 /// <summary>
                 /// print all parcels
                 /// </summary>
-                public static Parcel[] printAllParcels()
+                public Parcel[] printAllParcels()
                 {
                     Parcel[] arr = new Parcel[DataSource.Config.parcelIndex];
                     for (int i = 0; i < DataSource.Config.parcelIndex; i++)
@@ -391,7 +396,7 @@ namespace IDAL
                 /// <summary>
                 /// print all parcels that have no yet drone
                 /// </summary>
-                public static Parcel[] printParcelsWithoutDrone()
+                public Parcel[] printParcelsWithoutDrone()
                 {
                     int count = 0;
                     for (int i = 0; i < DataSource.Config.parcelIndex; i++)
@@ -415,7 +420,7 @@ namespace IDAL
                 /// <summary>
                 /// print all stations with charge slots available
                 /// </summary>
-                public static Station[] printStationsWithChargeSlots()
+                public Station[] printStationsWithChargeSlots()
                 {
                     int count = 0;
                     for (int i = 0; i < DataSource.Config.stationIndex; i++)

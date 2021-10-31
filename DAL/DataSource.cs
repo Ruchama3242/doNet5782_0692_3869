@@ -1,6 +1,7 @@
 ﻿using System;
 using IDAL.DO;
 using IDAL.DO.DalObject;
+using System.Collections.Generic;
 namespace IDAL
 {
     namespace DO
@@ -13,7 +14,7 @@ namespace IDAL
                 internal static Station[] StationsArr = new Station[5];
                 internal static Customer[] CustomersArr = new Customer[100];
                 internal static Parcel[] ParcelArr = new Parcel[1000];
-
+                internal static List<DroneCharge> DroneChargeList = new List<DroneCharge>();
                 internal class Config
                 {
 
