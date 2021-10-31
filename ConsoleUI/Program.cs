@@ -129,6 +129,7 @@ namespace ConsoleUI
                     lattitude = double.Parse(Console.ReadLine());
                     women.ID = womenID;
                     women.name = name;
+                    women.phone = phone;
                     women.lattitude = lattitude;
                     women.longitude = longitude;
                     DalObject.addCustomer(women);
@@ -138,13 +139,13 @@ namespace ConsoleUI
                     Parcel rut = new Parcel();
                     int id, senderId, targetId, whight, priority, droneId;
                     DateTime requested, scheduled, pickedUp, delivered;
-                    Console.WriteLine("Enter the id of the percal");
-                    id = int.Parse(Console.ReadLine());
+                    //Console.WriteLine("Enter the id of the percal");
+                    id = 0; //int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the  sender id of the percal");
                     senderId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the  target id of the percal");
                     targetId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the weight category of the percal (0 to light, 2 to medium, 3 to heavy");
+                    Console.WriteLine("Enter the weight category of the percal (0 to light, 1 to medium, 2 to heavy");
                     whight = int.Parse(Console.ReadLine()); ;
                     Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency");
                     priority = int.Parse(Console.ReadLine());
@@ -160,6 +161,7 @@ namespace ConsoleUI
                     delivered = DateTime.Parse(Console.ReadLine());
                     rut.ID = id;
                     rut.pickedUp = pickedUp;
+                    rut.delivered = delivered;
                     rut.priority = (Priorities)priority;
                     rut.requested = requested;
                     rut.scheduled = scheduled;
