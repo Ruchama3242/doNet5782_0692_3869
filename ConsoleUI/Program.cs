@@ -1,4 +1,5 @@
-﻿using System;
+﻿//We did one bonus of a sexagsimal display
+using System;
 using IDAL.DO;
 using IDAL.DO.DalObject;
 
