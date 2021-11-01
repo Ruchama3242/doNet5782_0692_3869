@@ -140,7 +140,7 @@ namespace ConsoleUI
                     
                 case 4:
                     Parcel rut = new Parcel();
-                    int id, senderId, targetId, whight, priority, droneId;
+                    int id, senderId, targetId, whight, priority; //droneId;
                     DateTime requested, scheduled, pickedUp, delivered;
                     //Console.WriteLine("Enter the id of the percal");
                     id = 0; //int.Parse(Console.ReadLine());
@@ -152,8 +152,8 @@ namespace ConsoleUI
                     whight = int.Parse(Console.ReadLine()); ;
                     Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency)");
                     priority = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the id of the drone");
-                    droneId = int.Parse(Console.ReadLine());
+                    //Console.WriteLine("Enter the id of the drone");
+                    //droneId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the time of the requested at format 2011-03-21");
                     requested = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the time of the scheduled at format 2011-03-21");
@@ -172,7 +172,7 @@ namespace ConsoleUI
                     rut.targetId = targetId;
                     rut.weight = (WeightCategories)whight;
                     int newId=d.addParcel(rut);
-                    Console.WriteLine("The id of the parcel is "+newId);
+                    Console.WriteLine("The id of the parcel is "+newId+"\n");
                     break;
 
                 case 5: //return to the main menu
