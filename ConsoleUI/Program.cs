@@ -299,7 +299,6 @@ namespace ConsoleUI
                     }
                     catch (Exception e)
                     {
-
                         Console.WriteLine("{0}", e);
                     }
                     break;
@@ -434,7 +433,7 @@ namespace ConsoleUI
             if (degrees < 0)
                 degrees = degrees * -1;
 
-            Console.WriteLine("{0}° {1}' {2}''E", degrees,minutes,seconds);//latitude
+            Console.WriteLine(@"{0}° {1}' {2}""E", degrees,minutes,seconds);//latitude
 
             int latSeconds = (int)Math.Round(lattitude * 60 * 60);
             double xL = (lattitude - Math.Truncate(lattitude)) * 60;//the decimaly part *60
@@ -449,7 +448,7 @@ namespace ConsoleUI
             if (degreesL < 0)
                 degreesL = degreesL * -1;
 
-            Console.WriteLine("{0}° {1}' {2}''S", degreesL, minutesL, secondsL);//longitude
+            Console.WriteLine(@"{0}° {1}' {2}'""S", degreesL, minutesL, secondsL);//longitude
         }
     }
 }
