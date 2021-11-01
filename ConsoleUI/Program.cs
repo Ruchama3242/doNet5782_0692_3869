@@ -366,6 +366,7 @@ namespace ConsoleUI
                     {
                         Console.WriteLine(item.ToString());
                         sexagesimal(item.longitude, item.lattitude);
+                        Console.WriteLine();
                     }
                     break;
 
@@ -383,6 +384,7 @@ namespace ConsoleUI
                     {
                         Console.WriteLine(item.ToString());
                         sexagesimal(item.longitude, item.lattitude);
+                        Console.WriteLine();
                     }
                     break;
 
