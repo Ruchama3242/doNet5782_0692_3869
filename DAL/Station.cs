@@ -10,8 +10,8 @@ namespace IDAL
         {
             public int ID { get; set; }
             public string name { get; set; }
-            public double longitude { get; set; }
-            public double lattitude { get; set; }
+            public float longitude { get; set; }
+            public float lattitude { get; set; }
             public int chargeSlots { get; set; }
 
             public override string ToString()

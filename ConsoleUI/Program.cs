@@ -2,6 +2,7 @@
 using IDAL.DO;
 using IDAL.DO.DalObject;
 
+
 namespace ConsoleUI
 {
 
@@ -11,7 +12,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             DalObject da =new DalObject();
-          
+      
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
                               "for insert options, press 1\n"+
@@ -19,6 +20,7 @@ namespace ConsoleUI
                               "for display options press 3\n"+
                               "For options for viewing the lists, press 4\n"+
                               "To exit, press 5");
+
             mainInput = int.Parse(Console.ReadLine());
             while (mainInput != 5)
             {
@@ -71,15 +73,15 @@ namespace ConsoleUI
                     Station temp = new Station();
                     string nameStation;
                     int idStation, charge;
-                    double longitudeStation, lattitudeStation;
+                    float longitudeStation, lattitudeStation;
                     Console.WriteLine("Enter the name of the station");
                     nameStation = Console.ReadLine();
                     Console.WriteLine("Enter the ID of the station");
                     idStation = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the longitude of the station");
-                    longitudeStation = double.Parse(Console.ReadLine());
+                    longitudeStation = float.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the lettitude of the station");
-                    lattitudeStation = double.Parse(Console.ReadLine());
+                    lattitudeStation = float.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the charge slot of the station");
                     charge = int.Parse(Console.ReadLine());
                     temp.name = nameStation;
@@ -117,7 +119,7 @@ namespace ConsoleUI
                     Customer women= new Customer();
                     int womenID;
                     string name, phone;
-                    double longitude, lattitude;
+                    float longitude, lattitude;
                     Console.WriteLine("Enter the name of the customer");
                     name = Console.ReadLine();
                     Console.WriteLine("Enter the id of the customer");
@@ -125,9 +127,9 @@ namespace ConsoleUI
                     Console.WriteLine("Enter the phone of the customer");
                     phone = Console.ReadLine();
                     Console.WriteLine("Enter the longitude");
-                    longitude = double.Parse(Console.ReadLine());
+                    longitude = float.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the lattitude");
-                    lattitude = double.Parse(Console.ReadLine());
+                    lattitude = float.Parse(Console.ReadLine());
                     women.ID = womenID;
                     women.name = name;
                     women.phone = phone;
@@ -277,10 +279,10 @@ namespace ConsoleUI
                     {
                         loky = d.printStation(id);
                         Console.WriteLine(loky);
+                        sexagesimal(loky.longitude, loky.lattitude);
                     }
                     catch (Exception e)
                     {
-
                         Console.WriteLine("{0}", e);
                     }
                     break;
@@ -309,6 +311,7 @@ namespace ConsoleUI
                     {
                         anonimy = d.printCustomer(id);
                         Console.WriteLine(anonimy);
+                        sexagesimal(anonimy.longitude, anonimy.lattitude);
                     }
                     catch (Exception e)
                     {
@@ -360,7 +363,10 @@ namespace ConsoleUI
                     Station[] stationArr;
                     stationArr = d.printAllStations();
                     foreach (Station item in stationArr)
+                    {
                         Console.WriteLine(item.ToString());
+                        sexagesimal(item.longitude, item.lattitude);
+                    }
                     break;
 
                 case 2:
@@ -374,7 +380,10 @@ namespace ConsoleUI
                     Customer[] customerArr;
                     customerArr = d.printAllCustomers();
                     foreach (Customer item in customerArr)
-                            Console.WriteLine(item.ToString());
+                    {
+                        Console.WriteLine(item.ToString());
+                        sexagesimal(item.longitude, item.lattitude);
+                    }
                     break;
 
                 case 4:
@@ -394,7 +403,10 @@ namespace ConsoleUI
                     Station[] avilableStations;
                     avilableStations = d.printStationsWithChargeSlots();
                     foreach (Station item in avilableStations)
+                    {
                         Console.WriteLine(item.ToString());
+                        sexagesimal(item.longitude, item.lattitude);
+                    }
                     break;
                 case 7://return to the main menu
                     break;
@@ -402,6 +414,39 @@ namespace ConsoleUI
                     Console.WriteLine("ERROR! Please enter a valid value");
                     break;
             }
+        }
+         static void sexagesimal(float longitude,float lattitude )
+        {
+            Console.WriteLine("the cordinate at sexagismal:");
+            int longSeconds = (int)Math.Round(longitude * 60 * 60);
+            double x = (longitude - Math.Truncate(longitude)) * 60;//the decimaly part *60
+            float seconds = (float)(x - Math.Truncate(x))*60;//the decimaly part of minute *60
+            int minutes = ((longSeconds / 60) % 60);
+            int degrees = ((longSeconds / 60) / 60);
+            //
+            if (seconds < 0)
+                seconds = seconds * -1;
+            if (minutes < 0)
+                minutes = minutes * -1;
+            if (degrees < 0)
+                degrees = degrees * -1;
+
+            Console.WriteLine("{0}° {1}' {2}''E", degrees,minutes,seconds);//latitude
+
+            int latSeconds = (int)Math.Round(lattitude * 60 * 60);
+            double xL = (lattitude - Math.Truncate(lattitude)) * 60;//the decimaly part *60
+            float secondsL = (float)(xL - Math.Truncate(xL)) * 60;//the decimaly part of minute *60
+            int minutesL = (latSeconds / 60) % 60; 
+            int degreesL = (latSeconds / 60) / 60;
+            //
+            if (secondsL < 0)
+                secondsL = secondsL * -1;
+            if (minutesL < 0)
+                minutesL = minutesL * -1;
+            if (degreesL < 0)
+                degreesL = degreesL * -1;
+
+            Console.WriteLine("{0}° {1}' {2}''S", degreesL, minutesL, secondsL);//longitude
         }
     }
 }
