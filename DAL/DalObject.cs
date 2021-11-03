@@ -25,16 +25,19 @@ namespace IDAL
                     bool flug = true;
                     foreach(Station item in DataSource.StationsList)
                     {
-                       // if (item.ID = temp.ID)
-                            //flug = false;
+                        
+                       if( item.Equals(temp.ID));//return true if the field is the same
+                            flug = false;
                     }
                     if (flug)
                         DataSource.StationsList.Add(temp);
-                        //DataSource.StationsArr[DataSource.Config.stationIndex] = temp;
-                        //DataSource.Config.stationIndex++;
+                    else
+                        throw new Exception("ERROR! the ID already exist");
+                    //DataSource.StationsArr[DataSource.Config.stationIndex] = temp;
+                    //DataSource.Config.stationIndex++;
                     //}
                     //else
-                        //Console.WriteLine("ERROR! overflow in array");
+                    //Console.WriteLine("ERROR! overflow in array");
                 }
                 /// <summary>
                 /// add drone to the array

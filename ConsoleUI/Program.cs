@@ -106,15 +106,15 @@ namespace ConsoleUI
                     myModel = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the weight category of the drone (0 to light, 1 to medium, 2 to heavy)");
                     myWeight = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the drone status ( 0 for available, 1 for maintenace, 2 for delivery)");
-                    myStatus = int.Parse(Console.ReadLine());
+                    //Console.WriteLine("Enter the drone status ( 0 for available, 1 for maintenace, 2 for delivery)");
+                    //myStatus = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the battery percentage");
                     battery = double.Parse(Console.ReadLine());
                     myDrone.ID = myId;
                     myDrone.model = myModel;
                     myDrone.weight =(WeightCategories)myWeight;
-                    myDrone.status = (DroneStatus)myStatus;
-                    myDrone.battery = battery;
+                    //myDrone.status = (DroneStatus)myStatus;
+                    //myDrone.battery = battery;
                     d.addDrone(myDrone);
                     break;
 
