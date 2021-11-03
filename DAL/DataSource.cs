@@ -22,11 +22,11 @@ namespace IDAL
                
                 internal class Config
                 {
-
-                    //internal static int droneIndex = 0;
-                    //internal static int stationIndex = 0;
-                    //internal static int customerIndex = 0;
-                    //internal static int parcelIndex = 0;
+                    static bool clear;
+                    static bool lightWeight;
+                    static bool havyWeight;
+                    static bool mediumWeight;
+                    int chargineRate;
                     internal static int runnerID=1000;
 
                 }
