@@ -55,19 +55,41 @@ namespace IDAL
 
 
                     //loop for 2 station
-                    for (int i = Config.stationIndex; i < 2; i++)
-                    {
-                    //    StationsArr[i].ID = r.Next(1111, 9999);
-                    //    StationsArr[i].longitude = r.Next(-180, 180);
-                    //    StationsArr[i].lattitude = r.Next(-90, 90);
-                    //    StationsArr[i].chargeSlots = r.Next(0, 100);
-                       }
+                    //for (int i =0; i < 2; i++)
+                    //{
+                        Station temp1 = new Station();
+                        temp1.ID = r.Next(1111, 9999);
+                        temp1.longitude = r.Next(-180, 180);
+                        temp1.lattitude = r.Next(-90, 90);
+                        temp1.chargeSlots = r.Next(0, 100);
+                        temp1.name = "flower";
+                        StationsArr.Add(temp1);
+                        Station temp2 = new Station();
+                        temp2.ID = r.Next(1111, 9999);
+                        temp2.longitude = r.Next(-180, 180);
+                        temp2.lattitude = r.Next(-90, 90);
+                        temp2.chargeSlots = r.Next(0, 100);
+                        temp2.name = "gefen";
+                        StationsArr.Add(temp2);
+                        //    StationsArr[i].ID = r.Next(1111, 9999);
+                        //    StationsArr[i].longitude = r.Next(-180, 180);
+                        //    StationsArr[i].lattitude = r.Next(-90, 90);
+                        //    StationsArr[i].chargeSlots = r.Next(0, 100);
+                    //}
                     //StationsArr[Config.stationIndex++].name = "flower";
                     //StationsArr[Config.stationIndex++].name = "gefen";
 
                     //lop for 10 customer
-                    for (int i = Config.customerIndex; i < 10; i++)
+                    for (int i = 0; i < 10; i++)
                     {
+                        Customer temp = new Customer();
+                        Names names= (IDAL.DO.Names)(i);//for a diffrent name
+                        temp.name = "names";
+                        temp.longitude= r.Next(-180, 180);
+                        temp.lattitude = r.Next(-90, 90);
+                        temp.ID = r.Next(212365428, 328987502);
+                        temp.phone = "0"+ r.Next(521121316, 549993899);
+                        CustomersArr.Add(temp);
                         //CustomersArr[i].longitude = r.Next(-180, 180); ;
                         //CustomersArr[i].lattitude = r.Next(-90, 90);
                         //CustomersArr[i].ID = r.Next(212365428, 328987502);
@@ -94,9 +116,20 @@ namespace IDAL
                     //CustomersArr[Config.customerIndex++].name = "Rachel";
 
 
-                    for (int i = Config.parcelIndex; i < 10; i++)
+                    for (int i =0; i < 10; i++)
                     {
-
+                        Parcel temp = new Parcel();
+                        temp.ID = Config.runnerID;
+                        temp.senderID = CustomersArr[(i + 2) % 9].ID;
+                        temp.targetId = CustomersArr[i].ID;
+                        temp.requested = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        temp.droneID = 0;
+                        temp.scheduled = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        temp.pickedUp = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        temp.delivered = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
+                        temp.priority = (IDAL.DO.Priorities)(r.Next() % 3);
+                        ParcelArr.Add(temp);
                         //ParcelArr[i].ID = Config.runnerID;
                         Config.runnerID++;
                         //ParcelArr[i].senderID = CustomersArr[(i + 2) % 9].ID;
