@@ -1,7 +1,10 @@
 ﻿using System;
 using IDAL.DO;
 using DAL;
+using System.Collections.Generic;
+using System.Collections;
 namespace IDAL
+
 {
     namespace DO
     {
@@ -265,26 +268,33 @@ namespace IDAL
                 /// print a station
                 /// </summary>
                 /// <param name="id"></param>
-                public Station printStation(int id)
+                public  Station printStation(int id)
                 {
-                    Station s;
-                    int size = DataSource.Config.stationIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    foreach(Station item in DataSource.StationsList)
                     {
-                        if (DataSource.StationsArr[i].ID == id)
-                        {
-                            index = i;
-                            break;
-                        }
+                        if (item.Equals(id))
+                            return item;
                     }
-                    if (index == -1)
-                        throw new Exception("ERROR! station not found");
-                    else
-                    {
-                        s = DataSource.StationsArr[index];
-                        return s;
-                    }
+                    throw new Exception("ERROR! the station doesn't exist");
+                    //return default(Station);
+                   // Station s;
+                    //int size = DataSource.Config.stationIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <= size; i++)
+                    //{
+                    //    if (DataSource.StationsArr[i].ID == id)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //if (index == -1)
+                    //    throw new Exception("ERROR! station not found");
+                    //else
+                    //{
+                    //    s = DataSource.StationsArr[index];
+                    //    return s;
+                    //}
                     
                 }
                 /// <summary>
@@ -293,24 +303,30 @@ namespace IDAL
                 /// <param name="id"></param>
                 public Drone printDrone(int id)
                 {
-                    Drone d;
-                    int size = DataSource.Config.droneIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    foreach (Drone item in DataSource.DronesList)
                     {
-                        if (DataSource.DronesArr[i].ID == id)
-                        {
-                            index = i;
-                            break;
-                        }
+                        if (item.Equals(id))
+                            return item;
                     }
-                    if (index == -1)
-                        throw new Exception("ERROR! drone not found");
-                    else
-                    {
-                        d = DataSource.DronesArr[index];
-                        return d;
-                    }
+                    throw new Exception("ERROR! the drone doesn't exist");
+                    //Drone d;
+                    //int size = DataSource.Config.droneIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <= size; i++)
+                    //{
+                    //    if (DataSource.DronesArr[i].ID == id)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //if (index == -1)
+                    //    throw new Exception("ERROR! drone not found");
+                    //else
+                    //{
+                    //    d = DataSource.DronesArr[index];
+                    //    return d;
+                    //}
                 }
                 /// <summary>
                 /// print a customer
@@ -318,24 +334,30 @@ namespace IDAL
                 /// <param name="id"></param>
                 public Customer printCustomer(int id)
                 {
-                    Customer c;
-                    int size = DataSource.Config.customerIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    foreach (Customer item in DataSource.CustomersList)
                     {
-                        if (DataSource.CustomersArr[i].ID == id)
-                        {
-                            index = i;
-                            break;
-                        }
+                        if (item.Equals(id))
+                            return item;
                     }
-                    if (index == -1)
-                        throw new Exception("ERROR! customer not found");
-                    else
-                    {
-                        c = DataSource.CustomersArr[index];
-                        return c;
-                    }
+                    throw new Exception("ERROR! the customer doesn't found");
+                    //Customer c;
+                    //int size = DataSource.Config.customerIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <= size; i++)
+                    //{
+                    //    if (DataSource.CustomersArr[i].ID == id)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //if (index == -1)
+                    //    throw new Exception("ERROR! customer not found");
+                    //else
+                    //{
+                    //    c = DataSource.CustomersArr[index];
+                    //    return c;
+                    //}
                 }
                 /// <summary>
                 /// print a parcel
@@ -343,37 +365,49 @@ namespace IDAL
                 /// <param name="id"></param>
                 public Parcel printParcel(int id)
                 {
-                    Parcel p;
-                    int size = DataSource.Config.parcelIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    foreach (Parcel item in DataSource.ParcelList)
                     {
-                        if (DataSource.ParcelArr[i].ID == id)
-                        {
-                            index = i;
-                            break;
-                        }
+                        if (item.Equals(id))
+                            return item;
                     }
-                    if (index == -1) 
-                        throw new Exception("ERROR! parcel not found");
-                    else
-                    {
-                        p = DataSource.ParcelArr[index];
-                        return p;
-                    }
+                    throw new Exception("ERROR! the parcel doesn't found");
+                    //Parcel p;
+                    //int size = DataSource.Config.parcelIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <= size; i++)
+                    //{
+                    //    if (DataSource.ParcelArr[i].ID == id)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //if (index == -1) 
+                    //    throw new Exception("ERROR! parcel not found");
+                    //else
+                    //{
+                    //    p = DataSource.ParcelArr[index];
+                    //    return p;
+                    //}
                 }
 
                 /// <summary>
                 /// print all stations
                 /// </summary>
-                public Station[] printAllStations()
+                public List< Station> printAllStations()
                 {
-                    Station[] arr = new Station[DataSource.Config.stationIndex];
-                    for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    List<Station> list = new List<Station>();
+                    foreach (Station item in DataSource.StationsList)
                     {
-                        arr[i] = DataSource.StationsArr[i];
+                        list.Add(item);
                     }
-                    return arr;
+                    return list;
+                    //Station[] arr = new Station[DataSource.Config.stationIndex];
+                    //for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    //{
+                    //    arr[i] = DataSource.StationsArr[i];
+                    //}
+                    //return arr;
                 }
                 /// <summary>
                 /// print all drones
