@@ -23,10 +23,10 @@ namespace IDAL
                 internal class Config
                 {
 
-                    internal static int droneIndex = 0;
-                    internal static int stationIndex = 0;
-                    internal static int customerIndex = 0;
-                    internal static int parcelIndex = 0;
+                    //internal static int droneIndex = 0;
+                    //internal static int stationIndex = 0;
+                    //internal static int customerIndex = 0;
+                    //internal static int parcelIndex = 0;
                     internal static int runnerID=1000;
 
                 }
@@ -42,8 +42,8 @@ namespace IDAL
                         temp.ID= r.Next(1111, 9999);
                         temp.model = r.Next(1111, 9999);
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
-                        temp.battery = r.Next(0, 100);
-                        temp.status = IDAL.DO.DroneStatus.available;
+                        //temp.battery = r.Next(0, 100);
+                        //temp.status = IDAL.DO.DroneStatus.available;
                         DronesArr.Add(temp);
                         //DronesArr[i].ID = r.Next(1111, 9999);
                         //DronesArr[i].model = r.Next(1111, 9999);
@@ -55,27 +55,21 @@ namespace IDAL
 
 
                     //loop for 2 station
-                    //for (int i =0; i < 2; i++)
-                    //{
-                        Station temp1 = new Station();
-                        temp1.ID = r.Next(1111, 9999);
-                        temp1.longitude = r.Next(-180, 180);
-                        temp1.lattitude = r.Next(-90, 90);
-                        temp1.chargeSlots = r.Next(0, 100);
-                        temp1.name = "flower";
-                        StationsArr.Add(temp1);
-                        Station temp2 = new Station();
-                        temp2.ID = r.Next(1111, 9999);
-                        temp2.longitude = r.Next(-180, 180);
-                        temp2.lattitude = r.Next(-90, 90);
-                        temp2.chargeSlots = r.Next(0, 100);
-                        temp2.name = "gefen";
-                        StationsArr.Add(temp2);
+                    for (int i =0; i < 2; i++)
+                    {
+                        Station temp = new Station();
+                        temp.ID = r.Next(1111, 9999);
+                        temp.longitude = r.Next(-180, 180);
+                        temp.lattitude = r.Next(-90, 90);
+                        temp.chargeSlots = r.Next(0, 100);
+                        Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
+                        string.Format(temp.name, namesTmp);
+                        StationsArr.Add(temp);
                         //    StationsArr[i].ID = r.Next(1111, 9999);
                         //    StationsArr[i].longitude = r.Next(-180, 180);
                         //    StationsArr[i].lattitude = r.Next(-90, 90);
                         //    StationsArr[i].chargeSlots = r.Next(0, 100);
-                    //}
+                    }
                     //StationsArr[Config.stationIndex++].name = "flower";
                     //StationsArr[Config.stationIndex++].name = "gefen";
 
@@ -84,7 +78,7 @@ namespace IDAL
                     {
                         Customer temp = new Customer();
                         Names names= (IDAL.DO.Names)(i);//for a diffrent name
-                        temp.name = "names";
+                        string.Format(temp.name,names);
                         temp.longitude= r.Next(-180, 180);
                         temp.lattitude = r.Next(-90, 90);
                         temp.ID = r.Next(212365428, 328987502);
@@ -115,7 +109,7 @@ namespace IDAL
                     //CustomersArr[Config.customerIndex].phone = "0524443267";
                     //CustomersArr[Config.customerIndex++].name = "Rachel";
 
-
+                    //loop for 10 parcels
                     for (int i =0; i < 10; i++)
                     {
                         Parcel temp = new Parcel();
