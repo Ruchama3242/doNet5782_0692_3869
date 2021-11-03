@@ -10,10 +10,10 @@ namespace IDAL
         {
             public class DataSource
             {
-                internal static List<Drone> DronesArr = new List<Drone>();
-                internal static List< Station> StationsArr = new List<Station>();
-                internal static List< Customer> CustomersArr = new List<Customer>();
-                internal static List <Parcel> ParcelArr = new List<Parcel>();
+                internal static List<Drone> DronesList = new List<Drone>();
+                internal static List< Station> StationsList = new List<Station>();
+                internal static List< Customer> CustomersList = new List<Customer>();
+                internal static List <Parcel> ParcelList = new List<Parcel>();
                 internal static List<DroneCharge> DroneChargeList = new List<DroneCharge>();
                 // internal static Drone[] DronesArr = new Drone[10];
                 //internal static Station[] StationsArr = new Station[5];
@@ -44,7 +44,7 @@ namespace IDAL
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         //temp.battery = r.Next(0, 100);
                         //temp.status = IDAL.DO.DroneStatus.available;
-                        DronesArr.Add(temp);
+                        DronesList.Add(temp);
                         //DronesArr[i].ID = r.Next(1111, 9999);
                         //DronesArr[i].model = r.Next(1111, 9999);
                         //DronesArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
@@ -64,7 +64,7 @@ namespace IDAL
                         temp.chargeSlots = r.Next(0, 100);
                         Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
                         string.Format(temp.name, namesTmp);
-                        StationsArr.Add(temp);
+                        StationsList.Add(temp);
                         //    StationsArr[i].ID = r.Next(1111, 9999);
                         //    StationsArr[i].longitude = r.Next(-180, 180);
                         //    StationsArr[i].lattitude = r.Next(-90, 90);
@@ -83,7 +83,7 @@ namespace IDAL
                         temp.lattitude = r.Next(-90, 90);
                         temp.ID = r.Next(212365428, 328987502);
                         temp.phone = "0"+ r.Next(521121316, 549993899);
-                        CustomersArr.Add(temp);
+                        CustomersList.Add(temp);
                         //CustomersArr[i].longitude = r.Next(-180, 180); ;
                         //CustomersArr[i].lattitude = r.Next(-90, 90);
                         //CustomersArr[i].ID = r.Next(212365428, 328987502);
@@ -114,8 +114,8 @@ namespace IDAL
                     {
                         Parcel temp = new Parcel();
                         temp.ID = Config.runnerID;
-                        temp.senderID = CustomersArr[(i + 2) % 9].ID;
-                        temp.targetId = CustomersArr[i].ID;
+                        temp.senderID = CustomersList[(i + 2) % 9].ID;
+                        temp.targetId = CustomersList[i].ID;
                         temp.requested = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
                         temp.droneID = 0;
                         temp.scheduled = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
@@ -123,7 +123,7 @@ namespace IDAL
                         temp.delivered = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         temp.priority = (IDAL.DO.Priorities)(r.Next() % 3);
-                        ParcelArr.Add(temp);
+                        ParcelList.Add(temp);
                         //ParcelArr[i].ID = Config.runnerID;
                         Config.runnerID++;
                         //ParcelArr[i].senderID = CustomersArr[(i + 2) % 9].ID;

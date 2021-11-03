@@ -20,13 +20,21 @@ namespace IDAL
                 /// <param name="Victoria"></param>
                 public void addStations(Station temp)
                 {
-                    if (DataSource.Config.stationIndex <= 4)
+                    //if (DataSource.Config.stationIndex <= 4)
+                    //{
+                    bool flug = true;
+                    foreach(Station item in DataSource.StationsList)
                     {
-                        DataSource.StationsArr[DataSource.Config.stationIndex] = temp;
-                        DataSource.Config.stationIndex++;
+                       // if (item.ID = temp.ID)
+                            //flug = false;
                     }
-                    else
-                        Console.WriteLine("ERROR! overflow in array");
+                    if (flug)
+                        DataSource.StationsList.Add(temp);
+                        //DataSource.StationsArr[DataSource.Config.stationIndex] = temp;
+                        //DataSource.Config.stationIndex++;
+                    //}
+                    //else
+                        //Console.WriteLine("ERROR! overflow in array");
                 }
                 /// <summary>
                 /// add drone to the array

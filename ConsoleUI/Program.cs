@@ -2,6 +2,8 @@
 using System;
 using IDAL.DO;
 using IDAL.DO.DalObject;
+using System.Collections.Generic;
+using System.Collections;
 
 
 namespace ConsoleUI
@@ -360,9 +362,10 @@ namespace ConsoleUI
             switch (input)
             {
                 case 1:
-                    Station[] stationArr;
-                    stationArr = d.printAllStations();
-                    foreach (Station item in stationArr)
+                    List<Station> stationList = new List<Station>();
+                    //Station[] stationArr;
+                    stationList = d.printAllStations();
+                    foreach (Station item in stationList)
                     {
                         Console.WriteLine(item.ToString());
                         sexagesimal(item.longitude, item.lattitude);
@@ -371,16 +374,18 @@ namespace ConsoleUI
                     break;
 
                 case 2:
-                    Drone[] droneArr;
-                    droneArr = d.printAllDrones();
-                    foreach (Drone item in droneArr)
+                    List<Drone> droneList = new List<Drone>();
+                    //Drone[] droneArr;
+                    droneList = d.printAllDrones();
+                    foreach (Drone item in droneList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 3:
-                    Customer[] customerArr;
-                    customerArr = d.printAllCustomers();
-                    foreach (Customer item in customerArr)
+                    List<Customer> customerList = new List<Customer>();
+                    // Customer[] customerArr;
+                    customerList = d.printAllCustomers();
+                    foreach (Customer item in customerList)
                     {
                         Console.WriteLine(item.ToString());
                         sexagesimal(item.longitude, item.lattitude);
@@ -389,20 +394,23 @@ namespace ConsoleUI
                     break;
 
                 case 4:
-                    Parcel[] parcelArr;
-                    parcelArr = d.printAllParcels();
-                    foreach (Parcel item in parcelArr)
+                    List<Parcel> parcelList = new List<Parcel>();
+                    //Parcel[] parcelArr;
+                    parcelList = d.printAllParcels();
+                    foreach (Parcel item in parcelList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 5:
-                    Parcel[] NoParcelArr;
-                    NoParcelArr = d.printParcelsWithoutDrone();
-                    foreach (Parcel item in NoParcelArr)
+                    List<Parcel> noParcelList = new List<Parcel>();
+                    //Parcel[] NoParcelArr;
+                    noParcelList = d.printParcelsWithoutDrone();
+                    foreach (Parcel item in noParcelList)
                         Console.WriteLine(item.ToString());
                     break;
                 case 6:
-                    Station[] avilableStations;
+                    List<Station> avilableStations = new List<Station>();
+                    //Station[] avilableStations;
                     avilableStations = d.printStationsWithChargeSlots();
                     foreach (Station item in avilableStations)
                     {
@@ -410,6 +418,7 @@ namespace ConsoleUI
                         sexagesimal(item.longitude, item.lattitude);
                     }
                     break;
+
                 case 7://return to the main menu
                     break;
                 default:
