@@ -381,6 +381,7 @@ namespace IDAL
                     }
                     if (i == DataSource.StationsList.Count - 1)
                         throw new Exception("ERROR! value not found");
+                    DataSource.DroneChargeList.Remove(dc);
                     
                     //int size = DataSource.Config.droneIndex;
                     //int index = -1;
@@ -666,7 +667,146 @@ namespace IDAL
                     //}
                     //return arr;
                 }
+                /// <summary>
+                /// delete a station from the list
+                /// </summary>
+                /// <param name="id"></param>
+                public void deleteStation(int id)
+                {
+                    foreach (Station item in DataSource.StationsList)
+                    {
+                        if (item.ID == id)
+                        {
+                            DataSource.StationsList.Remove(item);
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the station doesn't found");
+                }
+                /// <summary>
+                /// delete a parcel from the list
+                /// </summary>
+                /// <param name="id"></param>
+                public void deleteSParcel(int id)
+                {
+                    foreach (Parcel item in DataSource.ParcelList)
+                    {
+                        if (item.ID == id)
+                        {
+                            DataSource.ParcelList.Remove(item);
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the parcel doesn't found");
+                }
 
+                /// <summary>
+                /// delete a drone from the list
+                /// </summary>
+                /// <param name="id"></param>
+                public void deleteDrone(int id)
+                {
+                    foreach (Drone item in DataSource.DronesList)
+                    {
+                        if (item.ID == id)
+                        {
+                            DataSource.DronesList.Remove(item);
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the drone doesn't found");
+                }
+
+                /// <summary>
+                /// delete a customer from the list
+                /// </summary>
+                /// <param name="id"></param>
+                public void deleteSCustomer(int id)
+                {
+                    foreach (Customer item in DataSource.CustomersList)
+                    {
+                        if (item.ID == id)
+                        {
+                            DataSource.CustomersList.Remove(item);
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the customer doesn't found");
+                }
+
+                /// <summary>
+                /// update the details of a station
+                /// </summary>
+                /// <param name="id"></param>
+                /// <param name="st"></param>
+                public void updateStation(int id,Station st)
+                {
+                    for(int i=0;i<DataSource.StationsList.Count;i++)
+                    {
+                        if(DataSource.StationsList[i].ID==id)
+                        {
+                            DataSource.StationsList[i] = st;
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the station doesn't found");
+                }
+
+                /// <summary>
+                /// update the details of a parcel
+                /// </summary>
+                /// <param name="id"></param>
+                /// <param name="p"></param>
+                public void updateParcel(int id, Parcel p)
+                {
+                    for (int i = 0; i < DataSource.ParcelList.Count; i++)
+                    {
+                        if (DataSource.ParcelList[i].ID == id)
+                        {
+                            DataSource.ParcelList[i] = p;
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the parcel doesn't found");
+                }
+
+                /// <summary>
+                /// update the details of a drone
+                /// </summary>
+                /// <param name="id"></param>
+                /// <param name="d"></param>
+                public void updateDrone(int id, int mod)
+                {
+                    for (int i = 0; i < DataSource.DronesList.Count; i++)
+                    {
+                        if (DataSource.DronesList[i].ID == id)
+                        {
+                            Drone d = DataSource.DronesList[i];
+                            d.model = mod;
+                            DataSource.DronesList[i] = d;
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the drone doesn't found");
+                }
+
+                /// <summary>
+                /// update the details of a customer
+                /// </summary>
+                /// <param name="id"></param>
+                /// <param name="c"></param>
+                public void updateCustomer(int id, Customer c)
+                {
+                    for (int i = 0; i < DataSource.CustomersList.Count; i++)
+                    {
+                        if (DataSource.CustomersList[i].ID == id)
+                        {
+                            DataSource.CustomersList[i] = c;
+                            return;
+                        }
+                    }
+                    throw new Exception("ERROR! the customer doesn't found");
+                }
             }
         }
     }
