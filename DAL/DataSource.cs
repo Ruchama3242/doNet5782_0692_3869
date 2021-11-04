@@ -15,18 +15,13 @@ namespace IDAL
                 internal static List< Customer> CustomersList = new List<Customer>();
                 internal static List <Parcel> ParcelList = new List<Parcel>();
                 internal static List<DroneCharge> DroneChargeList = new List<DroneCharge>();
-                // internal static Drone[] DronesArr = new Drone[10];
-                //internal static Station[] StationsArr = new Station[5];
-                //internal static Customer[] CustomersArr = new Customer[100];
-                //internal static Parcel[] ParcelArr = new Parcel[1000];
-               
                 internal class Config
                 {
-                    static bool clear;
-                    static bool lightWeight;
-                    static bool havyWeight;
-                    static bool mediumWeight;
-                    int chargineRate;
+                    static double chargeClear;
+                    static double chargeLightWeight;
+                    static double chargeHavyWeight;
+                    static double chargeMediumWeight;
+                    double chargineRate;
                     internal static int runnerID=1000;
 
                 }
@@ -45,14 +40,7 @@ namespace IDAL
                         //temp.battery = r.Next(0, 100);
                         //temp.status = IDAL.DO.DroneStatus.available;
                         DronesList.Add(temp);
-                        //DronesArr[i].ID = r.Next(1111, 9999);
-                        //DronesArr[i].model = r.Next(1111, 9999);
-                        //DronesArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
-                        //DronesArr[i].battery = r.Next(0, 100);
-                        //DronesArr[i].status = IDAL.DO.DroneStatus.available;
-                        //Config.droneIndex++;
                     }
-
 
                     //loop for 2 station
                     for (int i =0; i < 2; i++)
@@ -65,13 +53,7 @@ namespace IDAL
                         Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
                         string.Format(temp.name, namesTmp);
                         StationsList.Add(temp);
-                        //    StationsArr[i].ID = r.Next(1111, 9999);
-                        //    StationsArr[i].longitude = r.Next(-180, 180);
-                        //    StationsArr[i].lattitude = r.Next(-90, 90);
-                        //    StationsArr[i].chargeSlots = r.Next(0, 100);
                     }
-                    //StationsArr[Config.stationIndex++].name = "flower";
-                    //StationsArr[Config.stationIndex++].name = "gefen";
 
                     //lop for 10 customer
                     for (int i = 0; i < 10; i++)
@@ -84,30 +66,7 @@ namespace IDAL
                         temp.ID = r.Next(212365428, 328987502);
                         temp.phone = "0"+ r.Next(521121316, 549993899);
                         CustomersList.Add(temp);
-                        //CustomersArr[i].longitude = r.Next(-180, 180); ;
-                        //CustomersArr[i].lattitude = r.Next(-90, 90);
-                        //CustomersArr[i].ID = r.Next(212365428, 328987502);
                     }
-                    //CustomersArr[Config.customerIndex].phone = "0524453766";
-                    //CustomersArr[Config.customerIndex++].name = "Ori";
-                    //CustomersArr[Config.customerIndex].phone = "0538892543";
-                    //CustomersArr[Config.customerIndex++].name = "Tom";
-                    //CustomersArr[Config.customerIndex].phone = "0529165392";
-                    //CustomersArr[Config.customerIndex++].name = "May";
-                    //CustomersArr[Config.customerIndex].phone = "0524876359";
-                    //CustomersArr[Config.customerIndex++].name = "Noa";
-                    //CustomersArr[Config.customerIndex].phone = "0587363286";
-                    //CustomersArr[Config.customerIndex++].name = "Odeal";
-                    //CustomersArr[Config.customerIndex].phone = "0528362983";
-                    //CustomersArr[Config.customerIndex++].name = "Efrat";
-                    //CustomersArr[Config.customerIndex].phone = "0506376353";
-                    //CustomersArr[Config.customerIndex++].name = "Eliad";
-                    //CustomersArr[Config.customerIndex].phone = "0545273688";
-                    //CustomersArr[Config.customerIndex++].name = "Omer";
-                    //CustomersArr[Config.customerIndex].phone = "0542673566";
-                    //CustomersArr[Config.customerIndex++].name = "Iris";
-                    //CustomersArr[Config.customerIndex].phone = "0524443267";
-                    //CustomersArr[Config.customerIndex++].name = "Rachel";
 
                     //loop for 10 parcels
                     for (int i =0; i < 10; i++)
@@ -124,21 +83,8 @@ namespace IDAL
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         temp.priority = (IDAL.DO.Priorities)(r.Next() % 3);
                         ParcelList.Add(temp);
-                        //ParcelArr[i].ID = Config.runnerID;
                         Config.runnerID++;
-                        //ParcelArr[i].senderID = CustomersArr[(i + 2) % 9].ID;
-                        //ParcelArr[i].targetId = CustomersArr[i].ID; 
-                        //ParcelArr[i].requested = new DateTime(2021,r.Next(1,12),r.Next(1,30));
-                        //ParcelArr[i].droneID = 0;
-                        //ParcelArr[i].scheduled = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
-                        //ParcelArr[i].pickedUp = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
-                        //ParcelArr[i].delivered = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
-                        //ParcelArr[i].weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
-                        //ParcelArr[i].priority = (IDAL.DO.Priorities)(r.Next() % 3);
                     }
-                   // Config.parcelIndex += 10;
-
-
                 }
             }
         }

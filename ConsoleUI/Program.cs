@@ -99,7 +99,7 @@ namespace ConsoleUI
                     Drone myDrone = new Drone();
                     int myId, myModel;
                     double battery;
-                    int myWeight,myStatus;
+                    int myWeight;
                     Console.WriteLine("Enter the id of the drone");
                     myId = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter the model of the drone");
@@ -362,8 +362,7 @@ namespace ConsoleUI
             switch (input)
             {
                 case 1:
-                    List<Station> stationList = new List<Station>();
-                    //Station[] stationArr;
+                    IEnumerable<Station> stationList = new List<Station>();
                     stationList = d.printAllStations();
                     foreach (Station item in stationList)
                     {
@@ -374,16 +373,14 @@ namespace ConsoleUI
                     break;
 
                 case 2:
-                    List<Drone> droneList = new List<Drone>();
-                    //Drone[] droneArr;
+                    IEnumerable<Drone> droneList = new List<Drone>();
                     droneList = d.printAllDrones();
                     foreach (Drone item in droneList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 3:
-                    List<Customer> customerList = new List<Customer>();
-                    // Customer[] customerArr;
+                    IEnumerable<Customer> customerList = new List<Customer>();
                     customerList = d.printAllCustomers();
                     foreach (Customer item in customerList)
                     {
@@ -394,23 +391,20 @@ namespace ConsoleUI
                     break;
 
                 case 4:
-                    List<Parcel> parcelList = new List<Parcel>();
-                    //Parcel[] parcelArr;
+                    IEnumerable<Parcel> parcelList = new List<Parcel>();
                     parcelList = d.printAllParcels();
                     foreach (Parcel item in parcelList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 5:
-                    List<Parcel> noParcelList = new List<Parcel>();
-                    //Parcel[] NoParcelArr;
+                    IEnumerable<Parcel> noParcelList = new List<Parcel>();
                     noParcelList = d.printParcelsWithoutDrone();
                     foreach (Parcel item in noParcelList)
                         Console.WriteLine(item.ToString());
                     break;
                 case 6:
-                    List<Station> avilableStations = new List<Station>();
-                    //Station[] avilableStations;
+                    IEnumerable<Station> avilableStations = new List<Station>();
                     avilableStations = d.printStationsWithChargeSlots();
                     foreach (Station item in avilableStations)
                     {
