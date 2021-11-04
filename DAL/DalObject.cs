@@ -10,52 +10,52 @@ namespace IDAL
   { 
       namespace DalObject
         {
-            public class DalObject
+             public class DalObject:IDal
             {
                 /// <summary>
                 /// constructor
                 /// </summary>
                 public DalObject() { DataSource.Initialize(); }
 
-                public Station searchStation(int id)
-                {
-                    foreach (Station item in DataSource.StationsList)
-                    {
-                        if (item.ID == id)
-                            return item;
-                    }
-                    throw new Exception("ERROR! the station doesn't exist");
-                }
+                //public Station searchStation(int id)
+                //{
+                //    foreach (Station item in DataSource.StationsList)
+                //    {
+                //        if (item.ID == id)
+                //            return item;
+                //    }
+                //    throw new Exception("ERROR! the station doesn't exist");
+                //}
 
-                public Drone searchDrone(int id)
-                {
-                    foreach (Drone item in DataSource.DronesList)
-                    {
-                        if (item.ID == id)
-                            return item;
-                    }
-                    throw new Exception("ERROR! the drone doesn't exist");
-                }
+                //public Drone searchDrone(int id)
+                //{
+                //    foreach (Drone item in DataSource.DronesList)
+                //    {
+                //        if (item.ID == id)
+                //            return item;
+                //    }
+                //    throw new Exception("ERROR! the drone doesn't exist");
+                //}
 
-                public Parcel searchParcel(int id)
-                {
-                    foreach (Parcel item in DataSource.ParcelList)
-                    {
-                        if (item.ID == id)
-                            return item;
-                    }
-                    throw new Exception("ERROR! the parcel doesn't exist");
-                }
+                //public Parcel searchParcel(int id)
+                //{
+                //    foreach (Parcel item in DataSource.ParcelList)
+                //    {
+                //        if (item.ID == id)
+                //            return item;
+                //    }
+                //    throw new Exception("ERROR! the parcel doesn't exist");
+                //}
 
-                public Customer searchCustomer(int id)
-                {
-                    foreach (Customer item in DataSource.CustomersList)
-                    {
-                        if (item.ID == id)
-                            return item;
-                    }
-                    throw new Exception("ERROR! the customer doesn't exist");
-                }
+                //public Customer searchCustomer(int id)
+                //{
+                //    foreach (Customer item in DataSource.CustomersList)
+                //    {
+                //        if (item.ID == id)
+                //            return item;
+                //    }
+                //    throw new Exception("ERROR! the customer doesn't exist");
+                //}
                 /// <summary>
                 /// add station to the array
                 /// </summary>
