@@ -6,10 +6,9 @@ using System.Collections;
 namespace IDAL
 
 {
-    namespace DO
-    {
-
-        namespace DalObject
+  namespace DO
+  { 
+      namespace DalObject
         {
             public class DalObject
             {
@@ -17,6 +16,46 @@ namespace IDAL
                 /// constructor
                 /// </summary>
                 public DalObject() { DataSource.Initialize(); }
+
+                public Station searchStation(int id)
+                {
+                    foreach (Station item in DataSource.StationsList)
+                    {
+                        if (item.ID == id)
+                            return item;
+                    }
+                    throw new Exception("ERROR! the station doesn't exist");
+                }
+
+                public Drone searchDrone(int id)
+                {
+                    foreach (Drone item in DataSource.DronesList)
+                    {
+                        if (item.ID == id)
+                            return item;
+                    }
+                    throw new Exception("ERROR! the drone doesn't exist");
+                }
+
+                public Parcel searchParcel(int id)
+                {
+                    foreach (Parcel item in DataSource.ParcelList)
+                    {
+                        if (item.ID == id)
+                            return item;
+                    }
+                    throw new Exception("ERROR! the parcel doesn't exist");
+                }
+
+                public Customer searchCustomer(int id)
+                {
+                    foreach (Customer item in DataSource.CustomersList)
+                    {
+                        if (item.ID == id)
+                            return item;
+                    }
+                    throw new Exception("ERROR! the customer doesn't exist");
+                }
                 /// <summary>
                 /// add station to the array
                 /// </summary>
@@ -26,10 +65,10 @@ namespace IDAL
                     //if (DataSource.Config.stationIndex <= 4)
                     //{
                     bool flug = true;
-                    foreach(Station item in DataSource.StationsList)
+                    foreach (Station item in DataSource.StationsList)
                     {
-                        
-                       if( item.Equals(temp.ID));//return true if the field is the same
+
+                        if (item.Equals(temp.ID)) //return true if the field is the same
                             flug = false;
                     }
                     if (flug)
@@ -46,47 +85,73 @@ namespace IDAL
                 /// add drone to the array
                 /// </summary>
                 /// <param name="spy"></param>
-                public void addDrone(Drone spy)
+                public void addDrone(Drone temp)
                 {
-                    if (DataSource.Config.droneIndex <= 9)
+                    bool flag = true;
+                    foreach (Drone item in DataSource.DronesList)
                     {
-                        DataSource.DronesArr[DataSource.Config.droneIndex] = spy;
-                        DataSource.Config.droneIndex++;
+
+                        if (item.Equals(temp.ID)) //return true if the field is the same
+                            flag = false;
                     }
+                    if (flag)
+                        DataSource.DronesList.Add(temp);
                     else
-                        Console.WriteLine("ERROR! overflow in array");
+                        throw new Exception("ERROR! the ID already exist");
+                    //if (DataSource.Config.droneIndex <= 9)
+                    //{
+                    //    DataSource.DronesArr[DataSource.Config.droneIndex] = spy;
+                    //    DataSource.Config.droneIndex++;
+                    //}
+                    //else
+                    //    Console.WriteLine("ERROR! overflow in array");
                 }
                 /// <summary>
                 /// add customer to the array
                 /// </summary>
                 /// <param name="c"></param>
-                public void addCustomer(Customer anonimos)
+                public void addCustomer(Customer temp)
                 {
-                    if (DataSource.Config.customerIndex <100)
+                    bool flag = true;
+                    foreach (Customer item in DataSource.CustomersList)
                     {
-                        DataSource.CustomersArr[DataSource.Config.customerIndex] = anonimos;
-                        DataSource.Config.customerIndex++;
+
+                        if (item.Equals(temp.ID)) //return true if the field is the same
+                            flag = false;
                     }
+                    if (flag)
+                        DataSource.CustomersList.Add(temp);
                     else
-                        Console.WriteLine("ERROR! overflow in array");
+                        throw new Exception("ERROR! the ID already exist");
+                    //if (DataSource.Config.customerIndex <100)
+                    //{
+                    //    DataSource.CustomersArr[DataSource.Config.customerIndex] = anonimos;
+                    //    DataSource.Config.customerIndex++;
+                    //}
+                    //else
+                    //    Console.WriteLine("ERROR! overflow in array");
                 }
                 /// <summary>
                 /// add parcel to the array
                 /// </summary>
                 /// <param name="Fedex"></param>
-                public int addParcel(Parcel wow)
+                public int addParcel(Parcel temp)
                 {
-                    if (DataSource.Config.parcelIndex < 1000)
-                    {
-                        wow.ID = DataSource.Config.runnerID;
-                        DataSource.Config.runnerID++;
-                        DataSource.ParcelArr[DataSource.Config.parcelIndex] = wow;
-                        DataSource.Config.parcelIndex++;
+                    temp.ID = DataSource.Config.runnerID;
+                    DataSource.ParcelList.Add(temp);
+                    DataSource.Config.runnerID++;
+                    return temp.ID;
+                    //if (DataSource.Config.parcelIndex < 1000)
+                    //{
+                    //    wow.ID = DataSource.Config.runnerID;
+                    //    DataSource.Config.runnerID++;
+                    //    DataSource.ParcelArr[DataSource.Config.parcelIndex] = wow;
+                    //    DataSource.Config.parcelIndex++;
 
-                    }
-                    else
-                        Console.WriteLine("ERROR! overflow in array");
-                    return wow.ID;
+                    //}
+                    //else
+                    //    Console.WriteLine("ERROR! overflow in array");
+                    //return wow.ID;
                 }
                 /// <summary>
                 /// update the DroneId to the parcel
@@ -95,22 +160,33 @@ namespace IDAL
                 /// <param name="droneID"></param>
                 public void ParcelDrone(int parcelID, int droneID)
                 {
-                    int size = DataSource.Config.parcelIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    for (int i = 0; i < DataSource.ParcelList.Count; i++)
                     {
-                        if (DataSource.ParcelArr[i].ID == parcelID)
+                        if (DataSource.ParcelList[i].ID == parcelID)
                         {
-                            index = i;
-                            break;
+                            Parcel p = DataSource.ParcelList[i];
+                            p.droneID = droneID;
+                            DataSource.ParcelList[i] = p;
+                            return;
                         }
                     }
-                    if (index == -1)
-                        Console.WriteLine("ERROR! parcel not found");
-                    else
-                    {
-                        DataSource.ParcelArr[index].droneID = droneID;
-                    }
+                    throw new Exception("ERROR! the value not found");
+                    //    int size = DataSource.Config.parcelIndex;
+                    //    int index = -1;
+                    //    for (int i = 0; i <= size; i++)
+                    //    {
+                    //        if (DataSource.ParcelArr[i].ID == parcelID)
+                    //        {
+                    //            index = i;
+                    //            break;
+                    //        }
+                    //    }
+                    //    if (index == -1)
+                    //        Console.WriteLine("ERROR! parcel not found");
+                    //    else
+                    //    {
+                    //        DataSource.ParcelArr[index].droneID = droneID;
+                    //    }
                 }
                 /// <summary>
                 /// update the date that the parcel picked up
@@ -119,35 +195,47 @@ namespace IDAL
                 /// <param name="day"></param>
                 public void ParcelPickedUp(int parcelID, DateTime day)
                 {
-                    int size = DataSource.Config.parcelIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    for (int i = 0; i < DataSource.ParcelList.Count; i++)
                     {
-                        if (DataSource.ParcelArr[i].ID == parcelID)
+                        if (DataSource.ParcelList[i].ID == parcelID)
                         {
-                            index = i;
-                            break;
+                            Parcel p = DataSource.ParcelList[i];
+                            p.pickedUp = day;
+                            DataSource.ParcelList[i] = p;
+                            return;
                         }
                     }
-                    if (index == -1)
-                        Console.WriteLine("ERROR! parcel not found");
-                    else
-                {
+                    throw new Exception("ERROR! the value not found");
 
-                    int ind,j;
-                    int droneid = DataSource.ParcelArr[index].droneID;
-                    int size2 = DataSource.Config.droneIndex;
-                    for ( j = 0; j <= size2; j++)
-                    {
-                        if (DataSource.DronesArr[j].ID == droneid)
-                        {
-                            ind = j;
-                            break;
-                        }
-                    }
-                    DataSource.DronesArr[j].status = IDAL.DO.DroneStatus.delivery;
-                    DataSource.ParcelArr[index].pickedUp = day;
-                    }
+                    //    int size = DataSource.Config.parcelIndex;
+                    //    int index = -1;
+                    //    for (int i = 0; i <= size; i++)
+                    //    {
+                    //        if (DataSource.ParcelArr[i].ID == parcelID)
+                    //        {
+                    //            index = i;
+                    //            break;
+                    //        }
+                    //    }
+                    //    if (index == -1)
+                    //        Console.WriteLine("ERROR! parcel not found");
+                    //    else
+                    //{
+
+                    //    int ind,j;
+                    //    int droneid = DataSource.ParcelArr[index].droneID;
+                    //    int size2 = DataSource.Config.droneIndex;
+                    //    for ( j = 0; j <= size2; j++)
+                    //    {
+                    //        if (DataSource.DronesArr[j].ID == droneid)
+                    //        {
+                    //            ind = j;
+                    //            break;
+                    //        }
+                    //    }
+                    //    DataSource.DronesArr[j].status = IDAL.DO.DroneStatus.delivery;
+                    //    DataSource.ParcelArr[index].pickedUp = day;
+                    //    }
                 }
                 /// <summary>
                 /// update the date that the parcel delivered
@@ -156,34 +244,46 @@ namespace IDAL
                 /// <param name="day"></param>
                 public void ParcelReceived(int parcelID, DateTime day)
                 {
-                    int size = DataSource.Config.parcelIndex;
-                    int index = -1;
-                    for (int i = 0; i <=size; i++)
+                    for (int i = 0; i < DataSource.ParcelList.Count; i++)
                     {
-                        if (DataSource.ParcelArr[i].ID == parcelID)
+                        if (DataSource.ParcelList[i].ID == parcelID)
                         {
-                            index = i;
-                            break;
+                            Parcel p = DataSource.ParcelList[i];
+                            p.delivered = day;
+                            DataSource.ParcelList[i] = p;
+                            return;
                         }
                     }
-                    if (index == -1)
-                        Console.WriteLine("ERROR! parcel not found");
-                    else
-                    {
-                    int ind, j;
-                    int droneid = DataSource.ParcelArr[index].droneID;
-                    int size2 = DataSource.Config.droneIndex;
-                    for (j = 0; j <= size2; j++)
-                    {
-                        if (DataSource.DronesArr[j].ID == droneid)
-                        {
-                            ind = j;
-                            break;
-                        }
-                    }
-                    DataSource.DronesArr[j].status = IDAL.DO.DroneStatus.available;
-                    DataSource.ParcelArr[index].delivered = day;
-                    }
+                    throw new Exception("ERROR! the value not found");
+
+                    //int size = DataSource.Config.parcelIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <=size; i++)
+                    //{
+                    //    if (DataSource.ParcelArr[i].ID == parcelID)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //if (index == -1)
+                    //    Console.WriteLine("ERROR! parcel not found");
+                    //else
+                    //{
+                    //int ind, j;
+                    //int droneid = DataSource.ParcelArr[index].droneID;
+                    //int size2 = DataSource.Config.droneIndex;
+                    //for (j = 0; j <= size2; j++)
+                    //{
+                    //    if (DataSource.DronesArr[j].ID == droneid)
+                    //    {
+                    //        ind = j;
+                    //        break;
+                    //    }
+                    //}
+                    //DataSource.DronesArr[j].status = IDAL.DO.DroneStatus.available;
+                    //DataSource.ParcelArr[index].delivered = day;
+                    //}
                 }
                 /// <summary>
                 /// send the drone to charge in a station
@@ -193,91 +293,139 @@ namespace IDAL
                 /// <returns></returns>
                 public DroneCharge SendToCharge(int DroneID, int StationID)
                 {
-                    int size = DataSource.Config.droneIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    int count2 = 0;
+                    foreach (Drone item in DataSource.DronesList)
                     {
-                        if (DataSource.DronesArr[i].ID == DroneID)
-                        {
-                            index = i;
-                            break;
-                        }
+                        if(item.ID!=DroneID)
+                            count2++;
                     }
-                    DroneCharge DC = new DroneCharge();
-                    if (index == -1)
-                    {
-                        Console.WriteLine("ERROR! drone not found");
-                        return DC;
-                    }
-                    DataSource.DronesArr[index].status = IDAL.DO.DroneStatus.maintenace;
-                    DC.droneID = DroneID;
-                    DC.stationeld = StationID;
-                    int index2 = 0;
-                    for (int i = 0; i < DataSource.Config.stationIndex; i++)
-                    {
-                        if (DataSource.StationsArr[i].ID == StationID)
-                        {
-                            index2 = i;
-                            break;
-                        }
-                    }
-                    DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots - 1;
-                    DroneCharge d=new DroneCharge();
+                    if (count2 == DataSource.DronesList.Count)
+                        throw new Exception("ERROR! value not found");
+                    DroneCharge d = new DroneCharge();
                     d.droneID = DroneID;
                     d.stationeld = StationID;
+                    int i = 0;
+                    for(;i<DataSource.StationsList.Count;i++)
+                    {
+                        if(DataSource.StationsList[i].ID == StationID)
+                        {
+                            Station s = DataSource.StationsList[i];
+                            s.chargeSlots--;
+                            DataSource.StationsList[i] = s;
+                            break;
+                        }
+                    }
+                    if(i==DataSource.StationsList.Count-1)
+                        throw new Exception("ERROR! value not found");
                     DataSource.DroneChargeList.Add(d);
-                    return DC;
+                    return d;
+                    //int size = DataSource.Config.droneIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <= size; i++)
+                    //{
+                    //    if (DataSource.DronesArr[i].ID == DroneID)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //DroneCharge DC = new DroneCharge();
+                    //if (index == -1)
+                    //{
+                    //    Console.WriteLine("ERROR! drone not found");
+                    //    return DC;
+                    //}
+                    //DataSource.DronesArr[index].status = IDAL.DO.DroneStatus.maintenace;
+                    //DC.droneID = DroneID;
+                    //DC.stationeld = StationID;
+                    //int index2 = 0;
+                    //for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    //{
+                    //    if (DataSource.StationsArr[i].ID == StationID)
+                    //    {
+                    //        index2 = i;
+                    //        break;
+                    //    }
+                    //}
+                    //DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots - 1;
+                    //DroneCharge d = new DroneCharge();
+                    //d.droneID = DroneID;
+                    //d.stationeld = StationID;
+                    //DataSource.DroneChargeList.Add(d);
+                    //return DC;
                 }
                 /// <summary>
                 /// release the drone from the charge slote
                 /// </summary>
                 /// <param name="FuzzedUp"></param>
-                public void BatteryCharged(DroneCharge FuzzedUp)
+                public void BatteryCharged(DroneCharge dc)
                 {
-                    int size = DataSource.Config.droneIndex;
-                    int index = -1;
-                    for (int i = 0; i <= size; i++)
+                    int count2 = 0;
+                    foreach (Drone item in DataSource.DronesList)
                     {
-                        if (DataSource.DronesArr[i].ID == FuzzedUp.droneID)
+                        if (item.ID != dc.droneID)
+                            count2++;
+                    }
+                    if (count2 == DataSource.DronesList.Count)
+                        throw new Exception("ERROR! value not found");
+                    int i = 0;
+                    for (; i < DataSource.StationsList.Count; i++)
+                    {
+                        if (DataSource.StationsList[i].ID == dc.stationeld)
                         {
-                            index = i;
+                            Station s = DataSource.StationsList[i];
+                            s.chargeSlots++;
+                            DataSource.StationsList[i] = s;
                             break;
                         }
                     }
-                    if (index == -1)
-                    {
-                        Console.WriteLine("ERROR! drone not found");
-                    }
-                    else
-                    {
-                        DataSource.DronesArr[index].status = IDAL.DO.DroneStatus.available;
-                        int index2 = 0;
-                        for (int i = 0; i < DataSource.Config.stationIndex; i++)
-                        {
-                            if (DataSource.StationsArr[i].ID == FuzzedUp.stationeld)
-                            {
-                                index2 = i;
-                                break;
-                            }
-                        }
-                        DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots + 1;
-                    }
+                    if (i == DataSource.StationsList.Count - 1)
+                        throw new Exception("ERROR! value not found");
+                    
+                    //int size = DataSource.Config.droneIndex;
+                    //int index = -1;
+                    //for (int i = 0; i <= size; i++)
+                    //{
+                    //    if (DataSource.DronesArr[i].ID == FuzzedUp.droneID)
+                    //    {
+                    //        index = i;
+                    //        break;
+                    //    }
+                    //}
+                    //if (index == -1)
+                    //{
+                    //    Console.WriteLine("ERROR! drone not found");
+                    //}
+                    //else
+                    //{
+                    //    DataSource.DronesArr[index].status = IDAL.DO.DroneStatus.available;
+                    //    int index2 = 0;
+                    //    for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    //    {
+                    //        if (DataSource.StationsArr[i].ID == FuzzedUp.stationeld)
+                    //        {
+                    //            index2 = i;
+                    //            break;
+                    //        }
+                    //    }
+                    //    DataSource.StationsArr[index2].chargeSlots = DataSource.StationsArr[index2].chargeSlots + 1;
+                    //}
                 }
 
                 /// <summary>
                 /// print a station
                 /// </summary>
                 /// <param name="id"></param>
-                public  Station printStation(int id)
+                public Station printStation(int id)
                 {
-                    foreach(Station item in DataSource.StationsList)
+                    foreach (Station item in DataSource.StationsList)
                     {
                         if (item.Equals(id))
                             return item;
                     }
                     throw new Exception("ERROR! the station doesn't exist");
                     //return default(Station);
-                   // Station s;
+                    // Station s;
                     //int size = DataSource.Config.stationIndex;
                     //int index = -1;
                     //for (int i = 0; i <= size; i++)
@@ -295,7 +443,7 @@ namespace IDAL
                     //    s = DataSource.StationsArr[index];
                     //    return s;
                     //}
-                    
+
                 }
                 /// <summary>
                 /// print a drone
@@ -394,7 +542,7 @@ namespace IDAL
                 /// <summary>
                 /// print all stations
                 /// </summary>
-                public List< Station> printAllStations()
+                public IEnumerable<Station> printAllStations()
                 {
                     List<Station> list = new List<Station>();
                     foreach (Station item in DataSource.StationsList)
@@ -412,85 +560,111 @@ namespace IDAL
                 /// <summary>
                 /// print all drones
                 /// </summary>
-                public Drone[] printAllDrones()
+                public IEnumerable<Drone> printAllDrones()
                 {
-                    Drone[] arr = new Drone[DataSource.Config.droneIndex];
-                    for (int i = 0; i < DataSource.Config.droneIndex; i++)
-                    {
-                        arr[i] = DataSource.DronesArr[i];
-                    }
-                    return arr;
+                    List<Drone> lst = new List<Drone>();
+                    foreach (Drone item in DataSource.DronesList)
+                        lst.Add(item);
+                    return lst;
+                    //Drone[] arr = new Drone[DataSource.Config.droneIndex];
+                    //for (int i = 0; i < DataSource.Config.droneIndex; i++)
+                    //{
+                    //    arr[i] = DataSource.DronesArr[i];
+                    //}
+                    //return arr;
                 }
                 /// <summary>
                 /// print all customers
                 /// </summary>
-                public Customer[] printAllCustomers()
+                public IEnumerable<Customer> printAllCustomers()
                 {
-                    Customer[] arr = new Customer[DataSource.Config.customerIndex];
-                    for (int i = 0; i < DataSource.Config.customerIndex; i++)
-                    {
-                        arr[i] = DataSource.CustomersArr[i];
-                    }
-                    return arr;
+                    List<Customer> lst = new List<Customer>();
+                    foreach (Customer item in DataSource.CustomersList)
+                        lst.Add(item);
+                    return lst;
+                    //Customer[] arr = new Customer[DataSource.Config.customerIndex];
+                    //for (int i = 0; i < DataSource.Config.customerIndex; i++)
+                    //{
+                    //    arr[i] = DataSource.CustomersArr[i];
+                    //}
+                    //return arr;
                 }
                 /// <summary>
                 /// print all parcels
                 /// </summary>
-                public Parcel[] printAllParcels()
+                public IEnumerable<Parcel> printAllParcels()
                 {
-                    Parcel[] arr = new Parcel[DataSource.Config.parcelIndex];
-                    for (int i = 0; i < DataSource.Config.parcelIndex; i++)
-                    {
-                        arr[i] = DataSource.ParcelArr[i];
-                    }
-                    return arr;
+                    List<Parcel> lst = new List<Parcel>();
+                    foreach (Parcel item in DataSource.ParcelList)
+                        lst.Add(item);
+                    return lst;
+                    //Parcel[] arr = new Parcel[DataSource.Config.parcelIndex];
+                    //for (int i = 0; i < DataSource.Config.parcelIndex; i++)
+                    //{
+                    //    arr[i] = DataSource.ParcelArr[i];
+                    //}
+                    //return arr;
                 }
                 /// <summary>
                 /// print all parcels that have no yet drone
                 /// </summary>
-                public Parcel[] printParcelsWithoutDrone()
+                public IEnumerable<Parcel> printParcelsWithoutDrone()
                 {
-                    int count = 0;
-                    for (int i = 0; i < DataSource.Config.parcelIndex; i++)
+                    List<Parcel> lst = new List<Parcel>();
+                    foreach(Parcel item in DataSource.ParcelList)
                     {
-                        //Parcel p = DataSource.ParcelArr[i];
-                        if (DataSource.ParcelArr[i].droneID == 0)
-                            count++;
+                        if (item.droneID == 0)
+                            lst.Add(item);
                     }
-                    Parcel[] arr = new Parcel[count];
-                    count = 0;
-                    for (int i = 0; i < DataSource.Config.parcelIndex; i++)
-                    {
-                        if (DataSource.ParcelArr[i].droneID == 0)
-                        {
-                            arr[count] = DataSource.ParcelArr[i];
-                            count++;
-                        }
-                    }
-                    return arr;
+                    return lst;
+                    //int count = 0;
+                    //for (int i = 0; i < DataSource.Config.parcelIndex; i++)
+                    //{
+                    //    //Parcel p = DataSource.ParcelArr[i];
+                    //    if (DataSource.ParcelArr[i].droneID == 0)
+                    //        count++;
+                    //}
+                    //Parcel[] arr = new Parcel[count];
+                    //count = 0;
+                    //for (int i = 0; i < DataSource.Config.parcelIndex; i++)
+                    //{
+                    //    if (DataSource.ParcelArr[i].droneID == 0)
+                    //    {
+                    //        arr[count] = DataSource.ParcelArr[i];
+                    //        count++;
+                    //    }
+                    //}
+                    //return arr;
                 }
                 /// <summary>
                 /// print all stations with charge slots available
                 /// </summary>
-                public Station[] printStationsWithChargeSlots()
+                public IEnumerable<Station> printStationsWithChargeSlots()
                 {
-                    int count = 0;
-                    for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    List<Station> lst = new List<Station>();
+                    foreach(Station item in DataSource.StationsList)
                     {
-                        if (DataSource.StationsArr[i].chargeSlots > 0)
-                            count++;
+                        if (item.chargeSlots > 0)
+                            lst.Add(item);
                     }
-                    Station[] arr = new Station[count];
-                    count = 0;
-                    for (int i = 0; i < DataSource.Config.stationIndex; i++)
-                    {
-                        if (DataSource.StationsArr[i].chargeSlots > 0)
-                        {
-                            arr[count] = DataSource.StationsArr[i];
-                            count++;
-                        }
-                    }
-                    return arr;
+                    return lst;
+                    //int count = 0;
+                    //for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    //{
+                    //    if (DataSource.StationsArr[i].chargeSlots > 0)
+                    //        count++;
+                    //}
+                    //Station[] arr = new Station[count];
+                    //count = 0;
+                    //for (int i = 0; i < DataSource.Config.stationIndex; i++)
+                    //{
+                    //    if (DataSource.StationsArr[i].chargeSlots > 0)
+                    //    {
+                    //        arr[count] = DataSource.StationsArr[i];
+                    //        count++;
+                    //    }
+                    //}
+                    //return arr;
                 }
 
             }
