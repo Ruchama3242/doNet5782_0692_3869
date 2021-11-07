@@ -18,9 +18,9 @@ namespace IDAL
             public override string ToString()
             {
                 String result = "";
-                result += $"ID is: {ID}, \n";
-                result += $"model is: {model}, \n";
-                result += $"weight  is: {weight}, \n";
+                result += $"ID is: {ID}, model is: {model}, weight  is: {weight},\n";
+                //result += $"model is: {model}, \n";
+                //result += $"weight  is: {weight}, \n";
                 //result += $"status is: {status}, \n";
                 //result += $"battery is: {battery}, \n";
                 return result;

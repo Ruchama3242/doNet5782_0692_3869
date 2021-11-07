@@ -422,7 +422,6 @@ namespace ConsoleUI
         }
          static void sexagesimal(float longitude,float lattitude )
         {
-            Console.WriteLine("the cordinate at sexagismal:");
             int longSeconds = (int)Math.Round(longitude * 60 * 60);
             double x = (longitude - Math.Truncate(longitude)) * 60;//the decimaly part *60
             float seconds = (float)(x - Math.Truncate(x))*60;//the decimaly part of minute *60
@@ -436,7 +435,7 @@ namespace ConsoleUI
             if (degrees < 0)
                 degrees = degrees * -1;
 
-            Console.WriteLine(@"{0}° {1}' {2}""E", degrees,minutes,seconds);//latitude
+           // Console.WriteLine(@"{0}° {1}' {2}""E", degrees,minutes,seconds);//latitude
 
             int latSeconds = (int)Math.Round(lattitude * 60 * 60);
             double xL = (lattitude - Math.Truncate(lattitude)) * 60;//the decimaly part *60
@@ -451,7 +450,8 @@ namespace ConsoleUI
             if (degreesL < 0)
                 degreesL = degreesL * -1;
 
-            Console.WriteLine(@"{0}° {1}' {2}'""S", degreesL, minutesL, secondsL);//longitude
+            Console.WriteLine($@"the cordinate at sexagismal: {degrees}° {minutes}' {seconds}"" E ,{degreesL}° {minutesL}' {secondsL}"" S"); 
+                //degrees, minutes, seconds,degreesL, minutesL, secondsL);
         }
     }
 }

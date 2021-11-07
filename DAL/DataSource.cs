@@ -51,7 +51,7 @@ namespace IDAL
                         temp.lattitude = r.Next(-90, 90);
                         temp.chargeSlots = r.Next(0, 100);
                         Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
-                        string.Format(temp.name, namesTmp);
+                        temp.name = namesTmp.ToString();
                         StationsList.Add(temp);
                     }
 
@@ -60,7 +60,7 @@ namespace IDAL
                     {
                         Customer temp = new Customer();
                         Names names= (IDAL.DO.Names)(i);//for a diffrent name
-                        string.Format(temp.name,names);
+                        temp.name = names.ToString();
                         temp.longitude= r.Next(-180, 180);
                         temp.lattitude = r.Next(-90, 90);
                         temp.ID = r.Next(212365428, 328987502);

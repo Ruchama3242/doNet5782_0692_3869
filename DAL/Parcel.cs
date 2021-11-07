@@ -23,16 +23,20 @@ namespace IDAL
             public override string ToString()
             {
                 String result = "";
-                result += $"ID is: {ID}, \n";
-                result += $"sender ID is: {senderID}, \n";
-                result += $"drone ID is: {droneID}, \n";
-                result += $"target ID is: {targetId}, \n";
-                result += $"weight is: {weight}, \n";
-                result += $"priority is: {priority}, \n";
-                result += $"requested date is: {requested}, \n";
-                result += $"schedueld date ID is: {scheduled}, \n";
-                result += $"picke up date  is: {pickedUp}, \n";
-                result += $"delivered date is: {delivered}, \n";
+                result += $"ID is: {ID}, sender ID is: {senderID}, " +
+                          $"drone ID is: {droneID}, target ID is: {targetId}, " +
+                          $"weight is: {weight}, priority is: {priority}, " +
+                          $"requested date is: {requested}, schedueld date ID is: {scheduled}," +
+                          $" picke up date  is: {pickedUp}, delivered date is: {delivered}\n";
+                //result += $"sender ID is: {senderID}, \n";
+                //result += $"drone ID is: {droneID}, \n";
+                //result += $"target ID is: {targetId}, \n";
+                //result += $"weight is: {weight}, \n";
+                //result += $"priority is: {priority}, \n";
+                //result += $"requested date is: {requested}, \n";
+                //result += $"schedueld date ID is: {scheduled}, \n";
+                //result += $"picke up date  is: {pickedUp}, \n";
+                //result += $"delivered date is: {delivered}, \n";
                 return result;
             }
 
