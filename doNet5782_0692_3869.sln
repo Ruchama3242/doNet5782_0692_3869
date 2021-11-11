@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{04979D30-388C-493F-B1D2-CE5A947B6307}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{2160B28E-A28D-4DE6-9664-8BD3156EAABB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{04979D30-388C-493F-B1D2-CE5A947B6307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04979D30-388C-493F-B1D2-CE5A947B6307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04979D30-388C-493F-B1D2-CE5A947B6307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2160B28E-A28D-4DE6-9664-8BD3156EAABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2160B28E-A28D-4DE6-9664-8BD3156EAABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2160B28E-A28D-4DE6-9664-8BD3156EAABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2160B28E-A28D-4DE6-9664-8BD3156EAABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B5DBBC68-9488-4CF5-AF9B-DABDEACF7086} = {02DD24AC-7399-4AE6-BD3B-610F1F258574}
 		{04979D30-388C-493F-B1D2-CE5A947B6307} = {02DD24AC-7399-4AE6-BD3B-610F1F258574}
+		{2160B28E-A28D-4DE6-9664-8BD3156EAABB} = {02DD24AC-7399-4AE6-BD3B-610F1F258574}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BD3F28C-C14D-4631-BDA8-A8600E80D7CE}
