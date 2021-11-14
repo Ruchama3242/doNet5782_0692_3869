@@ -15,7 +15,7 @@ namespace IDAL
                 /// <summary>
                 /// add customer to the array
                 /// </summary>
-                /// <param name="c"></param>
+                /// <param name="temp"></param>
                 public void addCustomer(Customer temp)
                 {
                     bool flag = true;
@@ -28,7 +28,7 @@ namespace IDAL
                     if (flag)
                         DataSource.CustomersList.Add(temp);
                     else
-                        throw new Exception("ERROR! the ID already exist");
+                        throw new MyException("ERROR! the ID already exist");
                 }
 
                 /// <summary>
@@ -42,7 +42,7 @@ namespace IDAL
                         if (item.Equals(id))
                             return item;
                     }
-                    throw new Exception("ERROR! the customer doesn't found");
+                    throw new MyException("ERROR! the customer doesn't found");
                 }
 
                 /// <summary>
@@ -70,7 +70,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the customer doesn't found");
+                    throw new MyException("ERROR! the customer doesn't found");
                 }
 
                 /// <summary>
@@ -88,7 +88,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the customer doesn't found");
+                    throw new MyException("ERROR! the customer doesn't found");
                 }
             }
         }

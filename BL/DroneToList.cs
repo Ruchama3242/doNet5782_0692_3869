@@ -17,10 +17,10 @@ namespace IBL
             public DroneStatus status { get; set; }
             public Location currentLocation { get; set; }
             public int parcelNumber { get; set; }
-            public override string ToString()
-            {
+            //public override string ToString()
+            //{
                 
-            }
+            //}
         }
     }
 }

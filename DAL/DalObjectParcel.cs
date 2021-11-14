@@ -41,7 +41,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the value not found");
+                    throw new MyException("ERROR! the value not found");
                 }
 
                 /// <summary>
@@ -61,7 +61,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the value not found");
+                    throw new MyException("ERROR! the value not found");
                 }
 
                 /// <summary>
@@ -81,7 +81,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the value not found");
+                    throw new MyException("ERROR! the value not found");
                 }
 
                 /// <summary>
@@ -95,7 +95,7 @@ namespace IDAL
                         if (item.Equals(id))
                             return item;
                     }
-                    throw new Exception("ERROR! the parcel doesn't found");
+                    throw new MyException("ERROR! the parcel doesn't found");
                 }
 
                 /// <summary>
@@ -137,7 +137,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the parcel doesn't found");
+                    throw new MyException("ERROR! the parcel doesn't found");
                 }
 
                 /// <summary>
@@ -155,7 +155,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the parcel doesn't found");
+                    throw new MyException("ERROR! the parcel doesn't found");
                 }
             }
         }

@@ -15,11 +15,9 @@ namespace IDAL
                 /// <summary>
                 /// add station to the array
                 /// </summary>
-                /// <param name="Victoria"></param>
+                /// <param name="temp"></param>
                 public void addStations(Station temp)
                 {
-                    //if (DataSource.Config.stationIndex <= 4)
-                    //{
                     bool flug = true;
                     foreach (Station item in DataSource.StationsList)
                     {
@@ -30,7 +28,7 @@ namespace IDAL
                     if (flug)
                         DataSource.StationsList.Add(temp);
                     else
-                        throw new Exception("ERROR! the ID already exist");
+                        throw new MyException("ERROR! the ID already exist");
                 }
 
                 /// <summary>
@@ -44,7 +42,7 @@ namespace IDAL
                         if (item.Equals(id))
                             return item;
                     }
-                    throw new Exception("ERROR! the station doesn't exist");
+                    throw new MyException("ERROR! the station doesn't exist");
                 }
 
                 /// <summary>
@@ -87,7 +85,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the station doesn't found");
+                    throw new MyException("ERROR! the station doesn't found");
                 }
 
                 /// <summary>
@@ -105,7 +103,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new Exception("ERROR! the station doesn't found");
+                    throw new MyException("ERROR! the station doesn't found");
                 }
             }
         }
