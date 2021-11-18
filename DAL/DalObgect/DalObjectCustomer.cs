@@ -28,7 +28,7 @@ namespace IDAL
                     if (flag)
                         DataSource.CustomersList.Add(temp);
                     else
-                        throw new MyException("ERROR! the ID already exist");
+                        throw new IdExistsException();
                 }
 
                 /// <summary>
@@ -42,7 +42,7 @@ namespace IDAL
                         if (item.Equals(id))
                             return item;
                     }
-                    throw new MyException("ERROR! the customer doesn't found");
+                    throw new IdUnExistsException("ERROR! the customer doesn't found");
                 }
 
                 /// <summary>
@@ -70,7 +70,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new MyException("ERROR! the customer doesn't found");
+                    throw new IdUnExistsException("ERROR! the customer doesn't found");
                 }
 
                 /// <summary>
@@ -88,7 +88,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new MyException("ERROR! the customer doesn't found");
+                    throw new IdUnExistsException("ERROR! the customer doesn't found");
                 }
             }
         }

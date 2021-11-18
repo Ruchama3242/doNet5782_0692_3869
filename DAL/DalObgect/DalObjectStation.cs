@@ -28,7 +28,7 @@ namespace IDAL
                     if (flug)
                         DataSource.StationsList.Add(temp);
                     else
-                        throw new MyException("ERROR! the ID already exist");
+                        throw new IdExistsException("ERROR! the ID already exist");
                 }
 
                 /// <summary>
@@ -42,7 +42,7 @@ namespace IDAL
                         if (item.Equals(id))
                             return item;
                     }
-                    throw new MyException("ERROR! the station doesn't exist");
+                    throw new IdUnExistsException("ERROR! the station doesn't exist");
                 }
 
                 /// <summary>
@@ -85,7 +85,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new MyException("ERROR! the station doesn't found");
+                    throw new IdUnExistsException("ERROR! the station doesn't found");
                 }
 
                 /// <summary>
@@ -103,7 +103,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new MyException("ERROR! the station doesn't found");
+                    throw new IdUnExistsException("ERROR! the station doesn't found");
                 }
             }
         }

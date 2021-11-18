@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDAL
+namespace BL
 {
-    namespace DO
+    namespace BO
     {
         using System.Runtime.Serialization;
- 
-[Serializable]
+
+        [Serializable]
 
         public class generalException : Exception
         {
@@ -20,12 +20,12 @@ namespace IDAL
             { return Message; }
         }
         public class IdExistsException : Exception
-    {
-        public IdExistsException() : base("The ID already Exists") { }
-        public IdExistsException(string message) : base(message) { }
-        override public string ToString()
-        { return  Message; }
-    }
+        {
+            public IdExistsException() : base("The ID already Exists") { }
+            public IdExistsException(string message) : base(message) { }
+            override public string ToString()
+            { return Message; }
+        }
 
         public class IdUnExistsException : Exception
         {
@@ -36,5 +36,4 @@ namespace IDAL
         }
 
     }
-    
 }

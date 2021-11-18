@@ -1,5 +1,4 @@
-﻿//We did one bonus of a sexagsimal display
-using System;
+﻿using System;
 using IDAL.DO;
 using IDAL.DO.DalObject;
 using System.Collections.Generic;
@@ -190,7 +189,15 @@ namespace ConsoleUI
                         break;
                 }
             }
-            catch (MyException e)
+            catch (IdUnExistsException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (IdExistsException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch(generalException e)
             {
                 Console.WriteLine(e);
             }
@@ -270,7 +277,15 @@ namespace ConsoleUI
                         break;
                 }
             }
-            catch (MyException e)
+            catch (IdUnExistsException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (IdExistsException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (generalException e)
             {
                 Console.WriteLine(e);
             }
@@ -333,7 +348,15 @@ namespace ConsoleUI
                         break;
                 }
             }
-            catch (MyException e)
+            catch (IdUnExistsException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (IdExistsException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (generalException e)
             {
                 Console.WriteLine(e);
             }
@@ -446,7 +469,7 @@ namespace ConsoleUI
                 degreesL = degreesL * -1;
 
             Console.WriteLine($@"the cordinate at sexagismal: {degrees}° {minutes}' {seconds}"" E ,{degreesL}° {minutesL}' {secondsL}"" S");
-            //degrees, minutes, seconds,degreesL, minutesL, secondsL);
+           
         }
     }
 }

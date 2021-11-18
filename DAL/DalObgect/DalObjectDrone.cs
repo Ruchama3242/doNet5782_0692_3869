@@ -28,7 +28,7 @@ namespace IDAL
                     if (flag)
                         DataSource.DronesList.Add(temp);
                     else
-                        throw new MyException("ERROR! the ID already exist");
+                        throw new IdExistsException();
                 }
                 /// <summary>
                 /// send the drone to charge in a station
@@ -45,7 +45,7 @@ namespace IDAL
                             count2++;
                     }
                     if (count2 == DataSource.DronesList.Count)
-                        throw new Exception("ERROR! value not found");
+                        throw new generalException("ERROR! value not found");
                     DroneCharge d = new DroneCharge();
                     d.droneID = DroneID;
                     d.stationeld = StationID;
@@ -61,7 +61,7 @@ namespace IDAL
                         }
                     }
                     if (i == DataSource.StationsList.Count - 1)
-                        throw new MyException("ERROR! value not found");
+                        throw new generalException("ERROR! value not found");
                     DataSource.DroneChargeList.Add(d);
                     return d;
                 }
@@ -79,7 +79,7 @@ namespace IDAL
                             count2++;
                     }
                     if (count2 == DataSource.DronesList.Count)
-                        throw new MyException("ERROR! value not found");
+                        throw new generalException("ERROR! value not found");
                     int i = 0;
                     for (; i < DataSource.StationsList.Count; i++)
                     {
@@ -92,7 +92,7 @@ namespace IDAL
                         }
                     }
                     if (i == DataSource.StationsList.Count - 1)
-                        throw new MyException("ERROR! value not found");
+                        throw new generalException("ERROR! value not found");
                     DataSource.DroneChargeList.Remove(dc);
                 }
 
@@ -107,7 +107,7 @@ namespace IDAL
                         if (item.Equals(id))
                             return item;
                     }
-                    throw new MyException("ERROR! the drone doesn't exist");
+                    throw new IdUnExistsException("ERROR! the drone doesn't exist");
                 }
 
                 /// <summary>
@@ -135,7 +135,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new MyException("ERROR! the drone doesn't found");
+                    throw new IdUnExistsException("ERROR! the drone doesn't found");
                 }
 
                 /// <summary>
@@ -155,7 +155,7 @@ namespace IDAL
                             return;
                         }
                     }
-                    throw new MyException("ERROR! the drone doesn't found");
+                    throw new IdUnExistsException("ERROR! the drone doesn't found");
                 }
             }
         }
