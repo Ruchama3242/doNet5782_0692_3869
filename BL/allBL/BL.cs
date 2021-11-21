@@ -21,6 +21,7 @@ namespace BL
         {
 
            dl = new IDAL.DO.DalObject.DalObject();
+            DroneArr = new List<DroneToList>();
         }
         
        

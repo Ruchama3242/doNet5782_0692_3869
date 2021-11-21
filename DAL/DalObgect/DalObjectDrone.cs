@@ -10,7 +10,7 @@ namespace IDAL
     {
         namespace DalObject
         {
-            public partial class DalObject : IDal
+            public partial class DalObject 
             {
                 /// <summary>
                 /// add drone to the array
@@ -149,10 +149,12 @@ namespace IDAL
                     {
                         if (DataSource.DronesList[i].ID == id)
                         {
-                            Drone d = DataSource.DronesList[i];
-                            d.model = mod;
-                            DataSource.DronesList[i] = d;
-                            return;
+                            
+                                Drone d = DataSource.DronesList[i];
+                                d.model = mod;
+                                DataSource.DronesList[i] = d;
+                                return;
+                            
                         }
                     }
                     throw new IdUnExistsException("ERROR! the drone doesn't found");

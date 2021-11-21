@@ -4,7 +4,6 @@ using IDAL.DO.DalObject;
 using System.Collections.Generic;
 using System.Collections;
 
-
 namespace ConsoleUI
 {
 
@@ -14,7 +13,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             DalObject da = new DalObject();
-
+          
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
                               "for insert options, press 1\n" +

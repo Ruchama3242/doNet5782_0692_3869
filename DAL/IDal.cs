@@ -39,6 +39,6 @@ namespace DAL
         public void updateParcel(int id, Parcel p);
         public void updateDrone(int id, int mod);
         public void updateCustomer(int id, Customer c);
-
+        double[] chargeCapacity();
     }
 }
