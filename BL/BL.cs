@@ -10,13 +10,15 @@ namespace BL
 {
    partial class BL
     {
+        IDAL.DO.DalObject.DalObject dl;
+
         /// <summary>
         /// constructor
         /// </summary>
         BL()
         {
-            
-            
+
+           dl = new IDAL.DO.DalObject.DalObject();
         }
         List<IBL.BO.DroneToList> DroneArr;
 

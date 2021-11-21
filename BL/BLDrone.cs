@@ -9,28 +9,34 @@ namespace BL
 {
    partial class BL
     {
+        Random rnd = new Random();
+      private  IDAL.DO.Drone droneDal(int id)
+        {
+
+        }
         /// <summary>
         /// adding a drone to droneList
         /// </summary>
         /// <param name="drone"></param>
-        public void addDrone(IBL.BO.Drone drone)
+        public void addDrone(int id,int model,int weight,int stationId)
         {
-            var flug = DroneArr.Find(p => p.ID == drone.ID);
-            if (flug != null)
+            var flag = DroneArr.Find(p => p.ID == id);
+            if (flag != null)
                 throw new BLIdExistsException("the drone is alrady exists");
             else
             {
 
                 IBL.BO.DroneToList d = new IBL.BO.DroneToList();
-                d.ID = drone.ID;
-                d.parcelNumber = drone.parcel.ID;
-                d.droneModel = drone.model;
-                d.weight = drone.weight;
-                d.battery = drone.battery;
-                d.status = drone.status;
-                d.currentLocation = drone.location;
+                d.ID = id;
+                //d.parcelNumber = drone.parcel.ID;
+                d.droneModel = model;
+                d.weight = (IBL.BO.WeightCategories)weight;
+                d.battery = rnd.Next(20, 40);
+                d.status = IBL.BO.DroneStatus.maintenace;
+                var s = dl.printStation(stationId);
+                   
             }
-            throw new IdUnExistsException("the ID don't mutch to any drone");
+            
         }
 
         /// <summary>
