@@ -311,7 +311,7 @@ namespace ConsoleUI
                         Console.WriteLine("Enter the id of the station");
                         id = int.Parse(Console.ReadLine());
                         Station loky = new Station();
-                        loky = d.printStation(id);
+                        loky = d.findStation(id);
                         Console.WriteLine(loky);
                         sexagesimal(loky.longitude, loky.lattitude);
                         break;

@@ -11,6 +11,8 @@ namespace BL
    partial class BL
     {
         IDAL.DO.DalObject.DalObject dl;
+        IDAL.DO.DalObject.DalObject myDalObject;
+        List<IBL.BO.DroneToList> DroneArr;
 
         /// <summary>
         /// constructor
@@ -20,18 +22,8 @@ namespace BL
 
            dl = new IDAL.DO.DalObject.DalObject();
         }
-        List<IBL.BO.DroneToList> DroneArr;
-
+        
        
-        /// <summary>
-        /// update some field in the station
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="name"></param>
-        /// <param name="emptyChargeSlot"></param>
-        public void updateStation(int Id ,string name, int emptyChargeSlot)
-        {
-            
-        }
+        
     }
 }
