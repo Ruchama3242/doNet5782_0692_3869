@@ -12,25 +12,25 @@ namespace BL
 
         [Serializable]
 
-        public class generalException : Exception
+        public class BLgeneralException : Exception
         {
-            public generalException() : base("ERROR") { }
-            public generalException(string message) : base(message) { }
+            public BLgeneralException() : base("ERROR") { }
+            public BLgeneralException(string message) : base(message) { }
             override public string ToString()
             { return Message; }
         }
-        public class IdExistsException : Exception
+        public class BLIdExistsException : Exception
         {
-            public IdExistsException() : base("The ID already Exists") { }
-            public IdExistsException(string message) : base(message) { }
+            public BLIdExistsException() : base("The ID already Exists") { }
+            public BLIdExistsException(string message) : base(message) { }
             override public string ToString()
             { return Message; }
         }
 
-        public class IdUnExistsException : Exception
+        public class BLIdUnExistsException : Exception
         {
-            public IdUnExistsException() : base("The ID don't found") { }
-            public IdUnExistsException(string message) : base(message) { }
+            public BLIdUnExistsException() : base("The ID don't found") { }
+            public BLIdUnExistsException(string message) : base(message) { }
             override public string ToString()
             { return Message; }
         }
