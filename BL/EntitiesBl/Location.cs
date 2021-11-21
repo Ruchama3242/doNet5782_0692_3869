@@ -10,8 +10,8 @@ namespace IBL
     {
         class Location
         {
-            public double longitude { get; set; }
-            public double latitude { get; set; }
+            public float longitude { get; set; }
+            public float latitude { get; set; }
             public override string ToString()
             {
                 string result = "";

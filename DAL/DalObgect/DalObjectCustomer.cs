@@ -35,7 +35,7 @@ namespace IDAL
                 /// print a customer
                 /// </summary>
                 /// <param name="id"></param>
-                public Customer printCustomer(int id)
+                public Customer findCustomer(int id)
                 {
                     foreach (Customer item in DataSource.CustomersList)
                     {
@@ -80,6 +80,7 @@ namespace IDAL
                 /// <param name="c"></param>
                 public void updateCustomer(int id, Customer c)
                 {
+
                     for (int i = 0; i < DataSource.CustomersList.Count; i++)
                     {
                         if (DataSource.CustomersList[i].ID == id)

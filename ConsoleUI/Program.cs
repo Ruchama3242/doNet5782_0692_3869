@@ -328,7 +328,7 @@ namespace ConsoleUI
                         Console.WriteLine("Enter the id of the customer");
                         id = int.Parse(Console.ReadLine());
                         Customer anonimy = new Customer();
-                        anonimy = d.printCustomer(id);
+                        anonimy = d.findCustomer(id);
                         Console.WriteLine(anonimy);
                         sexagesimal(anonimy.longitude, anonimy.lattitude);
                         break;
