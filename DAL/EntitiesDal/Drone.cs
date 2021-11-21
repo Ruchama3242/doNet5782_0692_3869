@@ -5,8 +5,6 @@ namespace IDAL
 {
     namespace DO
     {
-
-
         public struct Drone
         {
             public int ID { get; set; }
@@ -19,8 +17,6 @@ namespace IDAL
             {
                 String result = "";
                 result += $"ID is: {ID}, model is: {model}, weight  is: {weight},\n";
-                //result += $"model is: {model}, \n";
-                //result += $"weight  is: {weight}, \n";
                 //result += $"status is: {status}, \n";
                 //result += $"battery is: {battery}, \n";
                 return result;
