@@ -10,9 +10,15 @@ namespace BL
    partial class BL
     {
         Random rnd = new Random();
-      private  IDAL.DO.Drone droneDal(int id)
+        /// <summary>
+        /// "convert" a drone from BL type to DAL type
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        private IDAL.DO.Drone droneDal(IBL.BO.DroneToList d)
         {
-
+            IDAL.DO.Drone dr = new IDAL.DO.Drone { ID = d.ID, model = d.droneModel, weight = (IDAL.DO.WeightCategories)d.weight };
+            return dr;
         }
         /// <summary>
         /// adding a drone to droneList
@@ -20,23 +26,34 @@ namespace BL
         /// <param name="drone"></param>
         public void addDrone(int id,int model,int weight,int stationId)
         {
-            var flag = DroneArr.Find(p => p.ID == id);
-            if (flag != null)
-                throw new BLIdExistsException("the drone is alrady exists");
-            else
+           
+            try
             {
 
                 IBL.BO.DroneToList d = new IBL.BO.DroneToList();
                 d.ID = id;
-                //d.parcelNumber = drone.parcel.ID;
                 d.droneModel = model;
                 d.weight = (IBL.BO.WeightCategories)weight;
                 d.battery = rnd.Next(20, 40);
                 d.status = IBL.BO.DroneStatus.maintenace;
-                var s = dl.printStation(stationId);
-                   
+                try
+                {
+                    IDAL.DO.Station s = dl.printStation(stationId);
+                    d.currentLocation.latitude = s.lattitude;
+                    d.currentLocation.longitude = s.longitude;
+                }
+                catch (Exception e)
+                {
+                    throw new BLIdUnExistsException("Error! The station dosen't exist");
+                }
+                IDAL.DO.Drone dr = droneDal(d);
+                dl.addDrone(dr);
+                DroneArr.Add(d);
             }
-            
+            catch(Exception e)
+            {
+                throw new BLIdExistsException("Error! the drone is already exist");
+            }
         }
 
         /// <summary>
@@ -44,13 +61,24 @@ namespace BL
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="model"></param>
-        public void updateNameDrone(int ID, int model)
+        public void updateNameDrone(int ID, string model)
         {
-            var flug = DroneArr.Find(p => p.ID == ID);
-            if (flug != null)
-                flug.droneModel = model;
-            else
-                throw new IdUnExistsException("the ID don't mutch to any drone");
+            try
+            {
+                if(model!="")
+                {
+                    int m = int.Parse(model);
+                    dl.updateDrone(ID, m);
+                    IBL.BO.DroneToList dr = DroneArr.Find(p => p.ID == ID);
+                    DroneArr.Remove(dr);
+                    dr.droneModel = int.Parse(model);
+                    DroneArr.Add(dr);
+                }
+            }
+            catch (Exception)
+            {
+                throw new BLIdUnExistsException("Error! the drone not found");
+            }
 
         }
     }

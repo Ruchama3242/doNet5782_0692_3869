@@ -17,11 +17,11 @@ namespace IDAL
                 internal static List<DroneCharge> DroneChargeList = new List<DroneCharge>();
                 internal class Config
                 {
-                    static double chargeClear;
-                    static double chargeLightWeight;
-                    static double chargeHavyWeight;
-                    static double chargeMediumWeight;
-                    double chargineRate;
+                    internal static double chargeClear;
+                   internal static double chargeLightWeight;
+                   internal static double chargeHavyWeight;
+                   internal static double chargeMediumWeight;
+                   internal static double chargineRate;
                     internal static int runnerID=1000;
 
                 }
