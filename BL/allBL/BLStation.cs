@@ -47,7 +47,27 @@ namespace BL
         {
             //הפונקציה מדפיסה את נתוני התחנה בלי רשימת הרחפנים שבטעינה,אני צריכ לחשוב איך לעשות את זה
             IEnumerable<IDAL.DO.Station> lst = new List<IDAL.DO.Station>();
+            IEnumerable<IBL.BO.Station> lstBL= new List<IBL.BO.Station>();
             lst = myDalObject.printAllStations();
+            foreach (var item in lst)
+            {
+                IBL.BO.Station temp = new IBL.BO.Station();
+                temp.ID = item.ID;
+                temp.location.latitude = item.lattitude;
+                temp.location.longitude = item.longitude;
+                temp.name = item.name;
+                temp.chargeSlots = item.chargeSlots;
+                List<IDAL.DO.DroneCharge> DroneIDAL= myDalObject.findDroneCharge(item.ID);
+                //foreach (var drone in DroneIDAL)
+                //{
+                //    IBL.BO.DroneInCharge tmp = new IBL.BO.DroneInCharge();
+                //    tmp.ID = drone.droneID;
+            
+                //}
+                //temp.dronesInChargeList= 
+                //lstBL.Add(temp);
+                //צריך לתאם בינינו איפה נשמר המידע על התחנה שהרחפן נשלח אליה
+            }
             return lst;
         }
     }
