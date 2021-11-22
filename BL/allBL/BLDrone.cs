@@ -38,7 +38,7 @@ namespace BL
                 d.status = IBL.BO.DroneStatus.maintenace;
                 try
                 {
-                    IDAL.DO.Station s = dl.printStation(stationId);
+                    IDAL.DO.Station s = dl.findStation(stationId);
                     d.currentLocation.latitude = s.lattitude;
                     d.currentLocation.longitude = s.longitude;
                 }
@@ -82,6 +82,47 @@ namespace BL
 
         }
 
+        public void releaseFromCharge(int id, int time)
+        {
+            //רוחמה זה לא טעות שלא עידכנתי את הרחפן שבדל אלא שבתרגיל הזה נדרשנו למחוק את השדה הזה מהיישות בדל
+            IBL.BO.DroneToList d = DroneArr.Find(p => p.ID == id);
+            
+            if (d.status == IBL.BO.DroneStatus.maintenace)
+            {
+                //the time* charging rate per hour, couldnt be more then 100%
+                d.battery += time * chargeCapacity[4];
+                if (d.battery > 100)
+                    d.battery = 100;
+
+                d.status = IBL.BO.DroneStatus.available;
+
+                // up the number of the empty charge slots
+               IDAL.DO.DroneCharge tmp= myDalObject.findStationOfDroneCharge(id);
+                IEnumerable<IDAL.DO.Station> tmpList = new List<IDAL.DO.Station>();
+                tmpList = myDalObject.printAllStations();
+                foreach (var item in tmpList)
+                {
+                    if (item.ID == tmp.stationeld)
+                    {
+                        IDAL.DO.Station s= new IDAL.DO.Station();
+                        s.chargeSlots = item.chargeSlots+1;
+                        s.ID = item.ID;
+                        s.lattitude = item.lattitude;
+                        s.longitude = item.longitude;
+                        s.name = item.name;
+                        myDalObject.updateStation(tmp.stationeld, s);
+                    }     
+                }
+                //remove the drone frome the list of the droneCharge
+                myDalObject.BatteryCharged(tmp);
+            }
+            else throw new BLgeneralException("Error! the drone dont was in charge");
+
+        }
+
         public IBL.BO.Drone getBlDrone()
+        {
+           
+        }
     }
 }

@@ -100,7 +100,7 @@ namespace IDAL
                 /// print a drone
                 /// </summary>
                 /// <param name="id"></param>
-                public Drone printDrone(int id)
+                public Drone findDrone(int id)
                 {
                     foreach (Drone item in DataSource.DronesList)
                     {
@@ -158,6 +158,33 @@ namespace IDAL
                         }
                     }
                     throw new IdUnExistsException("ERROR! the drone doesn't found");
+                }
+
+                public List<DroneCharge> findDroneCharge(int id)
+                {
+                    
+                    List<DroneCharge> tempList = new List<DroneCharge>();
+                    foreach (DroneCharge item in DataSource.DroneChargeList)
+                        if (item.stationeld == id) 
+                            tempList.Add(item);
+
+                    return tempList;
+                }
+
+                /// <summary>
+                /// return the station that the drone charge in
+                /// </summary>
+                /// <param name="id"></param>
+                /// <returns></returns>
+                public DroneCharge findStationOfDroneCharge(int id)
+                {
+
+                    DroneCharge temp = new DroneCharge();
+                    foreach (DroneCharge item in DataSource.DroneChargeList)
+                        if (item.droneID == id)
+                            temp=item;
+
+                    return temp;
                 }
             }
         }

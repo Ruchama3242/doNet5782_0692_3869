@@ -319,7 +319,7 @@ namespace ConsoleUI
                         Console.WriteLine("Enter the id of the drone");
                         id = int.Parse(Console.ReadLine());
                         Drone flafy = new Drone();
-                        flafy = d.printDrone(id);
+                        flafy = d.findDrone(id);
                         Console.WriteLine(flafy);
                         break;
 

@@ -18,7 +18,11 @@ namespace IDAL
                 public DalObject() { DataSource.Initialize(); }
                 public double[] chargeCapacity()
                 {
-                    double[] arr = new double[] { DataSource.Config.chargeClear, DataSource.Config.chargeLightWeight, DataSource.Config.chargeMediumWeight, DataSource.Config.chargeHavyWeight, DataSource.Config.chargineRate };
+                    double[] arr = new double[] { DataSource.Config.chargeClear, 
+                                                  DataSource.Config.chargeLightWeight, 
+                                                  DataSource.Config.chargeMediumWeight, 
+                                                  DataSource.Config.chargeHavyWeight, 
+                                                  DataSource.Config.chargineRate };
                     return arr;
                 }
 
