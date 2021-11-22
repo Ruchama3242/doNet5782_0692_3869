@@ -10,6 +10,10 @@ namespace BL
 {
     partial class BL
     {
+        /// <summary>
+        /// add a station to the list of dal.dataSource
+        /// </summary>
+        /// <param name="station"></param>
         public void addStation(IBL.BO.Station station)
         {
             IDAL.DO.Station stationDal = new IDAL.DO.Station();
@@ -20,6 +24,7 @@ namespace BL
             stationDal.chargeSlots = station.chargeSlots;
             myDalObject.addStations(stationDal);
         }
+
         /// <summary>
         /// update some field in the station
         /// </summary>
@@ -43,32 +48,51 @@ namespace BL
         /// the func return all the list of the station
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Station> veiwListStation()
+        public List<IBL.BO.StationToList> veiwListStation()
         {
-            //הפונקציה מדפיסה את נתוני התחנה בלי רשימת הרחפנים שבטעינה,אני צריכ לחשוב איך לעשות את זה
-            IEnumerable<IDAL.DO.Station> lst = new List<IDAL.DO.Station>();
-            IEnumerable<IBL.BO.Station> lstBL= new List<IBL.BO.Station>();
-            lst = myDalObject.printAllStations();
-            foreach (var item in lst)
+           //get the list of the station from dal
+            IEnumerable<IDAL.DO.Station> lstD= new List<IDAL.DO.Station>();
+            lstD = myDalObject.printAllStations();
+
+            //copy all the dal station to bl statio
+            List<IBL.BO.StationToList> lstBL= new List<IBL.BO.StationToList>();
+           
+            foreach (var item in lstD)
             {
-                IBL.BO.Station temp = new IBL.BO.Station();
+                IBL.BO.StationToList temp = new IBL.BO.StationToList();
                 temp.ID = item.ID;
-                temp.location.latitude = item.lattitude;
-                temp.location.longitude = item.longitude;
                 temp.name = item.name;
-                temp.chargeSlots = item.chargeSlots;
-                List<IDAL.DO.DroneCharge> DroneIDAL= myDalObject.findDroneCharge(item.ID);
-                //foreach (var drone in DroneIDAL)
-                //{
-                //    IBL.BO.DroneInCharge tmp = new IBL.BO.DroneInCharge();
-                //    tmp.ID = drone.droneID;
-            
-                //}
-                //temp.dronesInChargeList= 
-                //lstBL.Add(temp);
-                //צריך לתאם בינינו איפה נשמר המידע על התחנה שהרחפן נשלח אליה
+                temp.availableChargeSlots = item.chargeSlots;
+                //findDroneCharge return a list that contain all the drone in charge 
+                temp.notAvailableChargeSlots = myDalObject.findDroneCharge(item.ID).Count;
+                lstBL.Add(temp);
             }
-            return lst;
+            return lstBL;
+        }
+
+        public IBL.BO.Station findStation(int id)
+        {
+            IBL.BO.Station s = new IBL.BO.Station();
+            IDAL.DO.Station sD = myDalObject.findStation(id);
+            s.ID = sD.ID;
+            s.location.latitude = sD.lattitude;
+            s.location.longitude = sD.longitude;
+            s.name = sD.name;
+            s.chargeSlots = sD.chargeSlots;
+
+            //for the field of drone in charge list
+            List<IDAL.DO.DroneCharge> d = myDalObject.findDroneCharge(id);
+            List<IBL.BO.DroneInCharge> dr = new List<IBL.BO.DroneInCharge>();
+            foreach (var item in d)
+            {
+                IBL.BO.DroneInCharge tmp = new IBL.BO.DroneInCharge();
+                tmp.ID = item.droneID;
+                tmp.battery = findDrone(item.droneID).battery;
+                dr.Add(tmp);
+            }
+            s.dronesInChargeList = dr;
+
+            return s;
         }
     }
 }

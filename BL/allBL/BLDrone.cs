@@ -144,26 +144,7 @@ namespace BL
             c.customerName = cs.name;
             return c;
         }
-        /// <summary>
-        /// calculate a distance between 2 points
-        /// </summary>
-        /// <param name="l1"></param>
-        /// <param name="l2"></param>
-        /// <returns></returns>
-        private double distance(IBL.BO.Location l1,IBL.BO.Location l2)
-        {
-            var R = 6371; // Radius of the earth in km
-            var dLat = deg2rad(l2.latitude - l1.latitude);  // deg2rad below
-            var dLon = deg2rad(l2.longitude - l1.longitude);
-            var a =
-              Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-              Math.Cos(deg2rad(l1.latitude)) * Math.Cos(deg2rad(l2.latitude)) *
-              Math.Sin(dLon / 2) * Math.Sin(dLon / 2)
-              ;
-            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            var d = R * c; // Distance in km
-            return d;
-        }
+        
 
         public void releaseFromCharge(int id, int time)
         {
@@ -203,10 +184,10 @@ namespace BL
 
         }
 
-        public IBL.BO.Drone getBlDrone()
-        {
+        //public IBL.BO.Drone getBlDrone()
+        //{
            
-        }
+        //}
         private double deg2rad(double deg)
         {
             return deg * (Math.PI / 180);
@@ -218,6 +199,19 @@ namespace BL
             foreach (var item in DroneArr)
                 lst.Add(item);
             return lst;
+        }
+
+        /// <summary>
+        /// return the id with this id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private IBL.BO.DroneToList findDrone(int id)
+        {
+            var v = DroneArr.Find(p => p.ID == id);
+            //if (!v)
+            //    throw new BLIdUnExistsException(" ")
+            return v;
         }
     }
 }

@@ -48,13 +48,53 @@ namespace BL
         }
 
         /// <summary>
-        /// print all the list of the customer
+        /// print all the list of the customer to list
         /// </summary>
-        public IEnumerable<IDAL.DO.Customer> viewListCustomer()
+        public List<IBL.BO.CustomerToList> viewListCustomer()
         {
-             IEnumerable<IDAL.DO.Customer> lst= new List<IDAL.DO.Customer>();
-           lst= myDalObject.printAllCustomers();
-            return lst;
+            //bring al the data from dal
+            IEnumerable<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
+            lst = myDalObject.printAllCustomers();
+
+            List<IBL.BO.CustomerToList> listBL = new List<IBL.BO.CustomerToList>();
+            foreach (var item in lst)
+            {
+                IBL.BO.CustomerToList c = new IBL.BO.CustomerToList();
+                c.ID = item.ID;
+                c.name = item.name;
+                c.phone = item.phone;
+
+                //
+                var p = myDalObject.printAllParcels();
+                int counterDelivered = 0;
+                int counterDontDelivered = 0;
+                int counterGot = 0;
+                int counterOnWay = 0;
+                foreach (var parcel in p)
+                {
+                    //count the parcel he got
+                    if (parcel.senderID == item.ID)
+                        counterGot++;
+                    //if the parcel arrived
+                    if (parcel.senderID == item.ID && parcel.delivered != DateTime.MinValue)
+                        counterDelivered++;
+                    //החבילה עוד לא שוייכה
+                    if (parcel.senderID == item.ID && parcel.scheduled == DateTime.MinValue)
+                        counterDontDelivered++;
+                    // החבילה שוייכה לרחפן ועוד לא הגיעה
+                    if (parcel.senderID == item.ID && parcel.scheduled != DateTime.MinValue
+                    && parcel.delivered == DateTime.MinValue)
+                        counterOnWay++;
+                }
+                c.gotParcels = counterGot;
+                c.onTheWayParcels = counterOnWay;
+                c.sendAndDeliveredParcels = counterDelivered;
+                c.sendAndNotDeliveredParcels = counterDontDelivered;
+                listBL.Add(c);
+            }
+            return listBL;
         }
+
+
     }
 }

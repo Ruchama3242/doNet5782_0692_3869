@@ -42,16 +42,36 @@ namespace BL
             }
         }
 
-        private IBL.BO.Station stationCloseToCustomer(int id)
+        /// <summary>
+        /// calculate a distance between 2 points
+        /// </summary>
+        /// <param name="l1"></param>
+        /// <param name="l2"></param>
+        /// <returns></returns>
+        private double distance(IBL.BO.Location l1, IBL.BO.Location l2)
         {
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(l2.latitude - l1.latitude);  // deg2rad below
+            var dLon = deg2rad(l2.longitude - l1.longitude);
+            var a =
+              Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+              Math.Cos(deg2rad(l1.latitude)) * Math.Cos(deg2rad(l2.latitude)) *
+              Math.Sin(dLon / 2) * Math.Sin(dLon / 2)
+              ;
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            var d = R * c; // Distance in km
+            return d;
+        }
 
-        }
         
-        private double distance(Location l1,Location l2)
-        {
-           
-            return l1.
-        }
+
+
+        //private IBL.BO.Station stationCloseToCustomer(int id)
+        //{
+
+        //}
+        
+        
        
         /// <summary>
         /// update some field in the station
