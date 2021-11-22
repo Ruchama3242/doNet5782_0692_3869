@@ -19,6 +19,8 @@ namespace BL
         /// <returns></returns>
         public int addParcel(int senderId,int targetId,int weight,int priority)
         {
+            try
+            {
                 IDAL.DO.Parcel p = new IDAL.DO.Parcel();
                 p.senderID = senderId;
                 p.targetId = targetId;
@@ -29,8 +31,13 @@ namespace BL
                 p.pickedUp = DateTime.MinValue;
                 p.scheduled = DateTime.MinValue;
                 p.delivered = DateTime.MinValue;
-                int id=dl.addParcel(p);
-            return id;
+                int id = dl.addParcel(p);
+                return id;
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
         }
         /// <summary>
         /// return the list of all parcels
