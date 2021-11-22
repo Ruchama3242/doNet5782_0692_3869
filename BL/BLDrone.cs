@@ -81,5 +81,7 @@ namespace BL
             }
 
         }
+
+        public IBL.BO.Drone getBlDrone()
     }
 }
