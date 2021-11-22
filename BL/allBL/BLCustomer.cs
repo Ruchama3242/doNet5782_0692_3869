@@ -18,13 +18,20 @@ namespace BL
         /// <param name="customerBL"></param>
          public void addCustomer(IBL.BO.Customer customerBL)
         {
-            IDAL.DO.Customer temp = new IDAL.DO.Customer(); 
-            temp.ID = customerBL.ID;
-            temp.name = customerBL.name;
-            temp.phone = customerBL.phone;
-            temp.lattitude = customerBL.location.latitude;
-            temp.longitude = customerBL.location.longitude;
-            myDalObject.addCustomer(temp);
+            try
+            {
+                IDAL.DO.Customer temp = new IDAL.DO.Customer();
+                temp.ID = customerBL.ID;
+                temp.name = customerBL.name;
+                temp.phone = customerBL.phone;
+                temp.lattitude = customerBL.location.latitude;
+                temp.longitude = customerBL.location.longitude;
+                myDalObject.addCustomer(temp);
+            }
+            catch(Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
         }
 
         /// <summary>
@@ -35,16 +42,23 @@ namespace BL
         /// <param name="phoneNum"></param>
         public void updateCustomer(int id, string name, string phoneNum)
         {
-            IDAL.DO.Customer temp = new IDAL.DO.Customer();
-            temp =myDalObject.findCustomer(id);
+            try
+            {
+                IDAL.DO.Customer temp = new IDAL.DO.Customer();
+                temp = myDalObject.findCustomer(id);
 
-            //if the user want to change some detail....
-            if (name != "")
-                temp.name = name;
-            if (phoneNum != null)
-                temp.phone = phoneNum;
+                //if the user want to change some detail....
+                if (name != "")
+                    temp.name = name;
+                if (phoneNum != null)
+                    temp.phone = phoneNum;
 
-            myDalObject.updateCustomer(id, temp);
+                myDalObject.updateCustomer(id, temp);
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
         }
 
         /// <summary>
@@ -95,6 +109,68 @@ namespace BL
             return listBL;
         }
 
+        /// <summary>
+        /// get a id of customer and return a customer of BL
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IBL.BO.Customer findCustomer(int id)
+        {
+            try
+            {
+                IBL.BO.Customer cusBL = new IBL.BO.Customer();
+                IDAL.DO.Customer cusDal = myDalObject.findCustomer(id);
 
+                cusBL.ID = cusDal.ID;
+                cusBL.location.latitude = cusDal.lattitude;
+                cusBL.location.longitude = cusDal.longitude;
+
+                
+                IEnumerable<IDAL.DO.Parcel> lstP = myDalObject.printAllParcels();
+                foreach (var item in lstP)
+                {
+                    //מוצא את כל החבילות שהלקוח מקבל
+                    if (item.targetId == cusBL.ID)
+                    {
+                        IBL.BO.ParcelAtCustomer tmp =new IBL.BO.ParcelAtCustomer();
+                        tmp.ID = item.ID;
+                        tmp.priority = GetParcelPriorities(item.priority);
+                        cusBL.fromCustomer.Add(tmp);
+                    }
+                    //מוצא את כל החבילות שהלקוח שולח
+                    if (item.senderID == cusBL.ID)
+                    {
+                        IBL.BO.ParcelAtCustomer tmp = new IBL.BO.ParcelAtCustomer();
+                        tmp.ID = item.ID;
+                        tmp.priority = GetParcelPriorities(item.priority);
+                        cusBL.toCustomer.Add(tmp);
+                    }
+                }
+                return cusBL;
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
+        }
+
+        /// <summary>
+        /// convert to the right type
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private IBL.BO.Priorities GetParcelPriorities(IDAL.DO.Priorities p)
+        {
+
+            if (p == IDAL.DO.Priorities.emergency)
+                return IBL.BO.Priorities.emergency;
+            if (p == IDAL.DO.Priorities.fast)
+                return IBL.BO.Priorities.fast;
+            if (p == IDAL.DO.Priorities.normal)
+                return IBL.BO.Priorities.normal;
+
+            //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
+            return IBL.BO.Priorities.normal;
+        }
     }
 }

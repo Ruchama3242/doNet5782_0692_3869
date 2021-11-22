@@ -16,13 +16,20 @@ namespace BL
         /// <param name="station"></param>
         public void addStation(IBL.BO.Station station)
         {
-            IDAL.DO.Station stationDal = new IDAL.DO.Station();
-            stationDal.ID = station.ID;
-            stationDal.lattitude = station.location.latitude;
-            stationDal.longitude = station.location.longitude;
-            stationDal.name = station.name;
-            stationDal.chargeSlots = station.chargeSlots;
-            myDalObject.addStations(stationDal);
+            try
+            {
+                IDAL.DO.Station stationDal = new IDAL.DO.Station();
+                stationDal.ID = station.ID;
+                stationDal.lattitude = station.location.latitude;
+                stationDal.longitude = station.location.longitude;
+                stationDal.name = station.name;
+                stationDal.chargeSlots = station.chargeSlots;
+                myDalObject.addStations(stationDal);
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
         }
 
         /// <summary>
@@ -33,15 +40,22 @@ namespace BL
         /// <param name="emptyChargeSlot"></param>
         public void updateStation(int id, string name, int chargeSlot)
         {
-            IDAL.DO.Station stationDal = new IDAL.DO.Station();
+            try
+            {
+                IDAL.DO.Station stationDal = new IDAL.DO.Station();
 
-            stationDal = myDalObject.findStation(id);
-            if (name != "")
-                stationDal.name = name;
-            if (chargeSlot != 0) 
-                stationDal.chargeSlots = chargeSlot;
+                stationDal = myDalObject.findStation(id);
+                if (name != "")
+                    stationDal.name = name;
+                if (chargeSlot != 0)
+                    stationDal.chargeSlots = chargeSlot;
 
-            myDalObject.updateStation(id,stationDal);
+                myDalObject.updateStation(id, stationDal);
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
         }
 
         /// <summary>
@@ -70,29 +84,69 @@ namespace BL
             return lstBL;
         }
 
+        /// <summary>
+        /// get a id of station and return a station of BL
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IBL.BO.Station findStation(int id)
         {
-            IBL.BO.Station s = new IBL.BO.Station();
-            IDAL.DO.Station sD = myDalObject.findStation(id);
-            s.ID = sD.ID;
-            s.location.latitude = sD.lattitude;
-            s.location.longitude = sD.longitude;
-            s.name = sD.name;
-            s.chargeSlots = sD.chargeSlots;
+            try
+            {
+                IBL.BO.Station s = new IBL.BO.Station();
+                IDAL.DO.Station sD = myDalObject.findStation(id);
+                s = convertStation(sD);
+                return s;
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
+        }
 
-            //for the field of drone in charge list
-            List<IDAL.DO.DroneCharge> d = myDalObject.findDroneCharge(id);
+        /// <summary>
+        /// return all the ststion with 1 or more avilable charge slots
+        /// </summary>
+        /// <returns></returns>
+        public List<IBL.BO.Station> avilableCharginStation()
+        {
+            IEnumerable<IDAL.DO.Station> stations = myDalObject.printAllStations();
+            List<IBL.BO.Station> avilable = new List<IBL.BO.Station>();
+            foreach (var item in stations)
+            {
+                if (item.chargeSlots > 0)
+                    avilable.Add(convertStation(item));
+            }
+            return avilable;
+        }
+
+        /// <summary>
+        /// get a station of dal and return a ststion of bl
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private IBL.BO.Station convertStation(IDAL.DO.Station s)
+        {
+            IBL.BO.Station tmp = new IBL.BO.Station();
+            tmp.chargeSlots = s.chargeSlots;
+            tmp.ID = s.ID;
+            tmp.location.latitude = s.lattitude;
+            tmp.location.longitude = s.longitude;
+            tmp.name = s.name;
+
+            List<IDAL.DO.DroneCharge> d = myDalObject.findDroneCharge(s.ID);
             List<IBL.BO.DroneInCharge> dr = new List<IBL.BO.DroneInCharge>();
             foreach (var item in d)
             {
-                IBL.BO.DroneInCharge tmp = new IBL.BO.DroneInCharge();
-                tmp.ID = item.droneID;
-                tmp.battery = findDrone(item.droneID).battery;
-                dr.Add(tmp);
+                IBL.BO.DroneInCharge charge = new IBL.BO.DroneInCharge();
+                charge.ID = item.droneID;
+                charge.battery = findDrone(item.droneID).battery;
+                dr.Add(charge);
             }
-            s.dronesInChargeList = dr;
 
-            return s;
+            tmp.dronesInChargeList = dr;
+            return tmp;
+
         }
     }
 }
