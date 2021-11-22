@@ -35,7 +35,7 @@ namespace IDAL
                 /// print a station
                 /// </summary>
                 /// <param name="id"></param>
-                public Station printStation(int id)
+                public Station findStation(int id)
                 {
                     foreach (Station item in DataSource.StationsList)
                     {

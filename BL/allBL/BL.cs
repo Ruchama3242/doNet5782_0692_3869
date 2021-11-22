@@ -12,7 +12,9 @@ namespace BL
     {
         public double [] chargeCapacity;
         IDAL.DO.DalObject.DalObject dl;
+        IDAL.DO.DalObject.DalObject myDalObject;
         List<IBL.BO.DroneToList> DroneArr;
+
         /// <summary>
         /// constructor
         /// </summary>

@@ -10,7 +10,8 @@ namespace BL
 {
     partial class BL
     {
-        IDAL.DO.DalObject.DalObject myDalObject;
+        
+
         /// <summary>
         /// get a customer of BL and add it to the list of DAL
         /// </summary>
@@ -25,6 +26,7 @@ namespace BL
             temp.longitude = customerBL.location.longitude;
             myDalObject.addCustomer(temp);
         }
+
         /// <summary>
         /// update the name or the phone number of the customer
         /// </summary>
@@ -48,9 +50,11 @@ namespace BL
         /// <summary>
         /// print all the list of the customer
         /// </summary>
-        public void viewListCustomer()
+        public IEnumerable<IDAL.DO.Customer> viewListCustomer()
         {
-            myDalObject.printAllCustomers();
+             IEnumerable<IDAL.DO.Customer> lst= new List<IDAL.DO.Customer>();
+           lst= myDalObject.printAllCustomers();
+            return lst;
         }
     }
 }
