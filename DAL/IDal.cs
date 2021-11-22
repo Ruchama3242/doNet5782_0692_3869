@@ -21,9 +21,9 @@ namespace DAL
         public void ParcelReceived(int parcelID, DateTime day);
         public DroneCharge SendToCharge(int DroneID, int StationID);
         public void BatteryCharged(DroneCharge dc);
-        public Station printStation(int id);
-        public Drone printDrone(int id);
-        public Customer printCustomer(int id);
+        public Station findStation(int id);
+        public Drone findDrone(int id);
+        public Customer findCustomer(int id);
         public Parcel printParcel(int id);
         public IEnumerable<Station> printAllStations();
         public IEnumerable<Drone> printAllDrones();

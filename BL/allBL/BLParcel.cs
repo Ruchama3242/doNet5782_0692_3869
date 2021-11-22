@@ -9,9 +9,8 @@ namespace BL
 {
     partial class BL
     {
-        public void addParcel(int senderId,int targetId,int weight,int priority)
+        public int addParcel(int senderId,int targetId,int weight,int priority)
         {
-          
                 IDAL.DO.Parcel p = new IDAL.DO.Parcel();
                 p.senderID = senderId;
                 p.targetId = targetId;
@@ -22,9 +21,32 @@ namespace BL
                 p.pickedUp = DateTime.MinValue;
                 p.scheduled = DateTime.MinValue;
                 p.delivered = DateTime.MinValue;
-                dl.addParcel(p);
-            
-            
+                int id=dl.addParcel(p);
+            return id;
+        }
+
+        public IEnumerable<IBL.BO.ParcelToList> getAllParcels()
+        {
+            List<IBL.BO.ParcelToList> lst = new List<IBL.BO.ParcelToList>();
+            foreach (var item in dl.printAllParcels())
+            {
+                IBL.BO.ParcelToList p = new IBL.BO.ParcelToList();
+                p.ID = item.ID;
+                p.senderName = dl.findCustomer(item.ID).name;
+                p.targetName = dl.findCustomer(item.ID).name;
+                p.weight = (IBL.BO.WeightCategories)item.weight;
+                p.priority = (IBL.BO.Priorities)item.priority;
+                if (item.scheduled == DateTime.MinValue)
+                    p.status = IBL.BO.ParcelStatus.created;
+                else if (item.pickedUp == DateTime.MinValue)
+                    p.status = IBL.BO.ParcelStatus.match;
+                else if (item.delivered == DateTime.MinValue)
+                    p.status = IBL.BO.ParcelStatus.pickedUp;
+                else
+                    p.status = IBL.BO.ParcelStatus.delivred;
+                lst.Add(p);
+            }
+            return lst;
         }
     }
 }
