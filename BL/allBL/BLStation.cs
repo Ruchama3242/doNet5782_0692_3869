@@ -18,6 +18,10 @@ namespace BL
         {
             try
             {
+                if (station.location.longitude < -180 || station.location.longitude > 180)
+                    throw new BLgeneralException("Error! the longitude is incorrect");
+                if (station.location.latitude < -90 || station.location.latitude > 90)
+                    throw new BLgeneralException("Error! the latitude is incorrect");
                 IDAL.DO.Station stationDal = new IDAL.DO.Station();
                 stationDal.ID = station.ID;
                 stationDal.lattitude = station.location.latitude;
