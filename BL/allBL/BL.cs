@@ -73,15 +73,6 @@ namespace BL
         
         
        
-        /// <summary>
-        /// update some field in the station
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="name"></param>
-        /// <param name="emptyChargeSlot"></param>
-        public void updateStation(int Id ,string name, int emptyChargeSlot)
-        {
-            
-        }
+       
     }
 }

@@ -20,6 +20,10 @@ namespace BL
         {
             try
             {
+                if (customerBL.location.longitude < -180 || customerBL.location.longitude > 180)
+                    throw new BLgeneralException("Error! the longitude is incorrect");
+                if (customerBL.location.latitude < -90 || customerBL.location.latitude > 90)
+                    throw new BLgeneralException("Error! the latitude is incorrect");
                 IDAL.DO.Customer temp = new IDAL.DO.Customer();
                 temp.ID = customerBL.ID;
                 temp.name = customerBL.name;
