@@ -10,6 +10,7 @@ namespace BL
    partial class BL
     {
         Random rnd = new Random();
+
         /// <summary>
         /// "convert" a drone from BL type to DAL type
         /// </summary>
@@ -86,7 +87,12 @@ namespace BL
 
         }
 
-        public IBL.BO.Drone getBlDrone(int id)
+        /// <summary>
+        /// get a id and return the drone(of bl) with this id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IBL.BO.Drone findDrone(int id)
         {
             try
             {
@@ -107,7 +113,7 @@ namespace BL
                     IDAL.DO.Parcel p;
                     try
                     {
-                        p = dl.printParcel(drn.parcelNumber);//get the parcel from the dal
+                        p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
                     }
                     catch (Exception)
                     {
@@ -139,7 +145,7 @@ namespace BL
         }
 
         /// <summary>
-        /// ?
+        /// return the customer with this id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -176,7 +182,7 @@ namespace BL
                     // up the number of the empty charge slots
                     IDAL.DO.DroneCharge tmp = myDalObject.findStationOfDroneCharge(id);
                     IEnumerable<IDAL.DO.Station> tmpList = new List<IDAL.DO.Station>();
-                    tmpList = myDalObject.printAllStations();
+                    tmpList = myDalObject.getAllStations();
                     foreach (var item in tmpList)
                     {
                         if (item.ID == tmp.stationeld)
@@ -224,11 +230,11 @@ namespace BL
         }
 
         /// <summary>
-        /// return the id with this id
+        /// return the drone with this id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private IBL.BO.DroneToList findDrone(int id)
+        private IBL.BO.DroneToList findDroneDal(int id)
         {
             try
             {
@@ -239,7 +245,89 @@ namespace BL
             {
                 throw new BLgeneralException($"{e}");
             }
+        }
 
+
+        /// <summary>
+        /// send a drone to the closed station
+        /// </summary>
+        /// <param name="id"></param>
+        public void sendToCharge(int id)
+        {
+            try
+            {
+                var myDrone = findDroneDal(id);
+                if (myDrone.status != IBL.BO.DroneStatus.available)
+                    throw new BLgeneralException("the drone isn'n  avilable");
+                IBL.BO.Station closed = stationClose(myDrone.currentLocation);
+                if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0)
+                    throw new BLgeneralException("the drone doesn't have enough charge");
+
+                // drone
+                myDrone.currentLocation = closed.location;
+                myDrone.status = IBL.BO.DroneStatus.maintenace;
+                myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
+
+                //הפונקציה הזו דואגת לשנות את עמדות הטעינה ולהוסיך יישות לרשימה המתאימה
+                myDalObject.SendToCharge(id, closed.ID);
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
+        }
+
+        /// <summary>
+        /// get a id of drone and find a  parcel 
+        /// </summary>
+        /// <param name="id"></param>
+        public void parcelToDrone(int id)
+        {
+            try
+            {
+                var myDrone = findDroneDal(id);
+                if (myDrone.status != IBL.BO.DroneStatus.available)
+                    throw new BLgeneralException("the drone not avilable");
+
+                IBL.BO.parcel myParcel = findTHEparcel(myDrone.currentLocation, myDrone.battery);
+                myDalObject.ParcelDrone(myParcel.ID, myDrone.ID);
+                myDrone.status = IBL.BO.DroneStatus.delivery;
+                myParcel.requested = DateTime.Now;
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException($"{e}");
+            }
+        }
+
+
+        /// <summary>
+        /// מקבלת מיקום רחפן ומוצאת חבילה לשיוך לפי עדיפות ומיקום
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="buttery"></param>
+        /// <returns></returns>
+        private IBL.BO.parcel findTHEparcel(IBL.BO.Location a, double buttery)
+        {
+        }
+            //private double distanceBetweenParcelToDrone(IBL.BO.parcel p, int id)
+            //{
+            //    IDAL.DO.Drone d = myDalObject.findDrone(id);
+            //    IDAL.DO.Customer c = findCustomer(p.);
+
+            //}
+            private  int indexOfChargeCapacity(IDAL.DO.WeightCategories w)
+            {
+                if (w == IDAL.DO.WeightCategories.light)
+                    return 1;
+                if (w == IDAL.DO.WeightCategories.heavy)
+                    return 2;
+                if (w == IDAL.DO.WeightCategories.medium)
+                    return 3;
+
+                return 0;
+
+            }
         }
     }
 }

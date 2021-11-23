@@ -48,7 +48,7 @@ namespace IDAL
                 /// <summary>
                 /// print all stations
                 /// </summary>
-                public IEnumerable<Station> printAllStations()
+                public IEnumerable<Station> getAllStations()
                 {
                     List<Station> list = new List<Station>();
                     foreach (Station item in DataSource.StationsList)
@@ -60,7 +60,7 @@ namespace IDAL
                 /// <summary>
                 /// print all stations with charge slots available
                 /// </summary>
-                public IEnumerable<Station> printStationsWithChargeSlots()
+                public IEnumerable<Station> getStationsWithChargeSlots()
                 {
                     List<Station> lst = new List<Station>();
                     foreach (Station item in DataSource.StationsList)

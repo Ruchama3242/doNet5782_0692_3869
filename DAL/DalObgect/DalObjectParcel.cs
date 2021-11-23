@@ -88,7 +88,7 @@ namespace IDAL
                 /// print a parcel
                 /// </summary>
                 /// <param name="id"></param>
-                public Parcel printParcel(int id)
+                public Parcel findParcel(int id)
                 {
                     foreach (Parcel item in DataSource.ParcelList)
                     {
@@ -101,7 +101,7 @@ namespace IDAL
                 /// <summary>
                 /// print all parcels
                 /// </summary>
-                public IEnumerable<Parcel> printAllParcels()
+                public IEnumerable<Parcel> getAllParcels()
                 {
                     List<Parcel> lst = new List<Parcel>();
                     foreach (Parcel item in DataSource.ParcelList)
@@ -112,7 +112,7 @@ namespace IDAL
                 /// <summary>
                 /// print all parcels that have no yet drone
                 /// </summary>
-                public IEnumerable<Parcel> printParcelsWithoutDrone()
+                public IEnumerable<Parcel> getParcelsWithoutDrone()
                 {
                     List<Parcel> lst = new List<Parcel>();
                     foreach (Parcel item in DataSource.ParcelList)
