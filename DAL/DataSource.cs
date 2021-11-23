@@ -47,8 +47,8 @@ namespace IDAL
                     {
                         Station temp = new Station();
                         temp.ID = r.Next(1111, 9999);
-                        temp.longitude = r.Next(-180, 180);
-                        temp.lattitude = r.Next(-90, 90);
+                        temp.longitude = r.Next(30,34 );
+                        temp.lattitude = r.Next(34, 37);
                         temp.chargeSlots = r.Next(0, 100);
                         Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
                         temp.name = namesTmp.ToString();
@@ -61,8 +61,8 @@ namespace IDAL
                         Customer temp = new Customer();
                         Names names= (IDAL.DO.Names)(i);//for a diffrent name
                         temp.name = names.ToString();
-                        temp.longitude= r.Next(-180, 180);
-                        temp.lattitude = r.Next(-90, 90);
+                        temp.longitude = r.Next(30, 34);
+                        temp.lattitude = r.Next(34, 37);
                         temp.ID = r.Next(212365428, 328987502);
                         temp.phone = "0"+ r.Next(521121316, 549993899);
                         CustomersList.Add(temp);
