@@ -8,7 +8,7 @@ using IBL.BO;
 using IDAL.DO;
 namespace BL
 {
-   partial class BL
+   partial class BL :InterfaceBL
     {
         public double [] chargeCapacity;
         IDAL.DO.DalObject.DalObject dl;
