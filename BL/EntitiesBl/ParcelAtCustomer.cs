@@ -8,7 +8,7 @@ namespace IBL
 {
     namespace BO
     {
-        class ParcelAtCustomer
+         public class ParcelAtCustomer
         {
             public int ID { get; set; }
             public WeightCategories weight { get; set; }
@@ -17,7 +17,11 @@ namespace IBL
             public CustomerInParcel senderOrTaget { get; set; }//if the parcel need to be sent its the terget and if not its the sender
             public override string ToString()
             {
-                
+                String result = "";
+                result += $"ID is: {ID}, weight is: {weight}, priority is: {priority}, " +
+                          $"status is: {status}, "+
+                          $"customer is: {senderOrTaget}, \n";
+                return result;
             }
         }
     }

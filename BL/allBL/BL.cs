@@ -79,9 +79,9 @@ namespace BL
                         drt.status = IBL.BO.DroneStatus.maintenace;
                     if(drt.status== IBL.BO.DroneStatus.maintenace)
                     {
-                        int l =rnd.Next(0, dl.printAllStations().Count()),i=0;
+                        int l =rnd.Next(0, dl.getAllStations().Count()),i=0;
                         IDAL.DO.Station s = new IDAL.DO.Station();
-                        foreach (var ite in dl.printAllStations())
+                        foreach (var ite in dl.getAllStations())
                         {
                             s = ite;
                             if (i == l)

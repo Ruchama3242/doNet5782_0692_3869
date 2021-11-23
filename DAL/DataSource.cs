@@ -71,15 +71,17 @@ namespace IDAL
                     //loop for 10 parcels
                     for (int i =0; i < 10; i++)
                     {
+                        DateTime start = new DateTime(2021, 1, 1);
+                        int range = (DateTime.Today - start).Days;
                         Parcel temp = new Parcel();
                         temp.ID = Config.runnerID;
                         temp.senderID = CustomersList[(i + 2) % 9].ID;
                         temp.targetId = CustomersList[i].ID;
-                        temp.requested = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        temp.requested = start.AddDays(r.Next(range));
                         temp.droneID = 0;
-                        temp.scheduled = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
-                        temp.pickedUp = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
-                        temp.delivered = new DateTime(2021, r.Next(1, 12), r.Next(1, 30));
+                        temp.scheduled = temp.requested.AddHours(r.Next(1,8));
+                        temp.pickedUp = temp.scheduled.AddMinutes(r.Next(20, 180));
+                        temp.delivered = temp.pickedUp.AddMinutes(r.Next(20,90));
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         temp.priority = (IDAL.DO.Priorities)(r.Next() % 3);
                         ParcelList.Add(temp);

@@ -8,7 +8,7 @@ namespace IBL
 {
     namespace BO
     {
-        class Drone
+       public class Drone
         {
             public int ID { get; set; }
             public int model { get; set; }
@@ -20,7 +20,12 @@ namespace IBL
 
             public override string ToString()
             {
-               
+                String result = "";
+                result += $"ID is: {ID}, model: {model}, weight categories: {weight}, drone status is:{status}, " +
+                    $" {battery} on battery, parcel in transfer:{parcel}" +
+                    $" Lcation is: {location}\n";
+                return result;
+
             }
         }
     }

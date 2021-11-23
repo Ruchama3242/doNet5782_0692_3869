@@ -8,7 +8,7 @@ namespace IBL
 {
     namespace BO
     {
-        class ParcelToList
+         public class ParcelToList
         {
             public int ID { get; set; }
             public string senderName { get; set; }
@@ -18,7 +18,11 @@ namespace IBL
             public ParcelStatus status { get; set; }
             public override string ToString()
             {
-                
+                String result = "";
+                result += $"ID is: {ID}, status is: {status},  " +
+                          $"weight is: {weight}, priority is: {priority}, \n" +
+                         
+                return result;
             }
         }
     }

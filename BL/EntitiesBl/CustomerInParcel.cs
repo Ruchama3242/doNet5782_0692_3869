@@ -8,13 +8,15 @@ namespace IBL
 {
     namespace BO
     {
-        class CustomerInParcel
+         public class CustomerInParcel
         {
             public int ID;
             public string customerName;
             public override string ToString()
             {
-                
+                String result = "";
+                result += $"ID is: {ID},  customer name is: {customerName}\n";
+                return result;
             }
         }
     }
