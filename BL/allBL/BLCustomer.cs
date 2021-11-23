@@ -8,7 +8,7 @@ using BL;
 
 namespace BL
 {
-    partial class BL
+    partial class BL : InterfaceBL
     {
         
 

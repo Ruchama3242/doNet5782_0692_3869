@@ -7,7 +7,7 @@ using BL.BO;
 
 namespace BL
 {
-   partial class BL
+   partial class BL : InterfaceBL
     {
         Random rnd = new Random();
 
