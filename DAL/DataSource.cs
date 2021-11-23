@@ -19,7 +19,7 @@ namespace IDAL
                 {
                     internal static double chargeClear=0.001;
                    internal static double chargeLightWeight=0.005;
-                   internal static double chargeHavyWeight=0.1;
+                   internal static double chargeHavyWeight=0.05;
                    internal static double chargeMediumWeight=0.01;
                    internal static double chargineRate=0.25;
                     internal static int runnerID=1000;

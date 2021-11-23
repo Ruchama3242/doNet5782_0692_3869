@@ -126,6 +126,7 @@ namespace BL
                 IDAL.DO.Customer cusDal = myDalObject.findCustomer(id);
 
                 cusBL.ID = cusDal.ID;
+                cusBL.location = new IBL.BO.Location();
                 cusBL.location.latitude = cusDal.lattitude;
                 cusBL.location.longitude = cusDal.longitude;
 
