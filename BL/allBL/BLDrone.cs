@@ -40,6 +40,7 @@ namespace BL
                 try
                 {
                     IDAL.DO.Station s = dl.findStation(stationId);
+                    d.currentLocation = new IBL.BO.Location();
                     d.currentLocation.latitude = s.lattitude;
                     d.currentLocation.longitude = s.longitude;
                 }
