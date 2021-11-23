@@ -39,6 +39,7 @@ namespace BL
                 throw new BLgeneralException($"{e}");
             }
         }
+
         /// <summary>
         /// return the list of all parcels
         /// </summary>
@@ -46,12 +47,13 @@ namespace BL
         public IEnumerable<IBL.BO.ParcelToList> getAllParcels()
         {
             List<IBL.BO.ParcelToList> lst = new List<IBL.BO.ParcelToList>();//create the list
-            foreach (var item in dl.printAllParcels())//pass on the list of the parcels and copy them to the new list
+            foreach (var item in dl.getAllParcels())//pass on the list of the parcels and copy them to the new list
             {
                 lst.Add(getParcelTolist(item));
             }
             return lst;
         }
+
         /// <summary>
         /// return a parcel with all details
         /// </summary>
@@ -61,7 +63,7 @@ namespace BL
         {
             try
             {
-                IDAL.DO.Parcel p = dl.printParcel(id);//find the parcl in the list in the dal
+                IDAL.DO.Parcel p = dl.findParcel(id);//find the parcl in the list in the dal
                 IBL.BO.parcel pb = new IBL.BO.parcel();//create a parcel of BL type
                 pb.ID = p.ID;
                 pb.weight = (IBL.BO.WeightCategories)p.weight;
@@ -97,7 +99,7 @@ namespace BL
         /// <returns></returns>
         public IEnumerable<IBL.BO.ParcelToList> parcelsWithoutDrone()
         {
-            IEnumerable<IDAL.DO.Parcel> pd = dl.printParcelsWithoutDrone();
+            IEnumerable<IDAL.DO.Parcel> pd = dl.getParcelsWithoutDrone();
             List<IBL.BO.ParcelToList> lst = new List<IBL.BO.ParcelToList>();
             foreach (var item in pd)
             {

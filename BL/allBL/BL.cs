@@ -24,8 +24,8 @@ namespace BL
            dl = new IDAL.DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
-            IEnumerable<IDAL.DO.Drone> d = dl.printAllDrones();
-            IEnumerable<IDAL.DO.Parcel> p = dl.printAllParcels();
+            IEnumerable<IDAL.DO.Drone> d = dl.getAllDrones();
+            IEnumerable<IDAL.DO.Parcel> p = dl.getAllParcels();
             foreach(var item in d)
             {
                 IBL.BO.DroneToList drt=new DroneToList();
@@ -63,25 +63,16 @@ namespace BL
             return d;
         }
 
-        
 
 
-        //private IBL.BO.Station stationCloseToCustomer(int id)
-        //{
-
-        //}
-        
-        
-       
         /// <summary>
-        /// update some field in the station
+        /// מחזירה את התחנה הקרובה ביותר שיש לה עמדות טעינה פנויות
         /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="name"></param>
-        /// <param name="emptyChargeSlot"></param>
-        public void updateStation(int Id ,string name, int emptyChargeSlot)
+        /// <param name="a"></param>
+        /// <returns></returns>
+        private IBL.BO.Station stationClose(Location a)
         {
-            
+
         }
     }
 }

@@ -62,11 +62,11 @@ namespace BL
         /// the func return all the list of the station
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.StationToList> veiwListStation()
+        public IEnumerable<IBL.BO.StationToList> veiwListStation()
         {
            //get the list of the station from dal
             IEnumerable<IDAL.DO.Station> lstD= new List<IDAL.DO.Station>();
-            lstD = myDalObject.printAllStations();
+            lstD = myDalObject.getAllStations();
 
             //copy all the dal station to bl statio
             List<IBL.BO.StationToList> lstBL= new List<IBL.BO.StationToList>();
@@ -108,9 +108,9 @@ namespace BL
         /// return all the ststion with 1 or more avilable charge slots
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.Station> avilableCharginStation()
+        public IEnumerable<IBL.BO.Station> avilableCharginStation()
         {
-            IEnumerable<IDAL.DO.Station> stations = myDalObject.printAllStations();
+            IEnumerable<IDAL.DO.Station> stations = myDalObject.getAllStations();
             List<IBL.BO.Station> avilable = new List<IBL.BO.Station>();
             foreach (var item in stations)
             {

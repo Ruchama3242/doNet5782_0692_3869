@@ -48,7 +48,7 @@ namespace IDAL
                 /// <summary>
                 /// print all customers
                 /// </summary>
-                public IEnumerable<Customer> printAllCustomers()
+                public IEnumerable<Customer> getAllCustomers()
                 {
                     List<Customer> lst = new List<Customer>();
                     foreach (Customer item in DataSource.CustomersList)

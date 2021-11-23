@@ -64,11 +64,11 @@ namespace BL
         /// <summary>
         /// print all the list of the customer to list
         /// </summary>
-        public List<IBL.BO.CustomerToList> viewListCustomer()
+        public IEnumerable<IBL.BO.CustomerToList> viewListCustomer()
         {
             //bring al the data from dal
             IEnumerable<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
-            lst = myDalObject.printAllCustomers();
+            lst = myDalObject.getAllCustomers();
 
             List<IBL.BO.CustomerToList> listBL = new List<IBL.BO.CustomerToList>();
             foreach (var item in lst)
@@ -79,7 +79,7 @@ namespace BL
                 c.phone = item.phone;
 
                 //
-                var p = myDalObject.printAllParcels();
+                var p = myDalObject.getAllParcels();
                 int counterDelivered = 0;
                 int counterDontDelivered = 0;
                 int counterGot = 0;
@@ -126,7 +126,7 @@ namespace BL
                 cusBL.location.longitude = cusDal.longitude;
 
                 
-                IEnumerable<IDAL.DO.Parcel> lstP = myDalObject.printAllParcels();
+                IEnumerable<IDAL.DO.Parcel> lstP = myDalObject.getAllParcels();
                 foreach (var item in lstP)
                 {
                     //מוצא את כל החבילות שהלקוח מקבל

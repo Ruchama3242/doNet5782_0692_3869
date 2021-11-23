@@ -10,12 +10,17 @@ namespace IDAL
   { 
       namespace DalObject
         {
-             public partial class DalObject:IDal
+             public partial class DalObject:interfaceIDal
             {
                 /// <summary>
                 /// constructor
                 /// </summary>
                 public DalObject() { DataSource.Initialize(); }
+
+                /// <summary>
+                /// reurn array of five values ​​in the following order: free, light, medium, heavy and load rate
+                /// </summary>
+                /// <returns></returns>
                 public double[] chargeCapacity()
                 {
                     double[] arr = new double[] { DataSource.Config.chargeClear, 

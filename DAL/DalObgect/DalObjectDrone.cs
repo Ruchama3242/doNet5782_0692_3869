@@ -113,7 +113,7 @@ namespace IDAL
                 /// <summary>
                 /// print all drones
                 /// </summary>
-                public IEnumerable<Drone> printAllDrones()
+                public IEnumerable<Drone> getAllDrones()
                 {
                     List<Drone> lst = new List<Drone>();
                     foreach (Drone item in DataSource.DronesList)
