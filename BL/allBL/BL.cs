@@ -56,6 +56,7 @@ namespace BL
                         }
                         if (pr.pickedUp != DateTime.MinValue && pr.delivered == DateTime.MinValue)//החבילה נאספה אבל עדיין לא הגיעה ליעד
                         {
+                            drt.currentLocation = new Location();
                             drt.currentLocation = senderLocation;
                             minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
                             if (pr.weight == IDAL.DO.WeightCategories.light)
@@ -99,6 +100,7 @@ namespace BL
                             if (pr.delivered != DateTime.MinValue)
                                 lst.Add(dl.findCustomer(pr.targetId));
                         }
+
                         int l = rnd.Next(0, lst.Count());
                         drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
                         minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];

@@ -75,14 +75,18 @@ namespace BL
                 if (p.droneID != 0)//if there is a drone to the parcel
                 {
                     IBL.BO.DroneToList d = DroneArr.Find(x => x.ID == p.droneID);//find the drone in the dron list
+                    pb.drone = new IBL.BO.DroneInParcel();
                     pb.drone.ID = d.ID;
                     pb.drone.battery = d.battery;
+                    pb.drone.currentLocation = new IBL.BO.Location();
                     pb.drone.currentLocation = d.currentLocation;
                 }
                 IDAL.DO.Customer sender = dl.findCustomer(p.senderID);//find the sender customer in the list in the dal
                 IDAL.DO.Customer target = dl.findCustomer(p.targetId);//find the target customer in the list in the dal
+                pb.sender = new IBL.BO.CustomerInParcel();
                 pb.sender.ID = sender.ID;
                 pb.sender.customerName = sender.name;
+                pb.target = new IBL.BO.CustomerInParcel();
                 pb.target.customerName = target.name;
                 pb.target.ID = target.ID;
                 return pb;

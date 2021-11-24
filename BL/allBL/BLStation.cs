@@ -134,6 +134,7 @@ namespace BL
             IBL.BO.Station tmp = new IBL.BO.Station();
             tmp.chargeSlots = s.chargeSlots;
             tmp.ID = s.ID;
+            tmp.location = new IBL.BO.Location();
             tmp.location.latitude = s.lattitude;
             tmp.location.longitude = s.longitude;
             tmp.name = s.name;
@@ -147,7 +148,7 @@ namespace BL
                 charge.battery = findDrone(item.droneID).battery;
                 dr.Add(charge);
             }
-
+            tmp.dronesInChargeList = new List<IBL.BO.DroneInCharge>();
             tmp.dronesInChargeList = dr;
             return tmp;
 
