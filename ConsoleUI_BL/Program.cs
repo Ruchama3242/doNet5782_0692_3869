@@ -8,7 +8,7 @@ namespace ConsoleUI_BL
         enum option { add = 1, update, display, viewList, exit };
         static void Main(string[] args)
         {
-
+             
             //BL myBL = new BL();
             
             int mainInput;

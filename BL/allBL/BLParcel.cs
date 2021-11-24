@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BL.BO;
-
+using IBL;
 namespace BL
 {
-    partial class BL : InterfaceBL
+    partial class BL : InterfaceIBL
     {
         /// <summary>
         /// add a parcel to the list in the DAL

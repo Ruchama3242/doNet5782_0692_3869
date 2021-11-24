@@ -21,6 +21,7 @@ namespace IBL
                 result += $"ID is: {ID}, Name is: {name}, location is: {location}, charge slolts is: {chargeSlots}," +
                           $"drone in charge:" +
                           $"{dronesInChargeList} \n";
+                return result;
             }
         }
     }
