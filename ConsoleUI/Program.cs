@@ -336,7 +336,7 @@ namespace ConsoleUI
                         Console.WriteLine("Enter the id of the parcel");
                         id = int.Parse(Console.ReadLine());
                         Parcel yoyo = new Parcel();
-                        yoyo = d.printParcel(id);
+                        yoyo = d.findParcel(id);
                         Console.WriteLine(yoyo);
                         break;
 
@@ -391,14 +391,14 @@ namespace ConsoleUI
 
                 case 2:
                     IEnumerable<Drone> droneList = new List<Drone>();
-                    droneList = d.printAllDrones();
+                    droneList = d.getAllDrones();
                     foreach (Drone item in droneList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 3:
                     IEnumerable<Customer> customerList = new List<Customer>();
-                    customerList = d.printAllCustomers();
+                    customerList = d.getAllCustomers();
                     foreach (Customer item in customerList)
                     {
                         Console.WriteLine(item.ToString());
@@ -409,20 +409,20 @@ namespace ConsoleUI
 
                 case 4:
                     IEnumerable<Parcel> parcelList = new List<Parcel>();
-                    parcelList = d.printAllParcels();
+                    parcelList = d.getAllParcels();
                     foreach (Parcel item in parcelList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 5:
                     IEnumerable<Parcel> noParcelList = new List<Parcel>();
-                    noParcelList = d.printParcelsWithoutDrone();
+                    noParcelList = d.getParcelsWithoutDrone();
                     foreach (Parcel item in noParcelList)
                         Console.WriteLine(item.ToString());
                     break;
                 case 6:
                     IEnumerable<Station> avilableStations = new List<Station>();
-                    avilableStations = d.printStationsWithChargeSlots();
+                    avilableStations = d.getStationsWithChargeSlots();
                     foreach (Station item in avilableStations)
                     {
                         Console.WriteLine(item.ToString());

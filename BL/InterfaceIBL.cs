@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace IBL
 {
-    interface InterfaceBL
+    interface InterfaceIBL
     {
      
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 

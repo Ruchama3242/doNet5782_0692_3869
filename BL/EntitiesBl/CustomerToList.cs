@@ -8,7 +8,7 @@ namespace IBL
 {
     namespace BO
     {
-        class CustomerToList
+        public class CustomerToList
         {
             public int ID;
             public string name;
@@ -17,10 +17,13 @@ namespace IBL
             public int sendAndNotDeliveredParcels;
             public int gotParcels;
             public int onTheWayParcels;
-            //public override string ToString()
-            //{
-               
-            //}
+            public override string ToString()
+            {
+                String result = "";
+                result += $"ID is: {ID},  Name is: {name}, phone number: {phone.Substring(0, 3) + '-' + phone.Substring(3)}, {sendAndDeliveredParcels} Packages were successfully delivered." +
+                    $"Packages pending {sendAndNotDeliveredParcels}, {gotParcels} Packages received, {onTheWayParcels} on the way'\n";
+                return result;
+            }
         }
     }
 }

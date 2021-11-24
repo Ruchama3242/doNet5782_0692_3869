@@ -8,7 +8,7 @@ namespace IBL
 {
     namespace BO
     {
-        class StationToList
+       public class StationToList
         {
             public int ID { get; set; }
             public string name { get; set; }
@@ -16,7 +16,9 @@ namespace IBL
             public int notAvailableChargeSlots { get; set; }
             public override string ToString()
             {
-               
+                String result = "";
+                result += $"ID is: {ID}, Name is: {name}, avilable charge slots: {availableChargeSlots}, not avilable charge slots: {notAvailableChargeSlots}\n";
+                return result;
             }
         }
     }
