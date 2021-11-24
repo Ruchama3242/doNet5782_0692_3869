@@ -8,13 +8,13 @@ using IBL.BO;
 using IDAL.DO;
 namespace BL
 {
-   partial class BL :InterfaceBL
+    partial class BL:InterfaceBL
     {
-        public double [] chargeCapacity;
+        public double[] chargeCapacity;
         IDAL.DO.DalObject.DalObject dl;
         IDAL.DO.DalObject.DalObject myDalObject;
         List<IBL.BO.DroneToList> DroneArr;
-        
+
 
         /// <summary>
         /// constructor
@@ -23,19 +23,19 @@ namespace BL
         {
             bool flag = false;
             Random rnd = new Random();
-            double minBatery=0;
-           dl = new IDAL.DO.DalObject.DalObject();
+            double minBatery = 0;
+            dl = new IDAL.DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
             IEnumerable<IDAL.DO.Drone> d = dl.getAllDrones();
             IEnumerable<IDAL.DO.Parcel> p = dl.getAllParcels();
-            foreach(var item in d)
+            foreach (var item in d)
             {
-                IBL.BO.DroneToList drt=new DroneToList();
+                IBL.BO.DroneToList drt = new DroneToList();
                 drt.ID = item.ID;
-                foreach(var pr in p)
+                foreach (var pr in p)
                 {
-                    if(pr.droneID==item.ID&&pr.delivered==DateTime.MinValue)
+                    if (pr.droneID == item.ID && pr.delivered == DateTime.MinValue)
                     {
                         IDAL.DO.Customer sender = dl.findCustomer(pr.senderID);
                         IDAL.DO.Customer target = dl.findCustomer(pr.targetId);
@@ -46,8 +46,8 @@ namespace BL
                         {
                             drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
                             minBatery = distance(drt.currentLocation, senderLocation) * chargeCapacity[0];
-                            if(pr.weight==IDAL.DO.WeightCategories.light)
-                                minBatery+= distance(senderLocation,targetLocation)*chargeCapacity[1];
+                            if (pr.weight == IDAL.DO.WeightCategories.light)
+                                minBatery += distance(senderLocation, targetLocation) * chargeCapacity[1];
                             if (pr.weight == IDAL.DO.WeightCategories.medium)
                                 minBatery += distance(senderLocation, targetLocation) * chargeCapacity[2];
                             if (pr.weight == IDAL.DO.WeightCategories.heavy)
@@ -57,9 +57,9 @@ namespace BL
                         if (pr.pickedUp != DateTime.MinValue && pr.delivered == DateTime.MinValue)//החבילה נאספה אבל עדיין לא הגיעה ליעד
                         {
                             drt.currentLocation = senderLocation;
-                            minBatery=distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
+                            minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
                             if (pr.weight == IDAL.DO.WeightCategories.light)
-                                minBatery += distance(drt.currentLocation,targetLocation) * chargeCapacity[1];
+                                minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[1];
                             if (pr.weight == IDAL.DO.WeightCategories.medium)
                                 minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[2];
                             if (pr.weight == IDAL.DO.WeightCategories.heavy)
@@ -70,16 +70,16 @@ namespace BL
                         break;
                     }
                 }
-                if(!flag)
+                if (!flag)
                 {
                     int temp = rnd.Next(1, 3);
                     if (temp == 1)
                         drt.status = IBL.BO.DroneStatus.available;
                     else
                         drt.status = IBL.BO.DroneStatus.maintenace;
-                    if(drt.status== IBL.BO.DroneStatus.maintenace)
+                    if (drt.status == IBL.BO.DroneStatus.maintenace)
                     {
-                        int l =rnd.Next(0, dl.getAllStations().Count()),i=0;
+                        int l = rnd.Next(0, dl.getAllStations().Count()), i = 0;
                         IDAL.DO.Station s = new IDAL.DO.Station();
                         foreach (var ite in dl.getAllStations())
                         {
@@ -89,7 +89,7 @@ namespace BL
                             i++;
                         }
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
-                        drt.battery = rnd.Next(0, 21)/100;
+                        drt.battery = rnd.Next(0, 21) / 100;
                     }
                     else
                     {
@@ -101,12 +101,12 @@ namespace BL
                         }
                         int l = rnd.Next(0, lst.Count());
                         drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
-                        minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude })*chargeCapacity[0];
+                        minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];
                         drt.battery = rnd.Next((int)minBatery, 101) / 100;
                     }
                 }
                 DroneArr.Add(drt);
-               
+
             }
         }
 
@@ -142,8 +142,8 @@ namespace BL
         {
 
         }
-    }
-}
+
+
 
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace BL
             IDAL.DO.Station station = new IDAL.DO.Station();//the closest station to the customer
             IDAL.DO.Customer c = dl.findCustomer(id);//the customer
             IBL.BO.Location l = new Location { latitude = c.lattitude, longitude = c.longitude };//the location of the customer
-            IEnumerable<IDAL.DO.Station> st = dl.printAllStations();//the list of the stations
+            IEnumerable<IDAL.DO.Station> st = dl.getAllStations();//the list of the stations
             double d = distance(l, new IBL.BO.Location { latitude = st.First().lattitude, longitude = st.First().longitude });//d is the smallest distance between the cudtomer and a station, now its the first statio in the list
             station = st.First();
             foreach (var item in st)
@@ -170,8 +170,9 @@ namespace BL
             return station;
         }
 
-
-
-
     }
 }
+
+
+    
+

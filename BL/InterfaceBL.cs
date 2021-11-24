@@ -8,6 +8,7 @@ namespace BL
 {
     interface InterfaceBL
     {
+     
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
         /// <summary>
         /// get a customer of BL and add it to the list of DAL
