@@ -21,10 +21,15 @@ namespace BL
         {
             try
             {
-                if (customerBL.location.longitude < -180 || customerBL.location.longitude > 180)
+                if (customerBL.location.longitude < 29.3 || customerBL.location.longitude > 33.5)
                     throw new BLgeneralException("Error! the longitude is incorrect");
-                if (customerBL.location.latitude < -90 || customerBL.location.latitude > 90)
+                if (customerBL.location.latitude < 33.7 || customerBL.location.latitude > 36.3)
                     throw new BLgeneralException("Error! the latitude is incorrect");
+                if (customerBL.ID < 100000000 || customerBL.ID > 999999999)
+                    throw new BLgeneralException("ERROR! the id must be with 9 digits");
+                if (customerBL.phone.Length < 9 || customerBL.phone.Length > 10)
+                    throw new BLgeneralException("ERROR! the phone must be with 9 or 10 digits");
+
                 IDAL.DO.Customer temp = new IDAL.DO.Customer();
                 temp.ID = customerBL.ID;
                 temp.name = customerBL.name;
@@ -47,6 +52,9 @@ namespace BL
         /// <param name="phoneNum"></param>
         public void updateCustomer(int id, string name, string phoneNum)
         {
+            if (phoneNum != "" && (phoneNum.Length < 9 || phoneNum.Length > 10))
+                throw new BLgeneralException("ERROR! the phone number must be with 9 or ten digits");
+            
             try
             {
                 IDAL.DO.Customer temp = new IDAL.DO.Customer();
@@ -55,7 +63,7 @@ namespace BL
                 //if the user want to change some detail....
                 if (name != "")
                     temp.name = name;
-                if (phoneNum != null)
+                if (phoneNum != "")
                     temp.phone = phoneNum;
 
                 myDalObject.updateCustomer(id, temp);

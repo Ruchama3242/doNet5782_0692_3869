@@ -28,10 +28,13 @@ namespace BL
         /// <param name="drone"></param>
         public void addDrone(int id,int model,int weight,int stationId)
         {
-           
+            if (id < 10000 || id > 99999)
+                throw new BLgeneralException("ERROR! the id must be with 5 digits");
+            if (model <= 0)
+                throw new BLgeneralException("ERROR! the model must be a positive number");
+
             try
             {
-
                 IBL.BO.DroneToList d = new IBL.BO.DroneToList();
                 d.ID = id;
                 d.droneModel = model;
@@ -45,9 +48,9 @@ namespace BL
                     d.currentLocation.latitude = s.lattitude;
                     d.currentLocation.longitude = s.longitude;
                 }
-                catch (Exception )
+                catch (Exception e )
                 {
-                    throw new BLIdUnExistsException("Error! The station dosen't exist");
+                    throw new BLIdUnExistsException(e.Message);
                 }
                 IDAL.DO.Drone dr = droneDal(d);//drone of "DAL" type
                 dl.addDrone(dr);//add drone to the list in the dal
@@ -57,7 +60,7 @@ namespace BL
             }
             catch(Exception e)
             {
-                throw new BLIdExistsException("Error! the drone is already exist");
+                throw new BLIdExistsException(e.Message);
             }
         }
 
@@ -73,6 +76,8 @@ namespace BL
                 if(model!="")
                 {
                     int m = int.Parse(model);
+                    if (m <= 0)
+                        throw new BLgeneralException("ERROR! the model must be a positive number");
                     dl.updateDrone(ID, m);
                     IBL.BO.DroneToList dr = DroneArr.Find(p => p.ID == ID);
                     DroneArr.Remove(dr);
@@ -80,9 +85,9 @@ namespace BL
                     DroneArr.Add(dr);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new BLIdUnExistsException("Error! the drone not found");
+                throw new BLIdUnExistsException(e.Message);
             }
 
         }
@@ -144,9 +149,9 @@ namespace BL
                 d.parcel = pt;
                 return d;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new BLgeneralException("Error!");
+                throw new BLgeneralException(e.Message);
             }
         }
 
