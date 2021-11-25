@@ -75,14 +75,18 @@ namespace BL
                 if (p.droneID != 0)//if there is a drone to the parcel
                 {
                     IBL.BO.DroneToList d = DroneArr.Find(x => x.ID == p.droneID);//find the drone in the dron list
+                    pb.drone = new IBL.BO.DroneInParcel();
                     pb.drone.ID = d.ID;
                     pb.drone.battery = d.battery;
+                    pb.drone.currentLocation = new IBL.BO.Location();
                     pb.drone.currentLocation = d.currentLocation;
                 }
                 IDAL.DO.Customer sender = dl.findCustomer(p.senderID);//find the sender customer in the list in the dal
                 IDAL.DO.Customer target = dl.findCustomer(p.targetId);//find the target customer in the list in the dal
+                pb.sender = new IBL.BO.CustomerInParcel();
                 pb.sender.ID = sender.ID;
                 pb.sender.customerName = sender.name;
+                pb.target = new IBL.BO.CustomerInParcel();
                 pb.target.customerName = target.name;
                 pb.target.ID = target.ID;
                 return pb;
@@ -130,6 +134,68 @@ namespace BL
             else
                 p.status = IBL.BO.ParcelStatus.delivred;
             return p;
+        }
+        /// <summary>
+        /// the function update the parcel to be collected by the drone
+        /// </summary>
+        /// <param name="droneid"></param>
+        public void packageCollection(int droneid)
+        {
+            var d = DroneArr.Find(x => x.ID == droneid);
+            if (d == null)
+                throw new BLgeneralException("Error! the drone not found");
+            foreach (var item in dl.getAllParcels())
+            {
+                if(item.droneID==droneid)
+                {
+                    if(item.pickedUp==DateTime.MinValue)
+                    {
+                        DroneArr.Remove(d);
+                        d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })*chargeCapacity[0];
+                        d.currentLocation.longitude = dl.findCustomer(item.senderID).longitude;
+                        d.currentLocation.latitude = dl.findCustomer(item.senderID).lattitude;
+                        var par = item;
+                        dl.deleteSParcel(item.ID);
+                        par.pickedUp = DateTime.Now;
+                        dl.addParcel(par);
+                        DroneArr.Add(d);
+                        return;
+                    }
+                }
+            }
+            throw new BLgeneralException("ERROR! the parcel can't be collected");
+        }
+
+        /// <summary>
+        /// The function update the parcel to be delivered
+        /// </summary>
+        /// <param name="droneid"></param>
+        public void packageDelivery(int droneid)
+        {
+            var d = DroneArr.Find(x => x.ID == droneid);
+            if (d == null)
+                throw new BLgeneralException("Error! the drone not found");
+            foreach (var item in dl.getAllParcels())
+            {
+                if (item.droneID == droneid)
+                {
+                    if (item.pickedUp != DateTime.MinValue&&item.delivered==DateTime.MinValue)
+                    {
+                        DroneArr.Remove(d);
+                        d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) * chargeCapacity[indexOfChargeCapacity(item.weight)];
+                        d.currentLocation.longitude = dl.findCustomer(item.targetId).longitude;
+                        d.currentLocation.latitude = dl.findCustomer(item.targetId).lattitude;
+                        d.status = IBL.BO.DroneStatus.available;
+                        var par = item;
+                        dl.deleteSParcel(item.ID);
+                        par.delivered = DateTime.Now;
+                        dl.addParcel(par);
+                        DroneArr.Add(d);
+                        return;
+                    }
+                }
+            }
+            throw new BLgeneralException("ERROR! the parcel can't be collected");
         }
     }
 }

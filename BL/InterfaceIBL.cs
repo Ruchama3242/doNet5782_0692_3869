@@ -106,9 +106,21 @@ namespace IBL
         /// </summary>
         /// <returns></returns>
         public IEnumerable<IBL.BO.ParcelToList> parcelsWithoutDrone();
+
+        /// <summary>
+        /// the function update the parcel to be collected by the drone
+        /// </summary>
+        /// <param name="droneid"></param>
+        public void packageCollection(int droneid);
+
+        /// <summary>
+        /// The function update the parcel to be delivered
+        /// </summary>
+        /// <param name="droneid"></param>
+        public void packageDelivery(int droneid);
         #endregion
 
-      #region       - - - - - - - - - - - - - station - - - - - - - - - - - - - - - 
+        #region       - - - - - - - - - - - - - station - - - - - - - - - - - - - - - 
         /// <summary>
         /// add a station to the list of dal.dataSource
         /// </summary>

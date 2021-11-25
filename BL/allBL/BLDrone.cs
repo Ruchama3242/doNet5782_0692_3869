@@ -105,6 +105,7 @@ namespace BL
                 d.weight = drn.weight;
                 d.status = drn.status;
                 d.battery = drn.battery;
+                d.location = new IBL.BO.Location();
                 d.location = drn.currentLocation;
                 IBL.BO.ParcelInTransfer pt = new IBL.BO.ParcelInTransfer();
                 if (drn.status == IBL.BO.DroneStatus.delivery)
@@ -125,16 +126,21 @@ namespace BL
                         pt.status = true;
                     pt.priority = (IBL.BO.Priorities)p.priority;
                     pt.weight = (IBL.BO.WeightCategories)p.weight;
+                    pt.sender = new IBL.BO.CustomerInParcel();
                     pt.sender = getCustomerInParcel(p.senderID);
+                    pt.target = new IBL.BO.CustomerInParcel();
                     pt.target = getCustomerInParcel(p.targetId);
                     IDAL.DO.Customer sender = dl.findCustomer(p.senderID);
                     IDAL.DO.Customer target = dl.findCustomer(p.targetId);
+                    pt.collectionLocation = new IBL.BO.Location();
                     pt.collectionLocation.longitude = sender.longitude;
                     pt.collectionLocation.latitude = sender.lattitude;
+                    pt.targetLocation = new IBL.BO.Location();
                     pt.targetLocation.longitude = target.longitude;
                     pt.targetLocation.latitude = target.lattitude;
                     pt.distance = distance(pt.collectionLocation, pt.targetLocation);
                 }
+                d.parcel = new IBL.BO.ParcelInTransfer();
                 d.parcel = pt;
                 return d;
             }
@@ -260,7 +266,7 @@ namespace BL
                 if (myDrone.status != IBL.BO.DroneStatus.available)
                     throw new BLgeneralException("the drone isn'n  avilable");
                 IBL.BO.Station closed = stationClose(myDrone.currentLocation);
-                if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0)
+                if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0))
                     throw new BLgeneralException("the drone doesn't have enough charge");
 
                 // drone
@@ -330,4 +336,4 @@ namespace BL
             }
         }
     }
-}
+ }

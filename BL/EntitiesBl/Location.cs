@@ -40,7 +40,7 @@ namespace IBL
                 if (degreesL < 0)
                     degreesL = degreesL * -1;
 
-               string result = $@"{degrees}° {minutes}' {seconds}"" E ,{degreesL}° {minutesL}' {secondsL}"" S");
+               string result = $@"{degrees}° {minutes}' {seconds}"" E ,{degreesL}° {minutesL}' {secondsL}"" S";
        
                 return result;
             }
