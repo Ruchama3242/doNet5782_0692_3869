@@ -47,12 +47,7 @@ namespace BL
                         {
                             drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
                             minBatery = distance(drt.currentLocation, senderLocation) * chargeCapacity[0];
-                            if (pr.weight == IDAL.DO.WeightCategories.light)
-                                minBatery += distance(senderLocation, targetLocation) * chargeCapacity[1];
-                            if (pr.weight == IDAL.DO.WeightCategories.medium)
-                                minBatery += distance(senderLocation, targetLocation) * chargeCapacity[2];
-                            if (pr.weight == IDAL.DO.WeightCategories.heavy)
-                                minBatery += distance(senderLocation, targetLocation) * chargeCapacity[3];
+                            minBatery += distance(senderLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];
                             minBatery += distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
                         }
                         if (pr.pickedUp != DateTime.MinValue && pr.delivered == DateTime.MinValue)//החבילה נאספה אבל עדיין לא הגיעה ליעד
@@ -60,12 +55,7 @@ namespace BL
                             drt.currentLocation = new Location();
                             drt.currentLocation = senderLocation;
                             minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
-                            if (pr.weight == IDAL.DO.WeightCategories.light)
-                                minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[1];
-                            if (pr.weight == IDAL.DO.WeightCategories.medium)
-                                minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[2];
-                            if (pr.weight == IDAL.DO.WeightCategories.heavy)
-                                minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[3];
+                            minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];               
                         }
                         drt.battery = rnd.Next((int)minBatery, 101) / 100;
                         flag = true;
