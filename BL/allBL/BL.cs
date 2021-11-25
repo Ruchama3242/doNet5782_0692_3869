@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using BL.BO;
 using IBL.BO;
 using IDAL.DO;
+using IBL;
 namespace BL
 {
-    partial class BL:InterfaceBL
+    partial class BL:InterfaceIBL
     {
         public double[] chargeCapacity;
+        DAL.interfaceIDal dal;
         IDAL.DO.DalObject.DalObject dl;
         IDAL.DO.DalObject.DalObject myDalObject;
         List<IBL.BO.DroneToList> DroneArr;
