@@ -266,7 +266,7 @@ namespace BL
                 if (myDrone.status != IBL.BO.DroneStatus.available)
                     throw new BLgeneralException("the drone isn'n  avilable");
                 IBL.BO.Station closed = stationClose(myDrone.currentLocation);
-                if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0)
+                if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0))
                     throw new BLgeneralException("the drone doesn't have enough charge");
 
                 // drone
@@ -336,4 +336,4 @@ namespace BL
             }
         }
     }
-}
+ }

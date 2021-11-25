@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using BL.BO;
 using IBL.BO;
 using IDAL.DO;
+using IBL;
 namespace BL
 {
-    partial class BL:InterfaceBL
+    partial class BL: InterfaceIBL
     {
         public double[] chargeCapacity;
         IDAL.DO.DalObject.DalObject dl;
