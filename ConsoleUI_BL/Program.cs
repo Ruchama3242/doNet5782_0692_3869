@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
         {
             
 
-            IBL nyIBL = new BL();
+            IBL myIBL = new BL();
             
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
@@ -200,9 +200,9 @@ namespace ConsoleUI_BL
                 int input;
                 Console.WriteLine("To update the name of the drone press 1\n" +
                                   "for update ditail of station 2\n" +
-                                  "To deliver a percal to the customer press 3\n" +
-                                  "for sending a drone for charging press 4\n" +
-                                  "to release a drone from a charger press 5\n" +
+                                  "To  press 3\n" +
+                                  "for  press 4\n" +
+                                  "to  press 5\n" +
                                   "To return to the main menu, press 6");
                 input = int.Parse(Console.ReadLine());
 
