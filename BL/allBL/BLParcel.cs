@@ -19,6 +19,17 @@ namespace BL
         /// <returns></returns>
         public int addParcel(int senderId,int targetId,int weight,int priority)
         {
+            try//check if the sender and the target are exists
+            {
+                 var s=dl.findCustomer(senderId);
+               var t= dl.findCustomer(targetId);
+            }
+            catch (Exception e)
+            {
+
+                throw new BLgeneralException(e.Message);
+            }
+
             try
             {
                 IDAL.DO.Parcel p = new IDAL.DO.Parcel();

@@ -19,10 +19,14 @@ namespace BL
         {
             try
             {
-                if (station.location.longitude < -180 || station.location.longitude > 180)
+                if (station.location.longitude < 29.3 || station.location.longitude > 33.5)
                     throw new BLgeneralException("Error! the longitude is incorrect");
-                if (station.location.latitude < -90 || station.location.latitude > 90)
+                if (station.location.latitude < 33.7 || station.location.latitude > 36.3)
                     throw new BLgeneralException("Error! the latitude is incorrect");
+                if (station.ID < 1000 || station.ID > 9999)
+                    throw new BLgeneralException("ERROR! the id must be with 4 digits ");
+                if (station.chargeSlots <= 0)
+                    throw new BLgeneralException("ERROR! the number og charge slots must be positive");
                 IDAL.DO.Station stationDal = new IDAL.DO.Station();
                 stationDal.ID = station.ID;
                 stationDal.lattitude = station.location.latitude;
@@ -45,6 +49,8 @@ namespace BL
         /// <param name="emptyChargeSlot"></param>
         public void updateStation(int id, string name, int chargeSlot)
         {
+            if (chargeSlot <= 0)
+                throw new BLgeneralException("ERROR! the number og charge slots must be positive");
             try
             {
                 IDAL.DO.Station stationDal = new IDAL.DO.Station();
