@@ -9,7 +9,7 @@ using IBL;
 
 namespace BL
 {
-    partial class BL : InterfaceIBL
+    partial class BL : IBL.interfaceIBL
     {
         
 

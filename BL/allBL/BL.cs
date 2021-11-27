@@ -9,7 +9,7 @@ using IDAL.DO;
 using IBL;
 namespace BL
 {
-    partial class BL:InterfaceIBL
+    partial class BL: IBL.interfaceIBL
     {
         public double[] chargeCapacity;
         DAL.interfaceIDal dal;

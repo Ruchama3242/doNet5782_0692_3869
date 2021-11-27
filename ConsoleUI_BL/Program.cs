@@ -5,11 +5,12 @@ namespace ConsoleUI_BL
 {
     class Program
     {
-        enum option { add = 1, update, display, viewList, exit };
-        static void Main(string[] args)
+        enum option_a { add = 1, update, display, viewList, exit };
+        enum option_b { station = 1, drone,customer,parcel, exit };
+            static void Main(string[] args)
         {
-             
-            //BL myBL = new BL();
+
+            IBL myIBL = new BL();
             
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
@@ -53,7 +54,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void addOption()
+        static void addOption(myIBL)
         {
             try
             {
@@ -67,11 +68,11 @@ namespace ConsoleUI_BL
                 switch (input)
                 {
 
-                    case 1:
+                    case (int)option_b.station:
                       IBL.BO.Station temp = new Station();
                         string nameStation;
-                        int idStation, charge;
-                        float longitudeStation, lattitudeStation;
+                        int idStation, chargeEmpty;
+                        double longitudeStation, lattitudeStation;
                         Console.WriteLine("Enter the name of the station");
                         nameStation = Console.ReadLine();
                         Console.WriteLine("Enter the ID of the station");
@@ -80,19 +81,20 @@ namespace ConsoleUI_BL
                         longitudeStation = float.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the lettitude of the station");
                         lattitudeStation = float.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the charge slot of the station");
-                        charge = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the empty charge slot of the station");
+                        chargeEmpty = int.Parse(Console.ReadLine());
                         temp.name = nameStation;
                         temp.ID = idStation;
-                        temp.lattitude = lattitudeStation;
-                        temp.longitude = longitudeStation;
-                        temp.chargeSlots = charge;
+                        temp.location = new Location();
+                        temp.location.latitude = lattitudeStation;
+                        temp.location.longitude = longitudeStation;
+                        temp.chargeSlots = chargeEmpty;
 
-                        d.addStations(temp);
+                        myIBL.addStations(temp);
 
                         break;
 
-                    case 2:
+                    case (int)option_b.drone:
                         Drone myDrone = new Drone();
                         int myId, myModel;
                         double battery;
@@ -115,7 +117,7 @@ namespace ConsoleUI_BL
                         d.addDrone(myDrone);
                         break;
 
-                    case 3:
+                    case (int)option_b.customer:
                         Customer women = new Customer();
                         int womenID;
                         string name, phone;
@@ -138,7 +140,7 @@ namespace ConsoleUI_BL
                         d.addCustomer(women);
                         break;
 
-                    case 4:
+                    case (int)option_b.parcel:
                         Parcel rut = new Parcel();
                         int id, senderId, targetId, whight, priority; //droneId;
                         DateTime requested, scheduled, pickedUp, delivered;
@@ -171,28 +173,79 @@ namespace ConsoleUI_BL
                         rut.senderID = senderId;
                         rut.targetId = targetId;
                         rut.weight = (WeightCategories)whight;
-                        int newId = d.addParcel(rut);
+                        int newId = myIBL.addParcel(rut);
                         Console.WriteLine("The id of the parcel is " + newId + "\n");
                         break;
 
-                    case 5: //return to the main menu
+                    case (int)option_b.exit: //return to the main menu
                         break;
                     default:
                         Console.WriteLine("ERROR! Please enter a valid value");
                         break;
                 }
             }
-            catch (IdUnExistsException e)
+            catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
-            catch (IdExistsException e)
+        }
+
+        static void displayOption(myIBL)
+        {
+            try
             {
-                Console.WriteLine(e);
+                int input;
+                Console.WriteLine("for station press 1\n" +
+                                  "for drone press 2\n" +
+                                  "for customer press 3\n" +
+                                  "for percal press 4\n" +
+                                  "To return to the main menu, press 5");
+                input = int.Parse(Console.ReadLine());
+                int id;
+                switch (input)
+                {
+                    case (int)option_b.station:
+                        Console.WriteLine("Enter the id of the station");
+                        id = int.Parse(Console.ReadLine());
+                        Station loky = new Station();
+                        loky = myIBL.findStation(id);
+                        Console.WriteLine(loky);
+                        break;
+
+                    case (int)option_b.drone:
+                        Console.WriteLine("Enter the id of the drone");
+                        id = int.Parse(Console.ReadLine());
+                        Drone flafy = new Drone();
+                        flafy = myIBL.findDrone(id);
+                        Console.WriteLine(flafy);
+                        break;
+
+                    case (int)option_b.customer:
+                        Console.WriteLine("Enter the id of the customer");
+                        id = int.Parse(Console.ReadLine());
+                        Customer anonimy = new Customer();
+                        anonimy = myIBL.findCustomer(id);
+                        Console.WriteLine(anonimy);
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Enter the id of the parcel");
+                        id = int.Parse(Console.ReadLine());
+                        Parcel yoyo = new Parcel();
+                        yoyo = myIBL.findParcel(id);
+                        Console.WriteLine(yoyo);
+                        break;
+
+                    case 5://return to the main menu
+                        break;
+                    default:
+                        Console.WriteLine("ERROR! Please enter a valid value");
+                        break;
+                }
             }
-            catch (generalException e)
+            catch(Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
     }

@@ -10,13 +10,13 @@ namespace IBL
     {
        public class Location
         {
-            public float longitude { get; set; }
-            public float latitude { get; set; }
+            public double longitude { get; set; }
+            public double latitude { get; set; }
             public override string ToString()
             {
                 int longSeconds = (int)Math.Round(longitude * 60 * 60);
                 double x = (longitude - Math.Truncate(longitude)) * 60;//the decimaly part *60
-                float seconds = (float)(x - Math.Truncate(x)) * 60;//the decimaly part of minute *60
+                double seconds = (float)(x - Math.Truncate(x)) * 60;//the decimaly part of minute *60
                 int minutes = ((longSeconds / 60) % 60);
                 int degrees = ((longSeconds / 60) / 60);
                 //
@@ -29,7 +29,7 @@ namespace IBL
 
                 int latSeconds = (int)Math.Round(latitude * 60 * 60);
                 double xL = (latitude - Math.Truncate(latitude)) * 60;//the decimaly part *60
-                float secondsL = (float)(xL - Math.Truncate(xL)) * 60;//the decimaly part of minute *60
+                double secondsL = (float)(xL - Math.Truncate(xL)) * 60;//the decimaly part of minute *60
                 int minutesL = (latSeconds / 60) % 60;
                 int degreesL = (latSeconds / 60) / 60;
                 //

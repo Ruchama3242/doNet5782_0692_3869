@@ -7,7 +7,7 @@ using BL.BO;
 using IBL;
 namespace BL
 {
-    partial class BL : InterfaceIBL
+    partial class BL : IBL.interfaceIBL
     {
         /// <summary>
         /// add a parcel to the list in the DAL
@@ -59,12 +59,12 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.parcel getParcel(int id)
+        public IBL.BO.Parcel getParcel(int id)
         {
             try
             {
                 IDAL.DO.Parcel p = dl.findParcel(id);//find the parcl in the list in the dal
-                IBL.BO.parcel pb = new IBL.BO.parcel();//create a parcel of BL type
+                IBL.BO.Parcel pb = new IBL.BO.Parcel();//create a parcel of BL type
                 pb.ID = p.ID;
                 pb.weight = (IBL.BO.WeightCategories)p.weight;
                 pb.priority = (IBL.BO.Priorities)p.priority;

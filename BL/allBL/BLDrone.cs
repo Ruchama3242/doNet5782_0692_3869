@@ -7,7 +7,7 @@ using BL.BO;
 using IBL;
 namespace BL
 {
-   partial class BL : InterfaceIBL
+    partial class BL : IBL.interfaceIBL
     {
         Random rnd = new Random();
 
@@ -26,9 +26,9 @@ namespace BL
         /// adding a drone to droneList
         /// </summary>
         /// <param name="drone"></param>
-        public void addDrone(int id,int model,int weight,int stationId)
+        public void addDrone(int id, int model, int weight, int stationId)
         {
-           
+
             try
             {
 
@@ -45,7 +45,7 @@ namespace BL
                     d.currentLocation.latitude = s.lattitude;
                     d.currentLocation.longitude = s.longitude;
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     throw new BLIdUnExistsException("Error! The station dosen't exist");
                 }
@@ -55,7 +55,7 @@ namespace BL
                 IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge { droneID = id, stationeld = stationId };
                 dl.BatteryCharged(dc);//send the drone to charge
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new BLIdExistsException("Error! the drone is already exist");
             }
@@ -70,7 +70,7 @@ namespace BL
         {
             try
             {
-                if(model!="")
+                if (model != "")
                 {
                     int m = int.Parse(model);
                     dl.updateDrone(ID, m);
@@ -163,7 +163,7 @@ namespace BL
             c.customerName = cs.name;
             return c;
         }
-        
+
         /// <summary>
         /// release the drone from charge
         /// </summary>
@@ -213,11 +213,11 @@ namespace BL
             }
         }
 
-      /// <summary>
-      /// 
-      /// </summary>
-      /// <param name="deg"></param>
-      /// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deg"></param>
+        /// <returns></returns>
         private double deg2rad(double deg)
         {
             return deg * (Math.PI / 180);
@@ -295,7 +295,7 @@ namespace BL
                 if (myDrone.status != IBL.BO.DroneStatus.available)
                     throw new BLgeneralException("the drone not avilable");
 
-                IBL.BO.parcel myParcel = findTHEparcel(myDrone.currentLocation, myDrone.battery);
+                IDAL.DO.Parcel myParcel = findTheParcel(myDrone.currentLocation, myDrone.battery, IDAL.DO.Priorities.emergency);
                 myDalObject.ParcelDrone(myParcel.ID, myDrone.ID);
                 myDrone.status = IBL.BO.DroneStatus.delivery;
                 myParcel.requested = DateTime.Now;
@@ -308,32 +308,64 @@ namespace BL
 
 
         /// <summary>
-        /// מקבלת מיקום רחפן ומוצאת חבילה לשיוך לפי עדיפות ומיקום
+        /// מקבלת מיקום רחפן ומוצאת חבילה לשיוך לפי עדיפות(חירןם) ומיקום
         /// </summary>
         /// <param name="a"></param>
         /// <param name="buttery"></param>
         /// <returns></returns>
-        private IBL.BO.parcel findTHEparcel(IBL.BO.Location a, double buttery)
+        private IDAL.DO.Parcel findTheParcel(IBL.BO.Location a, double buttery, IDAL.DO.Priorities pri)
         {
-        }
-            //private double distanceBetweenParcelToDrone(IBL.BO.parcel p, int id)
-            //{
-            //    IDAL.DO.Drone d = myDalObject.findDrone(id);
-            //    IDAL.DO.Customer c = findCustomer(p.);
+            double d;
+            IDAL.DO.Parcel theParcel = new IDAL.DO.Parcel();
+            IBL.BO.Location b = new IBL.BO.Location();
+            IDAL.DO.Customer c = new IDAL.DO.Customer();
+            double distance = 1000000;
+            bool flug = false;
 
-            //}
-            private  int indexOfChargeCapacity(IDAL.DO.WeightCategories w)
+            //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
+            var p = myDalObject.getAllParcels();
+            var v = from item in p
+                    where item.priority == pri
+                    select item;
+
+            foreach (var item in v)
             {
-                if (w == IDAL.DO.WeightCategories.light)
-                    return 1;
-                if (w == IDAL.DO.WeightCategories.heavy)
-                    return 2;
-                if (w == IDAL.DO.WeightCategories.medium)
-                    return 3;
-
-                return 0;
-
+                c = myDalObject.findCustomer(item.senderID);
+                b.latitude = c.lattitude;
+                b.longitude = c.longitude;
+                d = distance(a, b);
+                double fromCusToSta = distance(b, stationClose(b).location);
+                double butteryUse = d * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0];
+                if (d < distance && (buttery - butteryUse) > 0)
+                {
+                    distance = d;
+                    theParcel = item;
+                }
             }
+            if (v.Count() > 0)//if there is a parcel.priority. ....
+                flug = true;
+
+            if (!flug && pri == IDAL.DO.Priorities.emergency)//אם לא מצא בעדיפות הכי גבוהה מחפש בעדיפות מתחתיה
+                theParcel = findTheParcel(a, buttery, IDAL.DO.Priorities.fast);
+
+            if (pri == IDAL.DO.Priorities.fast && !flug)
+                theParcel = findTheParcel(a, buttery, IDAL.DO.Priorities.normal);
+
+            return theParcel;
+        }
+        private int indexOfChargeCapacity(IDAL.DO.WeightCategories w)
+        {
+            if (w == IDAL.DO.WeightCategories.light)
+                return 1;
+            if (w == IDAL.DO.WeightCategories.heavy)
+                return 2;
+            if (w == IDAL.DO.WeightCategories.medium)
+                return 3;
+
+            return 0;
+
         }
     }
- }
+
+}
+ 
