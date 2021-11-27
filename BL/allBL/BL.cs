@@ -134,7 +134,21 @@ namespace BL
         /// <returns></returns>
         private IBL.BO.Station stationClose(Location a)
         {
-
+            IDAL.DO.Station station = new IDAL.DO.Station();//the closest station to the customer
+            IBL.BO.Location l = new Location();
+            l = a;
+            IEnumerable<IDAL.DO.Station> st = dl.getAllStations();//the list of the stations
+            double d = distance(l, new IBL.BO.Location { latitude = st.First().lattitude, longitude = st.First().longitude });//d is the smallest distance between the cudtomer and a station, now its the first statio in the list
+            station = st.First();
+            foreach (var item in st)
+            {
+                if (distance(l, new IBL.BO.Location { latitude = item.lattitude, longitude = item.longitude }) < d)
+                {
+                    d = distance(l, new IBL.BO.Location { latitude = item.lattitude, longitude = item.longitude });
+                    station = item;
+                }
+            }
+            return convertStation(station);
         }
 
 

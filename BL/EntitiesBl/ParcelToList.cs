@@ -20,7 +20,7 @@ namespace IBL
             {
                 String result = "";
                 result += $"ID is: {ID}, status is: {status},  " +
-                          $"weight is: {weight}, priority is: {priority}, \n" +
+                          $"weight is: {weight}, priority is: {priority}, \n";
                          
                 return result;
             }

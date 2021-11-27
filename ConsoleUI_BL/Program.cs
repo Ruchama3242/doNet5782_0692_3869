@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections;
 using IBL.BO;
 using BL.BO;
 namespace ConsoleUI_BL
@@ -9,8 +11,9 @@ namespace ConsoleUI_BL
         enum option_b { station = 1, drone,customer,parcel, exit };
             static void Main(string[] args)
         {
+            
 
-            IBL myIBL = new BL();
+            IBL nyIBL = new BL();
             
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
@@ -25,19 +28,19 @@ namespace ConsoleUI_BL
             {
                 switch (mainInput)
                 {
-                    case (int)option.add:
-                        addOption();
+                    case (int)option_a.add:
+                        addOption(myIBL);
                         break;
-                    case (int)option.update:
-                        updateOption();
+                    case (int)option_a.update:
+                        updateOption(myIBL);
                         break;
-                    case (int)option.display:
-                        displayOption();
+                    case (int)option_a.display:
+                        displayOption(myIBL);
                         break;
-                    case (int)option.viewList:
-                        viewListOption();
+                    case (int)option_a.viewList:
+                        viewListOption(myIBL);
                         break;
-                    case (int)option.exit:
+                    case (int)option_a.exit:
                         Console.WriteLine("BY!!");
                         break;
                     default:
@@ -190,6 +193,84 @@ namespace ConsoleUI_BL
             }
         }
 
+        static void updateOption(myIBL)
+        {
+            try
+            {
+                int input;
+                Console.WriteLine("To update the name of the drone press 1\n" +
+                                  "for update ditail of station 2\n" +
+                                  "To deliver a percal to the customer press 3\n" +
+                                  "for sending a drone for charging press 4\n" +
+                                  "to release a drone from a charger press 5\n" +
+                                  "To return to the main menu, press 6");
+                input = int.Parse(Console.ReadLine());
+
+                switch (input)
+                {
+                    case 1:
+                        int  droneID;
+                        string newName;
+                        Console.WriteLine("Enter the id of the drone");
+                        droneID = int.Parse(Console.ReadLine());
+                        Console.WriteLine("ener the new name for the drone");
+                        newName = Console.ReadLine();
+                        myIBL.updateDrone(droneID,newName);
+                        break;
+////////////////////////////////
+                    case 2:
+                        int stID;string name; int sum;
+                        Console.WriteLine("Enter the id of the station");
+                        parcelID = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the time for the collection");
+                        time = DateTime.Parse(Console.ReadLine());
+                        d.ParcelPickedUp(parcelID, time);
+                        break;
+
+                    case 3:
+                        int idParcel;
+                        string date;
+                        Console.WriteLine("Enter the id of the percal");
+                        idParcel = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the time the package collected, at format 2011-03-21");
+                        date = Console.ReadLine();
+                        DateTime DDay = DateTime.Parse(date);
+                        d.ParcelReceived(idParcel, DDay);
+                        break;
+
+                    case 4:
+                        int idDrone, idStation;
+                        Console.WriteLine("Enter the id of the drone");
+                        idDrone = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the id of the station");
+                        idStation = int.Parse(Console.ReadLine());
+                        d.SendToCharge(idDrone, idStation);
+                        break;
+                    case 5:
+                        int droneId, stationId;
+                        DroneCharge buzz = new DroneCharge();
+                        Console.WriteLine("Enter the id of the drone");
+                        droneId = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the id of the station");
+                        stationId = int.Parse(Console.ReadLine());
+                        buzz.droneID = droneId;
+                        buzz.stationeld = stationId;
+                        d.BatteryCharged(buzz);
+                        break;
+
+                    case 6: //return to the main menu
+                        break;
+                    default:
+                        Console.WriteLine("ERROR! Please enter a valid value");
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         static void displayOption(myIBL)
         {
             try
@@ -246,6 +327,70 @@ namespace ConsoleUI_BL
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        static void viewListOption(myIBL)
+        {
+            int input;
+            Console.WriteLine("for list of station press 1\n" +
+                              "for list of drones press 2\n" +
+                              "for list of customers press 3\n" +
+                              "for list of percals press 4\n" +
+                              "for list of percal that have not yet been assigned to the drone press 5\n" +
+                              "for displaying base stations with available charging stations press 6\n" +
+                              "To return to the main menu, press 7");
+
+            input = int.Parse(Console.ReadLine());
+
+            switch (input)
+            {
+                case (int)option_b.station:
+                    IEnumerable<Station> stationList = new List<Station>();
+                    stationList = myIBL.getAllStations();
+                    foreach (Station item in stationList)
+                        Console.WriteLine(item.ToString());
+                    break;
+
+                case (int)option_b.drone:
+                    IEnumerable<Drone> droneList = new List<Drone>();
+                    droneList = myIBL.getAllDrones();
+                    foreach (Drone item in droneList)
+                        Console.WriteLine(item.ToString());
+                    break;
+
+                case (int)option_b.customer:
+                    IEnumerable<Customer> customerList = new List<Customer>();
+                    customerList = myIBL.getAllCustomers();
+                    foreach (Customer item in customerList)
+                        Console.WriteLine(item.ToString());
+                    break;
+
+                case (int)option_b.parcel:
+                    IEnumerable<Parcel> parcelList = new List<Parcel>();
+                    parcelList = myIBL.getAllParcels();
+                    foreach (Parcel item in parcelList)
+                        Console.WriteLine(item.ToString());
+                    break;
+
+                case 5:
+                    IEnumerable<Parcel> noParcelList = new List<Parcel>();
+                    noParcelList = d.getParcelsWithoutDrone();
+                    foreach (Parcel item in noParcelList)
+                        Console.WriteLine(item.ToString());
+                    break;
+                case 6:
+                    IEnumerable<Station> avilableStations = new List<Station>();
+                    avilableStations = d.getStationsWithChargeSlots();
+                    foreach (Station item in avilableStations)
+                        Console.WriteLine(item.ToString());
+                        break;
+
+                case 7://return to the main menu
+                    break;
+                default:
+                    Console.WriteLine("ERROR! Please enter a valid value");
+                    break;
             }
         }
     }

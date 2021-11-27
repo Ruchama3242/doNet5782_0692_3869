@@ -324,7 +324,7 @@ namespace BL
             IDAL.DO.Parcel theParcel = new IDAL.DO.Parcel();
             IBL.BO.Location b = new IBL.BO.Location();
             IDAL.DO.Customer c = new IDAL.DO.Customer();
-            double distance = 1000000;
+            double far = 1000000;
             bool flug = false;
 
             //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
@@ -341,9 +341,9 @@ namespace BL
                 d = distance(a, b);
                 double fromCusToSta = distance(b, stationClose(b).location);
                 double butteryUse = d * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0];
-                if (d < distance && (buttery - butteryUse) > 0)
+                if (d < far && (buttery - butteryUse) > 0)
                 {
-                    distance = d;
+                    far = d;
                     theParcel = item;
                 }
             }

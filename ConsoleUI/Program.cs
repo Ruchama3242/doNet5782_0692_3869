@@ -380,7 +380,7 @@ namespace ConsoleUI
             {
                 case 1:
                     IEnumerable<Station> stationList = new List<Station>();
-                    stationList = d.printAllStations();
+                    stationList = d.getAllStations();
                     foreach (Station item in stationList)
                     {
                         Console.WriteLine(item.ToString());
@@ -437,11 +437,11 @@ namespace ConsoleUI
                     break;
             }
         }
-        static void sexagesimal(float longitude, float lattitude)
+        static void sexagesimal(double longitude, double lattitude)
         {
             int longSeconds = (int)Math.Round(longitude * 60 * 60);
             double x = (longitude - Math.Truncate(longitude)) * 60;//the decimaly part *60
-            float seconds = (float)(x - Math.Truncate(x)) * 60;//the decimaly part of minute *60
+            double seconds = (double)(x - Math.Truncate(x)) * 60;//the decimaly part of minute *60
             int minutes = ((longSeconds / 60) % 60);
             int degrees = ((longSeconds / 60) / 60);
             //
@@ -456,7 +456,7 @@ namespace ConsoleUI
 
             int latSeconds = (int)Math.Round(lattitude * 60 * 60);
             double xL = (lattitude - Math.Truncate(lattitude)) * 60;//the decimaly part *60
-            float secondsL = (float)(xL - Math.Truncate(xL)) * 60;//the decimaly part of minute *60
+            double secondsL = (double)(xL - Math.Truncate(xL)) * 60;//the decimaly part of minute *60
             int minutesL = (latSeconds / 60) % 60;
             int degreesL = (latSeconds / 60) / 60;
             //
