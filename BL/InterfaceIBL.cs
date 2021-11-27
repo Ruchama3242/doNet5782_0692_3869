@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL
 {
-    interface InterfaceIBL
+    interface interfaceIBL
     {
      
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
@@ -99,7 +99,7 @@ namespace IBL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.parcel getParcel(int id);
+        public IBL.BO.Parcel getParcel(int id);
 
         /// <summary>
         /// return a list of parcels that have not a drone yet
