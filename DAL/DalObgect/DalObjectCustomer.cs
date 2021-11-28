@@ -32,14 +32,14 @@ namespace IDAL
                 }
 
                 /// <summary>
-                /// print a customer
+                /// find a customer
                 /// </summary>
                 /// <param name="id"></param>
                 public Customer findCustomer(int id)
                 {
                     foreach (Customer item in DataSource.CustomersList)
                     {
-                        if (item.Equals(id))
+                        if (item.ID==id)
                             return item;
                     }
                     throw new IdUnExistsException("ERROR! the customer doesn't found");

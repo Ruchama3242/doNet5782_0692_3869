@@ -70,7 +70,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Parcel getParcel(int id)
+        public IBL.BO.Parcel findParcel(int id)
         {
             try
             {

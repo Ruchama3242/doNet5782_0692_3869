@@ -88,9 +88,8 @@ namespace ConsoleUI_BL
                         chargeEmpty = int.Parse(Console.ReadLine());
                         temp.name = nameStation;
                         temp.ID = idStation;
-                        temp.location = new Location();
-                        temp.location.latitude = lattitudeStation;
-                        temp.location.longitude = longitudeStation;
+                        temp.location = new Location 
+                        { latitude = lattitudeStation, longitude = longitudeStation };
                         temp.chargeSlots = chargeEmpty;
                         myIBL.addStation(temp);
                         break;
@@ -198,10 +197,13 @@ namespace ConsoleUI_BL
                 int input;
                 Console.WriteLine("To update the name of the drone press 1\n" +
                                   "for update ditail of station 2\n" +
-                                  "To  press 3\n" +
-                                  "for  press 4\n" +
-                                  "to  press 5\n" +
-                                  "To return to the main menu, press 6");
+                                  "To update ditail of customer press 3\n" +
+                                  "for send a drone to charge press 4\n" +
+                                  "to release a drone from charge press 5\n" +
+                                  "To set a drone for a parcel press 6\n"+
+                                  "For collection of a package by drone press 7\n"+
+                                  "Delivery of a package by drone press 8\n" +
+                                  "To return to the main menu, press 9 ");
                 input = int.Parse(Console.ReadLine());
 
                 switch (input)
@@ -215,48 +217,68 @@ namespace ConsoleUI_BL
                         newName = int.Parse(Console.ReadLine());
                         myIBL.updateNameDrone(droneID,newName);
                         break;
-////////////////////////////////
+
                     case 2:
                         int stID;string name; int sum;
                         Console.WriteLine("Enter the id of the station");
-                        parcelID = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the time for the collection");
-                        time = DateTime.Parse(Console.ReadLine());
-                        d.ParcelPickedUp(parcelID, time);
+                        stID = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the new name for the station,or enter");
+                        name = Console.ReadLine();
+                        Console.WriteLine("Enter the number of new charging stations, to keep the previous data enter 0");
+                        sum = int.Parse(Console.ReadLine());
+                        myIBL.updateStation(stID, name, sum);
                         break;
 
                     case 3:
-                        int idParcel;
-                        string date;
-                        Console.WriteLine("Enter the id of the percal");
-                        idParcel = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the time the package collected, at format 2011-03-21");
-                        date = Console.ReadLine();
-                        DateTime DDay = DateTime.Parse(date);
-                        d.ParcelReceived(idParcel, DDay);
+                        int id;
+                        string n, phone;
+                        Console.WriteLine("Enter the id of the customer");
+                        id = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the new name for the customer, or click enter");
+                        n = Console.ReadLine();
+                        Console.WriteLine("enter the new  phone number or click enter ");
+                        phone = Console.ReadLine();
+                        myIBL.updateCustomer(id, n, phone);
                         break;
 
                     case 4:
-                        int idDrone, idStation;
-                        Console.WriteLine("Enter the id of the drone");
-                        idDrone = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the id of the station");
-                        idStation = int.Parse(Console.ReadLine());
-                        d.SendToCharge(idDrone, idStation);
-                        break;
-                    case 5:
-                        int droneId, stationId;
-                        DroneCharge buzz = new DroneCharge();
+                        int droneId;
                         Console.WriteLine("Enter the id of the drone");
                         droneId = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the id of the station");
-                        stationId = int.Parse(Console.ReadLine());
-                        buzz.droneID = droneId;
-                        buzz.stationeld = stationId;
-                        d.BatteryCharged(buzz);
+                        myIBL.sendToCharge(droneId);
                         break;
 
-                    case 6: //return to the main menu
+                    case 5:
+                        int drID, time;
+                        Console.WriteLine("Enter the id of the drone");
+                        drID = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the loading time in minutes");
+                        time = int.Parse(Console.ReadLine());
+                        myIBL.releaseFromCharge(drID, time);
+                        break;
+
+                    case 6:
+                        int i;
+                        Console.WriteLine( "enter the id of the drone");
+                        i = int.Parse(Console.ReadLine());
+                        myIBL.parcelToDrone(i);
+                        break;
+
+                    case 7:
+                        int j;
+                        Console.WriteLine("enter the id of the drone");
+                        j = int.Parse(Console.ReadLine());
+                        //myIBL.תשלימי פה את הפונקציב שעושה את זה,זה מודגש שאת עשית תפונקציה הזאת ןאין לי מושג איך קראת לה
+                        break;
+
+                    case 8:
+                        int a;
+                        Console.WriteLine("enter the id of  the drone");
+                        a = int.Parse(Console.ReadLine());
+                        myIBL.packageDelivery(a);
+                        break;
+
+                    case 9: //return to the main menu
                         break;
                     default:
                         Console.WriteLine("ERROR! Please enter a valid value");
