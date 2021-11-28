@@ -101,7 +101,7 @@ namespace ConsoleUI_BL
                         int myWeight;
                         Console.WriteLine("Enter the id of the drone");
                         myId = int.Parse(Console.ReadLine());
-                        Console.WriteLine("enter the id of the station(for thr firsn charge)");
+                        Console.WriteLine("enter the id of the station(for thr first charge)");
                         stationID = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the model of the drone");
                         myModel = int.Parse(Console.ReadLine());
@@ -114,7 +114,7 @@ namespace ConsoleUI_BL
                         //myDrone.weight = (WeightCategories)myWeight;
                         //myDrone.status = (DroneStatus)myStatus;
                         //myDrone.battery = battery;
-                        myIBL.addDrone(myId,myModel,myWeight,stationID);
+                        myIBL.addDrone(myId,myModel,myWeight,stationID, battery);
                         break;
 
                     case (int)option_b.customer:
