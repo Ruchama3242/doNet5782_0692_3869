@@ -22,7 +22,7 @@ namespace IDAL
                     foreach (Station item in DataSource.StationsList)
                     {
 
-                        if (item.Equals(temp.ID)) //return true if the field is the same
+                        if (item.ID==temp.ID) //return true if the field is the same
                             flug = false;
                     }
                     if (flug)
@@ -39,7 +39,7 @@ namespace IDAL
                 {
                     foreach (Station item in DataSource.StationsList)
                     {
-                        if (item.Equals(id))
+                        if (item.ID==id)
                             return item;
                     }
                     throw new IdUnExistsException("ERROR! the station doesn't exist");

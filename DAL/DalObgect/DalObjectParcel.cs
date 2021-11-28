@@ -92,7 +92,7 @@ namespace IDAL
                 {
                     foreach (Parcel item in DataSource.ParcelList)
                     {
-                        if (item.Equals(id))
+                        if (item.ID==id)
                             return item;
                     }
                     throw new IdUnExistsException("ERROR! the parcel doesn't found");

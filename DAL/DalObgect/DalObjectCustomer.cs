@@ -22,7 +22,7 @@ namespace IDAL
                     foreach (Customer item in DataSource.CustomersList)
                     {
 
-                        if (item.Equals(temp.ID)) //return true if the field is the same
+                        if (item.ID==temp.ID) //return true if the field is the same
                             flag = false;
                     }
                     if (flag)
