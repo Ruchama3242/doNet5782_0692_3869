@@ -361,6 +361,7 @@ namespace ConsoleUI_BL
                               "for displaying base stations with available charging stations press 6\n" +
                               "To return to the main menu, press 7");
 
+            
             input = int.Parse(Console.ReadLine());
 
             switch (input)

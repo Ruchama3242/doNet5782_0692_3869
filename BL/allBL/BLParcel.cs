@@ -132,8 +132,8 @@ namespace BL
         {
             IBL.BO.ParcelToList p = new IBL.BO.ParcelToList();
             p.ID = item.ID;
-            p.senderName = dl.findCustomer(item.ID).name;
-            p.targetName = dl.findCustomer(item.ID).name;
+            p.senderName = dl.findCustomer(item.senderID).name;
+            p.targetName = dl.findCustomer(item.targetId).name;
             p.weight = (IBL.BO.WeightCategories)item.weight;
             p.priority = (IBL.BO.Priorities)item.priority;
             if (item.scheduled == DateTime.MinValue)//check what is the status of the parcel

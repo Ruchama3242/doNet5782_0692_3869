@@ -35,6 +35,7 @@ namespace BL
             {
                 IBL.BO.DroneToList drt = new DroneToList();
                 drt.ID = item.ID;
+                drt.droneModel = item.model;
                 foreach (var pr in p)
                 {
                     if (pr.droneID == item.ID && pr.delivered == DateTime.MinValue)
