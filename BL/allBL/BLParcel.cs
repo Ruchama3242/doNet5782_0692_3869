@@ -7,7 +7,7 @@ using BL.BO;
 using IBL;
 namespace BL
 {
-    partial class BL : IBL.interfaceIBL
+   public partial class BL : IBL.interfaceIBL
     {
         /// <summary>
         /// add a parcel to the list in the DAL

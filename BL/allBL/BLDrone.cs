@@ -7,7 +7,7 @@ using BL.BO;
 using IBL;
 namespace BL
 {
-    partial class BL : IBL.interfaceIBL
+    public partial class BL : IBL.interfaceIBL
     {
         Random rnd = new Random();
 
@@ -69,19 +69,19 @@ namespace BL
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="model"></param>
-        public void updateNameDrone(int ID, string model)
+        public void updateNameDrone(int ID, int model)
         {
             try
             {
-                if (model != "")
+                if (model !=0)
                 {
-                    int m = int.Parse(model);
+                    int m = model;
                     if (m <= 0)
                         throw new BLgeneralException("ERROR! the model must be a positive number");
                     dl.updateDrone(ID, m);
                     IBL.BO.DroneToList dr = DroneArr.Find(p => p.ID == ID);
                     DroneArr.Remove(dr);
-                    dr.droneModel = int.Parse(model);
+                    dr.droneModel = model;
                     DroneArr.Add(dr);
                 }
             }

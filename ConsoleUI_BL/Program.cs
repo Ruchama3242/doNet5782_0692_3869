@@ -11,9 +11,9 @@ namespace ConsoleUI_BL
         enum option_b { station = 1, drone,customer,parcel, exit };
             static void Main(string[] args)
         {
-            
 
-            IBL myIBL = new BL();
+
+            IBL.interfaceIBL myIBL = new BL.BL();
             
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
@@ -57,7 +57,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void addOption(myIBL)
+        static void addOption(IBL.interfaceIBL myIBL)
         {
             try
             {
@@ -92,32 +92,30 @@ namespace ConsoleUI_BL
                         temp.location.latitude = lattitudeStation;
                         temp.location.longitude = longitudeStation;
                         temp.chargeSlots = chargeEmpty;
-
-                        myIBL.addStations(temp);
-
+                        myIBL.addStation(temp);
                         break;
 
                     case (int)option_b.drone:
-                        Drone myDrone = new Drone();
-                        int myId, myModel;
+                        //Drone myDrone = new Drone();
+                        int myId,stationID, myModel;
                         double battery;
                         int myWeight;
                         Console.WriteLine("Enter the id of the drone");
                         myId = int.Parse(Console.ReadLine());
+                        Console.WriteLine("enter the id of the station(for thr firsn charge)");
+                        stationID = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the model of the drone");
                         myModel = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the weight category of the drone (0 to light, 1 to medium, 2 to heavy)");
                         myWeight = int.Parse(Console.ReadLine());
-                        //Console.WriteLine("Enter the drone status ( 0 for available, 1 for maintenace, 2 for delivery)");
-                        //myStatus = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the battery percentage");
                         battery = double.Parse(Console.ReadLine());
-                        myDrone.ID = myId;
-                        myDrone.model = myModel;
-                        myDrone.weight = (WeightCategories)myWeight;
+                        //myDrone.ID = myId;
+                        //myDrone.model = myModel;
+                        //myDrone.weight = (WeightCategories)myWeight;
                         //myDrone.status = (DroneStatus)myStatus;
                         //myDrone.battery = battery;
-                        d.addDrone(myDrone);
+                        myIBL.addDrone(myId,myModel,myWeight,stationID);
                         break;
 
                     case (int)option_b.customer:
@@ -138,15 +136,15 @@ namespace ConsoleUI_BL
                         women.ID = womenID;
                         women.name = name;
                         women.phone = phone;
-                        women.lattitude = lattitude;
-                        women.longitude = longitude;
-                        d.addCustomer(women);
+                        women.location = new Location { latitude = lattitude, longitude = longitude };
+                        myIBL.addCustomer(women);
                         break;
 
                     case (int)option_b.parcel:
-                        Parcel rut = new Parcel();
-                        int id, senderId, targetId, whight, priority; //droneId;
+                        //Parcel rut = new Parcel();
+                        int id, senderId, targetId,weight , priority; 
                         DateTime requested, scheduled, pickedUp, delivered;
+                        //WeightCategories
                         //Console.WriteLine("Enter the id of the percal");
                         id = 0; //int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the  sender id of the percal");
@@ -154,7 +152,7 @@ namespace ConsoleUI_BL
                         Console.WriteLine("Enter the  target id of the percal");
                         targetId = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the weight category of the percal (0 to light, 1 to medium, 2 to heavy)");
-                        whight = int.Parse(Console.ReadLine()); ;
+                        weight = int.Parse(Console.ReadLine()); ;
                         Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency)");
                         priority = int.Parse(Console.ReadLine());
                         //Console.WriteLine("Enter the id of the drone");
@@ -167,16 +165,16 @@ namespace ConsoleUI_BL
                         pickedUp = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the time the packege delivered, at format 2011-03-21");
                         delivered = DateTime.Parse(Console.ReadLine());
-                        rut.ID = id;
-                        rut.pickedUp = pickedUp;
-                        rut.delivered = delivered;
-                        rut.priority = (Priorities)priority;
-                        rut.requested = requested;
-                        rut.scheduled = scheduled;
-                        rut.senderID = senderId;
-                        rut.targetId = targetId;
-                        rut.weight = (WeightCategories)whight;
-                        int newId = myIBL.addParcel(rut);
+                        //rut.ID = id;
+                        //rut.pickedUp = pickedUp;
+                        //rut.delivered = delivered;
+                        //rut.priority = (Priorities)priority;
+                        //rut.requested = requested;
+                        //rut.scheduled = scheduled;
+                        //rut.senderID = senderId;
+                        //rut.targetId = targetId;
+                        //rut.weight = (WeightCategories)whight;
+                        int newId = myIBL.addParcel(senderId,targetId,weight,priority);
                         Console.WriteLine("The id of the parcel is " + newId + "\n");
                         break;
 
@@ -193,7 +191,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void updateOption(myIBL)
+        static void updateOption(IBL.interfaceIBL myIBL)
         {
             try
             {
@@ -210,12 +208,12 @@ namespace ConsoleUI_BL
                 {
                     case 1:
                         int  droneID;
-                        string newName;
+                        int newName;
                         Console.WriteLine("Enter the id of the drone");
                         droneID = int.Parse(Console.ReadLine());
                         Console.WriteLine("ener the new name for the drone");
-                        newName = Console.ReadLine();
-                        myIBL.updateDrone(droneID,newName);
+                        newName = int.Parse(Console.ReadLine());
+                        myIBL.updateNameDrone(droneID,newName);
                         break;
 ////////////////////////////////
                     case 2:
@@ -271,7 +269,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void displayOption(myIBL)
+        static void displayOption(IBL.interfaceIBL myIBL)
         {
             try
             {
@@ -330,7 +328,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void viewListOption(myIBL)
+        static void viewListOption(IBL.interfaceIBL myIBL)
         {
             int input;
             Console.WriteLine("for list of station press 1\n" +
@@ -346,43 +344,43 @@ namespace ConsoleUI_BL
             switch (input)
             {
                 case (int)option_b.station:
-                    IEnumerable<Station> stationList = new List<Station>();
-                    stationList = myIBL.getAllStations();
-                    foreach (Station item in stationList)
+                    IEnumerable<StationToList> stationList = new List<StationToList>();
+                    stationList = myIBL.veiwListStation();
+                    foreach (var item in stationList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case (int)option_b.drone:
-                    IEnumerable<Drone> droneList = new List<Drone>();
+                    IEnumerable<DroneToList> droneList = new List<DroneToList>();
                     droneList = myIBL.getAllDrones();
-                    foreach (Drone item in droneList)
+                    foreach (var item in droneList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case (int)option_b.customer:
-                    IEnumerable<Customer> customerList = new List<Customer>();
-                    customerList = myIBL.getAllCustomers();
-                    foreach (Customer item in customerList)
+                    IEnumerable<CustomerToList> customerList = new List<CustomerToList>();
+                    customerList = myIBL.viewListCustomer();
+                    foreach (var item in customerList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case (int)option_b.parcel:
-                    IEnumerable<Parcel> parcelList = new List<Parcel>();
+                    IEnumerable<ParcelToList> parcelList = new List<ParcelToList>();
                     parcelList = myIBL.getAllParcels();
-                    foreach (Parcel item in parcelList)
+                    foreach (var item in parcelList)
                         Console.WriteLine(item.ToString());
                     break;
 
                 case 5:
-                    IEnumerable<Parcel> noParcelList = new List<Parcel>();
-                    noParcelList = d.getParcelsWithoutDrone();
-                    foreach (Parcel item in noParcelList)
+                    IEnumerable<ParcelToList> noParcelList = new List<ParcelToList>();
+                    noParcelList = myIBL.parcelsWithoutDrone();
+                    foreach (var item in noParcelList)
                         Console.WriteLine(item.ToString());
                     break;
                 case 6:
                     IEnumerable<Station> avilableStations = new List<Station>();
-                    avilableStations = d.getStationsWithChargeSlots();
-                    foreach (Station item in avilableStations)
+                    avilableStations = myIBL.avilableCharginStation();
+                    foreach (var item in avilableStations)
                         Console.WriteLine(item.ToString());
                         break;
 

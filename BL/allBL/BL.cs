@@ -9,7 +9,7 @@ using IDAL.DO;
 using IBL;
 namespace BL
 {
-    partial class BL: IBL.interfaceIBL
+    public partial  class BL: IBL.interfaceIBL
     {
         public double[] chargeCapacity;
         DAL.interfaceIDal dal;
@@ -21,12 +21,12 @@ namespace BL
         /// <summary>
         /// constructor
         /// </summary>
-        BL()
+         public BL()
         {
             bool flag = false;
             Random rnd = new Random();
             double minBatery = 0;
-            dl = new IDAL.DO.DalObject.DalObject();
+           DAL.interfaceIDal dl = new IDAL.DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
             IEnumerable<IDAL.DO.Drone> d = dl.getAllDrones();
