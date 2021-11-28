@@ -33,7 +33,7 @@ namespace BL
                 stationDal.longitude = station.location.longitude;
                 stationDal.name = station.name;
                 stationDal.chargeSlots = station.chargeSlots;
-                myDalObject.addStations(stationDal);
+                dl.addStations(stationDal);
             }
             catch (Exception e)
             {
@@ -55,13 +55,13 @@ namespace BL
             {
                 IDAL.DO.Station stationDal = new IDAL.DO.Station();
 
-                stationDal = myDalObject.findStation(id);
+                stationDal = dl.findStation(id);
                 if (name != "")
                     stationDal.name = name;
                 if (chargeSlot != 0)
                     stationDal.chargeSlots = chargeSlot;
 
-                myDalObject.updateStation(id, stationDal);
+                dl.updateStation(id, stationDal);
             }
             catch (Exception e)
             {
@@ -77,7 +77,7 @@ namespace BL
         {
            //get the list of the station from dal
             IEnumerable<IDAL.DO.Station> lstD= new List<IDAL.DO.Station>();
-            lstD = myDalObject.getAllStations();
+            lstD = dl.getAllStations();
 
             //copy all the dal station to bl statio
             List<IBL.BO.StationToList> lstBL= new List<IBL.BO.StationToList>();
@@ -89,7 +89,7 @@ namespace BL
                 temp.name = item.name;
                 temp.availableChargeSlots = item.chargeSlots;
                 //findDroneCharge return a list that contain all the drone in charge 
-                temp.notAvailableChargeSlots = myDalObject.findDroneCharge(item.ID).Count;
+                temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count;
                 lstBL.Add(temp);
             }
             return lstBL;
@@ -105,7 +105,7 @@ namespace BL
             try
             {
                 IBL.BO.Station s = new IBL.BO.Station();
-                IDAL.DO.Station sD = myDalObject.findStation(id);
+                IDAL.DO.Station sD = dl.findStation(id);
                 s = convertStation(sD);
                 List<IDAL.DO.DroneCharge> drCh = new List<IDAL.DO.DroneCharge>();
                 //drCh = dl.findDroneCharge(id);
@@ -131,7 +131,7 @@ namespace BL
         /// <returns></returns>
         public IEnumerable<IBL.BO.Station> avilableCharginStation()
         {
-            IEnumerable<IDAL.DO.Station> stations = myDalObject.getAllStations();
+            IEnumerable<IDAL.DO.Station> stations = dl.getAllStations();
             List<IBL.BO.Station> avilable = new List<IBL.BO.Station>();
             foreach (var item in stations)
             {
@@ -156,7 +156,7 @@ namespace BL
             tmp.location.longitude = s.longitude;
             tmp.name = s.name;
 
-            List<IDAL.DO.DroneCharge> d = myDalObject.findDroneCharge(s.ID);
+            List<IDAL.DO.DroneCharge> d = dl.findDroneCharge(s.ID);
             List<IBL.BO.DroneInCharge> dr = new List<IBL.BO.DroneInCharge>();
             foreach (var item in d)
             {

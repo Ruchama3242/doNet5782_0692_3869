@@ -12,9 +12,10 @@ namespace BL
     public partial  class BL: IBL.interfaceIBL
     {
         public double[] chargeCapacity;
-        DAL.interfaceIDal dal;
-        IDAL.DO.DalObject.DalObject dl= new IDAL.DO.DalObject.DalObject();
-        IDAL.DO.DalObject.DalObject myDalObject = new IDAL.DO.DalObject.DalObject();
+        DAL.interfaceIDal dl;
+        //DAL.interfaceIDal dal;
+        //IDAL.DO.DalObject.DalObject dl= new IDAL.DO.DalObject.DalObject();
+        //IDAL.DO.DalObject.DalObject myDalObject = new IDAL.DO.DalObject.DalObject();
         List<IBL.BO.DroneToList> DroneArr;
 
 
@@ -26,7 +27,7 @@ namespace BL
             bool flag = false;
             Random rnd = new Random();
             double minBatery = 0;
-           DAL.interfaceIDal dl = new IDAL.DO.DalObject.DalObject();
+            dl = new IDAL.DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
             IEnumerable<IDAL.DO.Drone> d = dl.getAllDrones();

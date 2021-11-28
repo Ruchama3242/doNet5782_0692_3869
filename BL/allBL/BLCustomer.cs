@@ -36,7 +36,7 @@ namespace BL
                 temp.phone = customerBL.phone;
                 temp.lattitude = customerBL.location.latitude;
                 temp.longitude = customerBL.location.longitude;
-                myDalObject.addCustomer(temp);
+                dl.addCustomer(temp);
             }
             catch(Exception e)
             {
@@ -58,7 +58,7 @@ namespace BL
             try
             {
                 IDAL.DO.Customer temp = new IDAL.DO.Customer();
-                temp = myDalObject.findCustomer(id);
+                temp = dl.findCustomer(id);
 
                 //if the user want to change some detail....
                 if (name != "")
@@ -66,7 +66,7 @@ namespace BL
                 if (phoneNum != "")
                     temp.phone = phoneNum;
 
-                myDalObject.updateCustomer(id, temp);
+                dl.updateCustomer(id, temp);
             }
             catch (Exception e)
             {
@@ -81,7 +81,7 @@ namespace BL
         {
             //bring al the data from dal
             IEnumerable<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
-            lst = myDalObject.getAllCustomers();
+            lst = dl.getAllCustomers();
 
             List<IBL.BO.CustomerToList> listBL = new List<IBL.BO.CustomerToList>();
             foreach (var item in lst)
@@ -92,7 +92,7 @@ namespace BL
                 c.phone = item.phone;
 
                 //
-                var p = myDalObject.getAllParcels();
+                var p = dl.getAllParcels();
                 int counterDelivered = 0;
                 int counterDontDelivered = 0;
                 int counterGot = 0;
@@ -132,7 +132,7 @@ namespace BL
             try
             {
                 IBL.BO.Customer cusBL = new IBL.BO.Customer();
-                IDAL.DO.Customer cusDal = myDalObject.findCustomer(id);
+                IDAL.DO.Customer cusDal = dl.findCustomer(id);
 
                 cusBL.ID = cusDal.ID;
                 cusBL.location = new IBL.BO.Location();
@@ -140,7 +140,7 @@ namespace BL
                 cusBL.location.longitude = cusDal.longitude;
 
                 
-                IEnumerable<IDAL.DO.Parcel> lstP = myDalObject.getAllParcels();
+                IEnumerable<IDAL.DO.Parcel> lstP = dl.getAllParcels();
                 foreach (var item in lstP)
                 {
                     //מוצא את כל החבילות שהלקוח מקבל
