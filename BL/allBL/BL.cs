@@ -13,8 +13,8 @@ namespace BL
     {
         public double[] chargeCapacity;
         DAL.interfaceIDal dal;
-        IDAL.DO.DalObject.DalObject dl;
-        IDAL.DO.DalObject.DalObject myDalObject;
+        IDAL.DO.DalObject.DalObject dl= new IDAL.DO.DalObject.DalObject();
+        IDAL.DO.DalObject.DalObject myDalObject = new IDAL.DO.DalObject.DalObject();
         List<IBL.BO.DroneToList> DroneArr;
 
 
@@ -89,6 +89,7 @@ namespace BL
                         List<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
                         foreach (var pr in p)
                         {
+                            ///!!!!!!!!!!!!!!!!!!1
                             if (pr.delivered != DateTime.MinValue)
                                 lst.Add(dl.findCustomer(pr.targetId));
                         }
@@ -162,7 +163,8 @@ namespace BL
         private IDAL.DO.Station stationCloseToCustomer(int id)
         {
             IDAL.DO.Station station = new IDAL.DO.Station();//the closest station to the customer
-            IDAL.DO.Customer c = dl.findCustomer(id);//the customer
+            IDAL.DO.Customer c = new IDAL.DO.Customer();
+            c = dl.findCustomer(id);//the customer
             IBL.BO.Location l = new Location { latitude = c.lattitude, longitude = c.longitude };//the location of the customer
             IEnumerable<IDAL.DO.Station> st = dl.getAllStations();//the list of the stations
             double d = distance(l, new IBL.BO.Location { latitude = st.First().lattitude, longitude = st.First().longitude });//d is the smallest distance between the cudtomer and a station, now its the first statio in the list

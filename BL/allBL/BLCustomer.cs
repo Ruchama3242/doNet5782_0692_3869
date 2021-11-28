@@ -75,7 +75,7 @@ namespace BL
         }
 
         /// <summary>
-        /// print all the list of the customer to list
+        /// print all the list of the customerToList
         /// </summary>
         public IEnumerable<IBL.BO.CustomerToList> viewListCustomer()
         {
