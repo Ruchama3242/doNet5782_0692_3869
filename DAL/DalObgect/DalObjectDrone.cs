@@ -160,6 +160,11 @@ namespace IDAL
                     throw new IdUnExistsException("ERROR! the drone doesn't found");
                 }
 
+                /// <summary>
+                /// get a id of atation and return all the drone that charge in this station
+                /// </summary>
+                /// <param name="id"></param>
+                /// <returns></returns>
                 public List<DroneCharge> findDroneCharge(int id)
                 {
                     

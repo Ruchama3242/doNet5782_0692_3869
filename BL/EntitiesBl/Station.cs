@@ -19,8 +19,12 @@ namespace IBL
             {
                 String result = "";
                 result += $"ID is: {ID}, Name is: {name}, location is: {location}, charge slolts is: {chargeSlots}," +
-                          $"drone in charge:" +
-                          $"{dronesInChargeList} \n";
+                          $"drone in charge:";
+                foreach (var item in dronesInChargeList)
+                {
+                    result += item+"\n";
+                }
+                         
                 return result;
             }
         }
