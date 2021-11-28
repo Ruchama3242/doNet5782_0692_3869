@@ -104,6 +104,11 @@ namespace DAL
         /// <param name="id"></param>
         public void deleteDrone(int id);
 
+
+        public DroneCharge findStationOfDroneCharge(int id);
+
+        public List<DroneCharge> findDroneCharge(int id);
+
         #endregion
 
         #region ----------------------customer-------------------------

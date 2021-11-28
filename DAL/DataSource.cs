@@ -34,7 +34,7 @@ namespace IDAL
                     for (int i = 0; i < 5; i++)
                     {
                        Drone temp= new Drone();
-                        temp.ID= r.Next(1111, 9999);
+                        temp.ID= r.Next(11111, 99999);
                         temp.model = r.Next(1111, 9999);
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
                         //temp.battery = r.Next(0, 100);

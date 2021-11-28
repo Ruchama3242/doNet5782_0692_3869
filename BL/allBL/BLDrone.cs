@@ -191,9 +191,9 @@ namespace BL
                     d.status = IBL.BO.DroneStatus.available;
 
                     // up the number of the empty charge slots
-                    IDAL.DO.DroneCharge tmp = myDalObject.findStationOfDroneCharge(id);
+                    IDAL.DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
                     IEnumerable<IDAL.DO.Station> tmpList = new List<IDAL.DO.Station>();
-                    tmpList = myDalObject.getAllStations();
+                    tmpList = dl.getAllStations();
                     foreach (var item in tmpList)
                     {
                         if (item.ID == tmp.stationeld)
@@ -204,11 +204,11 @@ namespace BL
                             s.lattitude = item.lattitude;
                             s.longitude = item.longitude;
                             s.name = item.name;
-                            myDalObject.updateStation(tmp.stationeld, s);
+                            dl.updateStation(tmp.stationeld, s);
                         }
                     }
                     //remove the drone frome the list of the droneCharge
-                    myDalObject.BatteryCharged(tmp);
+                    dl.BatteryCharged(tmp);
                 }
                 else throw new BLgeneralException("Error! the drone dont was in charge");
             }
@@ -280,7 +280,7 @@ namespace BL
                 myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
 
                 //הפונקציה הזו דואגת לשנות את עמדות הטעינה ולהוסיך יישות לרשימה המתאימה
-                myDalObject.SendToCharge(id, closed.ID);
+                dl.SendToCharge(id, closed.ID);
             }
             catch (Exception e)
             {
@@ -301,7 +301,7 @@ namespace BL
                     throw new BLgeneralException("the drone not avilable");
 
                 IDAL.DO.Parcel myParcel = findTheParcel(myDrone.currentLocation, myDrone.battery, IDAL.DO.Priorities.emergency);
-                myDalObject.ParcelDrone(myParcel.ID, myDrone.ID);
+                dl.ParcelDrone(myParcel.ID, myDrone.ID);
                 myDrone.status = IBL.BO.DroneStatus.delivery;
                 myParcel.requested = DateTime.Now;
             }
@@ -328,14 +328,14 @@ namespace BL
             bool flug = false;
 
             //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
-            var p = myDalObject.getAllParcels();
+            var p = dl.getAllParcels();
             var v = from item in p
                     where item.priority == pri
                     select item;
 
             foreach (var item in v)
             {
-                c = myDalObject.findCustomer(item.senderID);
+                c = dl.findCustomer(item.senderID);
                 b.latitude = c.lattitude;
                 b.longitude = c.longitude;
                 d = distance(a, b);
