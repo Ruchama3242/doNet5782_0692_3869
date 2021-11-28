@@ -93,7 +93,6 @@ namespace ConsoleUI
                         temp.lattitude = lattitudeStation;
                         temp.longitude = longitudeStation;
                         temp.chargeSlots = charge;
-
                         d.addStations(temp);
 
                         break;
