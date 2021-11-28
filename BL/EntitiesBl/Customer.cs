@@ -21,6 +21,19 @@ namespace IBL
                 String result = "";
                 result += $"ID is: {ID}, Name is: {name}, Telephone is: {phone.Substring(0, 3) + '-' + phone.Substring(3)}," +
                     $"Lcation is: {location}\n";
+                if (fromCustomer.Count > 0)
+                    result += "parcel from customer:\n";
+                foreach (var item in fromCustomer)
+                {
+                    result += item + "\n";
+                }
+
+                if (toCustomer.Count > 0)
+                    result += "parcel to customer:\n";
+                foreach (var item in toCustomer)
+                {
+                    result += item + "\n";
+                }
                 return result;
             }
         }
