@@ -24,8 +24,8 @@ namespace IBL
             public override string ToString()
             {
                 String result = "";
-                result += $"ID is: {ID}, sender ID is: {sender}, " +
-                          $"drone ID is: {drone}, target ID is: {target}, " +
+                result += $"ID is: {ID}, sender is: {sender}, " +
+                          $"drone is: {drone}, target is: {target}, " +
                           $"weight is: {weight}, priority is: {priority}, " +
                           $"requested date is: {requested}, schedueld date ID is: {scheduled}," +
                           $" picke up date  is: {pickedUp}, delivered date is: {delivered}\n";

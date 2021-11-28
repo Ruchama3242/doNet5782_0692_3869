@@ -149,6 +149,7 @@ namespace BL
                         IBL.BO.ParcelAtCustomer tmp =new IBL.BO.ParcelAtCustomer();
                         tmp.ID = item.ID;
                         tmp.priority = GetParcelPriorities(item.priority);
+                        cusBL.fromCustomer = new List<IBL.BO.ParcelAtCustomer>();
                         cusBL.fromCustomer.Add(tmp);
                     }
                     //מוצא את כל החבילות שהלקוח שולח
@@ -157,6 +158,7 @@ namespace BL
                         IBL.BO.ParcelAtCustomer tmp = new IBL.BO.ParcelAtCustomer();
                         tmp.ID = item.ID;
                         tmp.priority = GetParcelPriorities(item.priority);
+                        cusBL.toCustomer = new List<IBL.BO.ParcelAtCustomer>();
                         cusBL.toCustomer.Add(tmp);
                     }
                 }
