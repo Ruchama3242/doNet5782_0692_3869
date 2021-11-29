@@ -138,7 +138,9 @@ namespace BL
                 cusBL.location = new IBL.BO.Location();
                 cusBL.location.latitude = cusDal.lattitude;
                 cusBL.location.longitude = cusDal.longitude;
-
+                cusBL.phone = cusDal.phone;
+                cusBL.name = cusDal.name;
+                
                 
                 IEnumerable<IDAL.DO.Parcel> lstP = dl.getAllParcels();
                 foreach (var item in lstP)
