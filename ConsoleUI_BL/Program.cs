@@ -97,7 +97,7 @@ namespace ConsoleUI_BL
                     case (int)option_b.drone:
                         //Drone myDrone = new Drone();
                         int myId,stationID, myModel;
-                        double battery;
+                        //double battery;
                         int myWeight;
                         Console.WriteLine("Enter the id of the drone");
                         myId = int.Parse(Console.ReadLine());
@@ -107,14 +107,14 @@ namespace ConsoleUI_BL
                         myModel = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the weight category of the drone (0 to light, 1 to medium, 2 to heavy)");
                         myWeight = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the battery percentage");
-                        battery = double.Parse(Console.ReadLine());
+                        //Console.WriteLine("Enter the battery percentage");
+                        //battery = double.Parse(Console.ReadLine());
                         //myDrone.ID = myId;
                         //myDrone.model = myModel;
                         //myDrone.weight = (WeightCategories)myWeight;
                         //myDrone.status = (DroneStatus)myStatus;
                         //myDrone.battery = battery;
-                        myIBL.addDrone(myId,myModel,myWeight,stationID, battery);
+                        myIBL.addDrone(myId,myModel,myWeight,stationID);
                         break;
 
                     case (int)option_b.customer:
@@ -142,11 +142,8 @@ namespace ConsoleUI_BL
                     case (int)option_b.parcel:
                         //Parcel rut = new Parcel();
                         int id, senderId, targetId,weight , priority; 
-                        DateTime requested, scheduled, pickedUp, delivered;
-                        //WeightCategories
-                        //Console.WriteLine("Enter the id of the percal");
                         id = 0; //int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the  sender id of the percal");
+                        Console.WriteLine("Enter the sender id of the percal");
                         senderId = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the  target id of the percal");
                         targetId = int.Parse(Console.ReadLine());
@@ -154,22 +151,8 @@ namespace ConsoleUI_BL
                         weight = int.Parse(Console.ReadLine()); ;
                         Console.WriteLine("Enter the prioriyt of the percal (0 for normal, 1 for fast, 2 for emergency)");
                         priority = int.Parse(Console.ReadLine());
-                        //Console.WriteLine("Enter the id of the drone");
-                        //droneId = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the time of the requested at format 2011-03-21");
-                        requested = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the time of the scheduled at format 2011-03-21");
-                        scheduled = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the time the packge will collect, at format 2011-03-21");
-                        pickedUp = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the time the packege delivered, at format 2011-03-21");
-                        delivered = DateTime.Parse(Console.ReadLine());
                         //rut.ID = id;
-                        //rut.pickedUp = pickedUp;
-                        //rut.delivered = delivered;
                         //rut.priority = (Priorities)priority;
-                        //rut.requested = requested;
-                        //rut.scheduled = scheduled;
                         //rut.senderID = senderId;
                         //rut.targetId = targetId;
                         //rut.weight = (WeightCategories)whight;

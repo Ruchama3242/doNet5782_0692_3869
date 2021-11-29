@@ -38,30 +38,33 @@ namespace IDAL
                 /// <returns></returns>
                 public DroneCharge SendToCharge(int DroneID, int StationID)
                 {
-                    int count2 = 0;
-                    foreach (Drone item in DataSource.DronesList)
-                    {
-                        if (item.ID != DroneID)
-                            count2++;
-                    }
-                    if (count2 == DataSource.DronesList.Count)
-                        throw new generalException("ERROR! value not found");
+                    findDrone(DroneID);//throw exception if the drone doest exist
+                   Station s = findStation(StationID);//throw execption if the station doest exist
+                    s.chargeSlots--;
+                    //int count2 = 0;
+                    //foreach (Drone item in DataSource.DronesList)
+                    //{
+                    //    if (item.ID != DroneID)
+                    //        count2++;
+                    //}
+                    //if (count2 == DataSource.DronesList.Count)
+                    //    throw new generalException("ERROR! value not found");
                     DroneCharge d = new DroneCharge();
                     d.droneID = DroneID;
                     d.stationeld = StationID;
-                    int i = 0;
-                    for (; i < DataSource.StationsList.Count; i++)
-                    {
-                        if (DataSource.StationsList[i].ID == StationID)
-                        {
-                            Station s = DataSource.StationsList[i];
-                            s.chargeSlots--;
-                            DataSource.StationsList[i] = s;
-                            break;
-                        }
-                    }
-                    if (i == DataSource.StationsList.Count - 1)
-                        throw new generalException("ERROR! value not found");
+                    //int i = 0;
+                    //for (; i < DataSource.StationsList.Count; i++)
+                    //{
+                    //    if (DataSource.StationsList[i].ID == StationID)
+                    //    {
+                    //        Station s = DataSource.StationsList[i];
+                    //        s.chargeSlots--;
+                    //        DataSource.StationsList[i] = s;
+                    //        break;
+                    //    }
+                    //}
+                    //if (i == DataSource.StationsList.Count - 1)
+                    //    throw new generalException("ERROR! value not found");
                     DataSource.DroneChargeList.Add(d);
                     return d;
                 }

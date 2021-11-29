@@ -26,7 +26,7 @@ namespace BL
         /// adding a drone to droneList
         /// </summary>
         /// <param name="drone"></param>
-        public void addDrone(int id, int model, int weight, int stationId,double buttery)
+        public void addDrone(int id, int model, int weight, int stationId)
         {
             if (id < 10000 || id > 99999)
                 throw new BLgeneralException("ERROR! the id must be with 5 digits");
@@ -41,7 +41,7 @@ namespace BL
                 d.weight = (IBL.BO.WeightCategories)weight;
                 d.battery = rnd.Next(20, 40);
                 d.status = IBL.BO.DroneStatus.maintenace;
-                d.battery = buttery;
+               
                 try
                 {
                     IDAL.DO.Station s = dl.findStation(stationId);
@@ -56,8 +56,8 @@ namespace BL
                 IDAL.DO.Drone dr = droneDal(d);//drone of "DAL" type
                 dl.addDrone(dr);//add drone to the list in the dal
                 DroneArr.Add(d);//add drone to the list of the drones in the BL
-                //IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge { droneID = id, stationeld = stationId };
-                //dl.BatteryCharged(dc);//send the drone to charge
+                IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge { droneID = id, stationeld = stationId };
+                dl.SendToCharge(id,stationId);//send the drone to charge
             }
             catch (Exception e)
             {
@@ -145,9 +145,10 @@ namespace BL
                     pt.targetLocation.longitude = target.longitude;
                     pt.targetLocation.latitude = target.lattitude;
                     pt.distance = distance(pt.collectionLocation, pt.targetLocation);
+
+                    d.parcel = new IBL.BO.ParcelInTransfer();
+                    d.parcel = pt;
                 }
-                d.parcel = new IBL.BO.ParcelInTransfer();
-                d.parcel = pt;
                 return d;
             }
             catch (Exception e)

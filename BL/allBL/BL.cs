@@ -60,7 +60,7 @@ namespace BL
                             minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
                             minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];               
                         }
-                        drt.battery = rnd.Next((int)minBatery, 101) / 100;
+                        drt.battery = rnd.Next((int)minBatery, 101) /*/ 100*/;
                         flag = true;
                         break;
                     }
@@ -84,14 +84,13 @@ namespace BL
                             i++;
                         }
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
-                        drt.battery = rnd.Next(0, 21) / 100;
+                        drt.battery = rnd.Next(0, 21) /*/ 100*/;
                     }
                     else
                     {
                         List<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
                         foreach (var pr in p)
                         {
-                            ///!!!!!!!!!!!!!!!!!!1
                             if (pr.delivered != DateTime.MinValue)
                                 lst.Add(dl.findCustomer(pr.targetId));
                         }
@@ -99,11 +98,10 @@ namespace BL
                         int l = rnd.Next(0, lst.Count());
                         drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
                         minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];
-                        drt.battery = rnd.Next((int)minBatery, 101) / 100;
+                        drt.battery = rnd.Next((int)minBatery, 101)/* / 100*/;
                     }
                 }
                 DroneArr.Add(drt);
-
             }
         }
 

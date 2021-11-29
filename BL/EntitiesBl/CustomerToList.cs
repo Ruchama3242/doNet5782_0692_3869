@@ -20,8 +20,8 @@ namespace IBL
             public override string ToString()
             {
                 String result = "";
-                result += $"ID is: {ID},  Name is: {name}, phone number: {phone.Substring(0, 3) + '-' + phone.Substring(3)}, {sendAndDeliveredParcels} Packages were successfully delivered." +
-                    $"Packages pending {sendAndNotDeliveredParcels}, {gotParcels} Packages received, {onTheWayParcels} on the way'\n";
+                result += $"ID: {ID}, Name: {name}, phone number: {phone.Substring(0, 3) + '-' + phone.Substring(3)}, {sendAndDeliveredParcels} Packages were successfully delivered" +
+                    $", {sendAndNotDeliveredParcels} Packages sending , {gotParcels} Packages received, {onTheWayParcels} on the way'\n";
                 return result;
             }
         }

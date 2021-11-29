@@ -22,8 +22,10 @@ namespace IBL
             {
                 String result = "";
                 result += $"ID is: {ID}, model: {model}, weight categories: {weight}, drone status is:{status}, " +
-                    $" {battery} on battery, parcel in transfer:{parcel}" +
-                    $" Lcation is: {location}\n";
+                    $" {battery} on battery, Lcation is: { location}\n";
+                if (parcel != null)
+                    result += $"parcel in transfer:\n{parcel}";
+                   
                 return result;
 
             }
