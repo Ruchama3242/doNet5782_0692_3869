@@ -42,7 +42,7 @@ namespace IBL
         /// adding a drone to droneList
         /// </summary>
         /// <param name="drone"></param>
-        public void addDrone(int id, int model, int weight, int stationId, double buttery);
+        public void addDrone(int id, int model, int weight, int stationId);
 
         /// <summary>
         /// get a id and return the drone(of bl) with this id
