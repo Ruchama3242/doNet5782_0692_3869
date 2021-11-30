@@ -117,7 +117,7 @@ namespace IDAL
                     List<Parcel> lst = new List<Parcel>();
                     foreach (Parcel item in DataSource.ParcelList)
                     {
-                        if (item.droneID == 0)
+                        if (item.droneID == 0&&item.delivered==DateTime.MinValue)
                             lst.Add(item);
                     }
                     return lst;

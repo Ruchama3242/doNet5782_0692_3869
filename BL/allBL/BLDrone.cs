@@ -194,21 +194,21 @@ namespace BL
 
                     // up the number of the empty charge slots
                     IDAL.DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
-                    IEnumerable<IDAL.DO.Station> tmpList = new List<IDAL.DO.Station>();
-                    tmpList = dl.getAllStations();
-                    foreach (var item in tmpList)
-                    {
-                        if (item.ID == tmp.stationeld)
-                        {
-                            IDAL.DO.Station s = new IDAL.DO.Station();
-                            s.chargeSlots = item.chargeSlots + 1;
-                            s.ID = item.ID;
-                            s.lattitude = item.lattitude;
-                            s.longitude = item.longitude;
-                            s.name = item.name;
-                            dl.updateStation(tmp.stationeld, s);
-                        }
-                    }
+                    //IEnumerable<IDAL.DO.Station> tmpList = new List<IDAL.DO.Station>();
+                    //tmpList = dl.getAllStations();
+                    //foreach (var item in tmpList)
+                    //{
+                    //    if (item.ID == tmp.stationeld)
+                    //    {
+                    //        IDAL.DO.Station s = new IDAL.DO.Station();
+                    //        s.chargeSlots = item.chargeSlots + 1;
+                    //        s.ID = item.ID;
+                    //        s.lattitude = item.lattitude;
+                    //        s.longitude = item.longitude;
+                    //        s.name = item.name;
+                    //        dl.updateStation(tmp.stationeld, s);
+                    //    }
+                    //}
                     //remove the drone frome the list of the droneCharge
                     dl.BatteryCharged(tmp);
                 }
@@ -306,6 +306,7 @@ namespace BL
                 dl.ParcelDrone(myParcel.ID, myDrone.ID);
                 myDrone.status = IBL.BO.DroneStatus.delivery;
                 myParcel.requested = DateTime.Now;
+                myParcel.droneID = myDrone.ID;
             }
             catch (Exception e)
             {
@@ -343,7 +344,7 @@ namespace BL
                 d = distance(a, b);
                 double fromCusToSta = distance(b, stationClose(b).location);
                 double butteryUse = d * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0];
-                if (d < far && (buttery - butteryUse) > 0)
+                if (d < far && (buttery - butteryUse) > 0&&item.delivered==DateTime.MinValue)
                 {
                     far = d;
                     theParcel = item;

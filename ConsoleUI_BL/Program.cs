@@ -84,7 +84,7 @@ namespace ConsoleUI_BL
                         longitudeStation = float.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the lettitude of the station");
                         lattitudeStation = float.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the empty charge slot of the station");
+                        Console.WriteLine("Enter the charge slots of the station");
                         chargeEmpty = int.Parse(Console.ReadLine());
                         temp.name = nameStation;
                         temp.ID = idStation;
@@ -95,9 +95,9 @@ namespace ConsoleUI_BL
                         break;
 
                     case (int)option_b.drone:
-                        //Drone myDrone = new Drone();
+                        
                         int myId,stationID, myModel;
-                        //double battery;
+                     
                         int myWeight;
                         Console.WriteLine("Enter the id of the drone");
                         myId = int.Parse(Console.ReadLine());
@@ -107,13 +107,7 @@ namespace ConsoleUI_BL
                         myModel = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the weight category of the drone (0 to light, 1 to medium, 2 to heavy)");
                         myWeight = int.Parse(Console.ReadLine());
-                        //Console.WriteLine("Enter the battery percentage");
-                        //battery = double.Parse(Console.ReadLine());
-                        //myDrone.ID = myId;
-                        //myDrone.model = myModel;
-                        //myDrone.weight = (WeightCategories)myWeight;
-                        //myDrone.status = (DroneStatus)myStatus;
-                        //myDrone.battery = battery;
+                    
                         myIBL.addDrone(myId,myModel,myWeight,stationID);
                         break;
 
@@ -251,7 +245,7 @@ namespace ConsoleUI_BL
                         int j;
                         Console.WriteLine("enter the id of the drone");
                         j = int.Parse(Console.ReadLine());
-                        //myIBL.תשלימי פה את הפונקציב שעושה את זה,זה מודגש שאת עשית תפונקציה הזאת ןאין לי מושג איך קראת לה
+                        myIBL.packageCollection(j);
                         break;
 
                     case 8:

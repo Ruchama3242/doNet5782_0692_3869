@@ -20,8 +20,10 @@ namespace IBL
             {
                 String result = "";
                 result += $"ID is: {ID}, status is: {status},  " +
-                          $"weight is: {weight}, priority is: {priority}, \n";
-                         
+                          $"weight is: {weight}, priority is: {priority}, " +
+                          $"The name of the sender is:{senderName},The name of the target customer is:{targetName}";
+
+
                 return result;
             }
         }

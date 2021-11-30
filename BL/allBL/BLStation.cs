@@ -90,6 +90,8 @@ namespace BL
                 temp.availableChargeSlots = item.chargeSlots;
                 //findDroneCharge return a list that contain all the drone in charge 
                 temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count;
+               
+
                 lstBL.Add(temp);
             }
             return lstBL;

@@ -151,17 +151,23 @@ namespace BL
                         IBL.BO.ParcelAtCustomer tmp =new IBL.BO.ParcelAtCustomer();
                         tmp.ID = item.ID;
                         tmp.priority = GetParcelPriorities(item.priority);
-                        cusBL.fromCustomer = new List<IBL.BO.ParcelAtCustomer>();
-                        cusBL.fromCustomer.Add(tmp);
+                        tmp.senderOrTaget = new IBL.BO.CustomerInParcel();
+                        tmp.senderOrTaget.ID = item.senderID;
+                        tmp.senderOrTaget.customerName = dl.findCustomer(item.senderID).name;
+                        cusBL.toCustomer = new List<IBL.BO.ParcelAtCustomer>();
+                        cusBL.toCustomer.Add(tmp);
                     }
                     //מוצא את כל החבילות שהלקוח שולח
                     if (item.senderID == cusBL.ID)
                     {
                         IBL.BO.ParcelAtCustomer tmp = new IBL.BO.ParcelAtCustomer();
                         tmp.ID = item.ID;
+                        tmp.senderOrTaget = new IBL.BO.CustomerInParcel();
+                        tmp.senderOrTaget.ID = item.targetId;
+                        tmp.senderOrTaget.customerName = dl.findCustomer(item.targetId).name;
                         tmp.priority = GetParcelPriorities(item.priority);
-                        cusBL.toCustomer = new List<IBL.BO.ParcelAtCustomer>();
-                        cusBL.toCustomer.Add(tmp);
+                        cusBL.fromCustomer = new List<IBL.BO.ParcelAtCustomer>();
+                        cusBL.fromCustomer.Add(tmp);
                     }
                 }
                 return cusBL;
