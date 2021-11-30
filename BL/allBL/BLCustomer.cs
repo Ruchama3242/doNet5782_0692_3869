@@ -150,6 +150,7 @@ namespace BL
                     {
                         IBL.BO.ParcelAtCustomer tmp =new IBL.BO.ParcelAtCustomer();
                         tmp.ID = item.ID;
+                        tmp.status = getParcelStatus(item);
                         tmp.priority = GetParcelPriorities(item.priority);
                         tmp.senderOrTaget = new IBL.BO.CustomerInParcel();
                         tmp.senderOrTaget.ID = item.senderID;
@@ -162,6 +163,7 @@ namespace BL
                     {
                         IBL.BO.ParcelAtCustomer tmp = new IBL.BO.ParcelAtCustomer();
                         tmp.ID = item.ID;
+                        tmp.status = getParcelStatus(item);
                         tmp.senderOrTaget = new IBL.BO.CustomerInParcel();
                         tmp.senderOrTaget.ID = item.targetId;
                         tmp.senderOrTaget.customerName = dl.findCustomer(item.targetId).name;
@@ -195,6 +197,18 @@ namespace BL
 
             //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
             return IBL.BO.Priorities.normal;
+        }
+
+
+        private IBL.BO.ParcelStatus getParcelStatus(IDAL.DO.Parcel p)
+        {
+            if (p.scheduled == DateTime.MinValue && p.requested != DateTime.MinValue)
+                return IBL.BO.ParcelStatus.created;
+            if (p.pickedUp == DateTime.MinValue && p.scheduled != DateTime.MinValue)
+                return IBL.BO.ParcelStatus.match;
+            if (p.delivered == DateTime.MinValue && p.pickedUp != DateTime.MinValue)
+                return IBL.BO.ParcelStatus.pickedUp;
+            return IBL.BO.ParcelStatus.delivred;
         }
     }
 }
