@@ -18,7 +18,6 @@ namespace BL
         //IDAL.DO.DalObject.DalObject myDalObject = new IDAL.DO.DalObject.DalObject();
         List<IBL.BO.DroneToList> DroneArr;
 
-
         /// <summary>
         /// constructor
         /// </summary>
