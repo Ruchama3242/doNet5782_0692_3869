@@ -45,21 +45,21 @@ namespace BL
                         IBL.BO.Location senderLocation = new Location { latitude = sender.lattitude, longitude = sender.longitude };
                         IBL.BO.Location targetLocation = new Location { latitude = target.lattitude, longitude = target.longitude };
                         drt.status = DroneStatus.delivery;
-                        if (pr.pickedUp == DateTime.MinValue && pr.scheduled != DateTime.MinValue)//החבילה שויכה אבל עדיין לא נאספה
+                        if (pr.pickedUp == null && pr.scheduled != null)//החבילה שויכה אבל עדיין לא נאספה
                         {
                             drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
                             minBatery = distance(drt.currentLocation, senderLocation) * chargeCapacity[0];
                             minBatery += distance(senderLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];
                             minBatery += distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
                         }
-                        if (pr.pickedUp != DateTime.MinValue && pr.delivered == DateTime.MinValue)//החבילה נאספה אבל עדיין לא הגיעה ליעד
+                        if (pr.pickedUp != null && pr.delivered == null)//החבילה נאספה אבל עדיין לא הגיעה ליעד
                         {
                             drt.currentLocation = new Location();
                             drt.currentLocation = senderLocation;
                             minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
                             minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];               
                         }
-                        drt.battery = rnd.Next((int)minBatery, 101) /*/ 100*/;
+                        drt.battery = rnd.Next((int)minBatery, 101) ;
                         flag = true;
                         break;
                     }
@@ -83,21 +83,21 @@ namespace BL
                             i++;
                         }
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
-                        drt.battery = rnd.Next(0, 21) /*/ 100*/;
+                        drt.battery = rnd.Next(0, 21) ;
                     }
                     else
                     {
                         List<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
                         foreach (var pr in p)
                         {
-                            if (pr.delivered != DateTime.MinValue)
+                            if (pr.delivered != null)
                                 lst.Add(dl.findCustomer(pr.targetId));
                         }
 
                         int l = rnd.Next(0, lst.Count());
                         drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
                         minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];
-                        drt.battery = rnd.Next((int)minBatery, 101)/* / 100*/;
+                        drt.battery = rnd.Next((int)minBatery, 101);
                     }
                 }
                 DroneArr.Add(drt);

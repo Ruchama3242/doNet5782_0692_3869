@@ -180,7 +180,6 @@ namespace BL
         {
             try
             {
-                //רוחמה זה לא טעות שלא עידכנתי את הרחפן שבדל אלא שבתרגיל הזה נדרשנו למחוק את השדה הזה מהיישות בדל
                 IBL.BO.DroneToList d = DroneArr.Find(p => p.ID == id);
 
                 if (d.status == IBL.BO.DroneStatus.maintenace)
@@ -194,21 +193,7 @@ namespace BL
 
                     // up the number of the empty charge slots
                     IDAL.DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
-                    //IEnumerable<IDAL.DO.Station> tmpList = new List<IDAL.DO.Station>();
-                    //tmpList = dl.getAllStations();
-                    //foreach (var item in tmpList)
-                    //{
-                    //    if (item.ID == tmp.stationeld)
-                    //    {
-                    //        IDAL.DO.Station s = new IDAL.DO.Station();
-                    //        s.chargeSlots = item.chargeSlots + 1;
-                    //        s.ID = item.ID;
-                    //        s.lattitude = item.lattitude;
-                    //        s.longitude = item.longitude;
-                    //        s.name = item.name;
-                    //        dl.updateStation(tmp.stationeld, s);
-                    //    }
-                    //}
+                    
                     //remove the drone frome the list of the droneCharge
                     dl.BatteryCharged(tmp);
                 }

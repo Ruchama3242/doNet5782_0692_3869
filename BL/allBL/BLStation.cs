@@ -110,15 +110,6 @@ namespace BL
                 IDAL.DO.Station sD = dl.findStation(id);
                 s = convertStation(sD);
                 List<IDAL.DO.DroneCharge> drCh = new List<IDAL.DO.DroneCharge>();
-                //drCh = dl.findDroneCharge(id);
-                //s.dronesInChargeList = new List<IBL.BO.DroneInCharge>();
-                //foreach (var item in drCh)
-                //{
-                //    IBL.BO.DroneInCharge tmp = new IBL.BO.DroneInCharge();
-                //    tmp.battery = (findDrone(item.droneID).battery);
-                //    tmp.ID = item.droneID;
-                //    s.dronesInChargeList.Add(tmp);
-                //}
                 return s;
             }
             catch (Exception e)

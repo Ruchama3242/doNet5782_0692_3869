@@ -103,14 +103,13 @@ namespace BL
                     if (parcel.senderID == item.ID)
                         counterGot++;
                     //if the parcel arrived
-                    if (parcel.senderID == item.ID && parcel.delivered != DateTime.MinValue)
+                    if (parcel.senderID == item.ID && parcel.delivered != null)
                         counterDelivered++;
                     //החבילה עוד לא שוייכה
-                    if (parcel.senderID == item.ID && parcel.scheduled == DateTime.MinValue)
+                    if (parcel.senderID == item.ID && parcel.scheduled == null)
                         counterDontDelivered++;
                     // החבילה שוייכה לרחפן ועוד לא הגיעה
-                    if (parcel.senderID == item.ID && parcel.scheduled != DateTime.MinValue
-                    && parcel.delivered == DateTime.MinValue)
+                    if (parcel.senderID == item.ID && parcel.scheduled != null && parcel.delivered == null)
                         counterOnWay++;
                 }
                 c.gotParcels = counterGot;
@@ -202,11 +201,11 @@ namespace BL
 
         private IBL.BO.ParcelStatus getParcelStatus(IDAL.DO.Parcel p)
         {
-            if (p.scheduled == DateTime.MinValue && p.requested != DateTime.MinValue)
+            if (p.scheduled == null && p.requested != null)
                 return IBL.BO.ParcelStatus.created;
-            if (p.pickedUp == DateTime.MinValue && p.scheduled != DateTime.MinValue)
+            if (p.pickedUp == null && p.scheduled != null)
                 return IBL.BO.ParcelStatus.match;
-            if (p.delivered == DateTime.MinValue && p.pickedUp != DateTime.MinValue)
+            if (p.delivered == null && p.pickedUp != null)
                 return IBL.BO.ParcelStatus.pickedUp;
             return IBL.BO.ParcelStatus.delivred;
         }

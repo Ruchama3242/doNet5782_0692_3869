@@ -13,7 +13,7 @@ namespace IDAL
             public partial class DalObject 
             {
                 /// <summary>
-                /// add parcel to the array
+                /// add parcel to the list
                 /// </summary>
                 /// <param name="Fedex"></param>
                 public int addParcel(Parcel temp)
@@ -117,7 +117,7 @@ namespace IDAL
                     List<Parcel> lst = new List<Parcel>();
                     foreach (Parcel item in DataSource.ParcelList)
                     {
-                        if (item.droneID == 0&&item.delivered==DateTime.MinValue)
+                        if (item.droneID == 0&&item.delivered==null)
                             lst.Add(item);
                     }
                     return lst;

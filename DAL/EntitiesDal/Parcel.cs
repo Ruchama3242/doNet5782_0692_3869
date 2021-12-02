@@ -15,11 +15,11 @@ namespace IDAL
             public int targetId { get; set; }
             public WeightCategories weight { get; set; }
             public Priorities priority { get; set; }
-            public DateTime requested { get; set; }
+            public DateTime? requested { get; set; }
             public int droneID { get; set; }
-            public DateTime scheduled { get; set; }
-            public DateTime pickedUp { get; set; }
-            public DateTime delivered { get; set; }
+            public DateTime? scheduled { get; set; }
+            public DateTime? pickedUp { get; set; }
+            public DateTime? delivered { get; set; }
             public override string ToString()
             {
                 String result = "";

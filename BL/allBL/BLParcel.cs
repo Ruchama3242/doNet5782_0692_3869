@@ -39,9 +39,9 @@ namespace BL
                 p.priority = (IDAL.DO.Priorities)priority;
                 p.droneID = 0;
                 p.requested = DateTime.Now;
-                p.pickedUp = DateTime.MinValue;
-                p.scheduled = DateTime.MinValue;
-                p.delivered = DateTime.MinValue;
+                p.pickedUp = null;
+                p.scheduled = null;
+                p.delivered = null;
                 int id = dl.addParcel(p);
                 return id;
             }
@@ -136,11 +136,11 @@ namespace BL
             p.targetName = dl.findCustomer(item.targetId).name;
             p.weight = (IBL.BO.WeightCategories)item.weight;
             p.priority = (IBL.BO.Priorities)item.priority;
-            if (item.scheduled == DateTime.MinValue)//check what is the status of the parcel
+            if (item.scheduled == null)//check what is the status of the parcel
                 p.status = IBL.BO.ParcelStatus.created;
-            else if (item.pickedUp == DateTime.MinValue)
+            else if (item.pickedUp == null)
                 p.status = IBL.BO.ParcelStatus.match;
-            else if (item.delivered == DateTime.MinValue)
+            else if (item.delivered == null)
                 p.status = IBL.BO.ParcelStatus.pickedUp;
             else
                 p.status = IBL.BO.ParcelStatus.delivred;
@@ -159,7 +159,7 @@ namespace BL
             {
                 if(item.droneID==droneid)
                 {
-                    if(item.pickedUp==DateTime.MinValue)
+                    if(item.pickedUp==null)
                     {
                         DroneArr.Remove(d);
                         d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })*chargeCapacity[0];
@@ -190,7 +190,7 @@ namespace BL
             {
                 if (item.droneID == droneid)
                 {
-                    if (item.pickedUp != DateTime.MinValue&&item.delivered==DateTime.MinValue)
+                    if (item.pickedUp != null && item.delivered == null) 
                     {
                         DroneArr.Remove(d);
                         d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) * chargeCapacity[indexOfChargeCapacity(item.weight)];
