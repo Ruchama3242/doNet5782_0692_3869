@@ -9,6 +9,7 @@ namespace BL
 {
     public partial class BL : IBL.interfaceIBL
     {
+        
         Random rnd = new Random();
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace BL
                 if (drn.status == IBL.BO.DroneStatus.delivery)
                 {
                     pt.ID = drn.parcelNumber;
-                    IDAL.DO.Parcel p;
+                    IDAL.DO.Parcel p=new IDAL.DO.Parcel();
                     try
                     {
                         p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
@@ -302,11 +303,14 @@ namespace BL
                 if (myDrone.status != IBL.BO.DroneStatus.available)
                     throw new BLgeneralException("the drone not avilable");
 
-                IDAL.DO.Parcel myParcel = findTheParcel(myDrone.currentLocation, myDrone.battery, IDAL.DO.Priorities.emergency);
+                IDAL.DO.Parcel myParcel = findTheParcel(myDrone.weight,myDrone.currentLocation, myDrone.battery, IDAL.DO.Priorities.emergency);
                 dl.ParcelDrone(myParcel.ID, myDrone.ID);
+                DroneArr.Remove(myDrone);
                 myDrone.status = IBL.BO.DroneStatus.delivery;
-                myParcel.requested = DateTime.Now;
-                myParcel.droneID = myDrone.ID;
+                myDrone.parcelNumber = myParcel.ID;
+                DroneArr.Add(myDrone);
+               
+
             }
             catch (Exception e)
             {
@@ -321,14 +325,17 @@ namespace BL
         /// <param name="a"></param>
         /// <param name="buttery"></param>
         /// <returns></returns>
-        private IDAL.DO.Parcel findTheParcel(IBL.BO.Location a, double buttery, IDAL.DO.Priorities pri)
+        private IDAL.DO.Parcel findTheParcel(IBL.BO.WeightCategories we,IBL.BO.Location a, double buttery, IDAL.DO.Priorities pri)
         {
-            double d;
+        
+
+            double d,x;
             IDAL.DO.Parcel theParcel = new IDAL.DO.Parcel();
+          
             IBL.BO.Location b = new IBL.BO.Location();
             IDAL.DO.Customer c = new IDAL.DO.Customer();
             double far = 1000000;
-            bool flug = false;
+           // bool flug = false;
 
             //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
             var p = dl.getAllParcels();
@@ -341,25 +348,41 @@ namespace BL
                 c = dl.findCustomer(item.senderID);
                 b.latitude = c.lattitude;
                 b.longitude = c.longitude;
-                d = distance(a, b);
-                double fromCusToSta = distance(b, stationClose(b).location);
-                double butteryUse = d * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0];
-                if (d < far && (buttery - butteryUse) > 0&&item.delivered==DateTime.MinValue)
+                d = distance(a, b);//המרחק בין מיקום נוכחי למיקום השולח
+                x = distance(b, new IBL.BO.Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude });//המרחק בין מיקום שולח למיקום יעד
+                double fromCusToSta = distance(new IBL.BO.Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }, stationClose(new IBL.BO.Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }).location);
+                double butteryUse = x * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0]+d*chargeCapacity[0];
+                if (d < far && (buttery - butteryUse) > 0&&item.scheduled==DateTime.MinValue&&weight(we,(IBL.BO.WeightCategories)item.weight)==true)
                 {
                     far = d;
                     theParcel = item;
+                    return theParcel;
                 }
             }
-            if (v.Count() > 0)//if there is a parcel.priority. ....
-                flug = true;
+            //if (v.Count() > 0)//if there is a parcel.priority. ....
+                //flug = true;
 
-            if (!flug && pri == IDAL.DO.Priorities.emergency)//אם לא מצא בעדיפות הכי גבוהה מחפש בעדיפות מתחתיה
-                theParcel = findTheParcel(a, buttery, IDAL.DO.Priorities.fast);
+            if ( pri == IDAL.DO.Priorities.emergency)//אם לא מצא בעדיפות הכי גבוהה מחפש בעדיפות מתחתיה
+                theParcel = findTheParcel(we,a, buttery, IDAL.DO.Priorities.fast);
 
-            if (pri == IDAL.DO.Priorities.fast && !flug)
-                theParcel = findTheParcel(a, buttery, IDAL.DO.Priorities.normal);
-
+            if (pri == IDAL.DO.Priorities.fast)
+                theParcel = findTheParcel(we,a, buttery, IDAL.DO.Priorities.normal);
+            if (theParcel.ID==0)
+                throw new BLgeneralException("ERROR! there is not a parcel that match to the drone ");
             return theParcel;
+
+        }
+
+
+        private bool weight(IBL.BO.WeightCategories dr,IBL.BO.WeightCategories pa)
+        {
+            if (dr == IBL.BO.WeightCategories.heavy)
+                return true;
+            if (dr == IBL.BO.WeightCategories.medium && (pa == IBL.BO.WeightCategories.medium || pa == IBL.BO.WeightCategories.light))
+                return true;
+            if (dr == IBL.BO.WeightCategories.light && pa == IBL.BO.WeightCategories.light)
+                return true;
+            return false;
         }
         private int indexOfChargeCapacity(IDAL.DO.WeightCategories w)
         {

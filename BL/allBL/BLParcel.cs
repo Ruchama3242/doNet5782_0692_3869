@@ -159,16 +159,14 @@ namespace BL
             {
                 if(item.droneID==droneid)
                 {
-                    if(item.pickedUp==DateTime.MinValue)
+                    if(item.pickedUp==DateTime.MinValue&&item.scheduled!=DateTime.MinValue)
                     {
                         DroneArr.Remove(d);
                         d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })*chargeCapacity[0];
                         d.currentLocation.longitude = dl.findCustomer(item.senderID).longitude;
                         d.currentLocation.latitude = dl.findCustomer(item.senderID).lattitude;
-                        var par = item;
-                        dl.deleteSParcel(item.ID);
-                        par.pickedUp = DateTime.Now;
-                        dl.addParcel(par);
+                        
+                        dl.ParcelPickedUp(item.ID, DateTime.Now);
                         DroneArr.Add(d);
                         return;
                     }
@@ -190,23 +188,24 @@ namespace BL
             {
                 if (item.droneID == droneid)
                 {
-                    if (item.pickedUp != DateTime.MinValue&&item.delivered==DateTime.MinValue)
+                    if (item.pickedUp != DateTime.MinValue&&item.delivered==DateTime.MinValue&&item.scheduled!=DateTime.MinValue)
                     {
                         DroneArr.Remove(d);
                         d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) * chargeCapacity[indexOfChargeCapacity(item.weight)];
                         d.currentLocation.longitude = dl.findCustomer(item.targetId).longitude;
                         d.currentLocation.latitude = dl.findCustomer(item.targetId).lattitude;
                         d.status = IBL.BO.DroneStatus.available;
-                        var par = item;
-                        dl.deleteSParcel(item.ID);
-                        par.delivered = DateTime.Now;
-                        dl.addParcel(par);
+                        dl.ParcelReceived(item.ID, DateTime.Now);
+                        //var par = item;
+                        //dl.deleteSParcel(item.ID);
+                        //par.delivered = DateTime.Now;
+                        //dl.addParcel(par);
                         DroneArr.Add(d);
                         return;
                     }
                 }
             }
-            throw new BLgeneralException("ERROR! the parcel can't be collected");
+            throw new BLgeneralException("ERROR! the parcel can't be delivered");
         }
     }
 }

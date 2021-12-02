@@ -18,9 +18,12 @@ namespace IDAL
                 /// <param name="Fedex"></param>
                 public int addParcel(Parcel temp)
                 {
-                    temp.ID = DataSource.Config.runnerID;
-                    DataSource.ParcelList.Add(temp);
-                    DataSource.Config.runnerID++;
+                    
+                    
+                        temp.ID = DataSource.Config.runnerID;
+                        DataSource.ParcelList.Add(temp);
+                        DataSource.Config.runnerID++;
+     
                     return temp.ID;
                 }
 
@@ -37,6 +40,7 @@ namespace IDAL
                         {
                             Parcel p = DataSource.ParcelList[i];
                             p.droneID = droneID;
+                            p.scheduled = DateTime.Now;
                             DataSource.ParcelList[i] = p;
                             return;
                         }

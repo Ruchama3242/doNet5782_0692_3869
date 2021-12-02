@@ -85,6 +85,7 @@ namespace BL
                         }
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
                         drt.battery = rnd.Next(0, 21) /*/ 100*/;
+                        dl.SendToCharge(drt.ID, s.ID);
                     }
                     else
                     {
