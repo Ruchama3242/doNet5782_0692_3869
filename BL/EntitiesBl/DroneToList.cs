@@ -20,8 +20,8 @@ namespace IBL
             public override string ToString()
             {
                 String result = "";
-                result += $"ID is: {ID}, drone model is: {droneModel}, weight categories is: {weight}" +
-                    $"drone status is: {status}, {battery} on battery, current location is:{currentLocation}, " +
+                result += $"ID is: {ID}, drone model is: {droneModel}, weight categories is: {weight}, " +
+                    $" drone status is: {status}, {battery}% on battery, current location is:{currentLocation}, " +
                     $"number of parcel in transfort: {parcelNumber} \n";
                 return result;
 

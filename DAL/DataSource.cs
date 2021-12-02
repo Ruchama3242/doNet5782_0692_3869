@@ -37,8 +37,6 @@ namespace IDAL
                         temp.ID= r.Next(11111, 99999);
                         temp.model = r.Next(1111, 9999);
                         temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
-                        //temp.battery = r.Next(0, 100);
-                        //temp.status = IDAL.DO.DroneStatus.available;
                         DronesList.Add(temp);
                     }
 

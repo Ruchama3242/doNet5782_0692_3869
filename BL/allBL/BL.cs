@@ -13,9 +13,6 @@ namespace BL
     {
         public double[] chargeCapacity;
         DAL.interfaceIDal dl;
-        //DAL.interfaceIDal dal;
-        //IDAL.DO.DalObject.DalObject dl= new IDAL.DO.DalObject.DalObject();
-        //IDAL.DO.DalObject.DalObject myDalObject = new IDAL.DO.DalObject.DalObject();
         List<IBL.BO.DroneToList> DroneArr;
 
         /// <summary>
@@ -83,7 +80,7 @@ namespace BL
                             i++;
                         }
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
-                        drt.battery = rnd.Next(0, 21) /*/ 100*/;
+                        drt.battery = rnd.Next(0, 21) ;
                         dl.SendToCharge(drt.ID, s.ID);
                     }
                     else
