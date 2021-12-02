@@ -23,5 +23,12 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        public droneView(IBL.interfaceIBL bl,string s)
+        {
+            if (s == "add")
+               
+            InitializeComponent();
+        }
     }
 }

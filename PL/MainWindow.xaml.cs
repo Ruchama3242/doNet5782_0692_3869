@@ -22,11 +22,13 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        IBL.interfaceIBL bl;
         public MainWindow()
         {
             InitializeComponent();
+             bl = new BL.BL();
         }
-        IBL.interfaceIBL bl;
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
