@@ -23,5 +23,15 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        public droneListView(IBL.interfaceIBL bl)
+        {
+            InitializeComponent();
+            this.bl = bl;
+        }
+
+        private IBL.interfaceIBL bl;
+       
+
     }
 }
