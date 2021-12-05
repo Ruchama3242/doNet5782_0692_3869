@@ -46,7 +46,7 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            new droneView(bl).Show();
+            new droneView(bl).ShowDialog();
             fillListView();
         }
 

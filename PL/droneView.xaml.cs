@@ -32,7 +32,7 @@ namespace PL
             InitializeComponent();
             this.bl = bl;
             updateGrid.Visibility = Visibility.Hidden;
-            
+            cmbStation.ItemsSource = bl.veiwListStation();
            DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             
         }
@@ -66,7 +66,8 @@ namespace PL
         {
             try
             {
-                bl.addDrone(Convert.ToInt32(idTxt), Convert.ToInt32(modelTxt), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(idStationTxt));
+                StationToList s = (StationToList)cmbStation.SelectedItem;
+                bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(s.ID));
                 MessageBox.Show("the drone was successfully added");
                 
                 this.Close();

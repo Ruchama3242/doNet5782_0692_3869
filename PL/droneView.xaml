@@ -15,9 +15,9 @@
             <ComboBox x:Name="DroneMaxWeigtCmb"  HorizontalAlignment="Left" Margin="146,99,0,0" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneMaxWeight" Height="17"/>
             <Label Content="Max weight" HorizontalAlignment="Left" Margin="51,95,0,0" VerticalAlignment="Top" Width="90" Height="31" RenderTransformOrigin="0.437,1.508"/>
             <Label Content="ID station" HorizontalAlignment="Left" Margin="51,126,0,0" VerticalAlignment="Top" Width="90" Height="25"/>
-            <TextBox x:Name="idStationTxt" HorizontalAlignment="Left" Margin="146,129,0,0" MaxLength="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button x:Name="addDroneBtn" Content="add drone" HorizontalAlignment="Left" Margin="177,169,0,0" VerticalAlignment="Top" Click="addDroneBtn_Click"/>
             <Button x:Name="cancelBtn" Content="cancel" HorizontalAlignment="Left" Margin="96,169,0,0" VerticalAlignment="Top" Click="cancelBtn_Click"/>
+            <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="144,129,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
         <Grid x:Name="updateGrid" Margin="363,0,10,10">
             <Label Content="Drone Id" HorizontalAlignment="Left" Margin="35,20,0,0" VerticalAlignment="Top"/>
