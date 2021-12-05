@@ -20,12 +20,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="statusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" AutomationProperties.Name="StatusSelector" SelectionChanged="statusSelector_SelectionChanged"/>
+            <ComboBox x:Name="statusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" AutomationProperties.Name="StatusSelector"/>
             <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="70"/>
             <Label Content="Drone Status:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
             <Label Content="Drone Max Weight:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
         </Grid>
-        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,5,0" Grid.Row="1">
+        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,5,0" Grid.Row="1" SelectionChanged="DronesListView_SelectionChanged" RequestBringIntoView="DronesListView_RequestBringIntoView">
             <!--SelectionChanged="ListView_SelectionChanged"-->
             <ListView.View>
                 <GridView>

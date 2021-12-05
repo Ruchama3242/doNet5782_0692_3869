@@ -9,11 +9,11 @@ namespace IBL
     namespace BO
     {
 
-        public enum WeightCategories { light, medium, heavy };
-        public enum Priorities { normal, fast, emergency };
-         public enum DroneStatus { available, maintenace, delivery };
-        public enum ParcelStatus { created,match,pickedUp,delivred};
-        public enum Names { noa, efrat, michal, Liam, Olivia, Noah, Emma, Oliver, Ava, Elijah, Sophia, flower };
+        public enum WeightCategories { Light, Medium, Heavy };
+        public enum Priorities { Normal, Fast, Emergency };
+         public enum DroneStatus { Available, Maintenace, Delivery };
+        public enum ParcelStatus { Created,Match,PickedUp,Delivred};
+        public enum Names { Noa, Efrat, Michal, Liam, Olivia, Noah, Emma, Oliver, Ava, Sophia, flower };
 
     }
 }

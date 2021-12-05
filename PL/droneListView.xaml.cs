@@ -40,15 +40,23 @@ namespace PL
            
         }
 
-        private void statusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void statusSelector_SelectionChaged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
             new droneView(bl,"add").Show();
+        }
+
+
+
+        private void DronesListView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+            new updateDrone().Show();
         }
     }
 }

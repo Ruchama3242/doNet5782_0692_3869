@@ -137,13 +137,13 @@ namespace BL
             p.weight = (IBL.BO.WeightCategories)item.weight;
             p.priority = (IBL.BO.Priorities)item.priority;
             if (item.scheduled == null)//check what is the status of the parcel
-                p.status = IBL.BO.ParcelStatus.created;
+                p.status = IBL.BO.ParcelStatus.Created;
             else if (item.pickedUp == null)
-                p.status = IBL.BO.ParcelStatus.match;
+                p.status = IBL.BO.ParcelStatus.Match;
             else if (item.delivered == null)
-                p.status = IBL.BO.ParcelStatus.pickedUp;
+                p.status = IBL.BO.ParcelStatus.PickedUp;
             else
-                p.status = IBL.BO.ParcelStatus.delivred;
+                p.status = IBL.BO.ParcelStatus.Delivred;
             return p;
         }
         /// <summary>
@@ -194,7 +194,7 @@ namespace BL
                         d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) * chargeCapacity[indexOfChargeCapacity(item.weight)];
                         d.currentLocation.longitude = dl.findCustomer(item.targetId).longitude;
                         d.currentLocation.latitude = dl.findCustomer(item.targetId).lattitude;
-                        d.status = IBL.BO.DroneStatus.available;
+                        d.status = IBL.BO.DroneStatus.Available;
                         dl.ParcelReceived(item.ID, DateTime.Now);
                         //var par = item;
                         //dl.deleteSParcel(item.ID);
