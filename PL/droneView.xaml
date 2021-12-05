@@ -11,9 +11,10 @@
         <Label Content="Drone ID" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Width="90"/>
         <Label Content="Drone model" HorizontalAlignment="Left" Margin="25,56,0,0" VerticalAlignment="Top" Width="90"/>
         <TextBox HorizontalAlignment="Left" Margin="120,60,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="DroneMaxWeigt"  HorizontalAlignment="Left" Margin="120,93,0,0" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneMaxWeight" Height="17"/>
+        <ComboBox x:Name="DroneMaxWeigt"  HorizontalAlignment="Left" Margin="120,93,0,0" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneMaxWeight" Height="20"/>
         <Label Content="Max weight" HorizontalAlignment="Left" Margin="25,89,0,0" VerticalAlignment="Top" Width="90" Height="25" RenderTransformOrigin="0.437,1.508"/>
         <Label Content="ID station" HorizontalAlignment="Left" Margin="25,120,0,0" VerticalAlignment="Top" Width="90" Height="25"/>
         <TextBox HorizontalAlignment="Left" Margin="120,123,0,0" MaxLength="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Border BorderThickness="6" BorderBrush="#FF1F8193"/>
     </Grid>
 </Window>
