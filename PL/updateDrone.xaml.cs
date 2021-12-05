@@ -11,28 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using IBL.BO;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for droneView.xaml
+    /// Interaction logic for updateDrone.xaml
     /// </summary>
-    public partial class droneView : Window
+    public partial class updateDrone : Window
     {
-        public droneView()
+        public updateDrone()
         {
             InitializeComponent();
         }
-
-        public droneView(IBL.interfaceIBL bl,string s)
-        {
-            if (s == "add")
-               
-            InitializeComponent();
-            DroneMaxWeigt.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-        }
-      
-      
     }
 }

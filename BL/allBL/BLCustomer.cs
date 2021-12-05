@@ -188,26 +188,26 @@ namespace BL
         {
 
             if (p == IDAL.DO.Priorities.emergency)
-                return IBL.BO.Priorities.emergency;
+                return IBL.BO.Priorities.Emergency;
             if (p == IDAL.DO.Priorities.fast)
-                return IBL.BO.Priorities.fast;
+                return IBL.BO.Priorities.Fast;
             if (p == IDAL.DO.Priorities.normal)
-                return IBL.BO.Priorities.normal;
+                return IBL.BO.Priorities.Normal;
 
             //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
-            return IBL.BO.Priorities.normal;
+            return IBL.BO.Priorities.Normal;
         }
 
 
         private IBL.BO.ParcelStatus getParcelStatus(IDAL.DO.Parcel p)
         {
             if (p.scheduled == null && p.requested != null)
-                return IBL.BO.ParcelStatus.created;
+                return IBL.BO.ParcelStatus.Created;
             if (p.pickedUp == null && p.scheduled != null)
-                return IBL.BO.ParcelStatus.match;
+                return IBL.BO.ParcelStatus.Match;
             if (p.delivered == null && p.pickedUp != null)
-                return IBL.BO.ParcelStatus.pickedUp;
-            return IBL.BO.ParcelStatus.delivred;
+                return IBL.BO.ParcelStatus.PickedUp;
+            return IBL.BO.ParcelStatus.Delivred;
         }
     }
 }

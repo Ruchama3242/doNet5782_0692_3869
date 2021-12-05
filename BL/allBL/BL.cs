@@ -41,7 +41,7 @@ namespace BL
                         IDAL.DO.Customer target = dl.findCustomer(pr.targetId);
                         IBL.BO.Location senderLocation = new Location { latitude = sender.lattitude, longitude = sender.longitude };
                         IBL.BO.Location targetLocation = new Location { latitude = target.lattitude, longitude = target.longitude };
-                        drt.status = DroneStatus.delivery;
+                        drt.status = DroneStatus.Delivery;
                         if (pr.pickedUp == null && pr.scheduled != null)//החבילה שויכה אבל עדיין לא נאספה
                         {
                             drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
@@ -65,10 +65,10 @@ namespace BL
                 {
                     int temp = rnd.Next(1, 3);
                     if (temp == 1)
-                        drt.status = IBL.BO.DroneStatus.available;
+                        drt.status = IBL.BO.DroneStatus.Available;
                     else
-                        drt.status = IBL.BO.DroneStatus.maintenace;
-                    if (drt.status == IBL.BO.DroneStatus.maintenace)
+                        drt.status = IBL.BO.DroneStatus.Maintenace;
+                    if (drt.status == IBL.BO.DroneStatus.Maintenace)
                     {
                         int l = rnd.Next(0, dl.getAllStations().Count()), i = 0;
                         IDAL.DO.Station s = new IDAL.DO.Station();

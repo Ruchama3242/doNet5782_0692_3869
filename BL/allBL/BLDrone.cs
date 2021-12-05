@@ -41,7 +41,7 @@ namespace BL
                 d.droneModel = model;
                 d.weight = (IBL.BO.WeightCategories)weight;
                 d.battery = rnd.Next(20, 40);
-                d.status = IBL.BO.DroneStatus.maintenace;
+                d.status = IBL.BO.DroneStatus.Maintenace;
                
                 try
                 {
@@ -115,7 +115,7 @@ namespace BL
                 d.location = new IBL.BO.Location();
                 d.location = drn.currentLocation;
                 IBL.BO.ParcelInTransfer pt = new IBL.BO.ParcelInTransfer();
-                if (drn.status == IBL.BO.DroneStatus.delivery)
+                if (drn.status == IBL.BO.DroneStatus.Delivery)
                 {
                     pt.ID = drn.parcelNumber;
                     IDAL.DO.Parcel p=new IDAL.DO.Parcel();
@@ -183,14 +183,14 @@ namespace BL
             {
                 IBL.BO.DroneToList d = DroneArr.Find(p => p.ID == id);
 
-                if (d.status == IBL.BO.DroneStatus.maintenace)
+                if (d.status == IBL.BO.DroneStatus.Maintenace)
                 {
                     //the time* charging rate per hour, couldnt be more then 100%
                     d.battery += time * chargeCapacity[4];
                     if (d.battery > 100)
                         d.battery = 100;
 
-                    d.status = IBL.BO.DroneStatus.available;
+                    d.status = IBL.BO.DroneStatus.Available;
 
                     // up the number of the empty charge slots
                     IDAL.DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
@@ -256,7 +256,7 @@ namespace BL
             try
             {
                 var myDrone = findDroneDal(id);
-                if (myDrone.status != IBL.BO.DroneStatus.available)
+                if (myDrone.status != IBL.BO.DroneStatus.Available)
                     throw new BLgeneralException("the drone isn'n  avilable");
                 IBL.BO.Station closed = stationClose(myDrone.currentLocation);
                 if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0))
@@ -264,7 +264,7 @@ namespace BL
 
                 // drone
                 myDrone.currentLocation = closed.location;
-                myDrone.status = IBL.BO.DroneStatus.maintenace;
+                myDrone.status = IBL.BO.DroneStatus.Maintenace;
                 myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
 
                 //הפונקציה הזו דואגת לשנות את עמדות הטעינה ולהוסיך יישות לרשימה המתאימה
@@ -285,13 +285,13 @@ namespace BL
             try
             {
                 var myDrone = findDroneDal(id);
-                if (myDrone.status != IBL.BO.DroneStatus.available)
+                if (myDrone.status != IBL.BO.DroneStatus.Available)
                     throw new BLgeneralException("the drone not avilable");
 
                 IDAL.DO.Parcel myParcel = findTheParcel(myDrone.weight,myDrone.currentLocation, myDrone.battery, IDAL.DO.Priorities.emergency);
                 dl.ParcelDrone(myParcel.ID, myDrone.ID);
                 DroneArr.Remove(myDrone);
-                myDrone.status = IBL.BO.DroneStatus.delivery;
+                myDrone.status = IBL.BO.DroneStatus.Delivery;
                 myDrone.parcelNumber = myParcel.ID;
                 DroneArr.Add(myDrone);
                
@@ -361,11 +361,11 @@ namespace BL
 
         private bool weight(IBL.BO.WeightCategories dr,IBL.BO.WeightCategories pa)
         {
-            if (dr == IBL.BO.WeightCategories.heavy)
+            if (dr == IBL.BO.WeightCategories.Heavy)
                 return true;
-            if (dr == IBL.BO.WeightCategories.medium && (pa == IBL.BO.WeightCategories.medium || pa == IBL.BO.WeightCategories.light))
+            if (dr == IBL.BO.WeightCategories.Medium && (pa == IBL.BO.WeightCategories.Medium || pa == IBL.BO.WeightCategories.Light))
                 return true;
-            if (dr == IBL.BO.WeightCategories.light && pa == IBL.BO.WeightCategories.light)
+            if (dr == IBL.BO.WeightCategories.Light && pa == IBL.BO.WeightCategories.Light)
                 return true;
             return false;
         }
