@@ -40,10 +40,7 @@ namespace PL
            
         }
 
-        private void statusSelector_SelectionChaged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -57,6 +54,11 @@ namespace PL
         private void DronesListView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
         {
             new updateDrone().Show();
+        }
+
+        private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
