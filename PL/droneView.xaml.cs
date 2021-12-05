@@ -30,7 +30,7 @@ namespace PL
             if (s == "add")
                
             InitializeComponent();
-            ___DroneMaxWeigt.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            DroneMaxWeigt.ItemsSource = Enum.GetValues(typeof(WeightCategories));
         }
       
       
