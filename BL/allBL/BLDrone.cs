@@ -50,7 +50,7 @@ namespace BL
 
             foreach (var item in DroneArr)
             {
-                if (item.status == IBL.BO.DroneStatus.Available)
+                if (item.status == w)
                     lst.Add(item);
             }
             return lst;

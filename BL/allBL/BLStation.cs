@@ -89,7 +89,7 @@ namespace BL
                 temp.name = item.name;
                 temp.availableChargeSlots = item.chargeSlots;
                 //findDroneCharge return a list that contain all the drone in charge 
-                temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count;
+                temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count();
                
 
                 lstBL.Add(temp);
@@ -149,7 +149,7 @@ namespace BL
             tmp.location.longitude = s.longitude;
             tmp.name = s.name;
 
-            List<IDAL.DO.DroneCharge> d = dl.findDroneCharge(s.ID);
+            IEnumerable<IDAL.DO.DroneCharge> d = dl.findDroneCharge(s.ID);
             List<IBL.BO.DroneInCharge> dr = new List<IBL.BO.DroneInCharge>();
             foreach (var item in d)
             {

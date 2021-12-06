@@ -112,8 +112,12 @@ namespace DAL
 
 
         public DroneCharge findStationOfDroneCharge(int id);
-
-        public List<DroneCharge> findDroneCharge(int id);
+        /// <summary>
+        /// get a id of atation and return all the drone that charge in this station
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<DroneCharge> findDroneCharge(int id);
 
         #endregion
 
