@@ -38,7 +38,7 @@
             </ListView.ItemsSource>
         </ListView>
         <Button x:Name="addDroneBtn" Content="Add new drone" HorizontalAlignment="Left" Margin="649,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="Button_Click"/>
-        <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Center" Margin="0,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="108" FontSize="15" Click="close"/>
+        <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Left" Margin="23,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="close"/>
 
     </Grid>
 </Window>

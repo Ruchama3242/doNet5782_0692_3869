@@ -5,12 +5,58 @@ using System.Text;
 using System.Threading.Tasks;
 using BL.BO;
 using IBL;
+using System.Linq;
+
 namespace BL
 {
     public partial class BL : IBL.interfaceIBL
     {
         
         Random rnd = new Random();
+
+        /// <summary>
+        /// Returns a filtered list by weight category
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
+        public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w)
+        {
+            IDAL.DO.WeightCategories x= IDAL.DO.WeightCategories.light;//הקומפיילר מחייב לאתחל תמשתנה כדי ששאר הפונקציה תהיה תקינה
+            List<IBL.BO.DroneToList> lst = new List<IBL.BO.DroneToList>();
+            if (w == IBL.BO.WeightCategories.Heavy)
+                 x = IDAL.DO.WeightCategories.heavy;
+
+            if (w == IBL.BO.WeightCategories.Light)
+                x = IDAL.DO.WeightCategories.light;
+
+            if (w == IBL.BO.WeightCategories.Medium)
+                x = IDAL.DO.WeightCategories.medium;
+
+            dl.GetPartOfDrone(d => d.weight == x);
+            return lst;
+        }
+
+        /// <summary>
+        /// Returns a filtered list by drone status
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
+        public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w)
+        {
+            List<IBL.BO.DroneToList> lst = new List<IBL.BO.DroneToList>();
+            //var lst = DroneArr
+            //    .Where(x => x.status == IBL.BO.DroneStatus.Available)
+            //    .Select(IEnumerable<IBL.BO>)
+
+            foreach (var item in DroneArr)
+            {
+                if (item.status == IBL.BO.DroneStatus.Available)
+                    lst.Add(item);
+            }
+            return lst;
+        }
+
+
 
         /// <summary>
         /// "convert" a drone from BL type to DAL type

@@ -3,6 +3,7 @@ using IDAL.DO;
 using DAL;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 namespace IDAL
 
 {
@@ -70,6 +71,19 @@ namespace IDAL
                     }
                     return lst;
                 }
+
+                ///// <summary>
+                /////מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
+                ///// </summary>
+                ///// <param name="StationCondition"></param>
+                ///// <returns></returns>
+                //public IEnumerable<Station> GetPartOStation(Predicate<Station> StationCondition)
+                //{
+                //    var list = from Station in DataSource.StationsList
+                //               where (StationCondition(Station))
+                //               select Station;
+                //    return list;
+                //}
 
                 /// <summary>
                 /// delete a station from the list

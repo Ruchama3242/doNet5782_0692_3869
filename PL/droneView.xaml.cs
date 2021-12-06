@@ -32,6 +32,7 @@ namespace PL
             InitializeComponent();
             this.bl = bl;
             updateGrid.Visibility = Visibility.Hidden;
+            realeseFromCharg.Visibility = Visibility.Hidden;
             cmbStation.ItemsSource = bl.veiwListStation();
            DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             
@@ -43,6 +44,7 @@ namespace PL
             this.bl = bl;
             dr = d;
             addGrid.Visibility = Visibility.Hidden;
+            realeseFromCharg.Visibility = Visibility.Hidden;
             fillTextbox(d);
             if(dr.status==DroneStatus.Available)
             {
@@ -109,7 +111,7 @@ namespace PL
             weightTxt.Text = d.weight.ToString();
             updateIdtxt.Text = d.ID.ToString();
             updateModeltxt.Text = d.droneModel.ToString();
-            batteryTxt.Text = d.battery.ToString();
+            batteryTxt.Text = d.battery.ToString()+"%";
             parcelIdTxt.Text = d.parcelNumber.ToString();
             longitudeTxt.Text = d.currentLocation.longitude.ToString();
             latitudeTxt.Text = d.currentLocation.latitude.ToString();
@@ -121,7 +123,7 @@ namespace PL
             updateIdtxt.Text = d.ID.ToString();
             weightTxt.Text = d.weight.ToString();
             updateModeltxt.Text = d.model.ToString();
-            batteryTxt.Text = d.battery.ToString();
+            batteryTxt.Text = d.battery.ToString()+"%";
             if (d.parcel != null)
             {
                 parcelIdTxt.Text = d.parcel.ID.ToString();
@@ -158,19 +160,21 @@ namespace PL
 
         private void relaseFromCharge(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                lbl.Visibility = Visibility.Visible;
-                timeInChargeTxt.Visibility = Visibility.Visible;
-                okBtn.Visibility = Visibility.Visible;
-                MessageBox.Show("enter time(in minuits) that drone was in charging");
-                
-            }
-            catch (Exception ex)
-            {
+            updateGrid.Visibility = Visibility.Hidden;
+            realeseFromCharg.Visibility = Visibility.Visible;
+            //try
+            //{
+            //    lbl.Visibility = Visibility.Visible;
+            //    timeInChargeTxt.Visibility = Visibility.Visible;
+            //    okBtn.Visibility = Visibility.Visible;
+            //    MessageBox.Show("enter time(in minuits) that drone was in charging");
 
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void okBtn_Click(object sender, RoutedEventArgs e)
@@ -180,11 +184,13 @@ namespace PL
             Drone drone = bl.findDrone(dr.ID);
             fillTextbox(drone);
             relaseBtn.Visibility = Visibility.Hidden;
-            lbl.Visibility = Visibility.Hidden;
-            timeInChargeTxt.Visibility = Visibility.Hidden;
-            okBtn.Visibility = Visibility.Hidden;
+            //lbl.Visibility = Visibility.Hidden;
+            //timeInChargeTxt.Visibility = Visibility.Hidden;
+            //okBtn.Visibility = Visibility.Hidden;
             droneChargeBtn.Visibility = Visibility.Visible;
             sendToDeliveryBtn.Visibility = Visibility.Visible;
+            realeseFromCharg.Visibility = Visibility.Hidden;
+            updateGrid.Visibility = Visibility.Visible;
         }
 
         private void sendToDelivery(object sender, RoutedEventArgs e)

@@ -3,6 +3,8 @@ using IDAL.DO;
 using DAL;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
+
 namespace IDAL
 
 {
@@ -12,6 +14,20 @@ namespace IDAL
         {
             public partial class DalObject 
             {
+
+                /// <summary>
+                ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
+                /// </summary>
+                /// <param name="StationCondition"></param>
+                /// <returns></returns>
+                public IEnumerable<Drone> GetPartOfDrone(Predicate<Drone> droneCondition)
+                {
+                    var list = from Drone in DataSource.DronesList
+                               where (droneCondition(Drone))
+                               select Drone;
+                    return list;
+                }
+
                 /// <summary>
                 /// add drone to the array
                 /// </summary>

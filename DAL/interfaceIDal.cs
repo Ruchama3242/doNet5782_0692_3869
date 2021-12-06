@@ -56,6 +56,12 @@ namespace DAL
 
         #region --------------------drone--------------------------
         /// <summary>
+        ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
+        /// </summary>
+        /// <param name="StationCondition"></param>
+        /// <returns></returns>
+        public IEnumerable<Drone> GetPartOfDrone(Predicate<Drone> droneCondition);
+        /// <summary>
         /// Gets a drone and adds it to the list DataSource
         /// </summary>
         /// <param name="temp"></param>
