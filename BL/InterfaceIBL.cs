@@ -97,6 +97,13 @@ namespace IBL
         /// </summary>
         /// <param name="id"></param>
         public void parcelToDrone(int id);
+
+
+        public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
+
+        public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
+
+
         #endregion
 
         #region - - - - - - - - - - - - parcel - - - - - - - - - - - - - - - 

@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="statusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" AutomationProperties.Name="StatusSelector"/>
-            <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="70"/>
+            <ComboBox x:Name="statusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" AutomationProperties.Name="StatusSelector" SelectionChanged="filtering" />
+            <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="70" SelectionChanged="filterWeight"/>
             <Label Content="Drone Status:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
             <Label Content="Drone Max Weight:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
         </Grid>

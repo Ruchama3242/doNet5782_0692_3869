@@ -40,7 +40,7 @@
             <Button x:Name="sendToDeliveryBtn" Content="send drone to delivery" HorizontalAlignment="Left" Margin="289,307,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="sendToDelivery"/>
             <Button x:Name="collectBtn" Content="collect parcel" HorizontalAlignment="Left" Margin="289,332,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="collectParcel"/>
             <Button x:Name="parcelDeliveryBtn" Content="parcel delivery" HorizontalAlignment="Left" Margin="289,357,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="parcelDelivery"/>
-            <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Left" Margin="396,0,0,402" VerticalAlignment="Bottom" Click="closeBtn_Click" RenderTransformOrigin="2.334,-3.204"/>
+            <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Left" Margin="43,0,0,51" VerticalAlignment="Bottom" Click="closeBtn_Click" RenderTransformOrigin="2.334,-3.204"/>
             <TextBox x:Name="statusTxt" HorizontalAlignment="Left" Margin="132,122,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="weightTxt" HorizontalAlignment="Left" Margin="132,87,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <!--<Label x:Name="lbl" Content="time in charging" HorizontalAlignment="Left" Margin="107,378,0,0" VerticalAlignment="Top" Visibility="Hidden"/>

@@ -150,6 +150,7 @@ namespace PL
                 fillTextbox(drone);
                 relaseBtn.Visibility = Visibility.Visible;
                 droneChargeBtn.Visibility = Visibility.Hidden;
+                sendToDeliveryBtn.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
