@@ -195,6 +195,7 @@ namespace BL
                         d.currentLocation.longitude = dl.findCustomer(item.targetId).longitude;
                         d.currentLocation.latitude = dl.findCustomer(item.targetId).lattitude;
                         d.status = IBL.BO.DroneStatus.Available;
+                        d.parcelNumber = 0;
                         dl.ParcelReceived(item.ID, DateTime.Now);
                         //var par = item;
                         //dl.deleteSParcel(item.ID);

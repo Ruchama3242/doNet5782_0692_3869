@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
-        xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Class="PL.droneListView"
+        xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Name="idTxt" x:Class="PL.droneListView"
         mc:Ignorable="d"
         Title="droneListView" Height="640" Width="800">
     <Grid x:Name="MainGrid">
@@ -25,8 +25,9 @@
             <Label Content="Drone Status:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
             <Label Content="Drone Max Weight:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
         </Grid>
-        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,5,0" Grid.Row="1" SelectionChanged="DronesListView_SelectionChanged" RequestBringIntoView="DronesListView_RequestBringIntoView">
+        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,5,0" Grid.Row="1" MouseDoubleClick="mouse">
             <!--SelectionChanged="ListView_SelectionChanged"-->
+            <!-- RequestBringIntoView="DronesListView_RequestBringIntoView"-->
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -36,7 +37,8 @@
                 <VisualBasic:Collection/>
             </ListView.ItemsSource>
         </ListView>
-        <Button Content="Add new drone" HorizontalAlignment="Left" Margin="649,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="Button_Click"/>
-       
+        <Button x:Name="addDroneBtn" Content="Add new drone" HorizontalAlignment="Left" Margin="649,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="Button_Click"/>
+        <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Center" Margin="0,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="108" FontSize="15" Click="close"/>
+
     </Grid>
 </Window>

@@ -33,8 +33,8 @@ namespace PL
         {
             InitializeComponent();
             this.bl = bl;
-           
-            DronesListView.ItemsSource = this.bl.getAllDrones();
+
+            fillListView();
             statusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
            
@@ -45,19 +45,50 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new droneView(bl,"add").Show();
+            
+            new droneView(bl).ShowDialog();
+            fillListView();
         }
 
 
 
-        private void DronesListView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
-        {
-            new updateDrone().Show();
-        }
+        //private void DronesListView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        //{
+        //    DroneToList dr = new DroneToList();
+        //    dr = (DroneToList)DronesListView.SelectedItem;
+        //    new droneView(bl, dr).ShowDialog();
+        //    fillListView();
+        //}
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void fillListView()
+        {
+            DronesListView.ItemsSource = bl.getAllDrones();
+        }
+
+        private void close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        //private void DronesListView_Selected(object sender, RoutedEventArgs e)
+        //{
+        //    DroneToList dr = new DroneToList();
+        //    dr = (DroneToList)DronesListView.SelectedItem;
+        //    new droneView(bl, dr).ShowDialog();
+        //    fillListView();
+        //}
+
+        private void mouse(object sender, MouseButtonEventArgs e)
+        {
+            DroneToList dr = new DroneToList();
+            dr = (DroneToList)DronesListView.SelectedItem;
+            new droneView(bl, dr).ShowDialog();
+            fillListView();
         }
     }
 }
