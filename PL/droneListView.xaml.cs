@@ -67,7 +67,13 @@ namespace PL
 
         private void fillListView()
         {
-            DronesListView.ItemsSource = bl.getAllDrones();
+            IEnumerable<DroneToList> d = new List<DroneToList>();
+            d = bl.getAllDrones();
+            if (statusSelector.Text != "")
+                d = this.bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
+            if (weightSelector.Text != "")
+                d = bl.droneFilterWheight((WeightCategories)weightSelector.SelectedItem);
+            DronesListView.ItemsSource = d;
         }
 
         private void close(object sender, RoutedEventArgs e)
@@ -89,6 +95,16 @@ namespace PL
             dr = (DroneToList)DronesListView.SelectedItem;
             new droneView(bl, dr).ShowDialog();
             fillListView();
+        }
+
+        private void filtering(object sender, SelectionChangedEventArgs e)
+        {
+            DronesListView.ItemsSource = bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
+        }
+
+        private void filterWeight(object sender, SelectionChangedEventArgs e)
+        {
+            DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategories)weightSelector.SelectedItem);
         }
     }
 }

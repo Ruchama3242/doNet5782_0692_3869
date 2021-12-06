@@ -31,8 +31,13 @@ namespace BL
 
             if (w == IBL.BO.WeightCategories.Medium)
                 x = IDAL.DO.WeightCategories.medium;
-
-            dl.GetPartOfDrone(d => d.weight == x);
+            IEnumerable<IDAL.DO.Drone> d= dl.GetPartOfDrone(d => d.weight == x);
+           // var l = DroneArr.Where(d => d.weight == w).Select(d);
+            foreach (var item in DroneArr)
+            {
+                if (item.weight == w)
+                    lst.Add(item);
+            }
             return lst;
         }
 
@@ -50,7 +55,7 @@ namespace BL
 
             foreach (var item in DroneArr)
             {
-                if (item.status == IBL.BO.DroneStatus.Available)
+                if (item.status == w)
                     lst.Add(item);
             }
             return lst;
