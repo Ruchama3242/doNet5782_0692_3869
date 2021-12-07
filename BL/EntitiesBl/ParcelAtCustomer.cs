@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
-{
-    namespace BO
+namespace BO
     {
          public class ParcelAtCustomer
         {
             public int ID { get; set; }
-            public WeightCategories weight { get; set; }
+            public WeightCategorie weight { get; set; }
             public Priorities priority { get; set; }
             public ParcelStatus status { get; set; }
             public CustomerInParcel senderOrTaget { get; set; }//if the parcel need to be sent its the terget and if not its the sender
@@ -25,4 +23,3 @@ namespace IBL
             }
         }
     }
-}

@@ -4,14 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-using IDAL.DO.DalObject;
-using IDAL.DO;
+using DO.DalObject;
+using DO;
 
 namespace DAL
 {
     
     public interface IDal
     {
+        /// <summary>
+        /// reurn array of five values ​​in the following order: free, light, medium, heavy and load rate
+        /// </summary>
+        /// <returns></returns>
+        public double[] chargeCapacity();
         #region-------------------- station----------------------
         /// <summary>
         /// Gets a station and adds it to the list DataSource
@@ -229,6 +234,6 @@ namespace DAL
         ///  return array of five values ​​in the following order: free, light, medium, heavy and load rate
         /// </summary>
         /// <returns></returns>
-        double[] chargeCapacity();
+        
     }
 }

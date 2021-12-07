@@ -1,9 +1,8 @@
 ﻿using System;
-using IDAL.DO;
+using DO;
 
 
-namespace IDAL
-{
+
     namespace DO
     {
 
@@ -34,4 +33,4 @@ namespace IDAL
 
         }
     }
-}
+

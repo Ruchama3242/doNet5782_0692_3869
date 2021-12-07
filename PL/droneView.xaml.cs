@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using IBL.BO;
+using BO;
 
 namespace PL
 {
@@ -34,7 +34,7 @@ namespace PL
             updateGrid.Visibility = Visibility.Hidden;
             realeseFromCharg.Visibility = Visibility.Hidden;
             cmbStation.ItemsSource = bl.veiwListStation();
-           DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+           DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
             
         }
 

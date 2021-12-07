@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
-{
-    namespace BO
+namespace BO
     {
         public class DroneToList
         {
             public int ID { get; set; }
             public int droneModel { get; set; }
-            public WeightCategories weight { get; set; }
+            public WeightCategorie weight { get; set; }
             public double battery { get; set; }
             public DroneStatus status { get; set; }
             public Location currentLocation { get; set; }
@@ -28,4 +26,3 @@ namespace IBL
             }
         }
     }
-}

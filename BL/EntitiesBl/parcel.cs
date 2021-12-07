@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
-{
-    namespace BO
+namespace BO
     {
        public class Parcel
         {
             public int ID { get; set; }
             public CustomerInParcel sender { get; set; }
             public CustomerInParcel target { get; set; }
-            public WeightCategories weight { get; set; }
+            public WeightCategorie weight { get; set; }
             public Priorities priority { get; set; }
             public DateTime? requested { get; set; }//יצירת החבילה
             public DroneInParcel drone { get; set; }
@@ -33,4 +31,3 @@ namespace IBL
             }
         }
     }
-}

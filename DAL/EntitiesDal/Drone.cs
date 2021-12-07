@@ -1,9 +1,7 @@
 ﻿using System;
-using IDAL.DO;
+using DO;
 
-namespace IDAL
-{
-    namespace DO
+namespace DO
     {
         public struct Drone
         {
@@ -21,6 +19,6 @@ namespace IDAL
             }
         }
     }
-}
+
 
  

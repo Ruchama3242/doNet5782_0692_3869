@@ -1,9 +1,9 @@
 ﻿using System;
-using IDAL.DO;
-using IDAL.DO.DalObject;
+using DO;
+using DO.DalObject;
 using System.Collections.Generic;
-namespace IDAL
-{
+
+
     namespace DO
     { 
         namespace DalObject
@@ -36,7 +36,7 @@ namespace IDAL
                        Drone temp= new Drone();
                         temp.ID= r.Next(11111, 99999);
                         temp.model = r.Next(1111, 9999);
-                        var x = (IDAL.DO.WeightCategories)(r.Next(0, 3));
+                        var x = (DO.WeightCategories)(r.Next(0, 3));
                         temp.weight = x;
                         DronesList.Add(temp);
                     }
@@ -49,7 +49,7 @@ namespace IDAL
                         temp.longitude = r.Next(30,34 )+r.NextDouble();
                         temp.lattitude = r.Next(34, 37)+r.NextDouble();
                         temp.chargeSlots = r.Next(6, 100);
-                        Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
+                        Names namesTmp = (DO.Names)(i + 9);//for a diffrent name
                         temp.name = namesTmp.ToString();
                         StationsList.Add(temp);
                     }
@@ -58,7 +58,7 @@ namespace IDAL
                     for (int i = 0; i < 10; i++)
                     {
                         Customer temp = new Customer();
-                        Names names= (IDAL.DO.Names)(i);//for a diffrent name
+                        Names names= (DO.Names)(i);//for a diffrent name
                         temp.name = names.ToString();
                         temp.longitude = r.Next(30, 34);
                         temp.lattitude = r.Next(34, 37);
@@ -88,8 +88,8 @@ namespace IDAL
                         //temp.scheduled = temp.requested.AddHours(r.Next(1, 8));
                         //temp.pickedUp = temp.scheduled.AddMinutes(r.Next(20, 180));
                         //temp.delivered = temp.pickedUp.AddMinutes(r.Next(20, 90));
-                        temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
-                        temp.priority = (IDAL.DO.Priorities)(r.Next() % 3);
+                        temp.weight = (DO.WeightCategories)(r.Next() % 3);
+                        temp.priority = (DO.Priorities)(r.Next() % 3);
                         ParcelList.Add(temp);
                         Config.runnerID++;
                     }
@@ -97,5 +97,5 @@ namespace IDAL
             }
         }
     }
-}
+
 

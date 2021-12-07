@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BL.BO;
+using BO;
 using BL;
 using IBL;
 
@@ -11,13 +11,7 @@ namespace BL
 {
    public partial class BL : IBL.IBL
     {
-        
-
-        /// <summary>
-        /// get a customer of BL and add it to the list of DAL
-        /// </summary>
-        /// <param name="customerBL"></param>
-         public void addCustomer(IBL.BO.Customer customerBL)
+         public void addCustomer(Customer customerBL)
         {
             try
             {
@@ -30,7 +24,7 @@ namespace BL
                 if (customerBL.phone.Length < 9 || customerBL.phone.Length > 10)
                     throw new BLgeneralException("ERROR! the phone must be with 9 or 10 digits");
 
-                IDAL.DO.Customer temp = new IDAL.DO.Customer();
+                DO.Customer temp = new DO.Customer();
                 temp.ID = customerBL.ID;
                 temp.name = customerBL.name;
                 temp.phone = customerBL.phone;
@@ -44,20 +38,14 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// update the name or the phone number of the customer
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="phoneNum"></param>
-        public void updateCustomer(int id, string name, string phoneNum)
+         public void updateCustomer(int id, string name, string phoneNum)
         {
             if (phoneNum != "" && (phoneNum.Length < 9 || phoneNum.Length > 10))
                 throw new BLgeneralException("ERROR! the phone number must be with 9 or ten digits");
             
             try
             {
-                IDAL.DO.Customer temp = new IDAL.DO.Customer();
+                DO.Customer temp = new DO.Customer();
                 temp = dl.findCustomer(id);
 
                 //if the user want to change some detail....
@@ -74,19 +62,16 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// print all the list of the customerToList
-        /// </summary>
-        public IEnumerable<IBL.BO.CustomerToList> viewListCustomer()
+        public IEnumerable<CustomerToList> viewListCustomer()
         {
             //bring al the data from dal
-            IEnumerable<IDAL.DO.Customer> lst = new List<IDAL.DO.Customer>();
+            IEnumerable<DO.Customer> lst = new List<DO.Customer>();
             lst = dl.getAllCustomers();
 
-            List<IBL.BO.CustomerToList> listBL = new List<IBL.BO.CustomerToList>();
+            List<CustomerToList> listBL = new List<CustomerToList>();
             foreach (var item in lst)
             {
-                IBL.BO.CustomerToList c = new IBL.BO.CustomerToList();
+                CustomerToList c = new CustomerToList();
                 c.ID = item.ID;
                 c.name = item.name;
                 c.phone = item.phone;
@@ -121,53 +106,48 @@ namespace BL
             return listBL;
         }
 
-        /// <summary>
-        /// get a id of customer and return a customer of BL
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBL.BO.Customer findCustomer(int id)
+        public Customer findCustomer(int id)
         {
             try
             {
-                IBL.BO.Customer cusBL = new IBL.BO.Customer();
-                IDAL.DO.Customer cusDal = dl.findCustomer(id);
+                Customer cusBL = new Customer();
+                DO.Customer cusDal = dl.findCustomer(id);
 
                 cusBL.ID = cusDal.ID;
-                cusBL.location = new IBL.BO.Location();
+                cusBL.location = new Location();
                 cusBL.location.latitude = cusDal.lattitude;
                 cusBL.location.longitude = cusDal.longitude;
                 cusBL.phone = cusDal.phone;
                 cusBL.name = cusDal.name;
                 
                 
-                IEnumerable<IDAL.DO.Parcel> lstP = dl.getAllParcels();
+                IEnumerable<DO.Parcel> lstP = dl.getAllParcels();
                 foreach (var item in lstP)
                 {
                     //מוצא את כל החבילות שהלקוח מקבל
                     if (item.targetId == cusBL.ID)
                     {
-                        IBL.BO.ParcelAtCustomer tmp =new IBL.BO.ParcelAtCustomer();
+                        ParcelAtCustomer tmp =new ParcelAtCustomer();
                         tmp.ID = item.ID;
                         tmp.status = getParcelStatus(item);
                         tmp.priority = GetParcelPriorities(item.priority);
-                        tmp.senderOrTaget = new IBL.BO.CustomerInParcel();
+                        tmp.senderOrTaget = new CustomerInParcel();
                         tmp.senderOrTaget.ID = item.senderID;
                         tmp.senderOrTaget.customerName = dl.findCustomer(item.senderID).name;
-                        cusBL.toCustomer = new List<IBL.BO.ParcelAtCustomer>();
+                        cusBL.toCustomer = new List<ParcelAtCustomer>();
                         cusBL.toCustomer.Add(tmp);
                     }
                     //מוצא את כל החבילות שהלקוח שולח
                     if (item.senderID == cusBL.ID)
                     {
-                        IBL.BO.ParcelAtCustomer tmp = new IBL.BO.ParcelAtCustomer();
+                        ParcelAtCustomer tmp = new ParcelAtCustomer();
                         tmp.ID = item.ID;
                         tmp.status = getParcelStatus(item);
-                        tmp.senderOrTaget = new IBL.BO.CustomerInParcel();
+                        tmp.senderOrTaget = new CustomerInParcel();
                         tmp.senderOrTaget.ID = item.targetId;
                         tmp.senderOrTaget.customerName = dl.findCustomer(item.targetId).name;
                         tmp.priority = GetParcelPriorities(item.priority);
-                        cusBL.fromCustomer = new List<IBL.BO.ParcelAtCustomer>();
+                        cusBL.fromCustomer = new List<ParcelAtCustomer>();
                         cusBL.fromCustomer.Add(tmp);
                     }
                 }
@@ -179,35 +159,30 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// convert to the right type
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        private IBL.BO.Priorities GetParcelPriorities(IDAL.DO.Priorities p)
+         private Priorities GetParcelPriorities(DO.Priorities p)
         {
 
-            if (p == IDAL.DO.Priorities.emergency)
-                return IBL.BO.Priorities.Emergency;
-            if (p == IDAL.DO.Priorities.fast)
-                return IBL.BO.Priorities.Fast;
-            if (p == IDAL.DO.Priorities.normal)
-                return IBL.BO.Priorities.Normal;
+            if (p == DO.Priorities.emergency)
+                return Priorities.Emergency;
+            if (p == DO.Priorities.fast)
+                return Priorities.Fast;
+            if (p == DO.Priorities.normal)
+                return Priorities.Normal;
 
             //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
-            return IBL.BO.Priorities.Normal;
+            return Priorities.Normal;
         }
 
 
-        private IBL.BO.ParcelStatus getParcelStatus(IDAL.DO.Parcel p)
+        private ParcelStatus getParcelStatus(DO.Parcel p)
         {
             if (p.scheduled == null && p.requested != null)
-                return IBL.BO.ParcelStatus.Created;
+                return ParcelStatus.Created;
             if (p.pickedUp == null && p.scheduled != null)
-                return IBL.BO.ParcelStatus.Match;
+                return ParcelStatus.Match;
             if (p.delivered == null && p.pickedUp != null)
-                return IBL.BO.ParcelStatus.PickedUp;
-            return IBL.BO.ParcelStatus.Delivred;
+                return ParcelStatus.PickedUp;
+            return ParcelStatus.Delivred;
         }
     }
 }

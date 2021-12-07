@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
-using IBL.BO;
-using BL.BO;
+using BO;
+using BO;
 namespace ConsoleUI_BL
 {
     class Program
@@ -72,7 +72,7 @@ namespace ConsoleUI_BL
                 {
 
                     case (int)option_b.station:
-                      IBL.BO.Station temp = new Station();
+                      Station temp = new Station();
                         string nameStation;
                         int idStation, chargeEmpty;
                         double longitudeStation, lattitudeStation;

@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using IBL.BO;
+using BO;
 
 namespace PL
 {
@@ -36,7 +36,7 @@ namespace PL
 
             fillListView();
             statusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
-            weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
            
         }
 
@@ -72,7 +72,7 @@ namespace PL
             if (statusSelector.Text != "")
                 d = this.bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
             if (weightSelector.Text != "")
-                d = bl.droneFilterWheight((WeightCategories)weightSelector.SelectedItem);
+                d = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
             DronesListView.ItemsSource = d;
         }
 
@@ -104,7 +104,7 @@ namespace PL
 
         private void filterWeight(object sender, SelectionChangedEventArgs e)
         {
-            DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategories)weightSelector.SelectedItem);
+            DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
         }
     }
 }

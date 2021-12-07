@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BL.BO;
+using BO;
 using BL;
 using IBL;
 
@@ -11,11 +11,8 @@ namespace BL
 {
    public partial class BL : IBL.IBL
     {
-        /// <summary>
-        /// add a station to the list of dal.dataSource
-        /// </summary>
-        /// <param name="station"></param>
-        public void addStation(IBL.BO.Station station)
+        
+        public void addStation(Station station)
         {
             try
             {
@@ -27,7 +24,7 @@ namespace BL
                     throw new BLgeneralException("ERROR! the id must be with 4 digits ");
                 if (station.chargeSlots < 0)
                     throw new BLgeneralException("ERROR! the number og charge slots must be positive");
-                IDAL.DO.Station stationDal = new IDAL.DO.Station();
+                DO.Station stationDal = new DO.Station();
                 stationDal.ID = station.ID;
                 stationDal.lattitude = station.location.latitude;
                 stationDal.longitude = station.location.longitude;
@@ -41,19 +38,13 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// update some field in the station
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="name"></param>
-        /// <param name="emptyChargeSlot"></param>
         public void updateStation(int id, string name, int chargeSlot)
         {
             if (chargeSlot <= 0)
                 throw new BLgeneralException("ERROR! the number og charge slots must be positive");
             try
             {
-                IDAL.DO.Station stationDal = new IDAL.DO.Station();
+                DO.Station stationDal = new DO.Station();
 
                 stationDal = dl.findStation(id);
                 if (name != "")
@@ -69,22 +60,18 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// the func return all the list of the station
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IBL.BO.StationToList> veiwListStation()
+       public IEnumerable<StationToList> veiwListStation()
         {
            //get the list of the station from dal
-            IEnumerable<IDAL.DO.Station> lstD= new List<IDAL.DO.Station>();
+            IEnumerable<DO.Station> lstD= new List<DO.Station>();
             lstD = dl.getAllStations();
 
             //copy all the dal station to bl statio
-            List<IBL.BO.StationToList> lstBL= new List<IBL.BO.StationToList>();
+            List<StationToList> lstBL= new List<StationToList>();
            
             foreach (var item in lstD)
             {
-                IBL.BO.StationToList temp = new IBL.BO.StationToList();
+               StationToList temp = new StationToList();
                 temp.ID = item.ID;
                 temp.name = item.name;
                 temp.availableChargeSlots = item.chargeSlots;
@@ -97,19 +84,14 @@ namespace BL
             return lstBL;
         }
 
-        /// <summary>
-        /// get a id of station and return a station of BL
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBL.BO.Station findStation(int id)
+        public Station findStation(int id)
         {
             try
             {
-                IBL.BO.Station s = new IBL.BO.Station();
-                IDAL.DO.Station sD = dl.findStation(id);
+                Station s = new Station();
+                DO.Station sD = dl.findStation(id);
                 s = convertStation(sD);
-                List<IDAL.DO.DroneCharge> drCh = new List<IDAL.DO.DroneCharge>();
+                List<DO.DroneCharge> drCh = new List<DO.DroneCharge>();
                 return s;
             }
             catch (Exception e)
@@ -118,14 +100,10 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// return all the ststion with 1 or more avilable charge slots
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IBL.BO.Station> avilableCharginStation()
+        public IEnumerable<Station> avilableCharginStation()
         {
-            IEnumerable<IDAL.DO.Station> stations = dl.getAllStations();
-            List<IBL.BO.Station> avilable = new List<IBL.BO.Station>();
+            IEnumerable<DO.Station> stations = dl.getAllStations();
+            List<Station> avilable = new List<Station>();
             foreach (var item in stations)
             {
                 if (item.chargeSlots > 0)
@@ -139,26 +117,26 @@ namespace BL
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        private IBL.BO.Station convertStation(IDAL.DO.Station s)
+        private Station convertStation(DO.Station s)
         {
-            IBL.BO.Station tmp = new IBL.BO.Station();
+            Station tmp = new Station();
             tmp.chargeSlots = s.chargeSlots;
             tmp.ID = s.ID;
-            tmp.location = new IBL.BO.Location();
+            tmp.location = new Location();
             tmp.location.latitude = s.lattitude;
             tmp.location.longitude = s.longitude;
             tmp.name = s.name;
 
-            IEnumerable<IDAL.DO.DroneCharge> d = dl.findDroneCharge(s.ID);
-            List<IBL.BO.DroneInCharge> dr = new List<IBL.BO.DroneInCharge>();
+            IEnumerable<DO.DroneCharge> d = dl.findDroneCharge(s.ID);
+            List<DroneInCharge> dr = new List<DroneInCharge>();
             foreach (var item in d)
             {
-                IBL.BO.DroneInCharge charge = new IBL.BO.DroneInCharge();
+                DroneInCharge charge = new DroneInCharge();
                 charge.ID = item.droneID;
                 charge.battery = findDrone(item.droneID).battery;
                 dr.Add(charge);
             }
-            tmp.dronesInChargeList = new List<IBL.BO.DroneInCharge>();
+            tmp.dronesInChargeList = new List<DroneInCharge>();
             tmp.dronesInChargeList = dr;
             return tmp;
 

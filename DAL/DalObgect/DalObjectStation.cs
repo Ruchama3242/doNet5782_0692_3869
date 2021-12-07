@@ -1,17 +1,15 @@
 ﻿using System;
-using IDAL.DO;
+using DO;
 using DAL;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
-namespace IDAL
 
-{
     namespace DO
     {
         namespace DalObject
         {
-            public partial class DalObject 
+            partial class DalObject 
             {
                 public void addStations(Station temp)
                 {
@@ -93,4 +91,3 @@ namespace IDAL
             }
         }
     }
-}

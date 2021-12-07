@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BL.BO;
+using BO;
 using IBL;
 namespace BL
 {
    public partial class BL : IBL.IBL
     {
-        /// <summary>
-        /// add a parcel to the list in the DAL
-        /// </summary>
-        /// <param name="senderId"></param>
-        /// <param name="targetId"></param>
-        /// <param name="weight"></param>
-        /// <param name="priority"></param>
-        /// <returns></returns>
+        
         public int addParcel(int senderId,int targetId,int weight,int priority)
         {
             try//check if the sender and the target are exists
@@ -32,11 +25,11 @@ namespace BL
 
             try
             {
-                IDAL.DO.Parcel p = new IDAL.DO.Parcel();
+                DO.Parcel p = new DO.Parcel();
                 p.senderID = senderId;
                 p.targetId = targetId;
-                p.weight = (IDAL.DO.WeightCategories)weight;
-                p.priority = (IDAL.DO.Priorities)priority;
+                p.weight = (DO.WeightCategories)weight;
+                p.priority = (DO.Priorities)priority;
                 p.droneID = 0;
                 p.requested = DateTime.Now;
                 p.pickedUp = null;
@@ -51,13 +44,9 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// return the list of all parcels
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IBL.BO.ParcelToList> getAllParcels()
+         public IEnumerable<ParcelToList> getAllParcels()
         {
-            List<IBL.BO.ParcelToList> lst = new List<IBL.BO.ParcelToList>();//create the list
+            List<ParcelToList> lst = new List<ParcelToList>();//create the list
             foreach (var item in dl.getAllParcels())//pass on the list of the parcels and copy them to the new list
             {
                 lst.Add(getParcelTolist(item));
@@ -65,39 +54,34 @@ namespace BL
             return lst;
         }
 
-        /// <summary>
-        /// return a parcel with all details
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBL.BO.Parcel findParcel(int id)
+        public Parcel findParcel(int id)
         {
             try
             {
-                IDAL.DO.Parcel p = dl.findParcel(id);//find the parcl in the list in the dal
-                IBL.BO.Parcel pb = new IBL.BO.Parcel();//create a parcel of BL type
+                DO.Parcel p = dl.findParcel(id);//find the parcl in the list in the dal
+                Parcel pb = new Parcel();//create a parcel of BL type
                 pb.ID = p.ID;
-                pb.weight = (IBL.BO.WeightCategories)p.weight;
-                pb.priority = (IBL.BO.Priorities)p.priority;
+                pb.weight = (WeightCategorie)p.weight;
+                pb.priority = (Priorities)p.priority;
                 pb.delivered = p.delivered;
                 pb.pickedUp = p.pickedUp;
                 pb.requested = p.requested;
                 pb.scheduled = p.scheduled;
                 if (p.droneID != 0)//if there is a drone to the parcel
                 {
-                    IBL.BO.DroneToList d = DroneArr.Find(x => x.ID == p.droneID);//find the drone in the dron list
-                    pb.drone = new IBL.BO.DroneInParcel();
+                    DroneToList d = DroneArr.Find(x => x.ID == p.droneID);//find the drone in the dron list
+                    pb.drone = new DroneInParcel();
                     pb.drone.ID = d.ID;
                     pb.drone.battery = d.battery;
-                    pb.drone.currentLocation = new IBL.BO.Location();
+                    pb.drone.currentLocation = new Location();
                     pb.drone.currentLocation = d.currentLocation;
                 }
-                IDAL.DO.Customer sender = dl.findCustomer(p.senderID);//find the sender customer in the list in the dal
-                IDAL.DO.Customer target = dl.findCustomer(p.targetId);//find the target customer in the list in the dal
-                pb.sender = new IBL.BO.CustomerInParcel();
+                DO.Customer sender = dl.findCustomer(p.senderID);//find the sender customer in the list in the dal
+                DO.Customer target = dl.findCustomer(p.targetId);//find the target customer in the list in the dal
+                pb.sender = new CustomerInParcel();
                 pb.sender.ID = sender.ID;
                 pb.sender.customerName = sender.name;
-                pb.target = new IBL.BO.CustomerInParcel();
+                pb.target = new CustomerInParcel();
                 pb.target.customerName = target.name;
                 pb.target.ID = target.ID;
                 return pb;
@@ -108,14 +92,10 @@ namespace BL
             }
         }
 
-        /// <summary>
-        /// return a list of parcels that have not a drone yet
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IBL.BO.ParcelToList> parcelsWithoutDrone()
+        public IEnumerable<ParcelToList> parcelsWithoutDrone()
         {
-            IEnumerable<IDAL.DO.Parcel> pd = dl.getParcelsWithoutDrone();
-            List<IBL.BO.ParcelToList> lst = new List<IBL.BO.ParcelToList>();
+            IEnumerable<DO.Parcel> pd = dl.getParcelsWithoutDrone();
+            List<ParcelToList> lst = new List<ParcelToList>();
             foreach (var item in pd)
             {
                 lst.Add(getParcelTolist(item));
@@ -128,28 +108,25 @@ namespace BL
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        private IBL.BO.ParcelToList getParcelTolist(IDAL.DO.Parcel item)
+        private ParcelToList getParcelTolist(DO.Parcel item)
         {
-            IBL.BO.ParcelToList p = new IBL.BO.ParcelToList();
+            ParcelToList p = new ParcelToList();
             p.ID = item.ID;
             p.senderName = dl.findCustomer(item.senderID).name;
             p.targetName = dl.findCustomer(item.targetId).name;
-            p.weight = (IBL.BO.WeightCategories)item.weight;
-            p.priority = (IBL.BO.Priorities)item.priority;
+            p.weight = (WeightCategorie)item.weight;
+            p.priority = (Priorities)item.priority;
             if (item.scheduled == null)//check what is the status of the parcel
-                p.status = IBL.BO.ParcelStatus.Created;
+                p.status = ParcelStatus.Created;
             else if (item.pickedUp == null)
-                p.status = IBL.BO.ParcelStatus.Match;
+                p.status = ParcelStatus.Match;
             else if (item.delivered == null)
-                p.status = IBL.BO.ParcelStatus.PickedUp;
+                p.status = ParcelStatus.PickedUp;
             else
-                p.status = IBL.BO.ParcelStatus.Delivred;
+                p.status = ParcelStatus.Delivred;
             return p;
         }
-        /// <summary>
-        /// the function update the parcel to be collected by the drone
-        /// </summary>
-        /// <param name="droneid"></param>
+        
         public void packageCollection(int droneid)
         {
             var d = DroneArr.Find(x => x.ID == droneid);
@@ -162,7 +139,7 @@ namespace BL
                     if(item.pickedUp==null)
                     {
                         DroneArr.Remove(d);
-                        d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })*chargeCapacity[0];
+                        d.battery = d.battery - distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })*chargeCapacity[0];
                         d.currentLocation.longitude = dl.findCustomer(item.senderID).longitude;
                         d.currentLocation.latitude = dl.findCustomer(item.senderID).lattitude;
                         
@@ -175,10 +152,6 @@ namespace BL
             throw new BLgeneralException("ERROR! the parcel can't be collected");
         }
 
-        /// <summary>
-        /// The function update the parcel to be delivered
-        /// </summary>
-        /// <param name="droneid"></param>
         public void packageDelivery(int droneid)
         {
             var d = DroneArr.Find(x => x.ID == droneid);
@@ -191,10 +164,10 @@ namespace BL
                     if (item.pickedUp != null && item.delivered == null) 
                     {
                         DroneArr.Remove(d);
-                        d.battery = d.battery - distance(d.currentLocation, new IBL.BO.Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) * chargeCapacity[indexOfChargeCapacity(item.weight)];
+                        d.battery = d.battery - distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) * chargeCapacity[indexOfChargeCapacity(item.weight)];
                         d.currentLocation.longitude = dl.findCustomer(item.targetId).longitude;
                         d.currentLocation.latitude = dl.findCustomer(item.targetId).lattitude;
-                        d.status = IBL.BO.DroneStatus.Available;
+                        d.status = DroneStatus.Available;
                         d.parcelNumber = 0;
                         dl.ParcelReceived(item.ID, DateTime.Now);
                         //var par = item;
