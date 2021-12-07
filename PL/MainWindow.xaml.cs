@@ -22,7 +22,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL.interfaceIBL bl;
+        IBL.IBL bl;
         public MainWindow()
         {
             InitializeComponent();

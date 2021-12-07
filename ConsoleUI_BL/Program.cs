@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
         {
 
 
-            IBL.interfaceIBL myIBL = new BL.BL();
+            IBL.IBL myIBL = new BL.BL();
             
             int mainInput;
             Console.WriteLine("Choose one of the following options:\n" +
@@ -57,7 +57,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void addOption(IBL.interfaceIBL myIBL)
+        static void addOption(IBL.IBL myIBL)
         {
             try
             {
@@ -167,7 +167,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void updateOption(IBL.interfaceIBL myIBL)
+        static void updateOption(IBL.IBL myIBL)
         {
             try
             {
@@ -268,7 +268,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void displayOption(IBL.interfaceIBL myIBL)
+        static void displayOption(IBL.IBL myIBL)
         {
             try
             {
@@ -327,7 +327,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        static void viewListOption(IBL.interfaceIBL myIBL)
+        static void viewListOption(IBL.IBL myIBL)
         {
             int input;
             Console.WriteLine("for list of station press 1\n" +

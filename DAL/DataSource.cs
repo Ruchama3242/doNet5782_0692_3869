@@ -21,7 +21,7 @@ namespace IDAL
                    internal static double chargeLightWeight=0.005;
                    internal static double chargeHavyWeight=0.05;
                    internal static double chargeMediumWeight=0.01;
-                   internal static double chargineRate=1;
+                   internal static double chargineRate=0.50;
                     internal static int runnerID=1000;
 
                 }
@@ -36,7 +36,8 @@ namespace IDAL
                        Drone temp= new Drone();
                         temp.ID= r.Next(11111, 99999);
                         temp.model = r.Next(1111, 9999);
-                        temp.weight = (IDAL.DO.WeightCategories)(r.Next() % 3);
+                        var x = (IDAL.DO.WeightCategories)(r.Next(0, 3));
+                        temp.weight = x;
                         DronesList.Add(temp);
                     }
 
@@ -45,9 +46,9 @@ namespace IDAL
                     {
                         Station temp = new Station();
                         temp.ID = r.Next(1111, 9999);
-                        temp.longitude = r.Next(30,34 );
-                        temp.lattitude = r.Next(34, 37);
-                        temp.chargeSlots = r.Next(0, 100);
+                        temp.longitude = r.Next(30,34 )+r.NextDouble();
+                        temp.lattitude = r.Next(34, 37)+r.NextDouble();
+                        temp.chargeSlots = r.Next(6, 100);
                         Names namesTmp = (IDAL.DO.Names)(i + 9);//for a diffrent name
                         temp.name = namesTmp.ToString();
                         StationsList.Add(temp);

@@ -9,10 +9,17 @@ using System.Linq;
 
 namespace BL
 {
-    public partial class BL : IBL.interfaceIBL
+    public partial class BL : IBL.IBL
     {
         
         Random rnd = new Random();
+
+        //private IBL.BO.Drone ConvertDrone(IDAL.DO.Drone d)
+        //{
+        //    IBL.BO.Drone tmp = new IBL.BO.Drone();
+        //    tmp.ID = d.ID;
+        //    tmp.location=new IBL.BO.Location { latitude=d.}
+        //}
 
         /// <summary>
         /// Returns a filtered list by weight category
@@ -31,8 +38,7 @@ namespace BL
 
             if (w == IBL.BO.WeightCategories.Medium)
                 x = IDAL.DO.WeightCategories.medium;
-            IEnumerable<IDAL.DO.Drone> d= dl.GetPartOfDrone(d => d.weight == x);
-           // var l = DroneArr.Where(d => d.weight == w).Select(d);
+
             foreach (var item in DroneArr)
             {
                 if (item.weight == w)
@@ -49,9 +55,6 @@ namespace BL
         public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w)
         {
             List<IBL.BO.DroneToList> lst = new List<IBL.BO.DroneToList>();
-            //var lst = DroneArr
-            //    .Where(x => x.status == IBL.BO.DroneStatus.Available)
-            //    .Select(IEnumerable<IBL.BO>)
 
             foreach (var item in DroneArr)
             {

@@ -7,12 +7,13 @@ using BL.BO;
 using IBL.BO;
 using IDAL.DO;
 using IBL;
+
 namespace BL
 {
-    public partial  class BL: IBL.interfaceIBL
+    public partial  class BL: IBL.IBL
     {
         public double[] chargeCapacity;
-        DAL.interfaceIDal dl;
+        DAL.IDal dl;
         public List<IBL.BO.DroneToList> DroneArr;
 
         /// <summary>
@@ -26,11 +27,12 @@ namespace BL
             dl = new IDAL.DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
-            IEnumerable<IDAL.DO.Drone> d = dl.getAllDrones();
+            IEnumerable<IDAL.DO.Drone> d = dl.GetPartOfDrone(null);
             IEnumerable<IDAL.DO.Parcel> p = dl.getAllParcels();
             foreach (var item in d)
             {
                 IBL.BO.DroneToList drt = new DroneToList();
+                drt.weight = convertWeight( item.weight);
                 drt.ID = item.ID;
                 drt.droneModel = item.model;
                 foreach (var pr in p)
@@ -123,7 +125,19 @@ namespace BL
             return d;
         }
 
+        private IBL.BO.WeightCategories convertWeight(IDAL.DO.WeightCategories w)
+        {
+            if (w == IDAL.DO.WeightCategories.light)
+                return IBL.BO.WeightCategories.Light;
 
+            if (w == IDAL.DO.WeightCategories.medium)
+                return IBL.BO.WeightCategories.Medium;
+
+            if (w == IDAL.DO.WeightCategories.heavy)
+                return IBL.BO.WeightCategories.Heavy;
+
+            return IBL.BO.WeightCategories.Heavy;
+        }
 
         /// <summary>
         /// מחזירה את התחנה הקרובה ביותר שיש לה עמדות טעינה פנויות

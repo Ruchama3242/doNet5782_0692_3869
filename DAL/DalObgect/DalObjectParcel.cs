@@ -20,11 +20,16 @@ namespace IDAL
                 ///// </summary>
                 ///// <param name="StationCondition"></param>
                 ///// <returns></returns>
-                //public IEnumerable<Parcel> GetPartParcel(Predicate<Parcel> ParcelCondition)
+                //public IEnumerable<Parcel> GetPartParcel(Func<Parcel,bool> predicate)
                 //{
                 //    var list = from Parcel in DataSource.ParcelList
-                //               where (ParcelCondition(Parcel))
+                //               where (predicate(Parcel))
                 //               select Parcel;
+
+                //    foreach (var item in list)
+                //    {
+                //        list.ToList().Add(item);
+                //    }
                 //    return list;
                 //}
 

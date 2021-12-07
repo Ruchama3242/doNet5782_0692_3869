@@ -7,6 +7,27 @@
         xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Name="idTxt" x:Class="PL.droneListView"
         mc:Ignorable="d"
         Title="droneListView" Height="640" Width="800">
+    <Window.Resources>
+        <Style x:Key="myLableStyle"
+ TargetType="Label">
+            <Setter Property="FontSize"
+ Value="12" />
+            <Setter Property="FontFamily"
+ Value="Consolas" />
+            <Setter Property="FontWeight"
+ Value="Bold" />
+        </Style>
+
+        <Style x:Key="myButtonStyle"
+ TargetType="Button">
+            <Setter Property="FontSize"
+ Value="12" />
+            <Setter Property="FontFamily"
+ Value="Consolas" />
+            <Setter Property="FontWeight"
+ Value="Bold" />
+        </Style>
+    </Window.Resources>
     <Grid x:Name="MainGrid">
 
         <Grid.RowDefinitions>
@@ -22,8 +43,8 @@
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="statusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" AutomationProperties.Name="StatusSelector" SelectionChanged="filtering" />
             <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="70" SelectionChanged="filterWeight"/>
-            <Label Content="Drone Status:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
-            <Label Content="Drone Max Weight:" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
+            <Label Content="Drone Status:" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
+            <Label Content="Drone Max Weight:" Style = "{StaticResource myLableStyle}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
         </Grid>
         <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,5,0" Grid.Row="1" MouseDoubleClick="mouse">
             <!--SelectionChanged="ListView_SelectionChanged"-->
@@ -37,8 +58,8 @@
                 <VisualBasic:Collection/>
             </ListView.ItemsSource>
         </ListView>
-        <Button x:Name="addDroneBtn" Content="Add new drone" HorizontalAlignment="Left" Margin="649,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="Button_Click"/>
-        <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Left" Margin="23,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="close"/>
+        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Left" Margin="649,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="Button_Click"/>
+        <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="23,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="close"/>
 
     </Grid>
 </Window>

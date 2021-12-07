@@ -14,17 +14,23 @@ namespace IDAL
         {
             public partial class DalObject 
             {
-
+                
                 /// <summary>
                 ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
                 /// </summary>
                 /// <param name="StationCondition"></param>
                 /// <returns></returns>
-                public IEnumerable<Drone> GetPartOfDrone(Predicate<Drone> droneCondition)
+                public IEnumerable<Drone> GetPartOfDrone(Func<Drone, bool> droneCondition=null)
                 {
+                    if (droneCondition == null)
+                        return DataSource.DronesList;
                     var list = from Drone in DataSource.DronesList
                                where (droneCondition(Drone))
                                select Drone;
+                    foreach (var item in list)
+                    {
+                        list.ToList().Add(item);
+                    }
                     return list;
                 }
 

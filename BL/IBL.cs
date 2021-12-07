@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL
 {
-   public interface interfaceIBL
+   public interface IBL
     {
      
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
@@ -14,7 +14,7 @@ namespace IBL
         /// get a customer of BL and add it to the list of DAL
         /// </summary>
         /// <param name="customerBL"></param>
-        public void addCustomer(IBL.BO.Customer customerBL);
+        public void addCustomer(global::IBL.BO.Customer customerBL);
 
         /// <summary>
         /// update the name or the phone number of the customer
@@ -27,14 +27,14 @@ namespace IBL
         /// <summary>
         /// print all the list of the customer to list
         /// </summary>
-        public IEnumerable<IBL.BO.CustomerToList> viewListCustomer();
+        public IEnumerable<global::IBL.BO.CustomerToList> viewListCustomer();
 
         /// <summary>
         /// get a id of customer and return a customer of BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Customer findCustomer(int id);
+        public global::IBL.BO.Customer findCustomer(int id);
         #endregion
 
         #region - - - - - - - - - - - - drone - - - - - - - - - - - - - - - -
@@ -43,7 +43,7 @@ namespace IBL
         /// </summary>
         /// <param name="w"></param>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
+        public IEnumerable<global::IBL.BO.DroneToList> droneFilterStatus(global::IBL.BO.DroneStatus w);
 
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace IBL
         /// </summary>
         /// <param name="w"></param>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
+        public IEnumerable<global::IBL.BO.DroneToList> droneFilterWheight(global::IBL.BO.WeightCategories w);
 
             /// <summary>
             /// adding a drone to droneList
@@ -64,7 +64,7 @@ namespace IBL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Drone findDrone(int id);
+        public global::IBL.BO.Drone findDrone(int id);
 
         /// <summary>
         /// update the name of the drone
@@ -84,7 +84,7 @@ namespace IBL
         /// return a IEnumerable<IBL.BO.DroneToList>
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.DroneToList> getAllDrones();
+        public IEnumerable<global::IBL.BO.DroneToList> getAllDrones();
 
         /// <summary>
         /// send a drone to the closed station
@@ -99,9 +99,9 @@ namespace IBL
         public void parcelToDrone(int id);
 
 
-        public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
+       // public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
 
-        public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
+       // public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
 
 
         #endregion
@@ -121,20 +121,20 @@ namespace IBL
         /// return the list of all parcels
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.ParcelToList> getAllParcels();
+        public IEnumerable<global::IBL.BO.ParcelToList> getAllParcels();
 
         // <summary>
         /// return a parcel with all details
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Parcel findParcel(int id);
+        public global::IBL.BO.Parcel findParcel(int id);
 
         /// <summary>
         /// return a list of parcels that have not a drone yet
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.ParcelToList> parcelsWithoutDrone();
+        public IEnumerable<global::IBL.BO.ParcelToList> parcelsWithoutDrone();
 
         /// <summary>
         /// the function update the parcel to be collected by the drone
@@ -154,7 +154,7 @@ namespace IBL
         /// add a station to the list of dal.dataSource
         /// </summary>
         /// <param name="station"></param>
-        public void addStation(IBL.BO.Station station);
+        public void addStation(global::IBL.BO.Station station);
 
         /// <summary>
         /// update some field in the station
@@ -168,20 +168,20 @@ namespace IBL
         /// the func return all the list of the station
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.StationToList> veiwListStation();
+        public IEnumerable<global::IBL.BO.StationToList> veiwListStation();
 
         /// <summary>
         /// get a id of station and return a station of BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Station findStation(int id);
+        public global::IBL.BO.Station findStation(int id);
 
         /// <summary>
         /// return all the ststion with 1 or more avilable charge slots
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IBL.BO.Station> avilableCharginStation();
+        public IEnumerable<global::IBL.BO.Station> avilableCharginStation();
 
         #endregion
     }
