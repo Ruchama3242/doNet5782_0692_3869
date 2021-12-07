@@ -10,7 +10,7 @@ using IDAL.DO;
 namespace DAL
 {
     
-    public interface interfaceIDal
+    public interface IDal
     {
         #region-------------------- station----------------------
         /// <summary>
@@ -60,7 +60,7 @@ namespace DAL
         /// </summary>
         /// <param name="StationCondition"></param>
         /// <returns></returns>
-        public IEnumerable<Drone> GetPartOfDrone(Predicate<Drone> droneCondition);
+        public IEnumerable<Drone> GetPartOfDrone(Func<Drone, bool> droneCondition = null);
         /// <summary>
         /// Gets a drone and adds it to the list DataSource
         /// </summary>
@@ -112,8 +112,12 @@ namespace DAL
 
 
         public DroneCharge findStationOfDroneCharge(int id);
-
-        public List<DroneCharge> findDroneCharge(int id);
+        /// <summary>
+        /// get a id of atation and return all the drone that charge in this station
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<DroneCharge> findDroneCharge(int id);
 
         #endregion
 

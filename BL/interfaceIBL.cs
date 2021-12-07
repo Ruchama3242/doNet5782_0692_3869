@@ -39,9 +39,24 @@ namespace IBL
 
         #region - - - - - - - - - - - - drone - - - - - - - - - - - - - - - -
         /// <summary>
-        /// adding a drone to droneList
+        /// Returns a filtered list by drone status
         /// </summary>
-        /// <param name="drone"></param>
+        /// <param name="w"></param>
+        /// <returns></returns>
+        public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
+
+
+        /// <summary>
+        /// Returns a filtered list by weight category
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
+        public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
+
+            /// <summary>
+            /// adding a drone to droneList
+            /// </summary>
+            /// <param name="drone"></param>
         public void addDrone(int id, int model, int weight, int stationId);
 
         /// <summary>

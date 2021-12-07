@@ -14,17 +14,23 @@ namespace IDAL
         {
             public partial class DalObject 
             {
-
+                
                 /// <summary>
                 ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
                 /// </summary>
                 /// <param name="StationCondition"></param>
                 /// <returns></returns>
-                public IEnumerable<Drone> GetPartOfDrone(Predicate<Drone> droneCondition)
+                public IEnumerable<Drone> GetPartOfDrone(Func<Drone, bool> droneCondition=null)
                 {
+                    if (droneCondition == null)
+                        return DataSource.DronesList;
                     var list = from Drone in DataSource.DronesList
                                where (droneCondition(Drone))
                                select Drone;
+                    foreach (var item in list)
+                    {
+                        list.ToList().Add(item);
+                    }
                     return list;
                 }
 
@@ -55,16 +61,6 @@ namespace IDAL
                 public DroneCharge SendToCharge(int DroneID, int StationID)
                 {
                     findDrone(DroneID);//throw exception if the drone doest exist
-                   //Station s = findStation(StationID);//throw execption if the station doest exist
-                   // s.chargeSlots--;
-                    //int count2 = 0;
-                    //foreach (Drone item in DataSource.DronesList)
-                    //{
-                    //    if (item.ID != DroneID)
-                    //        count2++;
-                    //}
-                    //if (count2 == DataSource.DronesList.Count)
-                    //    throw new generalException("ERROR! value not found");
                     DroneCharge d = new DroneCharge();
                     d.droneID = DroneID;
                     d.stationeld = StationID;
@@ -184,15 +180,21 @@ namespace IDAL
                 /// </summary>
                 /// <param name="id"></param>
                 /// <returns></returns>
-                public List<DroneCharge> findDroneCharge(int id)
+                public IEnumerable<DroneCharge> findDroneCharge(int id)
                 {
-                    
-                    List<DroneCharge> tempList = new List<DroneCharge>();
-                    foreach (DroneCharge item in DataSource.DroneChargeList)
-                        if (item.stationeld == id) 
-                            tempList.Add(item);
+                    //find all the station with empty charge slots
+                    var lst = from item in DataSource.DroneChargeList
+                              where item.stationeld == id
+                              select item;
+                    foreach (var item2 in lst)
+                        lst.ToList().Add(item2);
+                    return lst;
+                    //List < DroneCharge > tempList = new List<DroneCharge>();
+                    //foreach (DroneCharge item in DataSource.DroneChargeList)
+                    //    if (item.stationeld == id) 
+                    //        tempList.Add(item);
 
-                    return tempList;
+                    //return tempList;
                 }
 
                 /// <summary>

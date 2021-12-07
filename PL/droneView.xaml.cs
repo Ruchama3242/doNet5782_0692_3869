@@ -20,14 +20,14 @@ namespace PL
     /// </summary>
     public partial class droneView : Window
     {
-        private IBL.interfaceIBL bl;
+        private IBL.IBL bl;
         private DroneToList dr;
         public droneView()
         {
             InitializeComponent();
         }
 
-        public droneView(IBL.interfaceIBL bl)
+        public droneView(IBL.IBL bl)
         {
             InitializeComponent();
             this.bl = bl;
@@ -38,7 +38,7 @@ namespace PL
             
         }
 
-        public droneView(IBL.interfaceIBL bl,DroneToList d)
+        public droneView(IBL.IBL bl,DroneToList d)
         {
             InitializeComponent();
             this.bl = bl;
@@ -253,5 +253,11 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void timeInChargeTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            ;
+        }
     }
 }
+

@@ -15,19 +15,6 @@ namespace IDAL
             public partial class DalObject 
             {
 
-                ///// <summary>
-                /////מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
-                ///// </summary>
-                ///// <param name="StationCondition"></param>
-                ///// <returns></returns>
-                //public IEnumerable<Customer> GetPartOStation(Predicate<Customer> customerCondition)
-                //{
-                //    var list = from Customer in DataSource.CustomersList
-                //               where (customerCondition(Customer))
-                //               select Customer;
-                //    return list;
-                //}
-
                 /// <summary>
                 /// add customer to the array
                 /// </summary>
