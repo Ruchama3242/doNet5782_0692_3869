@@ -110,7 +110,11 @@ namespace DAL
         /// <param name="id"></param>
         public void deleteDrone(int id);
 
-
+        /// <summary>
+        /// return the station that the drone charge in
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public DroneCharge findStationOfDroneCharge(int id);
         /// <summary>
         /// get a id of atation and return all the drone that charge in this station
@@ -123,7 +127,7 @@ namespace DAL
 
         #region ----------------------customer-------------------------
         /// <summary>
-        /// Gets a customer and adds it to the list DataSource
+        /// Get a Customer-type variable and adds it to the database
         /// </summary>
         /// <param name="temp"></param>
         public void addCustomer(Customer temp);
@@ -136,7 +140,7 @@ namespace DAL
         public Customer findCustomer(int id);
 
         /// <summary>
-        /// return IEnumerable<Customer>
+        /// return list of the customer from type IEnumerable<Customer>
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Customer> getAllCustomers();

@@ -14,12 +14,6 @@ namespace IDAL
         {
             public partial class DalObject 
             {
-                
-                /// <summary>
-                ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
-                /// </summary>
-                /// <param name="StationCondition"></param>
-                /// <returns></returns>
                 public IEnumerable<Drone> GetPartOfDrone(Func<Drone, bool> droneCondition=null)
                 {
                     if (droneCondition == null)
@@ -34,10 +28,6 @@ namespace IDAL
                     return list;
                 }
 
-                /// <summary>
-                /// add drone to the array
-                /// </summary>
-                /// <param name="spy"></param>
                 public void addDrone(Drone temp)
                 {
                     bool flag = true;
@@ -52,12 +42,7 @@ namespace IDAL
                     else
                         throw new IdExistsException();
                 }
-                /// <summary>
-                /// send the drone to charge in a station
-                /// </summary>
-                /// <param name="DroneID"></param>
-                /// <param name="StationID"></param>
-                /// <returns></returns>
+
                 public DroneCharge SendToCharge(int DroneID, int StationID)
                 {
                     findDrone(DroneID);//throw exception if the drone doest exist
@@ -75,16 +60,11 @@ namespace IDAL
                             break;
                         }
                     }
-                    if (i == DataSource.StationsList.Count )
+                    if (i == DataSource.StationsList.Count)
                         throw new generalException("ERROR! value not found");
                     DataSource.DroneChargeList.Add(d);
                     return d;
                 }
-
-                /// <summary>
-                /// release the drone from the charge slote
-                /// </summary>
-                /// <param name="FuzzedUp"></param>
                 public void BatteryCharged(DroneCharge dc)
                 {
                     int count2 = 0;
@@ -111,10 +91,6 @@ namespace IDAL
                     DataSource.DroneChargeList.Remove(dc);
                 }
 
-                /// <summary>
-                /// print a drone
-                /// </summary>
-                /// <param name="id"></param>
                 public Drone findDrone(int id)
                 {
                     foreach (Drone item in DataSource.DronesList)
@@ -126,7 +102,7 @@ namespace IDAL
                 }
 
                 /// <summary>
-                /// print all drones
+                /// return a list of all drones
                 /// </summary>
                 public IEnumerable<Drone> getAllDrones()
                 {
@@ -136,10 +112,6 @@ namespace IDAL
                     return lst;
                 }
 
-                /// <summary>
-                /// delete a drone from the list
-                /// </summary>
-                /// <param name="id"></param>
                 public void deleteDrone(int id)
                 {
                     foreach (Drone item in DataSource.DronesList)
@@ -153,11 +125,6 @@ namespace IDAL
                     throw new IdUnExistsException("ERROR! the drone doesn't found");
                 }
 
-                /// <summary>
-                /// update the details of a drone
-                /// </summary>
-                /// <param name="id"></param>
-                /// <param name="d"></param>
                 public void updateDrone(int id, int mod)
                 {
                     for (int i = 0; i < DataSource.DronesList.Count; i++)
@@ -174,12 +141,6 @@ namespace IDAL
                     }
                     throw new IdUnExistsException("ERROR! the drone doesn't found");
                 }
-
-                /// <summary>
-                /// get a id of atation and return all the drone that charge in this station
-                /// </summary>
-                /// <param name="id"></param>
-                /// <returns></returns>
                 public IEnumerable<DroneCharge> findDroneCharge(int id)
                 {
                     //find all the station with empty charge slots
@@ -197,11 +158,6 @@ namespace IDAL
                     //return tempList;
                 }
 
-                /// <summary>
-                /// return the station that the drone charge in
-                /// </summary>
-                /// <param name="id"></param>
-                /// <returns></returns>
                 public DroneCharge findStationOfDroneCharge(int id)
                 {
 

@@ -30,7 +30,7 @@ namespace IDAL
                                                   DataSource.Config.chargineRate };
                     return arr;
                 }
-
+ 
             }
         }
     }

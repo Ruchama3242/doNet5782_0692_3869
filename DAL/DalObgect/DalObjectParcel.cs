@@ -33,10 +33,6 @@ namespace IDAL
                 //    return list;
                 //}
 
-                /// <summary>
-                /// add parcel to the list
-                /// </summary>
-                /// <param name="Fedex"></param>
                 public int addParcel(Parcel temp)
                 {
                     
@@ -48,11 +44,6 @@ namespace IDAL
                     return temp.ID;
                 }
 
-                /// <summary>
-                /// update the DroneId to the parcel
-                /// </summary>
-                /// <param name="parcelID"></param>
-                /// <param name="droneID"></param>
                 public void ParcelDrone(int parcelID, int droneID)
                 {
                     for (int i = 0; i < DataSource.ParcelList.Count; i++)
@@ -68,12 +59,6 @@ namespace IDAL
                     }
                     throw new generalException("ERROR! the value not found");
                 }
-
-                /// <summary>
-                /// update the date that the parcel picked up
-                /// </summary>
-                /// <param name="parcelID"></param>
-                /// <param name="day"></param>
                 public void ParcelPickedUp(int parcelID, DateTime day)
                 {
                     for (int i = 0; i < DataSource.ParcelList.Count; i++)
@@ -89,11 +74,6 @@ namespace IDAL
                     throw new generalException("ERROR! the value not found");
                 }
 
-                /// <summary>
-                /// update the date that the parcel delivered
-                /// </summary>
-                /// <param name="parcelID"></param>
-                /// <param name="day"></param>
                 public void ParcelReceived(int parcelID, DateTime day)
                 {
                     for (int i = 0; i < DataSource.ParcelList.Count; i++)
@@ -109,10 +89,6 @@ namespace IDAL
                     throw new generalException("ERROR! the value not found");
                 }
 
-                /// <summary>
-                /// print a parcel
-                /// </summary>
-                /// <param name="id"></param>
                 public Parcel findParcel(int id)
                 {
                     foreach (Parcel item in DataSource.ParcelList)
@@ -122,10 +98,10 @@ namespace IDAL
                     }
                     throw new IdUnExistsException("ERROR! the parcel doesn't found");
                 }
-
                 /// <summary>
-                /// print all parcels
+                /// return IEnumerable<Parcel> of all the parcel
                 /// </summary>
+                /// <returns></returns>
                 public IEnumerable<Parcel> getAllParcels()
                 {
                     List<Parcel> lst = new List<Parcel>();
@@ -148,10 +124,6 @@ namespace IDAL
                     return lst;
                 }
 
-                /// <summary>
-                /// delete a parcel from the list
-                /// </summary>
-                /// <param name="id"></param>
                 public void deleteSParcel(int id)
                 {
                     foreach (Parcel item in DataSource.ParcelList)
@@ -165,11 +137,6 @@ namespace IDAL
                     throw new IdUnExistsException("ERROR! the parcel doesn't found");
                 }
 
-                /// <summary>
-                /// update the details of a parcel
-                /// </summary>
-                /// <param name="id"></param>
-                /// <param name="p"></param>
                 public void updateParcel(int id, Parcel p)
                 {
                     for (int i = 0; i < DataSource.ParcelList.Count; i++)
