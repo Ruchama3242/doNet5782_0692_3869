@@ -14,11 +14,6 @@ namespace IDAL
         {
             public partial class DalObject 
             {
-
-                /// <summary>
-                /// add customer to the array
-                /// </summary>
-                /// <param name="temp"></param>
                 public void addCustomer(Customer temp)
                 {
                     bool flag = true;
@@ -34,10 +29,6 @@ namespace IDAL
                         throw new IdExistsException();
                 }
 
-                /// <summary>
-                /// find a customer
-                /// </summary>
-                /// <param name="id"></param>
                 public Customer findCustomer(int id)
                 {
                     foreach (Customer item in DataSource.CustomersList)
@@ -49,8 +40,9 @@ namespace IDAL
                 }
 
                 /// <summary>
-                /// print all customers
+                /// return list of the customer from type IEnumerable<Customer>
                 /// </summary>
+                /// <returns></returns>
                 public IEnumerable<Customer> getAllCustomers()
                 {
                     List<Customer> lst = new List<Customer>();
@@ -59,10 +51,6 @@ namespace IDAL
                     return lst;
                 }
 
-                /// <summary>
-                /// delete a customer from the list
-                /// </summary>
-                /// <param name="id"></param>
                 public void deleteSCustomer(int id)
                 {
                     foreach (Customer item in DataSource.CustomersList)
@@ -76,11 +64,6 @@ namespace IDAL
                     throw new IdUnExistsException("ERROR! the customer doesn't found");
                 }
 
-                /// <summary>
-                /// update the details of a customer
-                /// </summary>
-                /// <param name="id"></param>
-                /// <param name="c"></param>
                 public void updateCustomer(int id, Customer c)
                 {
 

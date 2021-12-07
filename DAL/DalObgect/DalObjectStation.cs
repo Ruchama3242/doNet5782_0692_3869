@@ -13,10 +13,6 @@ namespace IDAL
         {
             public partial class DalObject 
             {
-                /// <summary>
-                /// add station to the array
-                /// </summary>
-                /// <param name="temp"></param>
                 public void addStations(Station temp)
                 {
                     bool flug = true;
@@ -32,10 +28,6 @@ namespace IDAL
                         throw new IdExistsException("ERROR! the ID already exist");
                 }
 
-                /// <summary>
-                /// print a station
-                /// </summary>
-                /// <param name="id"></param>
                 public Station findStation(int id)
                 {
                     foreach (Station item in DataSource.StationsList)
@@ -47,7 +39,7 @@ namespace IDAL
                 }
 
                 /// <summary>
-                /// print all stations
+                /// ruturn all stations
                 /// </summary>
                 public IEnumerable<Station> getAllStations()
                 {
@@ -58,6 +50,7 @@ namespace IDAL
                     }
                     return list;
                 }
+
                 /// <summary>
                 /// print all stations with charge slots available
                 /// </summary>
@@ -72,10 +65,6 @@ namespace IDAL
                     return lst;
                 }
 
-                /// <summary>
-                /// delete a station from the list
-                /// </summary>
-                /// <param name="id"></param>
                 public void deleteStation(int id)
                 {
                     foreach (Station item in DataSource.StationsList)
@@ -89,12 +78,7 @@ namespace IDAL
                     throw new IdUnExistsException("ERROR! the station doesn't found");
                 }
 
-                /// <summary>
-                /// update the details of a station
-                /// </summary>
-                /// <param name="id"></param>
-                /// <param name="st"></param>
-                public void updateStation(int id, Station st)
+               public void updateStation(int id, Station st)
                 {
                     for (int i = 0; i < DataSource.StationsList.Count; i++)
                     {
