@@ -23,7 +23,7 @@ namespace BL
             bool flag = false;
             Random rnd = new Random();
             double minBatery = 0;
-            dl = new DO.DalObject.DalObject();
+            //dl = new DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
             IEnumerable<DO.Drone> d = dl.GetPartOfDrone(null);
