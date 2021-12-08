@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class droneView : Window
     {
-        private IBL.IBL bl;
+        private IBL.IBL bl = BL.BlFactory.GetBl();
         private DroneToList dr;
         public droneView()
         {

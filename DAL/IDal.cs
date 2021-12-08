@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
 using DO.DalObject;
 using DO;
 
-namespace DAL
+namespace DalApi
 {
     
     public interface IDal
@@ -17,6 +16,7 @@ namespace DAL
         /// </summary>
         /// <returns></returns>
         public double[] chargeCapacity();
+
         #region-------------------- station----------------------
         /// <summary>
         /// Gets a station and adds it to the list DataSource
@@ -29,19 +29,19 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Station findStation(int id);
+        public DO.Station findStation(int id);
 
         /// <summary>
         /// retuen  IEnumerable<Station>
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Station> getAllStations();
+        public IEnumerable<DO.Station> getAllStations();
 
         /// <summary>
         /// return IEnumerable<Station> of station with empty charge slots
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Station> getStationsWithChargeSlots();
+        public IEnumerable<DO.Station> getStationsWithChargeSlots();
 
         /// <summary>
         /// delet station from the list at dataSource
@@ -54,7 +54,7 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <param name="st"></param>
-        public void updateStation(int id, Station st);
+        public void updateStation(int id, DO.Station st);
 
 
         #endregion
@@ -65,7 +65,7 @@ namespace DAL
         /// </summary>
         /// <param name="StationCondition"></param>
         /// <returns></returns>
-        public IEnumerable<Drone> GetPartOfDrone(Func<Drone, bool> droneCondition = null);
+        public IEnumerable<DO.Drone> GetPartOfDrone(Func<DO.Drone, bool> droneCondition = null);
         /// <summary>
         /// Gets a drone and adds it to the list DataSource
         /// </summary>
@@ -78,13 +78,13 @@ namespace DAL
         /// <param name="DroneID"></param>
         /// <param name="StationID"></param>
         /// <returns></returns>
-        public DroneCharge SendToCharge(int DroneID, int StationID);
+        public DO.DroneCharge SendToCharge(int DroneID, int StationID);
 
         /// <summary>
         /// release the drone from the charge slote
         /// </summary>
         /// <param name="dc"></param>
-        public void BatteryCharged(DroneCharge dc);
+        public void BatteryCharged(DO.DroneCharge dc);
 
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Drone findDrone(int id);
+        public DO.Drone findDrone(int id);
 
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace DAL
         /// retuen IEnumerable<Drone>
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Drone> getAllDrones();
+        public IEnumerable<DO.Drone> getAllDrones();
 
         /// <summary>
         /// delet drone from the list at dataSource
@@ -120,13 +120,13 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public DroneCharge findStationOfDroneCharge(int id);
+        public DO.DroneCharge findStationOfDroneCharge(int id);
         /// <summary>
         /// get a id of atation and return all the drone that charge in this station
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<DroneCharge> findDroneCharge(int id);
+        public IEnumerable<DO.DroneCharge> findDroneCharge(int id);
 
         #endregion
 
@@ -142,13 +142,13 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Customer findCustomer(int id);
+        public DO.Customer findCustomer(int id);
 
         /// <summary>
         /// return list of the customer from type IEnumerable<Customer>
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Customer> getAllCustomers();
+        public IEnumerable<DO.Customer> getAllCustomers();
 
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <param name="c"></param>
-        public void updateCustomer(int id, Customer c);
+        public void updateCustomer(int id, DO.Customer c);
 
         /// <summary>
         /// delet customer from the list at dataSource

@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using BO;
 using DO;
-using IBL;
 
-namespace BL
+namespace BlApi
 {
-    public partial  class BL: IBL.IBL
+   sealed public partial  class BL: IBL.IBL
     {
+        //singelton
+
+        static readonly BL instance = new BL();
+        public static BL Instance { get { return instance; } }
+
         public double[] chargeCapacity;
-        DAL.IDal dl ;
+       DalApi.IDal dl =DAL.DalFactory.GetDal("");
         public List<DroneToList> DroneArr;
 
         /// <summary>

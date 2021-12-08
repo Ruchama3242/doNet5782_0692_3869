@@ -22,11 +22,11 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL.IBL bl;
+        BlApi.BL bl;
         public MainWindow()
         {
             InitializeComponent();
-             bl = new BL.BL();
+             bl = new BlApi.BL();
         }
         
 

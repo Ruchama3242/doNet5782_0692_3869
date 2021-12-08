@@ -20,7 +20,8 @@ namespace PL
     /// </summary>
     public partial class droneListView : Window
     {
-        private IBL.IBL bl;
+        
+        private IBL.IBL bl= BL.BlFactory.GetBl();
 
        // public static IEnumerable<DroneToList> ItemsSource { get; set; }
 
