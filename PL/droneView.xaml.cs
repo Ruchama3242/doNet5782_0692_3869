@@ -33,7 +33,7 @@ namespace PL
             this.bl = bl;
             updateGrid.Visibility = Visibility.Hidden;
             realeseFromCharg.Visibility = Visibility.Hidden;
-            cmbStation.ItemsSource = bl.veiwListStation();
+            cmbStation.ItemsSource = bl.avilableCharginStation();
            DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
             
         }
