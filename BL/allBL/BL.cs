@@ -12,8 +12,8 @@ namespace BlApi
     {
         //singelton
 
-        static readonly BL instance = new BL();
-        public static BL Instance { get { return instance; } }
+        static readonly IBL.IBL instance = new BL();
+        internal static IBL.IBL Instance { get { return instance; } }
 
         public double[] chargeCapacity;
        DalApi.IDal dl =DAL.DalFactory.GetDal("");
