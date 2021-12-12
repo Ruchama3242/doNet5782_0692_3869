@@ -182,7 +182,7 @@ namespace IBL
         /// return all the ststion with 1 or more avilable charge slots
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<global::BO.Station> avilableCharginStation();
+        public IEnumerable<global::BO.StationToList> avilableCharginStation();
 
         #endregion
     }

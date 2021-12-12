@@ -99,14 +99,15 @@ namespace BlApi
             }
         }
 
-        public IEnumerable<Station> avilableCharginStation()
+        public IEnumerable<StationToList> avilableCharginStation()
         {
-            IEnumerable<DO.Station> stations = dl.getAllStations();
-            List<Station> avilable = new List<Station>();
+            //IEnumerable<DO.Station> stations = dl.getAllStations();
+            IEnumerable<StationToList> stations = veiwListStation();
+            List<StationToList> avilable = new List<StationToList>();
             foreach (var item in stations)
             {
-                if (item.chargeSlots > 0)
-                    avilable.Add(convertStation(item));
+                if (item.availableChargeSlots > 0)
+                    avilable.Add(item);
             }
             return avilable;
         }
