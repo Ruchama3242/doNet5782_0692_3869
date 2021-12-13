@@ -194,6 +194,11 @@ namespace BlApi
             return station;
         }
 
+        //public double timeThatEnteredToCharge(DroneToList d)
+        //{
+        //    return 
+        //}
+
     }
 }
 

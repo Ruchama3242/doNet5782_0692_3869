@@ -28,7 +28,7 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,-51,-6">
-        <Grid x:Name="addGrid" Margin="0,0,475,209" Height="225" VerticalAlignment="Bottom" >
+        <Grid x:Name="addGrid" Margin="0,0,475,209" Height="225" VerticalAlignment="Bottom" d:IsHidden="True" >
             <TextBox x:Name="idTxt" HorizontalAlignment="Left" Margin="146,36,0,0" Text="" TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneID"/>
             <Label Content="Drone ID" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="51,31,0,0" VerticalAlignment="Top" Width="90"/>
             <Label Content="Drone model" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="51,62,0,0" VerticalAlignment="Top" Width="90"/>
@@ -76,7 +76,7 @@
                 </Button.Background>
             </Button>-->
         </Grid>
-        <Grid Margin="0,33,519,236" x:Name="realeseFromCharg" Visibility="Visible">
+        <Grid Margin="0,33,519,236" x:Name="realeseFromCharg" Visibility="Visible" d:IsHidden="True">
             <Label Content="Enter the time (in minute)"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="6,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.237,-8.526" Width="275" Height="64" FontSize="14" Visibility="Visible"/>
             <TextBox x:Name="timeInChargeTxt" HorizontalAlignment="Left" Margin="92,0,0,0"
                      Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="92" 

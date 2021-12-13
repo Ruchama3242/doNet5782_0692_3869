@@ -79,7 +79,7 @@ namespace IBL
         /// </summary>
         /// <param name="id"></param>
         /// <param name="time"></param>
-        public void releaseFromCharge(int id, int time);
+        public void releaseFromCharge(int id, double time);
 
         /// <summary>
         /// return a IEnumerable<IBL.BO.DroneToList>

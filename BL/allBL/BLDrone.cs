@@ -192,7 +192,7 @@ namespace BlApi
             return c;
         }
 
-        public void releaseFromCharge(int id, int time)
+        public void releaseFromCharge(int id, double time)
         {
             try
             {
