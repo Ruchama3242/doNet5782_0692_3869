@@ -7,7 +7,7 @@ using BO;
 
 namespace BlApi
 {
-   public partial class BL : IBL.IBL
+   internal partial class BL : IBL.IBL
     {
         
         public int addParcel(int senderId,int targetId,int weight,int priority)

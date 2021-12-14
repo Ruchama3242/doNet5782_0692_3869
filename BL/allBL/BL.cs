@@ -8,7 +8,7 @@ using DO;
 
 namespace BlApi
 {
-   sealed public partial  class BL: IBL.IBL
+   sealed internal partial  class BL: IBL.IBL
     {
         //singelton
 
