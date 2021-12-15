@@ -8,12 +8,12 @@ using DO;
 
 namespace BlApi
 {
-   sealed internal partial  class BL: IBL.IBL
+   sealed internal partial  class BL: IBL
     {
         //singelton
 
-        static readonly IBL.IBL instance = new BL();
-        internal static IBL.IBL Instance { get { return instance; } }
+        static readonly BlApi.IBL instance = new BL();
+        internal static BlApi.IBL Instance { get { return instance; } }
 
         public double[] chargeCapacity;
        DalApi.IDal dl =DAL.DalFactory.GetDal("");

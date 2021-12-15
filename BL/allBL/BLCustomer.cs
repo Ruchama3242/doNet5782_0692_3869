@@ -9,7 +9,7 @@ using BL;
 
 namespace BlApi
 {
-   internal partial class BL : IBL.IBL
+   internal partial class BL : IBL
     {
          public void addCustomer(Customer customerBL)
         {

@@ -8,7 +8,7 @@ using BO;
 
 namespace BlApi
 {
-    internal partial class BL :IBL.IBL
+    internal partial class BL :IBL
     {
         
         Random rnd = new Random();

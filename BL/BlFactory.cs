@@ -8,9 +8,9 @@ namespace BL
 {
    static public class BlFactory
     {
-        static public  IBL.IBL GetBl()
+        static public  BlApi.IBL GetBl()
         { 
-            IBL.IBL bl = BlApi.BL.Instance;
+            BlApi.IBL bl = BlApi.BL.Instance;
             return bl;
         }
     }

@@ -21,7 +21,7 @@ namespace PL
     public partial class droneListView : Window
     {
         
-        private IBL.IBL bl= BL.BlFactory.GetBl();
+        private BlApi.IBL bl= BL.BlFactory.GetBl();
 
        // public static IEnumerable<DroneToList> ItemsSource { get; set; }
 
@@ -30,7 +30,7 @@ namespace PL
             InitializeComponent();
         }
 
-        public droneListView(IBL.IBL bl)
+        public droneListView(BlApi.IBL bl)
         {
             InitializeComponent();
             this.bl = bl;
