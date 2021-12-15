@@ -11,6 +11,7 @@ namespace DO
         public string phone { get; set; }
         public double longitude { get; set; }
         public double lattitude { get; set; }
+         public bool active { get; set; }
 
         public override string ToString()
         {

@@ -20,7 +20,7 @@ namespace BlApi
             catch (Exception e)
             {
 
-                throw new BLgeneralException(e.Message);
+                throw new BLgeneralException(e.Message,e);
             }
 
             try
@@ -40,7 +40,7 @@ namespace BlApi
             }
             catch (Exception e)
             {
-                throw new BLgeneralException($"{e}");
+                throw new BLgeneralException(e.Message,e);
             }
         }
 
@@ -86,9 +86,9 @@ namespace BlApi
                 pb.target.ID = target.ID;
                 return pb;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new BLIdUnExistsException("ERROR! the parcel  not found");
+                throw new BLIdUnExistsException("ERROR! the parcel  not found", e);
             }
         }
 
