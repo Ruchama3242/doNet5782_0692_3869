@@ -169,6 +169,8 @@ namespace PL
 
             try
             {
+                if (tp == 0)
+                    tp = bl.timeThatEnteredToCharge();
                 double t = DateTime.Now.TimeOfDay.TotalMinutes;
                 double total = t-tp;
                 bl.releaseFromCharge(dr.ID, total);
@@ -183,7 +185,7 @@ namespace PL
                 sendToDeliveryBtn.Visibility = Visibility.Visible;
                 realeseFromCharg.Visibility = Visibility.Hidden;
                 updateGrid.Visibility = Visibility.Visible;
-
+                tp = 0;
             }
             catch (Exception ex)
             {

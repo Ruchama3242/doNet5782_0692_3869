@@ -24,6 +24,7 @@ namespace BL
         public double[] chargeCapacity;
 
         public List<DroneToList> DroneArr;
+        static double time;
 
         /// <summary>
         /// constructor
@@ -93,6 +94,7 @@ namespace BL
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
                         drt.battery = rnd.Next(0, 21) ;
                         dl.SendToCharge(drt.ID, s.ID);
+                        time= DateTime.Now.TimeOfDay.TotalMinutes;
                     }
                     else
                     {
@@ -200,10 +202,10 @@ namespace BL
             return station;
         }
 
-        //public double timeThatEnteredToCharge(DroneToList d)
-        //{
-        //    return 
-        //}
+        public double timeThatEnteredToCharge()
+        {
+            return time;
+        }
 
     }
 }
