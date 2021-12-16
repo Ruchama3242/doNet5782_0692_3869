@@ -7,7 +7,7 @@ using BO;
 
 namespace BlApi
 {
-   public interface IBL
+    public interface IBL
     {
      
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 

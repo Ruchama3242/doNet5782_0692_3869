@@ -1,16 +1,11 @@
 ﻿using System;
-using DO;
+using DalApi;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
 
-
-namespace DO
+namespace Dal
 {
-    namespace DalObject
+    sealed partial class DalObject 
     {
-        sealed partial class DalObject
-        {
 
             ///// <summary>
             /////מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
@@ -30,79 +25,79 @@ namespace DO
             //    return list;
             //}
 
-            public int addParcel(Parcel temp)
+            public int addParcel(DO.Parcel temp)
             {
 
 
-                temp.ID = DataSource.Config.runnerID;
-                DataSource.ParcelList.Add(temp);
-                DataSource.Config.runnerID++;
+                temp.ID = DAL.DataSource.Config.runnerID;
+                DAL.DataSource.ParcelList.Add(temp);
+                DAL.DataSource.Config.runnerID++;
 
                 return temp.ID;
             }
 
             public void ParcelDrone(int parcelID, int droneID)
             {
-                for (int i = 0; i < DataSource.ParcelList.Count; i++)
+                for (int i = 0; i < DAL.DataSource.ParcelList.Count; i++)
                 {
-                    if (DataSource.ParcelList[i].ID == parcelID)
+                    if (DAL.DataSource.ParcelList[i].ID == parcelID)
                     {
-                        Parcel p = DataSource.ParcelList[i];
+                        DO.Parcel p = DAL.DataSource.ParcelList[i];
                         p.droneID = droneID;
                         p.scheduled = DateTime.Now;
-                        DataSource.ParcelList[i] = p;
+                        DAL.DataSource.ParcelList[i] = p;
                         return;
                     }
                 }
-                throw new generalException("ERROR! the value not found");
+                throw new DO.generalException("ERROR! the value not found");
             }
             public void ParcelPickedUp(int parcelID, DateTime day)
             {
-                for (int i = 0; i < DataSource.ParcelList.Count; i++)
+                for (int i = 0; i < DAL.DataSource.ParcelList.Count; i++)
                 {
-                    if (DataSource.ParcelList[i].ID == parcelID)
+                    if (DAL.DataSource.ParcelList[i].ID == parcelID)
                     {
-                        Parcel p = DataSource.ParcelList[i];
+                        DO.Parcel p = DAL.DataSource.ParcelList[i];
                         p.pickedUp = day;
-                        DataSource.ParcelList[i] = p;
+                        DAL.DataSource.ParcelList[i] = p;
                         return;
                     }
                 }
-                throw new generalException("ERROR! the value not found");
+                throw new DO.generalException("ERROR! the value not found");
             }
 
             public void ParcelReceived(int parcelID, DateTime day)
             {
-                for (int i = 0; i < DataSource.ParcelList.Count; i++)
+                for (int i = 0; i < DAL.DataSource.ParcelList.Count; i++)
                 {
-                    if (DataSource.ParcelList[i].ID == parcelID)
+                    if (DAL.DataSource.ParcelList[i].ID == parcelID)
                     {
-                        Parcel p = DataSource.ParcelList[i];
+                        DO.Parcel p = DAL.DataSource.ParcelList[i];
                         p.delivered = day;
-                        DataSource.ParcelList[i] = p;
+                        DAL.DataSource.ParcelList[i] = p;
                         return;
                     }
                 }
-                throw new generalException("ERROR! the value not found");
+                throw new DO.generalException("ERROR! the value not found");
             }
 
-            public Parcel findParcel(int id)
+            public DO.Parcel findParcel(int id)
             {
-                foreach (Parcel item in DataSource.ParcelList)
+                foreach (DO.Parcel item in DAL.DataSource.ParcelList)
                 {
                     if (item.ID == id)
                         return item;
                 }
-                throw new IdUnExistsException("ERROR! the parcel doesn't found");
+                throw new DO.IdUnExistsException("ERROR! the parcel doesn't found");
             }
             /// <summary>
             /// return IEnumerable<Parcel> of all the parcel
             /// </summary>
             /// <returns></returns>
-            public IEnumerable<Parcel> getAllParcels()
+            public IEnumerable<DO.Parcel> getAllParcels()
             {
-                List<Parcel> lst = new List<Parcel>();
-                foreach (Parcel item in DataSource.ParcelList)
+                List<DO.Parcel> lst = new List<DO.Parcel>();
+                foreach (DO.Parcel item in DAL.DataSource.ParcelList)
                     lst.Add(item);
                 return lst;
             }
@@ -110,10 +105,10 @@ namespace DO
             /// <summary>
             /// print all parcels that have no yet drone
             /// </summary>
-            public IEnumerable<Parcel> getParcelsWithoutDrone()
+            public IEnumerable<DO.Parcel> getParcelsWithoutDrone()
             {
-                List<Parcel> lst = new List<Parcel>();
-                foreach (Parcel item in DataSource.ParcelList)
+                List<DO.Parcel> lst = new List<DO.Parcel>();
+                foreach (DO.Parcel item in DAL.DataSource.ParcelList)
                 {
                     if (item.droneID == 0 && item.delivered == null)
                         lst.Add(item);
@@ -123,29 +118,29 @@ namespace DO
 
             public void deleteSParcel(int id)
             {
-                foreach (Parcel item in DataSource.ParcelList)
+                foreach (DO.Parcel item in DAL.DataSource.ParcelList)
                 {
                     if (item.ID == id)
                     {
-                        DataSource.ParcelList.Remove(item);
+                        DAL.DataSource.ParcelList.Remove(item);
                         return;
                     }
                 }
-                throw new IdUnExistsException("ERROR! the parcel doesn't found");
+                throw new DO.IdUnExistsException("ERROR! the parcel doesn't found");
             }
 
-            public void updateParcel(int id, Parcel p)
+            public void updateParcel(int id, DO.Parcel p)
             {
-                for (int i = 0; i < DataSource.ParcelList.Count; i++)
+                for (int i = 0; i < DAL.DataSource.ParcelList.Count; i++)
                 {
-                    if (DataSource.ParcelList[i].ID == id)
+                    if (DAL.DataSource.ParcelList[i].ID == id)
                     {
-                        DataSource.ParcelList[i] = p;
+                        DAL.DataSource.ParcelList[i] = p;
                         return;
                     }
                 }
-                throw new IdUnExistsException("ERROR! the parcel doesn't found");
+                throw new DO.IdUnExistsException("ERROR! the parcel doesn't found");
             }
         }
     }
-}
+

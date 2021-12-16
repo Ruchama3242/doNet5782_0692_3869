@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using BO;
 
 
-namespace BlApi
+namespace BL
 {
-    internal partial class BL :IBL
+    internal partial class BL 
     {
         
         Random rnd = new Random();

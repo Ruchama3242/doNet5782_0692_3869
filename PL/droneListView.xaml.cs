@@ -21,7 +21,7 @@ namespace PL
     public partial class droneListView : Window
     {
         
-        private BlApi.IBL bl= BL.BlFactory.GetBl();
+        private BlApi.IBL bl=BlApi.BlFactory.GetBl();
 
        // public static IEnumerable<DroneToList> ItemsSource { get; set; }
 

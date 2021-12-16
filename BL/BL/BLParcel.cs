@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BO;
 
-namespace BlApi
+namespace BL
 {
-   internal partial class BL : IBL
+   internal partial class BL 
     {
         
         public int addParcel(int senderId,int targetId,int weight,int priority)

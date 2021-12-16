@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BO;
 using DO;
+using BlApi;
+using DalApi;
 
-namespace BlApi
+namespace BL
 {
    sealed internal partial  class BL: IBL
     {
@@ -15,8 +17,12 @@ namespace BlApi
         static readonly BlApi.IBL instance = new BL();
         internal static BlApi.IBL Instance { get { return instance; } }
 
+       // internal IDal dal = DalFactory.GetDal();
+
+        DalApi.IDal dl = DalFactory.GetDal();
+        
         public double[] chargeCapacity;
-       DalApi.IDal dl =DAL.DalFactory.GetDal("");
+
         public List<DroneToList> DroneArr;
 
         /// <summary>

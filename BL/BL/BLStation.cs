@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using BO;
 using BL;
 
-namespace BlApi
+namespace BL
 {
-   internal partial class BL : IBL
+   internal partial class BL 
     {
         
         public void addStation(Station station)
