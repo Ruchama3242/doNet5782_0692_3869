@@ -99,10 +99,10 @@ namespace BlApi
         /// <param name="id"></param>
         public void parcelToDrone(int id);
 
-
+        public double timeThatEnteredToCharge();
        // public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
 
-       // public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
+        // public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
 
 
         #endregion

@@ -18,6 +18,7 @@ namespace BlApi
         public double[] chargeCapacity;
        DalApi.IDal dl =DAL.DalFactory.GetDal("");
         public List<DroneToList> DroneArr;
+        static double time;
 
         /// <summary>
         /// constructor
@@ -87,6 +88,7 @@ namespace BlApi
                         drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
                         drt.battery = rnd.Next(0, 21) ;
                         dl.SendToCharge(drt.ID, s.ID);
+                        time= DateTime.Now.TimeOfDay.TotalMinutes;
                     }
                     else
                     {
@@ -194,10 +196,10 @@ namespace BlApi
             return station;
         }
 
-        //public double timeThatEnteredToCharge(DroneToList d)
-        //{
-        //    return 
-        //}
+        public double timeThatEnteredToCharge()
+        {
+            return time;
+        }
 
     }
 }
