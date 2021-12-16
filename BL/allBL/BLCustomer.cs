@@ -34,7 +34,7 @@ namespace BlApi
             }
             catch(Exception e)
             {
-                throw new BLgeneralException($"{e}");
+                throw new BLgeneralException(e.Message,e);
             }
         }
 
@@ -58,7 +58,7 @@ namespace BlApi
             }
             catch (Exception e)
             {
-                throw new BLgeneralException($"{e}");
+                throw new BLgeneralException(e.Message,e);
             }
         }
 
@@ -155,7 +155,7 @@ namespace BlApi
             }
             catch (Exception e)
             {
-                throw new BLgeneralException($"{e}");
+                throw new BLgeneralException(e.Message, e);
             }
         }
 

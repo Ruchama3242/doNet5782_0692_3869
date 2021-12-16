@@ -62,6 +62,7 @@ using System.Collections.Generic;
                         temp.name = names.ToString();
                         temp.longitude = r.Next(30, 34);
                         temp.lattitude = r.Next(34, 37);
+                        temp.active = true;
                         temp.ID = r.Next(212365428, 328987502);
                         temp.phone = "0"+ r.Next(521121316, 549993899);
                         CustomersList.Add(temp);

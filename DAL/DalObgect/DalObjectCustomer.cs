@@ -5,6 +5,7 @@ using System.Collections;
 using System.Linq;
 
 
+
 namespace DO
 {
     namespace DalObject
@@ -23,17 +24,22 @@ namespace DO
                 if (flag)
                     DataSource.CustomersList.Add(temp);
                 else
-                    throw new IdExistsException();
+                {
+                    Customer c = findCustomer(temp.ID);
+                    if (c.active == false)
+                        c.active = true;
+                    //throw new IdExistsException();
+                }
             }
 
             public Customer findCustomer(int id)
             {
                 foreach (Customer item in DataSource.CustomersList)
                 {
-                    if (item.ID == id)
+                    if (item.ID == id && item.active == true)
                         return item;
                 }
-                throw new IdUnExistsException("ERROR! the customer doesn't found");
+                throw new IdUnExistsException("ERROR! the customer doesn't found or not active");
             }
 
             /// <summary>
@@ -50,29 +56,37 @@ namespace DO
 
             public void deleteSCustomer(int id)
             {
-                foreach (Customer item in DataSource.CustomersList)
+                try
                 {
-                    if (item.ID == id)
-                    {
-                        DataSource.CustomersList.Remove(item);
-                        return;
-                    }
+                    Customer c = findCustomer(id);
+                    c.active = false;
                 }
+                catch (Exception e)
+                {
+                    throw new generalException(e.Message, e);
+                }
+                //foreach (Customer item in DataSource.CustomersList)
+                //{
+                //    if (item.ID == id)
+                //    {
+                //        DataSource.CustomersList.Remove(item);
+                //        return;
+                //    }
+                //}
                 throw new IdUnExistsException("ERROR! the customer doesn't found");
             }
 
             public void updateCustomer(int id, Customer c)
             {
-
-                for (int i = 0; i < DataSource.CustomersList.Count; i++)
+                try
                 {
-                    if (DataSource.CustomersList[i].ID == id)
-                    {
-                        DataSource.CustomersList[i] = c;
-                        return;
-                    }
+                    Customer tmp = findCustomer(id);
+                    tmp = c;
                 }
-                throw new IdUnExistsException("ERROR! the customer doesn't found");
+                catch (Exception e)
+                {
+                    throw new IdUnExistsException(e.Message, e);
+                }
             }
         }
     }
