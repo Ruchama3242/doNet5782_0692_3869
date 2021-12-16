@@ -19,7 +19,7 @@ namespace BL
 
        // internal IDal dal = DalFactory.GetDal();
 
-        DalApi.IDal dl = DalFactory.GetDal();
+        DalApi.IDal dl = DAL.DalFactory.GetDal("");
         
         public double[] chargeCapacity;
 

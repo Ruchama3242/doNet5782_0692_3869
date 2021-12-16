@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="droneView" Height="450" Width="800">
+        Title="droneView" Height="450" Width="433">
     <Window.Resources>
         <Style x:Key="myLableStyle"
  TargetType="Label">
@@ -27,7 +27,7 @@
  Value="Bold" />
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,-51,-6">
+    <Grid Margin="0,0,10,-16" RenderTransformOrigin="0.981,0.479">
         <Grid x:Name="addGrid" Margin="0,0,475,209" Height="225" VerticalAlignment="Bottom" d:IsHidden="True" >
             <TextBox x:Name="idTxt" HorizontalAlignment="Left" Margin="146,36,0,0" Text="" TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneID"/>
             <Label Content="Drone ID" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="51,31,0,0" VerticalAlignment="Top" Width="90"/>
@@ -41,7 +41,7 @@
             <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="144,129,0,0" VerticalAlignment="Top" Width="120 " Height="20"/>
 
         </Grid>
-        <Grid x:Name="updateGrid" Margin="10,10,363,0">
+        <Grid x:Name="updateGrid" Margin="10,10,10,0">
             <Label Content="Drone ID" Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="26,17,0,0" VerticalAlignment="Top" Width="100"/>
             <TextBox x:Name="updateIdtxt"  HorizontalAlignment="Left" Margin="132,25,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="Drone model"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="27,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.499,0.814"/>
