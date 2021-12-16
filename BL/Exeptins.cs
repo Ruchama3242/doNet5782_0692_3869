@@ -14,7 +14,7 @@ namespace BO
         {
             public BLgeneralException() : base("ERROR") { }
             public BLgeneralException(string message) : base(message) { }
-        public BLgeneralException(string message, Exception innerException) : base(message, innerException) { }
+       // public BLgeneralException(string message, Exception innerException) : base(message, innerException) { }
 
         override public string ToString()
             { return Message; }
@@ -23,7 +23,7 @@ namespace BO
         {
             public BLIdExistsException() : base("The ID already Exists") { }
             public BLIdExistsException(string message) : base(message) { }
-        public BLIdExistsException(string message, Exception innerException) : base(message, innerException) { }
+       // public BLIdExistsException(string message, Exception innerException) : base(message, innerException) { }
 
         override public string ToString()
             { return Message; }
@@ -33,7 +33,7 @@ namespace BO
         {
             public BLIdUnExistsException() : base("The ID don't found") { }
             public BLIdUnExistsException(string message) : base(message) { }
-        public BLIdUnExistsException(string message, Exception innerException) : base(message, innerException) { }
+        //public BLIdUnExistsException(string message, Exception innerException) : base(message, innerException) { }
 
         override public string ToString()
             { return Message; }

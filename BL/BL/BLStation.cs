@@ -33,7 +33,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 
@@ -55,7 +55,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 
@@ -95,7 +95,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 

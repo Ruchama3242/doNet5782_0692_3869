@@ -82,7 +82,7 @@ namespace BL
                 }
                 catch (Exception e )
                 {
-                    throw new BLIdUnExistsException(e.Message,e);
+                    throw new BLIdUnExistsException(e.Message/*,e*/);
                 }
                 DO.Drone dr = droneDal(d);//drone of "DAL" type
                 dl.addDrone(dr);//add drone to the list in the dal
@@ -92,7 +92,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLIdExistsException(e.Message,e);
+                throw new BLIdExistsException(e.Message/*,e*/);
             }
         }
 
@@ -114,7 +114,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLIdUnExistsException(e.Message,e);
+                throw new BLIdUnExistsException(e.Message/*,e*/);
             }
 
         }
@@ -174,7 +174,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 
@@ -217,7 +217,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message, e);
+                throw new BLgeneralException(e.Message/*, e*/);
             }
         }
 
@@ -257,7 +257,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 
@@ -282,7 +282,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 
@@ -303,7 +303,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 

@@ -20,7 +20,7 @@ namespace BL
             catch (Exception e)
             {
 
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
 
             try
@@ -40,7 +40,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message,e);
+                throw new BLgeneralException(e.Message/*,e*/);
             }
         }
 
@@ -88,7 +88,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLIdUnExistsException("ERROR! the parcel  not found", e);
+                throw new BLIdUnExistsException("ERROR! the parcel  not found"/*, e*/);
             }
         }
 
