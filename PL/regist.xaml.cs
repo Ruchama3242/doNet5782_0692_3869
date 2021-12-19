@@ -39,24 +39,24 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            tmp.ID = Convert.ToInt32(ID.Text);
-            tmp.name = name.Text;
-            tmp.phone = Convert.ToString(phone.Text);
-            tmp.location = new Location { latitude = Convert.ToDouble(lattitude.Text), longitude = Convert.ToDouble(longitude.Text) };
-            bl.addCustomer(tmp);
+
+            try
+            {
+                tmp.ID = Convert.ToInt32(ID.Text);
+                tmp.name = name.Text;
+                tmp.phone = Convert.ToString(phone.Text);
+                tmp.location = new Location { latitude = Convert.ToDouble(lattitude.Text), longitude = Convert.ToDouble(longitude.Text) };
+                bl.addCustomer(tmp);
+                this.Close();
+                MessageBox.Show($"{tmp.name} successfully added");
+            }
+            catch(Exception E)
+            {
+                MessageBox.Show(E.Message+"(longitude 29.3 - 33.5, lattitude 33.7 - 36.3 ");
+            }
         }
 
        
-        private void longitude_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //if (Convert.ToDouble(longitude.Text) < 29.3 || Convert.ToDouble(longitude.Text) > 33.5)
-              //  MessageBox.Show("Please enter a location located in the State of Israel (between 29.3 and 33.5)");
-        }
-
-        private void lattitude_MouseLeave(object sender, MouseEventArgs e)
-        {
-         //   if (Convert.ToDouble(lattitude.Text) < 33.7 || Convert.ToDouble(lattitude.Text) > 36.3)
-           //     MessageBox.Show("Please enter a location located in the State of Israel (between 33.7 and 36.3)");
-        }
+        
     }
 }
