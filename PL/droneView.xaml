@@ -28,7 +28,7 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,10,-16" RenderTransformOrigin="0.981,0.479">
-        <Grid x:Name="addGrid" Margin="0,0,475,209" Height="225" VerticalAlignment="Bottom" d:IsHidden="True" >
+        <Grid x:Name="addGrid" Margin="0,0,475,209" Height="225" VerticalAlignment="Bottom" >
             <TextBox x:Name="idTxt" HorizontalAlignment="Left" Margin="146,36,0,0" Text="" TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneID"/>
             <Label Content="Drone ID" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="51,31,0,0" VerticalAlignment="Top" Width="90"/>
             <Label Content="Drone model" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="51,62,0,0" VerticalAlignment="Top" Width="90"/>

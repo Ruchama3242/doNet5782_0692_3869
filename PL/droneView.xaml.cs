@@ -32,6 +32,7 @@ namespace PL
         {
             InitializeComponent();
             this.bl = bl;
+            addGrid.Visibility = Visibility.Visible;
             updateGrid.Visibility = Visibility.Hidden;
             realeseFromCharg.Visibility = Visibility.Hidden;
             cmbStation.ItemsSource = bl.avilableCharginStation();
