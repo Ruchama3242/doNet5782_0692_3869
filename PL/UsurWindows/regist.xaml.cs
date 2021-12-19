@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
 
- //enum AreaCode { 050, 052, 053, 054, 055, 058 };
-
 namespace PL
 {
     /// <summary>
@@ -52,7 +50,7 @@ namespace PL
             }
             catch(Exception E)
             {
-                MessageBox.Show(E.Message+"(longitude 29.3 - 33.5, lattitude 33.7 - 36.3 ");
+                MessageBox.Show(E.Message);
             }
         }
 

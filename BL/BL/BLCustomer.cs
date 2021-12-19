@@ -16,9 +16,9 @@ namespace BL
             try
             {
                 if (customerBL.location.longitude < 29.3 || customerBL.location.longitude > 33.5)
-                    throw new BLgeneralException("Error! the longitude is incorrect");
+                    throw new BLgeneralException("Error! the longitude is incorrect, (longitude 29.3 - 33.5, lattitude 33.7 - 36.3 ");
                 if (customerBL.location.latitude < 33.7 || customerBL.location.latitude > 36.3)
-                    throw new BLgeneralException("Error! the latitude is incorrect");
+                    throw new BLgeneralException("Error! the latitude is incorrect, (longitude 29.3 - 33.5, lattitude 33.7 - 36.3 ");
                 if (customerBL.ID < 100000000 || customerBL.ID > 999999999)
                     throw new BLgeneralException("ERROR! the id must be with 9 digits");
                 if (customerBL.phone.Length < 9 || customerBL.phone.Length > 10)

@@ -38,10 +38,9 @@
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Width="109"/>
         <Label x:Name="lattitudeL" Content="lattitude" HorizontalAlignment="Left" Margin="25,152,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" RenderTransformOrigin="-0.67,-7.458"/>
-
+        <Border BorderThickness="6" BorderBrush="#FF1F8193" Margin="0,0,0,-24"/>
         <TextBox x:Name="ID" HorizontalAlignment="Center" Margin="0,36,0,0" Text="" MaxLength="9" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="name" HorizontalAlignment="Center" Margin="0,66,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
-                  />
+        <TextBox x:Name="name" HorizontalAlignment="Center" Margin="0,66,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="longitude" HorizontalAlignment="Center" Margin="0,123,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="lattitude" HorizontalAlignment="Center" Margin="0,156,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="phone" HorizontalAlignment="Center" Margin="0,96,0,0" Text="" MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Height="21" />
