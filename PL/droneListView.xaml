@@ -34,7 +34,7 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-19,80,248,564" Grid.RowSpan="2">
+        <Grid x:Name="UpGrid" Height="auto" Grid.Row="1" Width="auto" Margin="-19,10,248,532">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -46,7 +46,7 @@
             <Label Content="Drone Status:" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
             <Label Content="Drone Max Weight:" Style = "{StaticResource myLableStyle}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
         </Grid>
-        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="416" VerticalAlignment="Top" Margin="5,83,269,0" Grid.Row="1" MouseDoubleClick="mouse">
+        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="387" VerticalAlignment="Top" Margin="5,112,269,0" Grid.Row="1" MouseDoubleClick="mouse">
             <!--SelectionChanged="ListView_SelectionChanged"-->
             <!-- RequestBringIntoView="DronesListView_RequestBringIntoView"-->
             <ListView.View>
