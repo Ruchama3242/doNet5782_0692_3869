@@ -8,12 +8,12 @@ namespace Dal
             //singelton
 
             static readonly DalObject instance = new DalObject();
-            internal static DalObject Instance { get { return instance; } }
+            public static DalObject Instance { get { return instance; } }
 
             /// <summary>
             /// constructor
             /// </summary>
-            DalObject() { DAL.DataSource.Initialize(); }
+            private DalObject() { DAL.DataSource.Initialize(); }
 
             /// <summary>
             /// reurn array of five values ​​in the following order: free, light, medium, heavy and load rate
