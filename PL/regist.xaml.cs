@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -44,6 +44,19 @@ namespace PL
             tmp.phone = Convert.ToString(phone.Text);
             tmp.location = new Location { latitude = Convert.ToDouble(lattitude.Text), longitude = Convert.ToDouble(longitude.Text) };
             bl.addCustomer(tmp);
+        }
+
+       
+        private void longitude_MouseLeave(object sender, MouseEventArgs e)
+        {
+            //if (Convert.ToDouble(longitude.Text) < 29.3 || Convert.ToDouble(longitude.Text) > 33.5)
+              //  MessageBox.Show("Please enter a location located in the State of Israel (between 29.3 and 33.5)");
+        }
+
+        private void lattitude_MouseLeave(object sender, MouseEventArgs e)
+        {
+         //   if (Convert.ToDouble(lattitude.Text) < 33.7 || Convert.ToDouble(lattitude.Text) > 36.3)
+           //     MessageBox.Show("Please enter a location located in the State of Israel (between 33.7 and 36.3)");
         }
     }
 }
