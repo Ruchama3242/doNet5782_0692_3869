@@ -17,9 +17,9 @@ namespace BL
         static readonly BlApi.IBL instance = new BL();
         internal static BlApi.IBL Instance { get { return instance; } }
 
-       // internal IDal dal = DalFactory.GetDal();
+        internal IDal dl = DalFactory.GetDal();
 
-        DalApi.IDal dl = DAL.DalFactory.GetDal("");
+       // DalApi.IDal dl = DAL.DalFactory.GetDal("");
         
         public double[] chargeCapacity;
 
