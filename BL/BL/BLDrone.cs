@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BO;
 
-
 namespace BL
 {
     internal partial class BL 
