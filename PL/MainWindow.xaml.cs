@@ -36,7 +36,10 @@ namespace PL
             new droneListView(bl).Show();
            
         }
-    
-        
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new regist(bl).ShowDialog();
+        }
     }
 }
