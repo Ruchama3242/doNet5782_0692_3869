@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="droneView" Height="450" Width="433">
+        Title="droneView" Height="450" Width="850">
     <Window.Resources>
         <Style x:Key="myLableStyle"
  TargetType="Label">
