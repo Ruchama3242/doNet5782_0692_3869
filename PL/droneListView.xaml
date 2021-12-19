@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" x:Name="idTxt" x:Class="PL.droneListView"
         mc:Ignorable="d"
-        Title="droneListView" Height="640" Width="800">
+        Title="droneListView" Height="648" Width="1101">
     <Window.Resources>
         <Style x:Key="myLableStyle"
  TargetType="Label">
@@ -28,13 +28,13 @@
  Value="Bold" />
         </Style>
     </Window.Resources>
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" Margin="0,-87,-271,-6">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
+        <Grid x:Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,229,644" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -46,7 +46,7 @@
             <Label Content="Drone Status:" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
             <Label Content="Drone Max Weight:" Style = "{StaticResource myLableStyle}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
         </Grid>
-        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,5,0" Grid.Row="1" MouseDoubleClick="mouse">
+        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="494" VerticalAlignment="Top" Margin="5,5,269,0" Grid.Row="1" MouseDoubleClick="mouse">
             <!--SelectionChanged="ListView_SelectionChanged"-->
             <!-- RequestBringIntoView="DronesListView_RequestBringIntoView"-->
             <ListView.View>
@@ -58,7 +58,7 @@
                 <VisualBasic:Collection/>
             </ListView.ItemsSource>
         </ListView>
-        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Left" Margin="649,504,0,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="140" FontSize="15" Click="Button_Click"/>
+        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Left" Margin="902,504,0,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="140" FontSize="15" Click="Button_Click"/>
         <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="23,504,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="close"/>
 
     </Grid>
