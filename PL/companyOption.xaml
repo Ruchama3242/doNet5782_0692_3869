@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="companyOption" Height="230" Width="300">
+        Title="companyOption" Height="500" Width="500">
     <Window.Resources>
         <Style x:Key="myButtonStyle"
  TargetType="Button">
@@ -18,7 +18,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Button x:Name="customer" Content="Customer" HorizontalAlignment="Left" Margin="50,40,0,0"
+        <Button x:Name="customer"  Foreground="#FFEEF5F6" Content="Customer" HorizontalAlignment="Left" Margin="50,40,0,0"
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="20" MaxWidth="70" MinWidth="50" Click="customer_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -27,7 +27,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="drone" Content="Drone" HorizontalAlignment="Left" Margin="50,80,0,0"
+        <Button x:Name="drone"  Foreground="#FFEEF5F6" Content="Drone" HorizontalAlignment="Left" Margin="50,80,0,0"
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="20" MaxWidth="70" MinWidth="50" Width="57" Click="drone_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -36,7 +36,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="station" Content="Statiion" HorizontalAlignment="Left" Margin="50,120,0,0"
+        <Button x:Name="station"  Foreground="#FFEEF5F6" Content="Statiion" HorizontalAlignment="Left" Margin="50,120,0,0"
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="20" MaxWidth="70" MinWidth="50">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -45,7 +45,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="parcel" Content="Parcel" HorizontalAlignment="Left" Margin="50,160,0,0"
+        <Button x:Name="parcel"  Foreground="#FFEEF5F6" Content="Parcel" HorizontalAlignment="Left" Margin="50,160,0,0"
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="20" MaxWidth="70" MinWidth="50" Width="57">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
