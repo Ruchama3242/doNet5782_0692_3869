@@ -54,9 +54,12 @@ namespace Dal
                 try
                 {
                     DO.Customer c = findCustomer(id);
+                DAL.DataSource.CustomersList.Remove(c);
                     c.active = false;
-                }
-                catch (Exception e)
+                DAL.DataSource.CustomersList.Add(c);
+
+            }
+            catch (Exception e)
                 {
                     throw new DO.generalException(e.Message, e);
                 }
@@ -76,9 +79,13 @@ namespace Dal
                 try
                 {
                     DO.Customer tmp = findCustomer(id);
-                    tmp = c;
-                }
-                catch (Exception e)
+                DAL.DataSource.CustomersList.Remove(tmp);
+
+                tmp = c;
+                DAL.DataSource.CustomersList.Add(tmp);
+
+            }
+            catch (Exception e)
                 {
                     throw new DO.IdUnExistsException(e.Message, e);
                 }
