@@ -7,8 +7,8 @@ namespace Dal
     {
             //singelton
 
-            static readonly DalObject instance = new DalObject();
-            public static DalObject Instance { get { return instance; } }
+            static readonly IDal instance = new DalObject();
+            public static IDal Instance { get { return instance; } }
 
             /// <summary>
             /// constructor

@@ -107,5 +107,21 @@ namespace PL
         {
             DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
         }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DroneToList d = (DroneToList)DronesListView.SelectedItem;
+                bl.deleteDrone(d.ID);
+                MessageBox.Show("The drone was delete");
+                fillListView();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

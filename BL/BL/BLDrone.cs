@@ -393,6 +393,13 @@ namespace BL
             return 0;
 
         }
+
+        public void deleteDrone(int id)
+        {
+            dl.deleteDrone(id);
+            DroneToList d = findDroneDal(id);
+            DroneArr.Remove(d);
+        }
     }
 
 }
