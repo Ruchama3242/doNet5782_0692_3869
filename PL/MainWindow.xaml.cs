@@ -33,7 +33,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new companyOption(bl).ShowDialog();
+            new passwordWindow(bl).ShowDialog();
             //new droneListView(bl).Show();
            
         }

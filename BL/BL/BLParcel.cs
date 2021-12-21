@@ -181,5 +181,10 @@ namespace BL
             }
             throw new BLgeneralException("ERROR! the parcel can't be delivered");
         }
+
+        public void deleteParcel(int id)
+        {
+            dl.deleteSParcel(id);
+        }
     }
 }

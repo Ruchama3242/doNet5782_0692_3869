@@ -36,6 +36,9 @@ namespace BlApi
         /// <param name="id"></param>
         /// <returns></returns>
         public global::BO.Customer findCustomer(int id);
+
+
+        public void deleteCustomer(int id);
         #endregion
 
         #region - - - - - - - - - - - - drone - - - - - - - - - - - - - - - -
@@ -100,10 +103,11 @@ namespace BlApi
         public void parcelToDrone(int id);
 
         public double timeThatEnteredToCharge();
-       // public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
+        // public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
 
         // public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);
 
+        public void deleteDrone(int id);
 
         #endregion
 
@@ -148,6 +152,9 @@ namespace BlApi
         /// </summary>
         /// <param name="droneid"></param>
         public void packageDelivery(int droneid);
+
+
+        public void deleteParcel(int id);
         #endregion
 
         #region       - - - - - - - - - - - - - station - - - - - - - - - - - - - - - 
@@ -183,6 +190,8 @@ namespace BlApi
         /// </summary>
         /// <returns></returns>
         public IEnumerable<global::BO.StationToList> avilableCharginStation();
+
+        public void deleteStation(int id);
 
         #endregion
     }

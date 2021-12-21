@@ -159,6 +159,9 @@ namespace BL
             }
         }
 
+
+       
+
          private Priorities GetParcelPriorities(DO.Priorities p)
         {
 
@@ -183,6 +186,11 @@ namespace BL
             if (p.delivered == null && p.pickedUp != null)
                 return ParcelStatus.PickedUp;
             return ParcelStatus.Delivred;
+        }
+
+        public void deleteCustomer(int id)
+        {
+            dl.deleteSCustomer(id);
         }
     }
 }

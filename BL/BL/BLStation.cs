@@ -141,5 +141,11 @@ namespace BL
             return tmp;
 
         }
+
+
+        public void deleteStation(int id)
+        {
+            dl.deleteStation(id);
+        }
     }
 }
