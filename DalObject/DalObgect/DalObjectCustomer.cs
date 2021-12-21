@@ -50,39 +50,46 @@ namespace Dal
             return lst;
         }
 
-        public void deleteSCustomer(int id)
-        {
-            try
+            public void deleteSCustomer(int id)
             {
-                DO.Customer c = findCustomer(id);
-                c.active = false;
-            }
-            catch (Exception e)
-            {
-                throw new DO.generalException(e.Message, e);
-            }
-            //foreach (Customer item in DataSource.CustomersList)
-            //{
-            //    if (item.ID == id)
-            //    {
-            //        DataSource.CustomersList.Remove(item);
-            //        return;
-            //    }
-            //}
-            throw new DO.IdUnExistsException("ERROR! the customer doesn't found");
-        }
+                try
+                {
+                    DO.Customer c = findCustomer(id);
+                DAL.DataSource.CustomersList.Remove(c);
+                    c.active = false;
+                DAL.DataSource.CustomersList.Add(c);
 
-        public void updateCustomer(int id, DO.Customer c)
-        {
-            try
-            {
-                DO.Customer tmp = findCustomer(id);
-                tmp = c;
             }
             catch (Exception e)
+                {
+                    throw new DO.generalException(e.Message, e);
+                }
+                //foreach (Customer item in DataSource.CustomersList)
+                //{
+                //    if (item.ID == id)
+                //    {
+                //        DataSource.CustomersList.Remove(item);
+                //        return;
+                //    }
+                //}
+                throw new DO.IdUnExistsException("ERROR! the customer doesn't found");
+            }
+
+            public void updateCustomer(int id, DO.Customer c)
             {
-                throw new DO.IdUnExistsException(e.Message, e);
+                try
+                {
+                    DO.Customer tmp = findCustomer(id);
+                DAL.DataSource.CustomersList.Remove(tmp);
+
+                tmp = c;
+                DAL.DataSource.CustomersList.Add(tmp);
+
+            }
+            catch (Exception e)
+                {
+                    throw new DO.IdUnExistsException(e.Message, e);
+                }
             }
         }
     }
-}

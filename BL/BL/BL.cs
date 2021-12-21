@@ -29,7 +29,7 @@ namespace BL
         /// <summary>
         /// constructor
         /// </summary>
-         public BL()
+          BL()
         {
             bool flag = false;
             Random rnd = new Random();
