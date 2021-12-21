@@ -4,84 +4,85 @@ using System.Collections.Generic;
 
 namespace Dal
 {
-    sealed partial class DalObject 
+    sealed partial class DalObject
     {
-        
-            public void addCustomer(DO.Customer temp)
-            {
-                bool flag = true;
-                foreach (DO.Customer item in DAL.DataSource.CustomersList)
-                {
 
-                    if (item.ID == temp.ID) //return true if the field is the same
-                        flag = false;
-                }
-                if (flag)
-                   DAL.DataSource.CustomersList.Add(temp);
-                else
-                {
-                    DO.Customer c = findCustomer(temp.ID);
-                    if (c.active == false)
-                        c.active = true;
-                    //throw new IdExistsException();
-                }
+        public void addCustomer(DO.Customer temp)
+        {
+            bool flag = true;
+            foreach (DO.Customer item in DAL.DataSource.CustomersList)
+            {
+
+                if (item.ID == temp.ID) //return true if the field is the same
+                    flag = false;
             }
-
-            public DO.Customer findCustomer(int id)
+            if (flag)
+                DAL.DataSource.CustomersList.Add(temp);
+            else
             {
-                foreach (DO.Customer item in DAL.DataSource.CustomersList)
-                {
-                    if (item.ID == id && item.active == true)
-                        return item;
-                }
-                throw new  DO.IdUnExistsException("ERROR! the customer doesn't found or not active");
+                DO.Customer c = findCustomer(temp.ID);
+                if (c.active == false)
+                    c.active = true;
+         
+                //throw new IdExistsException();
             }
+        }
 
-            /// <summary>
-            /// return list of the customer from type IEnumerable<Customer>
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<DO.Customer> getAllCustomers()
+        public DO.Customer findCustomer(int id)
+        {
+            foreach (DO.Customer item in DAL.DataSource.CustomersList)
             {
-                List<DO.Customer> lst = new List<DO.Customer>();
-                foreach (DO.Customer item in DAL.DataSource.CustomersList)
-                    lst.Add(item);
-                return lst;
+                if (item.ID == id && item.active == true)
+                    return item;
             }
+            throw new DO.IdUnExistsException("ERROR! the customer doesn't found or not active");
+        }
 
-            public void deleteSCustomer(int id)
+        /// <summary>
+        /// return list of the customer from type IEnumerable<Customer>
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DO.Customer> getAllCustomers()
+        {
+            List<DO.Customer> lst = new List<DO.Customer>();
+            foreach (DO.Customer item in DAL.DataSource.CustomersList)
+                lst.Add(item);
+            return lst;
+        }
+
+        public void deleteSCustomer(int id)
+        {
+            try
             {
-                try
-                {
-                    DO.Customer c = findCustomer(id);
-                    c.active = false;
-                }
-                catch (Exception e)
-                {
-                    throw new DO.generalException(e.Message, e);
-                }
-                //foreach (Customer item in DataSource.CustomersList)
-                //{
-                //    if (item.ID == id)
-                //    {
-                //        DataSource.CustomersList.Remove(item);
-                //        return;
-                //    }
-                //}
-                throw new DO.IdUnExistsException("ERROR! the customer doesn't found");
+                DO.Customer c = findCustomer(id);
+                c.active = false;
             }
-
-            public void updateCustomer(int id, DO.Customer c)
+            catch (Exception e)
             {
-                try
-                {
-                    DO.Customer tmp = findCustomer(id);
-                    tmp = c;
-                }
-                catch (Exception e)
-                {
-                    throw new DO.IdUnExistsException(e.Message, e);
-                }
+                throw new DO.generalException(e.Message, e);
+            }
+            //foreach (Customer item in DataSource.CustomersList)
+            //{
+            //    if (item.ID == id)
+            //    {
+            //        DataSource.CustomersList.Remove(item);
+            //        return;
+            //    }
+            //}
+            throw new DO.IdUnExistsException("ERROR! the customer doesn't found");
+        }
+
+        public void updateCustomer(int id, DO.Customer c)
+        {
+            try
+            {
+                DO.Customer tmp = findCustomer(id);
+                tmp = c;
+            }
+            catch (Exception e)
+            {
+                throw new DO.IdUnExistsException(e.Message, e);
             }
         }
     }
+}
