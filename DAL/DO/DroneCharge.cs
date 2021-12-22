@@ -8,7 +8,7 @@ using DO;
         {
             public int droneID { get; set; }
             public int stationeld { get; set; }
-
+        public DateTime enterToCharge;
             public override string ToString()
             {
                 String result = "";

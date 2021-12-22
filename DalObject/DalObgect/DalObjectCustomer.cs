@@ -23,9 +23,13 @@ namespace Dal
             }
             else
             {
-                DO.Customer c = findCustomer(temp.ID);
+                DO.Customer c = DAL.DataSource.CustomersList.Find(item=>item.ID==temp.ID);
                 if (c.active == false)
+                {
+                    DAL.DataSource.CustomersList.Remove(c);
                     c.active = true;
+                    DAL.DataSource.CustomersList.Add(c);
+                }
                 else
                     throw new DO.IdUnExistsException("ERROR! the customer is already exist");
                     
@@ -39,7 +43,7 @@ namespace Dal
         {
             foreach (DO.Customer item in DAL.DataSource.CustomersList)
             {
-                if (item.ID == id )
+                if (item.ID == id&&item.active==true )
                     return item;
             }
             throw new DO.IdUnExistsException("ERROR! the customer doesn't found or not active");
@@ -53,7 +57,10 @@ namespace Dal
         {
             List<DO.Customer> lst = new List<DO.Customer>();
             foreach (DO.Customer item in DAL.DataSource.CustomersList)
-                lst.Add(item);
+            {
+                if(item.active==true)
+                   lst.Add(item);
+            }
             return lst;
         }
 

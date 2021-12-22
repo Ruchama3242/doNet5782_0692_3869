@@ -42,6 +42,7 @@ namespace Dal
                 DO.DroneCharge d = new DO.DroneCharge();
                 d.droneID = DroneID;
                 d.stationeld = StationID;
+            d.enterToCharge = DateTime.Now;
                 int i = 0;
                 for (; i < DAL.DataSource.StationsList.Count; i++)
                 {

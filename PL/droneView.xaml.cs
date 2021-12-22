@@ -22,7 +22,7 @@ namespace PL
     {
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
         private DroneToList dr;
-        private static double tp;
+      
         public droneView()
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace PL
             {
                 collectBtn.Visibility = Visibility.Visible;
                 parcelDeliveryBtn.Visibility = Visibility.Visible;
+                viewParcelbtn.Visibility = Visibility.Visible;
             }
         }
 
@@ -72,7 +73,7 @@ namespace PL
             {
                 //StationToList s = (StationToList)cmbStation.SelectedItem;
                 bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(cmbStation.SelectedItem));
-                tp = DateTime.Now.TimeOfDay.TotalMinutes;
+              
                 MessageBox.Show("the drone was successfully added");
                 
                 this.Close();
@@ -147,7 +148,7 @@ namespace PL
         {
             try
             {
-                tp = DateTime.Now.TimeOfDay.TotalMinutes;
+                
                 bl.sendToCharge(dr.ID);
                 MessageBox.Show("the drone was sent to charge");
                 Drone drone = bl.findDrone(dr.ID);
@@ -170,11 +171,8 @@ namespace PL
 
             try
             {
-                if (tp == 0)
-                    tp = bl.timeThatEnteredToCharge();
-                double t = DateTime.Now.TimeOfDay.TotalMinutes;
-                double total = t-tp;
-                bl.releaseFromCharge(dr.ID, total);
+             
+                bl.releaseFromCharge(dr.ID);
                 MessageBox.Show("the drone was relase from charge");
                 Drone drone = bl.findDrone(dr.ID);
                 fillTextbox(drone);
@@ -186,7 +184,7 @@ namespace PL
                 sendToDeliveryBtn.Visibility = Visibility.Visible;
                 realeseFromCharg.Visibility = Visibility.Hidden;
                 updateGrid.Visibility = Visibility.Visible;
-                tp = 0;
+                //tp = 0;
             }
             catch (Exception ex)
             {
@@ -197,7 +195,7 @@ namespace PL
 
         private void okBtn_Click(object sender, RoutedEventArgs e)
         {
-            bl.releaseFromCharge(dr.ID, Convert.ToInt32(timeInChargeTxt.Text));
+           
             MessageBox.Show("the drone was relase from charge");
             Drone drone = bl.findDrone(dr.ID);
             fillTextbox(drone);
@@ -274,6 +272,11 @@ namespace PL
         private void timeInChargeTxt_KeyDown(object sender, KeyEventArgs e)
         {
             ;
+        }
+
+        private void viewParcelbtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

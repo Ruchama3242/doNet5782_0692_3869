@@ -82,7 +82,7 @@ namespace BlApi
         /// </summary>
         /// <param name="id"></param>
         /// <param name="time"></param>
-        public void releaseFromCharge(int id, double time);
+        public void releaseFromCharge(int id);
 
         /// <summary>
         /// return a IEnumerable<IBL.BO.DroneToList>
@@ -102,7 +102,7 @@ namespace BlApi
         /// <param name="id"></param>
         public void parcelToDrone(int id);
 
-        public double timeThatEnteredToCharge();
+        
         // public IEnumerable<IBL.BO.DroneToList> droneFilterWheight(IBL.BO.WeightCategories w);
 
         // public IEnumerable<IBL.BO.DroneToList> droneFilterStatus(IBL.BO.DroneStatus w);

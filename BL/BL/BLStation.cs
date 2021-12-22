@@ -134,6 +134,7 @@ namespace BL
                 DroneInCharge charge = new DroneInCharge();
                 charge.ID = item.droneID;
                 charge.battery = findDrone(item.droneID).battery;
+                //charge.enterToCharge = item.enterToCharge;
                 dr.Add(charge);
             }
             tmp.dronesInChargeList = new List<DroneInCharge>();

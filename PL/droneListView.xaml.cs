@@ -117,10 +117,16 @@ namespace PL
         {
             try
             {
+                
                 DroneToList d = (DroneToList)DronesListView.SelectedItem;
-                bl.deleteDrone(d.ID);
-                MessageBox.Show("The drone was delete");
-                fillListView();
+                if (d == null)
+                    MessageBox.Show("ERROR! choose a drone");
+                else
+                {
+                    bl.deleteDrone(d.ID);
+                    MessageBox.Show("The drone was delete");
+                    fillListView();
+                }
             }
             catch (Exception ex)
             {
