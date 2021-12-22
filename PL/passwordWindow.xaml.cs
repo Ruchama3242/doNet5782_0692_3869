@@ -47,7 +47,11 @@ namespace PL
                 pas.Clear();
             }
             else
+            {
                 new companyOption(bl).ShowDialog();
+                this.Close();
+            }
+
         }
     }
     }
