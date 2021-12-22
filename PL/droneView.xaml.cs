@@ -35,7 +35,7 @@ namespace PL
             addGrid.Visibility = Visibility.Visible;
             updateGrid.Visibility = Visibility.Hidden;
             realeseFromCharg.Visibility = Visibility.Hidden;
-            cmbStation.ItemsSource = bl.avilableCharginStation();
+            cmbStation.ItemsSource = bl.avilableCharginStation().Select(s => s.ID);
            DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
             
         }
@@ -70,8 +70,8 @@ namespace PL
         {
             try
             {
-                StationToList s = (StationToList)cmbStation.SelectedItem;
-                bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(s.ID));
+                //StationToList s = (StationToList)cmbStation.SelectedItem;
+                bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(cmbStation.SelectedItem));
                 tp = DateTime.Now.TimeOfDay.TotalMinutes;
                 MessageBox.Show("the drone was successfully added");
                 

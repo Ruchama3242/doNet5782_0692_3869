@@ -23,7 +23,7 @@ namespace PL
         
         private BlApi.IBL bl=BlApi.BlFactory.GetBl();
 
-       // public static IEnumerable<DroneToList> ItemsSource { get; set; }
+       
 
         public droneListView()
         {
@@ -35,10 +35,10 @@ namespace PL
             InitializeComponent();
             this.bl = bl;
 
-            fillListView();
+            
             statusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
-           
+            fillListView();
         }
 
         
@@ -74,6 +74,7 @@ namespace PL
                 d = this.bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
             if (weightSelector.Text != "")
                 d = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
+
             DronesListView.ItemsSource = d;
         }
 
@@ -100,12 +101,16 @@ namespace PL
 
         private void filtering(object sender, SelectionChangedEventArgs e)
         {
-            DronesListView.ItemsSource = bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
+            if(statusSelector.Text!="")
+                DronesListView.ItemsSource = bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
+            
         }
 
         private void filterWeight(object sender, SelectionChangedEventArgs e)
         {
-            DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
+            //string t = weightSelector.Text;
+            if(weightSelector.Text!="")
+               DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
@@ -122,6 +127,13 @@ namespace PL
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void clearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DronesListView.ItemsSource = bl.getAllDrones();
+            weightSelector.Text="";
+            statusSelector.Text = "";
         }
     }
 }
