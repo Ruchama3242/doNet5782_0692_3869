@@ -45,5 +45,10 @@ namespace PL
         {
             new customerListView(bl).ShowDialog();
         }
+
+        private void station_Click(object sender, RoutedEventArgs e)
+        {
+            new stattionListView().ShowDialog();
+        }
     }
 }

@@ -37,7 +37,7 @@
             </Button.Background>
         </Button>
         <Button x:Name="station"  Foreground="#FFEEF5F6" Content="Statiion" HorizontalAlignment="Left" Margin="50,120,0,0"
-                 Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="20" MaxWidth="70" MinWidth="50">
+                 Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="20" MaxWidth="70" MinWidth="50" Click="station_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>

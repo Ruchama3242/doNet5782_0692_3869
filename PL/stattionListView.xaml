@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="stattionListView" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="addBtn" Content="add station" HorizontalAlignment="Left" Margin="147,363,0,0" VerticalAlignment="Top" Height="40" Width="117" Click="addBtn_Click"/>
+
     </Grid>
 </Window>
