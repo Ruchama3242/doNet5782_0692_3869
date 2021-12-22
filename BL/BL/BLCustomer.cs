@@ -30,6 +30,7 @@ namespace BL
                 temp.phone = customerBL.phone;
                 temp.lattitude = customerBL.location.latitude;
                 temp.longitude = customerBL.location.longitude;
+                temp.active = true;
                 dl.addCustomer(temp);
             }
             catch(Exception e)

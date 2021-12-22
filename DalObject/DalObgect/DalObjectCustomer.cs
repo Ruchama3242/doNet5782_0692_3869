@@ -16,14 +16,21 @@ namespace Dal
                 if (item.ID == temp.ID) //return true if the field is the same
                     flag = false;
             }
-            if (flag)
+            if (flag==true)
+            {
+              
                 DAL.DataSource.CustomersList.Add(temp);
+            }
             else
             {
                 DO.Customer c = findCustomer(temp.ID);
                 if (c.active == false)
                     c.active = true;
-         
+                else
+                    throw new DO.IdUnExistsException("ERROR! the customer is already exist");
+                    
+                    
+
                 //throw new IdExistsException();
             }
         }
@@ -32,7 +39,7 @@ namespace Dal
         {
             foreach (DO.Customer item in DAL.DataSource.CustomersList)
             {
-                if (item.ID == id && item.active == true)
+                if (item.ID == id )
                     return item;
             }
             throw new DO.IdUnExistsException("ERROR! the customer doesn't found or not active");
