@@ -21,45 +21,45 @@ namespace PL
     /// </summary>
     public partial class regist : Window
     {
-        private BlApi.IBL bl = BlApi.BlFactory.GetBl();
-        private ObservableCollection<BO.Customer> myCollection =
-      new ObservableCollection<BO.Customer>();
+        private BlApi.IBL bl ;
+        BO.Customer c;
+       // private ObservableCollection<BO.Customer> myCollection =
+     // new ObservableCollection<BO.Customer>();
 
         public regist()
         {
             InitializeComponent();
-            
+            bl = BlApi.BlFactory.GetBl();
+            c = new Customer();
+            c.location = new BO.Location();
+            this.DataContext = c;
+            //this.myCollection = myCollection;
+
         }
 
-        public regist(BlApi.IBL bl, ObservableCollection<BO.Customer> myCollection)
-        {
-            InitializeComponent();
-            this.bl = bl;
-            this.myCollection = myCollection;
-        }
-        public regist(BlApi.IBL bl)
-        {
-            InitializeComponent();
-            this.bl = bl;
-        }
+        //public regist(BlApi.IBL bl, ObservableCollection<BO.Customer> myCollection)
+        //{
+        //    InitializeComponent();
+        //    this.bl = bl;
+        //    this.myCollection = myCollection;
+        //}
+        //public regist(BlApi.IBL bl)
+        //{
+        //    InitializeComponent();
+        //    this.bl = bl;
+        //}
 
-        BO.Customer tmp = new BO.Customer();
-
+      
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+           // BO.Customer tmp = new BO.Customer();
             try
-            {
-                tmp.ID = Convert.ToInt32(ID.Text);
-                tmp.name = name.Text;
-                tmp.phone = Convert.ToString(phone.Text);
-                tmp.location = new Location { latitude = Convert.ToDouble(lattitude.Text), longitude = Convert.ToDouble(longitude.Text) };
-                bl.addCustomer(tmp);
+           {
+                bl.addCustomer(c);
+                MessageBox.Show($"{c.name} successfully added");
+                c = new BO.Customer();
+                this.DataContext = c;
                 this.Close();
-                MessageBox.Show($"{tmp.name} successfully added");
-                myCollection.Add(tmp);
-               // DataContext = myCollection;
-               
             }
             catch (Exception E)
             {

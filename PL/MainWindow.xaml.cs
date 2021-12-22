@@ -40,7 +40,7 @@ namespace PL
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new regist(bl).ShowDialog();
+            new regist().ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

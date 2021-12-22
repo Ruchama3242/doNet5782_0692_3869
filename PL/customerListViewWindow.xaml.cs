@@ -48,7 +48,7 @@ namespace PL
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            new regist(bl, myCollection).ShowDialog();
+            new regist().ShowDialog();
            
            // DataContext = this.myCollection;
           // lstBoxCustomer.GetBindingExpression(TextBox.TextProperty).UpdateSource();
