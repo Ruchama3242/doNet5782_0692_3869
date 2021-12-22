@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BO;
 
 namespace PL
@@ -21,12 +22,21 @@ namespace PL
     public partial class regist : Window
     {
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
+        private ObservableCollection<BO.Customer> myCollection =
+      new ObservableCollection<BO.Customer>();
+
         public regist()
         {
             InitializeComponent();
             
         }
 
+        public regist(BlApi.IBL bl, ObservableCollection<BO.Customer> myCollection)
+        {
+            InitializeComponent();
+            this.bl = bl;
+            this.myCollection = myCollection;
+        }
         public regist(BlApi.IBL bl)
         {
             InitializeComponent();
@@ -47,8 +57,11 @@ namespace PL
                 bl.addCustomer(tmp);
                 this.Close();
                 MessageBox.Show($"{tmp.name} successfully added");
+                myCollection.Add(tmp);
+               // DataContext = myCollection;
+               
             }
-            catch(Exception E)
+            catch (Exception E)
             {
                 MessageBox.Show(E.Message);
             }
