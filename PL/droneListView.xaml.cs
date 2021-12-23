@@ -106,34 +106,34 @@ namespace PL
             
         }
 
-        private void filterWeight(object sender, SelectionChangedEventArgs e)
-        {
-            //string t = weightSelector.Text;
-            if(weightSelector.Text!="")
-               DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
-        }
+        //private void filterWeight(object sender, SelectionChangedEventArgs e)
+        //{
+        //    //string t = weightSelector.Text;
+        //    if(weightSelector.Text!="")
+        //       DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
+        //}
 
-        private void deleteBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
+        //private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
                 
-                DroneToList d = (DroneToList)DronesListView.SelectedItem;
-                if (d == null)
-                    MessageBox.Show("ERROR! choose a drone");
-                else
-                {
-                    bl.deleteDrone(d.ID);
-                    MessageBox.Show("The drone was delete");
-                    fillListView();
-                }
-            }
-            catch (Exception ex)
-            {
+        //        DroneToList d = (DroneToList)DronesListView.SelectedItem;
+        //        if (d == null)
+        //            MessageBox.Show("ERROR! choose a drone");
+        //        else
+        //        {
+        //            bl.deleteDrone(d.ID);
+        //            MessageBox.Show("The drone was delete");
+        //            fillListView();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -146,5 +146,12 @@ namespace PL
         {
 
         }
+
+        private void weightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (weightSelector.Text != "")
+                DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
+        }
     }
-}
+    }
+

@@ -7,7 +7,27 @@
         mc:Ignorable="d"
         Title="stattionListView" Height="450" Width="800">
     <Grid>
-        <Button x:Name="addBtn" Content="add station" HorizontalAlignment="Left" Margin="147,363,0,0" VerticalAlignment="Top" Height="40" Width="117" Click="addBtn_Click"/>
+        <Button x:Name="addBtn" Content="add station" HorizontalAlignment="Left" Margin="147,363,0,0" VerticalAlignment="Top" Height="53" Width="178" Click="addBtn_Click" FontSize="24"/>
+        <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Left" Margin="500,363,0,0" VerticalAlignment="Top" Height="53" Width="178"  FontSize="24" Click="closeBtn_Click"/>
+
+        <ListView x:Name="stationLst" DataContext="{Binding}"   ItemsSource="{Binding}"   Margin="10,85,10,79" AutomationProperties.Name="stationLst" 
+            HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" >
+            <!--<ListView.View>
+            <GridView>
+                
+                <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding XPath= ID }"  />
+                <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
+                <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />
+                <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding Path=sendAndDeliveredParcel}"/>
+                <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcel}"/>
+                <GridViewColumn Width="200" Header="parcel on way" DisplayMemberBinding="{Binding onTheWayParcels}"/>
+                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>
+                
+                </GridView>-->
+            <!--</ListView.View>-->
+        </ListView>
+        <TextBox x:Name="serchTxtBx"  Text ="{Binding Mode=OneTime}"  HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
+        <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="/images/search.png" />
 
     </Grid>
     <Window.Background>

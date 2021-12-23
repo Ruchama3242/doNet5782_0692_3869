@@ -31,8 +31,8 @@
                  Style="{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="20" MaxWidth="400" MinWidth="50" Click="customer_Click" Height="46" Background="{x:Null}" Margin="106,53,71,23" BorderBrush="{x:Null}"/>
         <Button x:Name="drone"  Foreground="#FFEEF5F6" Content="Drone" Margin="101,10,78,24"
                  Style="{StaticResource myButtonStyle}" FontSize="30" MaxHeight="70" MinHeight="20" MaxWidth="300" MinWidth="50" Click="drone_Click" Grid.Row="1" Background="{x:Null}" BorderBrush="{x:Null}"/>
-        <Button x:Name="station"  FontSize="30" Foreground="#FFEEF5F6" Content="Statiion" Margin="132,24,98,24"
-                 Style="{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="20" MaxWidth="300" MinWidth="50" Grid.Row="2" Height="56" Width="270" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Button x:Name="station"  FontSize="30" Foreground="#FFEEF5F6" Content="Stations" Margin="132,24,98,24"
+                 Style="{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="20" MaxWidth="300" MinWidth="50" Grid.Row="2" Height="56" Width="270" Background="{x:Null}" BorderBrush="{x:Null}" Click="station_Click_1"/>
         <Button x:Name="parcel" FontSize="30"  Foreground="#FFEEF5F6" Content="Parcel"
                  Style="{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="20" MaxWidth="300" MinWidth="50" Width="212" Grid.Row="3" Height="80" Background="{x:Null}" BorderBrush="{x:Null}" Margin="161,22,127,41" RenderTransformOrigin="0.438,0.476"/>
 

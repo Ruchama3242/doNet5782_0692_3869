@@ -61,9 +61,8 @@
         </ListView>
         <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="170" FontSize="15" Click="Button_Click" Height="41" Width="202"/>
         <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="10,45,0,0" Grid.Row="2" VerticalAlignment="Top" Height="41" Width="158" FontSize="15" Click="close" Grid.Column="4"/>
-        <Button x:Name="deleteBtn" Content="delete" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="41" Width="106" FontSize="15" Click="deleteBtn_Click" Grid.Column="1" />
         <Button x:Name="clearBtn" Content="clear" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Height="45" Width="118" Click="clearBtn_Click" Style = "{StaticResource myButtonStyle}" Grid.Column="4"/>
-        <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Width="192" Height="54"/>
+        <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Width="192" Height="54" SelectionChanged="weightSelector_SelectionChanged"/>
 
 
     </Grid>

@@ -50,5 +50,11 @@ namespace PL
         {
             new stattionListView().ShowDialog();
         }
+
+        private void station_Click_1(object sender, RoutedEventArgs e)
+        {
+            new stattionListView().ShowDialog();
+
+        }
     }
 }
