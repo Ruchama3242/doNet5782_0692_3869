@@ -23,26 +23,6 @@ namespace PL
     /// Interaction logic for customerListView.xaml
     /// </summary>
     /// 
-  /*using System.Collections.ObjectModel;
-using System.Windows;
- 
-namespace CollectionDemo
-{
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow : Window
-  {
-    private ObservableCollection<MyData> _myCollection = 
-      new ObservableCollection<MyData>();
- 
-    public MainWindow()
-    {
-      InitializeComponent();
- 
-      DataContext = _myCollection;
-      _myCollection.Add
-*/
     public partial class customerListView : Window
     {
         private BlApi.IBL bl;
@@ -55,7 +35,9 @@ namespace CollectionDemo
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
+            //customerLstView.DataContext = bl.viewListCustomer();
             customerLstView.DataContext = bl.viewListCustomer();
+            customerLstView.ItemsSource = bl.viewListCustomer();
            //costomerLstBx.DataContext = myCollection;
         }
 
@@ -63,16 +45,29 @@ namespace CollectionDemo
         private void add_Click(object sender, RoutedEventArgs e)
         {
             new addCustomerWindoes().ShowDialog();
-            //costomerLstBx.DataContext = bl.viewListCustomer();
+            customerLstView.DataContext = bl.viewListCustomer();
+            customerLstView.ItemsSource = bl.viewListCustomer();
+           // customerListView.DataContext = bl.viewListCustomer();
            
         }
 
         private void ListBox_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            //costomerLstBx.Items.Refresh();
+            customerLstView.ItemsSource = bl.viewListCustomer();
             customerLstView.DataContext = bl.viewListCustomer();
         }
 
-       
+        private void Image_TouchEnter(object sender, TouchEventArgs e)
+        {
+
+        }
+
+        private void customerLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Customer c = new Customer();
+            //DroneToList dr = new DroneToList();
+            //dr = (DroneToList)DronesListView.SelectedItem;
+            //new droneView(bl, dr).ShowDialog();
+        }
     }
 }

@@ -6,47 +6,65 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="customerListView" Height="450" Width="800">
-    <Border BorderThickness="6" BorderBrush="#FF1F8193">
-        
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" MinHeight="67"/>
-                <RowDefinition Height="283*"/>
-                <RowDefinition Height="84*"/>
-            </Grid.RowDefinitions>
 
-            <WrapPanel Grid.ColumnSpan="2" TextElement.FontSize="16">
+    <Window.Resources>
+        <Style x:Key="myLableStyle"
+ TargetType="Label">
+            <Setter Property="FontSize"
+ Value="12" />
+            <Setter Property="FontFamily"
+ Value="Consolas" />
+            <Setter Property="FontWeight"
+ Value="Bold" />
+        </Style>
 
-                <StackPanel Orientation="Horizontal" Margin="10"/>
-                <TextBox TextWrapping="Wrap" Width="659" Height="34" Margin="0,20,10,10"/>
-                <Image Height="31" Width="70" Source="search.png" RenderTransformOrigin="10.807,-0.499"/>
+        <Style x:Key="myButtonStyle"
+ TargetType="Button">
+            <Setter Property="FontSize"
+ Value="12" />
+            <Setter Property="FontFamily"
+ Value="Consolas" />
+            <Setter Property="FontWeight"
+ Value="Bold" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="57*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="290"/>
+            <RowDefinition Height="23*"/>
+        </Grid.RowDefinitions>
 
 
 
-            </WrapPanel>
-            <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,283,0,0" Grid.RowSpan="2"/>
-            <Button x:Name="add" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Grid.Column="0" Content="Add new customer" HorizontalAlignment="Left"  Click="add_Click" Margin="40,10,0,10"/>
-            <WrapPanel Grid.Row="1">
-                <ListView x:Name="customerLstView" ItemsSource="{Binding}"
-                  HorizontalContentAlignment="Stretch"  />
+        <Button x:Name="add" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Add new customer"  Click="add_Click" Margin="86,10,86,10" Background="{x:Null}" BorderBrush="{x:Null}"/>
+
+        <ListView x:Name="customerLstView" DataContext="{Binding}"  ItemsSource="{Binding}"   Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="1" AutomationProperties.Name="customerLstView" 
+                  HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" MouseDoubleClick="customerLstView_MouseDoubleClick">
+        <!--<ListView.View>
+            <GridView>
                 
-            </WrapPanel>
-            <StackPanel Grid.Row="1"/>
+                <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding XPath= ID }"  />
+                <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
+                <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />
+                <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding Path=sendAndDeliveredParcel}"/>
+                <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcel}"/>
+                <GridViewColumn Width="200" Header="parcel on way" DisplayMemberBinding="{Binding onTheWayParcels}"/>
+                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>
+                
+                </GridView>-->
+            <!--</ListView.View>-->
+        </ListView>
+        <TextBox x:Name="serchTxtBx"  Text ="{Binding Mode=OneTime}"  HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
+        <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="\images\search.png" Grid.ColumnSpan="2" TouchEnter="Image_TouchEnter"/>
 
-        </Grid>
 
-
-    </Border>
-
-
-    <!--<Grid>
-
-        <Button x:Name="add" Content="Add new customer" HorizontalAlignment="Left" Margin="41,388,0,0" VerticalAlignment="Top" Click="add_Click"/>
-        <TextBox x:Name="search" HorizontalAlignment="Left" Margin="41,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-        <Image HorizontalAlignment="Left" Height="18" Margin="20,10,0,0" VerticalAlignment="Top" Width="16" Source="search.png"/>
-        <ListBox x:Name="lstBoxCustomer" Margin="0,53,0,73" ItemsSource= "{Binding}" />
-    </Grid>-->
+    </Grid>
+    <Window.Background>
+        <ImageBrush Opacity="0.5" ImageSource="\images\backround.jpg" />
+    </Window.Background>
 </Window>

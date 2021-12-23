@@ -46,8 +46,8 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            new droneView(bl).ShowDialog();
+            new addDroneWindow().ShowDialog();
+           // new droneView(bl).ShowDialog();
             fillListView();
         }
 
@@ -140,6 +140,11 @@ namespace PL
             DronesListView.ItemsSource = bl.getAllDrones();
             weightSelector.Text="";
             statusSelector.Text = "";
+        }
+
+        private void DronesListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

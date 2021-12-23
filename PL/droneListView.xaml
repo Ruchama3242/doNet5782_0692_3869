@@ -28,25 +28,26 @@
  Value="Bold" />
         </Style>
     </Window.Resources>
-    <Grid x:Name="MainGrid" Margin="0,-87,-271,-6">
+    <Grid x:Name="MainGrid" Margin="0,-75,-101,-6">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="73*"/>
-            <RowDefinition Height="652*"/>
+            <RowDefinition Height="170*"/>
+            <RowDefinition Height="412*"/>
+            <RowDefinition Height="143*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="UpGrid" Height="auto" Grid.Row="1" Width="auto" Margin="-19,10,248,242">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ComboBox x:Name="statusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" AutomationProperties.Name="StatusSelector" SelectionChanged="filtering" MaxHeight="60" />
-            <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="70" SelectionChanged="filterWeight" MaxHeight="60"/>
-            <Label Content="Drone Status:" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" Height="70" FontSize="24"/>
-            <Label Content="Drone Max Weight:" Style = "{StaticResource myLableStyle}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" FontSize="22"/>
-        </Grid>
-        <ListView x:Name="DronesListView" AutomationProperties.Name="DronesListView" Height="387" VerticalAlignment="Top" Margin="5,150,269,0" Grid.Row="1" MouseDoubleClick="mouse">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="96*"/>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="144*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="statusSelector" Grid.Column="1" AutomationProperties.Name="StatusSelector" SelectionChanged="filtering" MaxHeight="60" Margin="10,72,10,11" />
+        <Label Content="Drone Status:" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" MaxHeight="70" MinHeight="30" FontSize="24" RenderTransformOrigin="0.773,-0.874" Height="38" Margin="23,103,0,0" />
+        <Label Content="Drone Max Weight:" Style = "{StaticResource myLableStyle}" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="200" FontSize="22" Margin="0,108,0,0" Grid.RowSpan="2"/>
+
+        <ListView x:Name="DronesListView" Background="#FFABC6E7" AutomationProperties.Name="DronesListView" Height="407" VerticalAlignment="Top" Margin="5,3,99,0" MouseDoubleClick="mouse" Grid.RowSpan="2" SelectionChanged="DronesListView_SelectionChanged_1" Grid.ColumnSpan="5" Grid.Row="1">
             <!--SelectionChanged="ListView_SelectionChanged"-->
             <!-- RequestBringIntoView="DronesListView_RequestBringIntoView"-->
             <ListView.View>
@@ -58,10 +59,15 @@
                 <VisualBasic:Collection/>
             </ListView.ItemsSource>
         </ListView>
-        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Left" Margin="902,550,0,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="140" FontSize="15" Click="Button_Click" Height="41" Width="111"/>
-        <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="23,550,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="close"/>
-        <Button x:Name="deleteBtn" Content="delete" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="500,550,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="deleteBtn_Click" />
-        <Button x:Name="clearBtn" Content="clear" HorizontalAlignment="Left" Margin="569,86,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="118" Click="clearBtn_Click" Style = "{StaticResource myButtonStyle}"/>
+        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="170" FontSize="15" Click="Button_Click" Height="41" Width="202"/>
+        <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="10,45,0,0" Grid.Row="2" VerticalAlignment="Top" Height="41" Width="158" FontSize="15" Click="close" Grid.Column="4"/>
+        <Button x:Name="deleteBtn" Content="delete" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="41" Width="106" FontSize="15" Click="deleteBtn_Click" Grid.Column="1" />
+        <Button x:Name="clearBtn" Content="clear" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Height="45" Width="118" Click="clearBtn_Click" Style = "{StaticResource myButtonStyle}" Grid.Column="4"/>
+        <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Width="192" Height="54"/>
+
 
     </Grid>
+    <Window.Background>
+        <ImageBrush Opacity="0.5" ImageSource="\images\backround.jpg" />
+    </Window.Background>
 </Window>

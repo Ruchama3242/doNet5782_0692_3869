@@ -44,7 +44,7 @@
 
     </Grid>
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\נועה אנקונינה\Source\Repos\doNet5782_0692_3869\PL\drone1.jpg" />
+        <ImageBrush ImageSource="images\drone1.jpg" />
     </Window.Background>
     <!--<Grid Margin="0,0,0,25">
         <Grid.ColumnDefinitions>
