@@ -68,6 +68,6 @@
 
     </Grid>
     <Window.Background>
-        <ImageBrush Opacity="0.5" ImageSource="\images\backround.jpg" />
+        <ImageBrush Opacity="0.5" ImageSource="images\backround.jpg" />
     </Window.Background>
 </Window>

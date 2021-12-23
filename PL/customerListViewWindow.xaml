@@ -60,11 +60,11 @@
             <!--</ListView.View>-->
         </ListView>
         <TextBox x:Name="serchTxtBx"  Text ="{Binding Mode=OneTime}"  HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
-        <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="\images\search.png" Grid.ColumnSpan="2" TouchEnter="Image_TouchEnter"/>
+        <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" Grid.ColumnSpan="2" TouchEnter="Image_TouchEnter"/>
 
 
     </Grid>
     <Window.Background>
-        <ImageBrush Opacity="0.5" ImageSource="\images\backround.jpg" />
+        <ImageBrush Opacity="0.5" ImageSource="images\backround.jpg" />
     </Window.Background>
 </Window>
