@@ -31,10 +31,10 @@
     <Grid x:Name="MainGrid" Margin="0,-87,-271,-6">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="652*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="UpGrid" Height="auto" Grid.Row="1" Width="auto" Margin="-19,10,248,532">
+        <Grid x:Name="UpGrid" Height="auto" Grid.Row="1" Width="auto" Margin="-19,10,248,242">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -58,7 +58,7 @@
                 <VisualBasic:Collection/>
             </ListView.ItemsSource>
         </ListView>
-        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Left" Margin="902,550,0,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="140" FontSize="15" Click="Button_Click"/>
+        <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Left" Margin="902,550,0,0" Grid.Row="1" VerticalAlignment="Top" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="140" FontSize="15" Click="Button_Click" Height="41" Width="111"/>
         <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="23,550,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="close"/>
         <Button x:Name="deleteBtn" Content="delete" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="470,550,0,0" Grid.Row="1" VerticalAlignment="Top" Height="41" Width="107" FontSize="15" Click="deleteBtn_Click" />
         <Button x:Name="clearBtn" Content="clear" HorizontalAlignment="Left" Margin="569,86,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="118" Click="clearBtn_Click"/>

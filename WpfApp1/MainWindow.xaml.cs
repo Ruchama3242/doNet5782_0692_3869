@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL
+namespace WpfApp1
 {
     /// <summary>
-    /// Interaction logic for user.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class user : Window
+    public partial class MainWindow : Window
     {
-        public user()
+        public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new addCustomerWindoes().ShowDialog();
         }
     }
 }

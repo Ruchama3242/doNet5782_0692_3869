@@ -23,46 +23,56 @@ namespace PL
     /// Interaction logic for customerListView.xaml
     /// </summary>
     /// 
-   // private List<DO.Customer> myCollection = new List<DO.Customer>();
+  /*using System.Collections.ObjectModel;
+using System.Windows;
+ 
+namespace CollectionDemo
+{
+  /// <summary>
+  /// Interaction logic for MainWindow.xaml
+  /// </summary>
+  public partial class MainWindow : Window
+  {
+    private ObservableCollection<MyData> _myCollection = 
+      new ObservableCollection<MyData>();
+ 
+    public MainWindow()
+    {
+      InitializeComponent();
+ 
+      DataContext = _myCollection;
+      _myCollection.Add
+*/
     public partial class customerListView : Window
     {
-        private BlApi.IBL bl = BlApi.BlFactory.GetBl();
+        private BlApi.IBL bl;
 
-        private ObservableCollection<BO.Customer> myCollection =
-      new ObservableCollection<BO.Customer>();
+        //private ObservableCollection<BO.Customer> myCollection =
+      //new ObservableCollection<BO.Customer>();
         
        
         public customerListView()
         {
             InitializeComponent();
-            //this.myCollection = bl.viewListCustomer();
-            DataContext = myCollection;
+            bl = BlApi.BlFactory.GetBl();
+            customerLstView.DataContext = bl.viewListCustomer();
+           //costomerLstBx.DataContext = myCollection;
         }
 
-        public customerListView(BlApi.IBL bl)
-        {
-            InitializeComponent();
-            DataContext = bl.viewListCustomer();
-            this.bl = bl;
-        }
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            new regist().ShowDialog();
+            new addCustomerWindoes().ShowDialog();
+            //costomerLstBx.DataContext = bl.viewListCustomer();
            
-           // DataContext = this.myCollection;
-          // lstBoxCustomer.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            // myCollection.Add(bl.findCustomer
         }
 
         private void ListBox_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-
+            //costomerLstBx.Items.Refresh();
+            customerLstView.DataContext = bl.viewListCustomer();
         }
 
-        private void lstBoxCustomer_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-
-        }
+       
     }
 }

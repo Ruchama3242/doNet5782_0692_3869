@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using BO;
 
 
@@ -27,25 +28,30 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            // bl = new BlApi.BL();
+
         }
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new passwordWindow(bl).ShowDialog();
-            //new droneListView(bl).Show();
            
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new regist().ShowDialog();
+            new addCustomerWindoes().ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-           
+
+        }
+
+        private void customerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new user().ShowDialog();
         }
     }
 }

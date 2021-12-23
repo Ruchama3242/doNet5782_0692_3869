@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="600">
+        Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="myLableStyle"
  TargetType="Label">
@@ -27,8 +27,42 @@
  Value="Bold" />
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,0,25">
-        <Button Content="Company employee" MinHeight="40" MaxHeight="60" MinWidth="170" MaxWidth="180" Margin="-10,4,270,225" Foreground="#FFEEF5F6" BorderBrush="#FF2A239D"  FontSize="16" Style = "{StaticResource myButtonStyle}" Click="Button_Click">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="266*"/>
+            <ColumnDefinition Width="261*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="92.008"/>
+            <RowDefinition Height="74*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="MnegerBtn" Content="maneger" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Center"
+                VerticalAlignment="Top" MinHeight="60" MaxHeight="200" MinWidth="120" MaxWidth="300" Width="190" Click="Button_Click" Height="60" Margin="0,70,0,0" Grid.Row="2"/>
+        <Button x:Name="customerBtn"  Content="customer" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" MinHeight="60" MaxHeight="200" MinWidth="120" MaxWidth="300" Width="190" Height="60" Grid.Row="2" Grid.Column="2" Margin="0,66,0,0" Click="customerBtn_Click" />
+
+    </Grid>
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\נועה אנקונינה\Source\Repos\doNet5782_0692_3869\PL\drone1.jpg" />
+    </Window.Background>
+    <!--<Grid Margin="0,0,0,25">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            -->
+    <!--<ColumnDefinition Width="*"/>-->
+    <!--
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            -->
+    <!--<RowDefinition Height="137*"/>
+            <RowDefinition Height="169*"/>
+            <RowDefinition Height="153*"/>-->
+    <!--
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Button Content="Company employee"  MinHeight="30" MaxHeight="70" MinWidth="100" MaxWidth="250" Margin="-130,-94,120,161" Foreground="#FFEEF5F6" BorderBrush="#FF2A239D"  FontSize="16" Style = "{StaticResource myButtonStyle}" Click="Button_Click" Grid.ColumnSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -36,9 +70,10 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Image x:Name="image" HorizontalAlignment="Left" MaxWidth="200" MinWidth="170" MaxHeight="110" MinHeight="90" Margin="258,217,0,0" VerticalAlignment="Top" Width="175" AutomationProperties.Name="image" Source="/DronePhoto.png"/>
-        <Border BorderThickness="6" BorderBrush="#FF1F8193" Margin="0,0,0,-24"/>
-        <Button Content="registered user" MinHeight="40" MaxHeight="60" MinWidth="170" MaxWidth="180" Foreground="#FFEEF5F6" BorderBrush="#FF2A239D"  FontSize="16" Style = "{StaticResource myButtonStyle}"  Margin="30,110,290,0" VerticalAlignment="Top" Height="62" Click="Button_Click_2">
+        <Image x:Name="image"   HorizontalAlignment="Left"  MinWidth="170" MaxHeight="110" MinHeight="90" Margin="264,313,0,0" VerticalAlignment="Top" MaxWidth="273" AutomationProperties.Name="image" Source="/DronePhoto.png"  Height="90" Grid.Column="1" />
+        <Border BorderThickness="6"  BorderBrush="#FF1F8193" Height="auto" Width="auto" VerticalAlignment="Center"/>
+        <Button Content="registered user" MinHeight="60" MaxHeight="100" MinWidth="120" MaxWidth="237" Foreground="#FFEEF5F6"
+                BorderBrush="#FF2A239D"  FontSize="16" Style = "{StaticResource myButtonStyle}"  Margin="-2,0,236,0" VerticalAlignment="Center" Height="62" Click="Button_Click_2" Grid.ColumnSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -46,7 +81,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="To register" HorizontalAlignment="Left" Margin="30,200,0,0" MinHeight="40" MaxHeight="60" MinWidth="170" MaxWidth="180" Foreground="#FFEEF5F6" BorderBrush="#FF2A239D"  FontSize="16" Style = "{StaticResource myButtonStyle}"  VerticalAlignment="Top" Height="57" Width="180" Click="Button_Click_1">
+        <Button Content="To register" HorizontalAlignment="Left" Margin="13,313,0,0" MinHeight="60" MaxHeight="100" MinWidth="170" MaxWidth="237" Foreground="#FFEEF5F6" BorderBrush="#FF2A239D"  FontSize="16" Style = "{StaticResource myButtonStyle}"  VerticalAlignment="Top" Height="62" Width="237" Click="Button_Click_1" Grid.ColumnSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -55,5 +90,5 @@
             </Button.Background>
         </Button>
 
-    </Grid>
+    </Grid>-->
 </Window>

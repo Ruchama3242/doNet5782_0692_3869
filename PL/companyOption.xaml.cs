@@ -43,7 +43,7 @@ namespace PL
 
         private void customer_Click(object sender, RoutedEventArgs e)
         {
-            new customerListView(bl).ShowDialog();
+            new customerListView().ShowDialog();
         }
     }
 }

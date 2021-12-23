@@ -15,18 +15,16 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for user.xaml
+    /// Interaction logic for template.xaml
     /// </summary>
-    public partial class user : Window
+    public partial class template : Window
     {
-        public user()
+        BlApi.IBL bl;
+        public template()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new addCustomerWindoes().ShowDialog();
+            bl = BlApi.BlFactory.GetBl();
+            DataContext = bl.viewListCustomer();
         }
     }
 }

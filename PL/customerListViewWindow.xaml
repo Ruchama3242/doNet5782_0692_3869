@@ -6,10 +6,47 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="customerListView" Height="450" Width="800">
-    <Grid>
+    <Border BorderThickness="6" BorderBrush="#FF1F8193">
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" MinHeight="67"/>
+                <RowDefinition Height="283*"/>
+                <RowDefinition Height="84*"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.ColumnSpan="2" TextElement.FontSize="16">
+
+                <StackPanel Orientation="Horizontal" Margin="10"/>
+                <TextBox TextWrapping="Wrap" Width="659" Height="34" Margin="0,20,10,10"/>
+                <Image Height="31" Width="70" Source="search.png" RenderTransformOrigin="10.807,-0.499"/>
+
+
+
+            </WrapPanel>
+            <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,283,0,0" Grid.RowSpan="2"/>
+            <Button x:Name="add" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Grid.Column="0" Content="Add new customer" HorizontalAlignment="Left"  Click="add_Click" Margin="40,10,0,10"/>
+            <WrapPanel Grid.Row="1">
+                <ListView x:Name="customerLstView" ItemsSource="{Binding}"
+                  HorizontalContentAlignment="Stretch"  />
+                
+            </WrapPanel>
+            <StackPanel Grid.Row="1"/>
+
+        </Grid>
+
+
+    </Border>
+
+
+    <!--<Grid>
+
         <Button x:Name="add" Content="Add new customer" HorizontalAlignment="Left" Margin="41,388,0,0" VerticalAlignment="Top" Click="add_Click"/>
         <TextBox x:Name="search" HorizontalAlignment="Left" Margin="41,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
         <Image HorizontalAlignment="Left" Height="18" Margin="20,10,0,0" VerticalAlignment="Top" Width="16" Source="search.png"/>
-        <ListBox x:Name="lstBoxCustomer" Margin="0,53,0,73" ItemsSource="{Binding}"  SourceUpdated="ListBox_SourceUpdated"/>
-    </Grid>
+        <ListBox x:Name="lstBoxCustomer" Margin="0,53,0,73" ItemsSource= "{Binding}" />
+    </Grid>-->
 </Window>
