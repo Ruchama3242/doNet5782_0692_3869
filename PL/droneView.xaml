@@ -65,6 +65,7 @@
             <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle}" Content="close" HorizontalAlignment="Left" Margin="43,0,0,51" VerticalAlignment="Bottom" Click="closeBtn_Click" RenderTransformOrigin="2.334,-3.204"/>
             <TextBox x:Name="statusTxt" HorizontalAlignment="Left" Margin="132,122,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="weightTxt" HorizontalAlignment="Left" Margin="132,87,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <Button x:Name="viewParcelbtn" Style="{StaticResource myButtonStyle}" Content="view parcel" HorizontalAlignment="Left" Margin="38,334,0,82" Width="85" Click="viewParcelbtn_Click" Visibility="Hidden"/>
             <!--<Label x:Name="lbl" Content="time in charging" HorizontalAlignment="Left" Margin="107,378,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
             <TextBox x:Name="timeInChargeTxt" HorizontalAlignment="Left" Margin="188,303,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden" RenderTransformOrigin="0.258,-2.448"/>
             <Button x:Name="okBtn" Width="50" FontFamily="Bodoni MT" Content="OK" HorizontalAlignment="Left" Margin="350,362,0,0" VerticalAlignment="Top" Click="okBtn_Click" Visibility="Hidden" RenderTransformOrigin="-0.45,-1.15">

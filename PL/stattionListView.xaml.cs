@@ -23,5 +23,10 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new stationWindow().ShowDialog();
+        }
     }
 }

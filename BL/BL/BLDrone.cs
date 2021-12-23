@@ -191,7 +191,7 @@ namespace BL
             return c;
         }
 
-        public void releaseFromCharge(int id, double time)
+        public void releaseFromCharge(int id)
         {
             try
             {
@@ -199,15 +199,18 @@ namespace BL
 
                 if (d.status == DroneStatus.Maintenace)
                 {
+                    DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
+                    double t = DateTime.Now.TimeOfDay.TotalMinutes;
+                    double total = t - tmp.enterToCharge.TimeOfDay.TotalMinutes;
                     //the time* charging rate per hour, couldnt be more then 100%
-                    d.battery += time * chargeCapacity[4];
+                    d.battery += total * chargeCapacity[4];
                     if (d.battery > 100)
                         d.battery = 100;
 
                     d.status = DroneStatus.Available;
 
                     // up the number of the empty charge slots
-                    DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
+                    //DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
                     
                     //remove the drone frome the list of the droneCharge
                     dl.BatteryCharged(tmp);
