@@ -51,8 +51,8 @@
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Width="109" Grid.Row="3" Height="24"/>
         <Label x:Name="lattitudeL" Content="lattitude" HorizontalAlignment="Left" Margin="25,26,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" RenderTransformOrigin="-0.67,-7.458" Grid.Row="4" Height="25" Width="69"/>
-        <Button Content="Cancel" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top"
-                Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Grid.Row="5" Height="28" Width="60"  Click="Button_Click_1"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"
+                Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Grid.Row="5" Height="28" Width="60"  Click="Button_Click_1" RenderTransformOrigin="5.089,0.668" Grid.Column="1"/>
 
         <TextBox x:Name="IDBtn" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  MaxLength="9" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18"/>
         <TextBox x:Name="nameBtn" Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Grid.Row="1"/>
@@ -61,6 +61,10 @@
         <TextBox  x:Name="phoneBtn" Text="{Binding phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="172,0,0,0"  MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="118" Height="20" Grid.Row="2" />
         <Button x:Name="addBtn" Content="ADD" HorizontalAlignment="Left" Margin="26,35,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="Button_Click" Grid.Row="5" Height="25" Width="60"/>
+        <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="168,35,0,0" Grid.Row="5"
+                Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="deleteBtn_Click" />
+        <Button x:Name="updateBtn" Content="Save changes" HorizontalAlignment="Left" Margin="290,35,0,0" Grid.Row="5"
+                 Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="updateBtn_Click" />
 
 
     </Grid>
