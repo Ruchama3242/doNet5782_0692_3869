@@ -72,6 +72,7 @@ namespace Dal
                 DAL.DataSource.CustomersList.Remove(c);
                     c.active = false;
                 DAL.DataSource.CustomersList.Add(c);
+                return;
 
             }
             catch (Exception e)

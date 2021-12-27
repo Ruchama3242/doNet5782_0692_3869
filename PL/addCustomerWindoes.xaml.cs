@@ -33,16 +33,13 @@ namespace PL
             this.deleteBtn.Visibility = Visibility.Hidden;
         }
 
-        public addCustomerWindoes( CustomerToList c)
+        public addCustomerWindoes( CustomerToList cus)
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
-           // c = new CustomerToList();
-            this.longitudeL.Visibility = Visibility.Hidden;
-            this.lattitudeL.Visibility = Visibility.Hidden;
-            this.lattitudeBtn.Visibility = Visibility.Hidden;
-            this.longitudeBtn.Visibility = Visibility.Hidden;
-            this.DataContext = c;
+            c = new Customer();
+            c = bl.findCustomer(cus.ID);
+            DataContext = c;
             this.updateBtn.Visibility = Visibility.Visible;
             this.deleteBtn.Visibility = Visibility.Visible;
             this.nameBtn.IsReadOnly = true;
