@@ -47,19 +47,19 @@
         </Grid>
         <Grid x:Name="updateGrid" Margin="342,-17,-322,27">
             <Label Content="Drone ID" Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="26,17,0,0" VerticalAlignment="Top" Width="100"/>
-            <TextBox x:Name="updateIdtxt"  HorizontalAlignment="Left" Margin="132,25,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="updateIdtxt" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,25,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="Drone model"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="27,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.499,0.814"/>
-            <TextBox x:Name="updateModeltxt" HorizontalAlignment="Left" Margin="132,56,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="updateModeltxt" Text="{Binding model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,56,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Max weight"   Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="27,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,1.97"/>
             <Label Content="status"  Style ="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="26,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,1.97" Width="100"/>
             <Label Content="battery"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="27,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.358,0.599"/>
-            <TextBox x:Name="batteryTxt" HorizontalAlignment="Left" Margin="132,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="batteryTxt" Text="{Binding battery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="parcel in delivery"  Style="{StaticResource myLableStyle}"  HorizontalAlignment="Left" Margin="3,189,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="parcelIdTxt" HorizontalAlignment="Left" Margin="132,195,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="parcelIdTxt" Text="{Binding parcel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,195,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="longitude"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="26,227,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="longitudeTxt" HorizontalAlignment="Left" Margin="132,231,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="longitudeTxt" Text="{Binding location.longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,231,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="lattitude"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="33,258,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="latitudeTxt" HorizontalAlignment="Left" Margin="132,268,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="latitudeTxt" Text="{Binding location.latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,268,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Button x:Name="updateModelBtn" Style="{StaticResource myButtonStyle}" Content="Update model" HorizontalAlignment="Left" Margin="271,54,0,0" VerticalAlignment="Top" Click="updateModel" BorderBrush="Black" Background="#FFD9E0EA" Foreground="Black" FontFamily="Bodoni MT"/>
             <Button x:Name="droneChargeBtn" Style="{StaticResource myButtonStyle}" Content="send drone to charge" HorizontalAlignment="Left" Margin="17,302,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="sendToCharge"/>
             <Button x:Name="relaseBtn" Style="{StaticResource myButtonStyle}" Content="Relase drone from charge" HorizontalAlignment="Left" Margin="13,302,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="relaseFromCharge"/>
@@ -67,8 +67,8 @@
             <Button x:Name="collectBtn" Style="{StaticResource myButtonStyle}" Content="collect parcel" HorizontalAlignment="Left" Margin="289,332,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="collectParcel"/>
             <Button x:Name="parcelDeliveryBtn" Style="{StaticResource myButtonStyle}" Content="parcel delivery" HorizontalAlignment="Left" Margin="289,357,0,0" VerticalAlignment="Top" Visibility="Hidden" Click="parcelDelivery"/>
             <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle}" Content="close" HorizontalAlignment="Left" Margin="43,0,0,51" VerticalAlignment="Bottom" Click="closeBtn_Click" RenderTransformOrigin="2.334,-3.204"/>
-            <TextBox x:Name="statusTxt" HorizontalAlignment="Left" Margin="132,122,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <TextBox x:Name="weightTxt" HorizontalAlignment="Left" Margin="132,87,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="statusTxt" Text="{Binding status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="weightTxt" Text="{Binding weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,87,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Button x:Name="viewParcelbtn" Style="{StaticResource myButtonStyle}" Content="view parcel" HorizontalAlignment="Left" Margin="38,334,0,82" Width="85" Click="viewParcelbtn_Click" Visibility="Hidden"/>
             <!--<Label x:Name="lbl" Content="time in charging" HorizontalAlignment="Left" Margin="107,378,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
             <TextBox x:Name="timeInChargeTxt" HorizontalAlignment="Left" Margin="188,303,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden" RenderTransformOrigin="0.258,-2.448"/>

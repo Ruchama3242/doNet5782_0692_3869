@@ -21,7 +21,7 @@ namespace BL
                     throw new BLgeneralException("Error! the latitude is incorrect");
                 if (station.ID < 1000 || station.ID > 9999)
                     throw new BLgeneralException("ERROR! the id must be with 4 digits ");
-                if (station.chargeSlots < 0)
+                if (station.chargeSlots <= 0)
                     throw new BLgeneralException("ERROR! the number og charge slots must be positive");
                 DO.Station stationDal = new DO.Station();
                 stationDal.ID = station.ID;

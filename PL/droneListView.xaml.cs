@@ -95,13 +95,14 @@ namespace PL
         {
             DroneToList dr = new DroneToList();
             dr = (DroneToList)DronesListView.SelectedItem;
-            new droneView(bl, dr).ShowDialog();
+            new droneView( dr).ShowDialog();
             fillListView();
         }
 
         private void filtering(object sender, SelectionChangedEventArgs e)
         {
-            if(statusSelector.Text!="")
+            //if(statusSelector.Text=="Available"||statusSelector.Text=="Maintenance"||statusSelector.Text=="Delivery")
+               if(statusSelector.SelectedItem!=null)
                 DronesListView.ItemsSource = bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
             
         }
@@ -149,7 +150,7 @@ namespace PL
 
         private void weightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (weightSelector.Text != "")
+            if (weightSelector.SelectedItem !=null)
                 DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
         }
     }

@@ -11,7 +11,7 @@
         <Button x:Name="closeBtn" Content="close" HorizontalAlignment="Left" Margin="500,363,0,0" VerticalAlignment="Top" Height="53" Width="178"  FontSize="24" Click="closeBtn_Click"/>
 
         <ListView x:Name="stationLst" DataContext="{Binding}"   ItemsSource="{Binding}"   Margin="10,85,10,79" AutomationProperties.Name="stationLst" 
-            HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" >
+            HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" MouseDoubleClick="stationLst_MouseDoubleClick" >
             <!--<ListView.View>
             <GridView>
                 

@@ -50,6 +50,14 @@ namespace PL
             Close();
         }
 
+        private void stationLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new stationWindow((BO.StationToList)stationLst.SelectedItem).ShowDialog();
+            myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
+
+            DataContext = myObservableCollection;
+        }
+
         //private  ObservableCollection<BO.StationToList> ToObservableCollection<T>(this IEnumerable<BO.StationToList> col)
         //{
         //    return new ObservableCollection<BO.StationToList>(col);
