@@ -41,7 +41,7 @@
 
 
         <Button x:Name="addBtn" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Add new parcel"   Margin="86,10,86,10" Background="{x:Null}" BorderBrush="{x:Null}"/>
-        <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Close"  Margin="411,8,24,6" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+        <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Close"  Margin="411,8,24,6" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Click="closeBtn_Click"/>
 
         <ListView x:Name="parcelistView" DataContext="{Binding}"  ItemsSource="{Binding}"   Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="1" AutomationProperties.Name="customerLstView" 
                   HorizontalContentAlignment="Stretch"  Background="#FFABC6E7">
@@ -59,15 +59,15 @@
                 </GridView>-->
             <!--</ListView.View>-->
         </ListView>
-        <TextBox x:Name="serchTxtBx"  Text ="{Binding Mode=OneTime}"  HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="48"/>
+        <TextBox x:Name="serchTxtBx"    HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="48" KeyUp="serchTxtBx_KeyUp"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="133,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" />
         <RadioButton x:Name="normalView" Content="Normal view" HorizontalAlignment="Left" Margin="241,16,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="groupingView" Content="Grouping view" HorizontalAlignment="Left" Margin="241,43,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="filterByDates" Content="By dates" HorizontalAlignment="Left" Margin="454,20,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="filterByStatus" Content="By status" HorizontalAlignment="Left" Margin="454,51,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="filterByStatus" Content="By status" HorizontalAlignment="Left" Margin="454,51,0,0" VerticalAlignment="Top" />
         <TextBox x:Name="date1Txt" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,20,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="date2Txt" Grid.Column="1" HorizontalAlignment="Left" Margin="90,20,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,42,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="statusCmb" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,42,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="statusCmb_SelectionChanged"/>
         <GroupBox Header="filter" Grid.ColumnSpan="2" Margin="434,-1,6,282" Grid.RowSpan="2"/>
 
 

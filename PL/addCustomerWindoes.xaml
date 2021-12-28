@@ -41,15 +41,15 @@
             <RowDefinition Height="66"/>
             <RowDefinition Height="125.04"/>
         </Grid.RowDefinitions>
-        <Label x:Name="idL" Content="id" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top"
+        <Label x:Name="idL" Content="Id" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top"
                Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Height="25" Width="60"/>
-        <Label x:Name="nameL" Content="name" HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center"
+        <Label x:Name="nameL" Content="Name" HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Height="25" Width="60" Grid.Row="1"/>
         <Label x:Name="phoneL" Content="Phone number" HorizontalAlignment="Left" Margin="20,22,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" RenderTransformOrigin="-0.432,-1.899" Grid.Row="2" Height="25" Width="88"/>
-        <Label x:Name="longitudeL" Content="longitude " HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center"
+        <Label x:Name="longitudeL" Content="Longitude " HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Width="109" Grid.Row="3" Height="24"/>
-        <Label x:Name="lattitudeL" Content="lattitude" HorizontalAlignment="Left" Margin="25,26,0,0" VerticalAlignment="Top"
+        <Label x:Name="lattitudeL" Content="Latitude" HorizontalAlignment="Left" Margin="25,26,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" RenderTransformOrigin="-0.67,-7.458" Grid.Row="4" Height="25" Width="69"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Grid.Row="5" Height="28" Width="60"  Click="Button_Click_1" RenderTransformOrigin="5.089,0.668" Grid.Column="1"/>
@@ -59,11 +59,11 @@
         <TextBox x:Name="longitudeBtn" Text="{Binding location.longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="3" Height="18"/>
         <TextBox x:Name="lattitudeBtn" Text="{Binding location.latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="4" Height="18" Margin="170,0,0,0"/>
         <TextBox  x:Name="phoneBtn" Text="{Binding phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="172,0,0,0"  MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="118" Height="20" Grid.Row="2" />
-        <Button x:Name="addBtn" Content="ADD" HorizontalAlignment="Left" Margin="26,35,0,0" VerticalAlignment="Top"
+        <Button x:Name="addBtn" Content="Add" HorizontalAlignment="Left" Margin="26,35,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="Button_Click" Grid.Row="5" Height="25" Width="60"/>
         <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="168,35,0,0" Grid.Row="5"
                 Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="deleteBtn_Click" />
-        <Button x:Name="updateBtn" Content="Save changes" HorizontalAlignment="Left" Margin="290,35,0,0" Grid.Row="5"
+        <Button x:Name="updateBtn" Content="Save Changes" HorizontalAlignment="Left" Margin="290,35,0,0" Grid.Row="5"
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="updateBtn_Click" />
         <Button x:Name="closeBtn" Content="Close" Grid.Column="2" HorizontalAlignment="Center" Margin="0,35,0,0" Grid.Row="5" VerticalAlignment="Top"
                 MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100"  Style="{StaticResource myButtonStyle}" Click="closeBtn_Click"/>

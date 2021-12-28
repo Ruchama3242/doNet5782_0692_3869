@@ -30,9 +30,9 @@ namespace PL
             s = new BO.Station();
             s.location = new BO.Location();
             DataContext = s;
-           //// lstLbl.Visibility = Visibility.Hidden;
-            ////droneslst.Visibility = Visibility.Hidden;
-            ////updateBtn.Visibility = Visibility.Hidden;
+            lstLbl.Visibility = Visibility.Hidden;
+            droneslst.Visibility = Visibility.Hidden;
+            updateBtn.Visibility = Visibility.Hidden;
            // updateGrid.Visibility = Visibility.Hidden;
         }
 
@@ -45,7 +45,7 @@ namespace PL
             s = bl.findStation(st.ID);
             //s.location = new BO.Location();
             DataContext = s;
-            ////droneslst.ItemsSource = s.dronesInChargeList;
+            droneslst.ItemsSource = s.dronesInChargeList;
             idTxt.IsReadOnly = true;
             longitudtTxt.IsReadOnly = true;
             latitudeTxt.IsReadOnly = true;
@@ -82,9 +82,9 @@ namespace PL
             {
                 bl.updateStation(s.ID, s.name, s.chargeSlots);
                 MessageBox.Show("the station successfully updated");
-               // s = new BO.Station();
+                s = new BO.Station();
                 s = bl.findStation(s.ID);
-               // s.location = new BO.Location();
+                s.location = new BO.Location();
                 DataContext = s;
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace PL
 
         private void droneslst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ////new droneView((BO.DroneInCharge)droneslst.SelectedItem).ShowDialog();
+            new droneView((BO.DroneInCharge)droneslst.SelectedItem).ShowDialog();
         }
     }
 }
