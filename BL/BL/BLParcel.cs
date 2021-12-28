@@ -44,10 +44,10 @@ namespace BL
             }
         }
 
-         public IEnumerable<ParcelToList> getAllParcels()
+         public IEnumerable<ParcelToList> getAllParcels(Func<Parcel, bool> predicate = null)
         {
             List<ParcelToList> lst = new List<ParcelToList>();//create the list
-            foreach (var item in dl.getAllParcels())//pass on the list of the parcels and copy them to the new list
+            foreach (var item in dl.GetPartParcel())//pass on the list of the parcels and copy them to the new list
             {
                 lst.Add(getParcelTolist(item));
             }

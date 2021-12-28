@@ -12,13 +12,13 @@ namespace BO
             public WeightCategorie weight { get; set; }
             public Priorities priority { get; set; }
             public ParcelStatus status { get; set; }
-            public CustomerInParcel senderOrTaget { get; set; }//if the parcel need to be sent its the terget and if not its the sender
+            public CustomerInParcel senderOrTarget { get; set; }//if the parcel need to be sent its the terget and if not its the sender
             public override string ToString()
             {
                 String result = "";
                 result += $"ID is: {ID}, weight is: {weight}, priority is: {priority}, " +
                           $"status is: {status}, "+
-                          $"customer is: {senderOrTaget}, \n";
+                          $"customer is: {senderOrTarget}, \n";
                 return result;
             }
         }

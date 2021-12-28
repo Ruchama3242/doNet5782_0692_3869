@@ -68,6 +68,8 @@ namespace PL
             CustomerToList c = new CustomerToList();
             c = (CustomerToList)customerLstView.SelectedItem;
             new addCustomerWindoes(c).ShowDialog();
+            myCollection = new ObservableCollection<BO.CustomerToList>(bl.viewListCustomer());
+            customerLstView.DataContext = myCollection;
            // dr = (DroneToList)DronesListView.SelectedItem;
             //new droneView(bl, dr).ShowDialog();
             //DroneToList dr = new DroneToList();

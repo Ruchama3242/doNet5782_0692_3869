@@ -132,9 +132,9 @@ namespace BL
                         tmp.ID = item.ID;
                         tmp.status = getParcelStatus(item);
                         tmp.priority = GetParcelPriorities(item.priority);
-                        tmp.senderOrTaget = new CustomerInParcel();
-                        tmp.senderOrTaget.ID = item.senderID;
-                        tmp.senderOrTaget.customerName = dl.findCustomer(item.senderID).name;
+                        tmp.senderOrTarget = new CustomerInParcel();
+                        tmp.senderOrTarget.ID = item.senderID;
+                        tmp.senderOrTarget.customerName = dl.findCustomer(item.senderID).name;
                         cusBL.toCustomer = new List<ParcelAtCustomer>();
                         cusBL.toCustomer.Add(tmp);
                     }
@@ -144,9 +144,9 @@ namespace BL
                         ParcelAtCustomer tmp = new ParcelAtCustomer();
                         tmp.ID = item.ID;
                         tmp.status = getParcelStatus(item);
-                        tmp.senderOrTaget = new CustomerInParcel();
-                        tmp.senderOrTaget.ID = item.targetId;
-                        tmp.senderOrTaget.customerName = dl.findCustomer(item.targetId).name;
+                        tmp.senderOrTarget = new CustomerInParcel();
+                        tmp.senderOrTarget.ID = item.targetId;
+                        tmp.senderOrTarget.customerName = dl.findCustomer(item.targetId).name;
                         tmp.priority = GetParcelPriorities(item.priority);
                         cusBL.fromCustomer = new List<ParcelAtCustomer>();
                         cusBL.fromCustomer.Add(tmp);

@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Linq;
 using BO;
 
 namespace PL
@@ -22,6 +25,7 @@ namespace PL
     {
         private BlApi.IBL bl;
         BO.Customer c;
+        private ObservableCollection<BO.Parcel> myCollection;
         public addCustomerWindoes()
         {
             InitializeComponent();
@@ -31,6 +35,8 @@ namespace PL
             this.DataContext = c;
             this.updateBtn.Visibility = Visibility.Hidden;
             this.deleteBtn.Visibility = Visibility.Hidden;
+            this.parcelLstView.Visibility = Visibility.Hidden;
+          
         }
 
         public addCustomerWindoes( CustomerToList cus)
@@ -42,9 +48,21 @@ namespace PL
             DataContext = c;
             this.updateBtn.Visibility = Visibility.Visible;
             this.deleteBtn.Visibility = Visibility.Visible;
-            this.nameBtn.IsReadOnly = true;
-            this.IDBtn.IsReadOnly = true;
-            this.phoneBtn.IsReadOnly = true;
+            this.addBtn.Visibility = Visibility.Hidden;
+            this.nameBtn.IsReadOnly = false;
+            this.IDBtn.IsReadOnly = false;
+            this.phoneBtn.IsReadOnly = false;
+            longitudeBtn.IsReadOnly = true;
+            lattitudeBtn.IsReadOnly = true;
+            //var lst = bl.getAllParcels();
+            myCollection = new ObservableCollection<BO.Parcel>();
+            foreach (var item in c.fromCustomer)
+            {
+               myCollection.Add( bl.findParcel(item.ID));
+            }
+            parcelLstView.DataContext = myCollection;
+          
+
         }
 
 
@@ -75,6 +93,7 @@ namespace PL
             try
             {
                 bl.deleteCustomer(c.ID);
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -96,6 +115,11 @@ namespace PL
                 MessageBox.Show(ex.Message);
 
             }
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

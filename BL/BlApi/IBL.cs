@@ -126,7 +126,7 @@ namespace BlApi
         /// return the list of all parcels
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ParcelToList> getAllParcels();
+        public IEnumerable<ParcelToList> getAllParcels(Func<Parcel, bool> predicate = null);
 
         // <summary>
         /// return a parcel with all details

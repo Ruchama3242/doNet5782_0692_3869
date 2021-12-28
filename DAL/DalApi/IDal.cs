@@ -168,6 +168,13 @@ namespace DalApi
         #region ----------------------parcel---------------------
 
         /// <summary>
+        ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
+        /// </summary>
+        /// <param name="StationCondition"></param>
+        /// <returns></returns>
+        public IEnumerable<Parcel> GetPartParcel(Func<Parcel, bool> predicate = null);
+
+        /// <summary>
         /// Gets a parcel and adds it to the list at DataSource
         /// </summary>
         /// <param name="temp"></param>

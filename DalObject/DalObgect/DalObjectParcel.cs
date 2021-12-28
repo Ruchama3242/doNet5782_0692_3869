@@ -1,31 +1,34 @@
 ﻿using System;
 using DalApi;
 using System.Collections.Generic;
+using DO;
+using DAL;
+using System.Linq;
 
 namespace Dal
 {
     sealed partial class DalObject 
     {
 
-            ///// <summary>
-            /////מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
-            ///// </summary>
-            ///// <param name="StationCondition"></param>
-            ///// <returns></returns>
-            //public IEnumerable<Parcel> GetPartParcel(Func<Parcel,bool> predicate)
-            //{
-            //    var list = from Parcel in DataSource.ParcelList
-            //               where (predicate(Parcel))
-            //               select Parcel;
+        /// <summary>
+        ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט
+        /// </summary>
+        /// <param name="StationCondition"></param>
+        /// <returns></returns>
+        public IEnumerable<Parcel> GetPartParcel(Func<Parcel, bool> predicate = null)
+        {
+            var list = from Parcel in DataSource.ParcelList
+                       where (predicate(Parcel))
+                       select Parcel;
 
-            //    foreach (var item in list)
-            //    {
-            //        list.ToList().Add(item);
-            //    }
-            //    return list;
-            //}
+            foreach (var item in list)
+            {
+                list.ToList().Add(item);
+            }
+            return list;
+        }
 
-            public int addParcel(DO.Parcel temp)
+        public int addParcel(DO.Parcel temp)
             {
 
 
