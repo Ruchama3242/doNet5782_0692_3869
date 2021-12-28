@@ -86,6 +86,16 @@ namespace PL
             sortBtn.Visibility = Visibility.Visible;
         }
 
+        private void serchTxtBx_KeyUp(object sender, KeyEventArgs e)
+        {
+              
+            IEnumerable<BO.StationToList> p = new List<BO.StationToList>();
+            p = bl.veiwListStation().Where(x => Convert.ToString(x.ID).StartsWith(serchTxtBx.Text));
+            myObservableCollection = new ObservableCollection<BO.StationToList>(p);
+
+            DataContext = myObservableCollection;
+        }
+
         //private  ObservableCollection<BO.StationToList> ToObservableCollection<T>(this IEnumerable<BO.StationToList> col)
         //{
         //    return new ObservableCollection<BO.StationToList>(col);
