@@ -23,5 +23,25 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void droneslst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void up(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
