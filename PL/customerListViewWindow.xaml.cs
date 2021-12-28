@@ -27,7 +27,7 @@ namespace PL
     {
         private BlApi.IBL bl;
 
-        //private ObservableCollection<BO.Customer> myCollection =
+        private ObservableCollection<BO.CustomerToList> myCollection;
       //new ObservableCollection<BO.Customer>();
         
        
@@ -35,9 +35,9 @@ namespace PL
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
-            //customerLstView.DataContext = bl.viewListCustomer();
-            customerLstView.DataContext = bl.viewListCustomer();
-            customerLstView.ItemsSource = bl.viewListCustomer();
+            myCollection = new ObservableCollection<BO.CustomerToList>(bl.viewListCustomer());
+            customerLstView.DataContext = myCollection;
+            //customerLstView.ItemsSource = bl.viewListCustomer();
            //costomerLstBx.DataContext = myCollection;
         }
 
@@ -45,16 +45,17 @@ namespace PL
         private void add_Click(object sender, RoutedEventArgs e)
         {
             new addCustomerWindoes().ShowDialog();
-            customerLstView.DataContext = bl.viewListCustomer();
-            customerLstView.ItemsSource = bl.viewListCustomer();
+            myCollection = new ObservableCollection<BO.CustomerToList>(bl.viewListCustomer());
+            customerLstView.DataContext = myCollection;
+            //customerLstView.ItemsSource = bl.viewListCustomer();
            // customerListView.DataContext = bl.viewListCustomer();
            
         }
 
         private void ListBox_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            customerLstView.ItemsSource = bl.viewListCustomer();
-            customerLstView.DataContext = bl.viewListCustomer();
+            //customerLstView.ItemsSource = bl.viewListCustomer();
+            customerLstView.DataContext = myCollection;
         }
 
         private void Image_TouchEnter(object sender, TouchEventArgs e)
@@ -64,7 +65,11 @@ namespace PL
 
         private void customerLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Customer c = new Customer();
+            CustomerToList c = new CustomerToList();
+            c = (CustomerToList)customerLstView.SelectedItem;
+            new addCustomerWindoes(c).ShowDialog();
+           // dr = (DroneToList)DronesListView.SelectedItem;
+            //new droneView(bl, dr).ShowDialog();
             //DroneToList dr = new DroneToList();
             //dr = (DroneToList)DronesListView.SelectedItem;
             //new droneView(bl, dr).ShowDialog();
