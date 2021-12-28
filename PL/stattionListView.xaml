@@ -28,6 +28,8 @@
         </ListView>
         <TextBox x:Name="serchTxtBx"  Text ="{Binding Mode=OneTime}"  HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="/images/search.png" />
+        <Button x:Name="sortBtn" Content="sorted list" HorizontalAlignment="Left" Margin="576,15,0,0" VerticalAlignment="Top" Height="40" Width="139" Click="sortBtn_Click"/>
+        <Button x:Name="clearBtn" Content="clear" HorizontalAlignment="Left" Margin="576,15,0,0" VerticalAlignment="Top" Height="40" Width="139" Click="clearBtn_Click"/>
 
     </Grid>
     <Window.Background>

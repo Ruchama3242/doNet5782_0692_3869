@@ -35,6 +35,7 @@ namespace PL
             myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
 
             DataContext = myObservableCollection;
+            clearBtn.Visibility = Visibility.Hidden;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
@@ -43,6 +44,11 @@ namespace PL
             myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
 
             DataContext = myObservableCollection;
+            if(clearBtn.Visibility==Visibility.Visible)
+            {
+                IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
+                DataContext = query;
+            }
         }
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
@@ -56,6 +62,28 @@ namespace PL
             myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
 
             DataContext = myObservableCollection;
+            if (clearBtn.Visibility == Visibility.Visible)
+            {
+                IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
+                DataContext = query;
+            }
+        }
+
+        private void sortBtn_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
+            DataContext = query;
+            clearBtn.Visibility = Visibility.Visible;
+            sortBtn.Visibility = Visibility.Hidden;
+        }
+
+        private void clearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
+
+            DataContext = myObservableCollection;
+            clearBtn.Visibility = Visibility.Hidden;
+            sortBtn.Visibility = Visibility.Visible;
         }
 
         //private  ObservableCollection<BO.StationToList> ToObservableCollection<T>(this IEnumerable<BO.StationToList> col)

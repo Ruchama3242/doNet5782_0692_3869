@@ -56,5 +56,10 @@ namespace PL
             new stattionListView().ShowDialog();
 
         }
+
+        private void parcel_Click(object sender, RoutedEventArgs e)
+        {
+            new parcelsListWindow().ShowDialog();
+        }
     }
 }
