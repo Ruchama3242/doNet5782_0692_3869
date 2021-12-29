@@ -48,13 +48,13 @@
             <ListView.View>
                 <GridView>
 
-                    <!--<GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
+                    <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
                     <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />
                     <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding Path=sendAndDeliveredParcel}"/>
                     <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcel}"/>
                     <GridViewColumn Width="200" Header="parcel on way" DisplayMemberBinding="{Binding onTheWayParcels}"/>
-                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>-->
+                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>
                 </GridView>
             </ListView.View>
         </ListView>

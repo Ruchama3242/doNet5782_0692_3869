@@ -19,9 +19,12 @@ namespace PL
     /// </summary>
     public partial class parcelWindow : Window
     {
+       
+
         public parcelWindow()
         {
             InitializeComponent();
+           
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
