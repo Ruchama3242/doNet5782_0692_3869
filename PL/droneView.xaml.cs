@@ -64,12 +64,12 @@ namespace PL
             dr = new Drone();
             dr = bl.findDrone(id);
             DataContext = dr;
-            addGrid.Visibility = Visibility.Hidden;
-            realeseFromCharg.Visibility = Visibility.Hidden;
+            //addGrid.Visibility = Visibility.Hidden;
+            //realeseFromCharg.Visibility = Visibility.Hidden;
             // fillTextbox(d);
               droneChargeBtn.Visibility = Visibility.Hidden;
                 sendToDeliveryBtn.Visibility = Visibility.Hidden;
-            modelTxt.IsReadOnly = true;
+            updateModeltxt.IsReadOnly = true;
             updateModelBtn.Visibility = Visibility.Hidden;
 
            

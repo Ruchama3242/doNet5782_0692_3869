@@ -68,7 +68,7 @@ namespace PL
         {
             IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
             p = bl.getAllParcels().Where(x =>Convert.ToString(x.ID).StartsWith(serchTxtBx.Text));
-            lst = new List<BO.ParcelToList>(bl.getAllParcels());
+            lst = new List<BO.ParcelToList>(p);
             DataContext = lst;
         }
 
