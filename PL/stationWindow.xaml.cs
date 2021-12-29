@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL
 {
@@ -33,7 +23,7 @@ namespace PL
             lstLbl.Visibility = Visibility.Hidden;
             droneslst.Visibility = Visibility.Hidden;
             updateBtn.Visibility = Visibility.Hidden;
-           // updateGrid.Visibility = Visibility.Hidden;
+            // updateGrid.Visibility = Visibility.Hidden;
         }
 
 
@@ -55,7 +45,7 @@ namespace PL
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-          try
+            try
             {
                 bl.addStation(s);
                 MessageBox.Show("the station successfully added");
@@ -82,7 +72,7 @@ namespace PL
             {
                 bl.updateStation(s.ID, s.name, s.chargeSlots);
                 MessageBox.Show("the station successfully updated");
-                s = new BO.Station();
+                // s = new BO.Station();
                 s = bl.findStation(s.ID);
                 s.location = new BO.Location();
                 DataContext = s;

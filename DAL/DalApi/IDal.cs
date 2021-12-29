@@ -172,7 +172,7 @@ namespace DalApi
         /// </summary>
         /// <param name="StationCondition"></param>
         /// <returns></returns>
-        public IEnumerable<Parcel> GetPartParcel(Func<Parcel, bool> predicate = null);
+        public IEnumerable<Parcel> GetPartParcel();
 
         /// <summary>
         /// Gets a parcel and adds it to the list at DataSource

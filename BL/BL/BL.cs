@@ -27,7 +27,7 @@ namespace BL
         //static double time;
 
         /// <summary>
-        /// constructor
+        ///// constructor
         /// </summary>
           BL()
         {

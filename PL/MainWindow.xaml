@@ -38,7 +38,7 @@
             <RowDefinition Height="92.008"/>
             <RowDefinition Height="74*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="MnegerBtn" Content="Maneger" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Center"
+        <Button x:Name="MnegerBtn" Content="Manager" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Center"
                 VerticalAlignment="Top" MinHeight="60" MaxHeight="200" MinWidth="120" MaxWidth="300" Width="190" Click="Button_Click" Height="60" Margin="0,70,0,0" Grid.Row="2"/>
         <Button x:Name="customerBtn"  Content="Customer" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" MinHeight="60" MaxHeight="200" MinWidth="120" MaxWidth="300" Width="190" Height="60" Grid.Row="2" Grid.Column="2" Margin="0,66,0,0" Click="customerBtn_Click" />
 

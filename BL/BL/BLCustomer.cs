@@ -63,6 +63,100 @@ namespace BL
             }
         }
 
+      
+
+        public Customer findCustomer(int id)
+        {
+            try
+            {
+                Customer cusBL = new Customer();
+                DO.Customer cusDal = dl.findCustomer(id);
+                List<ParcelAtCustomer> p1 = new List<ParcelAtCustomer>();
+                List<ParcelAtCustomer> p2 = new List<ParcelAtCustomer>();
+
+                cusBL.ID = cusDal.ID;
+                cusBL.location = new Location();
+                cusBL.location.latitude = cusDal.lattitude;
+                cusBL.location.longitude = cusDal.longitude;
+                cusBL.phone = cusDal.phone;
+                cusBL.name = cusDal.name;
+                cusBL.fromCustomer = new List<ParcelAtCustomer>();
+                cusBL.toCustomer = new List<ParcelAtCustomer>();
+                IEnumerable<DO.Parcel> lstP = dl.getAllParcels();
+                foreach (var item in lstP)
+                {
+                    //מוצא את כל החבילות שהלקוח מקבל
+                    if (item.targetId == cusBL.ID)
+                    {
+                        ParcelAtCustomer tmp =new ParcelAtCustomer();
+                        tmp.ID = item.ID;
+                        tmp.status = getParcelStatus(item);
+                        tmp.priority = GetParcelPriorities(item.priority);
+                        tmp.senderOrTarget = new CustomerInParcel();
+                        tmp.senderOrTarget.ID = item.senderID;
+                        tmp.senderOrTarget.customerName = dl.findCustomer(item.senderID).name;
+                       
+                       p1.Add(tmp);
+                    }
+                    //מוצא את כל החבילות שהלקוח שולח
+                    if (item.senderID == cusBL.ID)
+                    {
+                        ParcelAtCustomer tmp = new ParcelAtCustomer();
+                        tmp.ID = item.ID;
+                        tmp.status = getParcelStatus(item);
+                        tmp.senderOrTarget = new CustomerInParcel();
+                        tmp.senderOrTarget.ID = item.targetId;
+                        tmp.senderOrTarget.customerName = dl.findCustomer(item.targetId).name;
+                        tmp.priority = GetParcelPriorities(item.priority);
+                        
+                       p2.Add(tmp);
+                    }
+
+                }
+                cusBL.fromCustomer = p2;
+                cusBL.toCustomer = p1;
+                return cusBL;
+            }
+            catch (Exception e)
+            {
+                throw new BLgeneralException(e.Message, e);
+            }
+        }
+
+
+       
+
+         private Priorities GetParcelPriorities(DO.Priorities p)
+        {
+
+            if (p == DO.Priorities.emergency)
+                return Priorities.Emergency;
+            if (p == DO.Priorities.fast)
+                return Priorities.Fast;
+            if (p == DO.Priorities.normal)
+                return Priorities.Normal;
+
+            //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
+            return Priorities.Normal;
+        }
+
+
+        private ParcelStatus getParcelStatus(DO.Parcel p)
+        {
+            if (p.scheduled == null && p.requested != null)
+                return ParcelStatus.Created;
+            if (p.pickedUp == null && p.scheduled != null)
+                return ParcelStatus.Match;
+            if (p.delivered == null && p.pickedUp != null)
+                return ParcelStatus.PickedUp;
+            return ParcelStatus.Delivred;
+        }
+
+        public void deleteCustomer(int id)
+        {
+            dl.deleteSCustomer(id);
+        }
+
         public IEnumerable<CustomerToList> viewListCustomer()
         {
             //bring al the data from dal
@@ -107,91 +201,5 @@ namespace BL
             return listBL;
         }
 
-        public Customer findCustomer(int id)
-        {
-            try
-            {
-                Customer cusBL = new Customer();
-                DO.Customer cusDal = dl.findCustomer(id);
-
-                cusBL.ID = cusDal.ID;
-                cusBL.location = new Location();
-                cusBL.location.latitude = cusDal.lattitude;
-                cusBL.location.longitude = cusDal.longitude;
-                cusBL.phone = cusDal.phone;
-                cusBL.name = cusDal.name;
-                
-                
-                IEnumerable<DO.Parcel> lstP = dl.getAllParcels();
-                foreach (var item in lstP)
-                {
-                    //מוצא את כל החבילות שהלקוח מקבל
-                    if (item.targetId == cusBL.ID)
-                    {
-                        ParcelAtCustomer tmp =new ParcelAtCustomer();
-                        tmp.ID = item.ID;
-                        tmp.status = getParcelStatus(item);
-                        tmp.priority = GetParcelPriorities(item.priority);
-                        tmp.senderOrTarget = new CustomerInParcel();
-                        tmp.senderOrTarget.ID = item.senderID;
-                        tmp.senderOrTarget.customerName = dl.findCustomer(item.senderID).name;
-                        cusBL.toCustomer = new List<ParcelAtCustomer>();
-                        cusBL.toCustomer.Add(tmp);
-                    }
-                    //מוצא את כל החבילות שהלקוח שולח
-                    if (item.senderID == cusBL.ID)
-                    {
-                        ParcelAtCustomer tmp = new ParcelAtCustomer();
-                        tmp.ID = item.ID;
-                        tmp.status = getParcelStatus(item);
-                        tmp.senderOrTarget = new CustomerInParcel();
-                        tmp.senderOrTarget.ID = item.targetId;
-                        tmp.senderOrTarget.customerName = dl.findCustomer(item.targetId).name;
-                        tmp.priority = GetParcelPriorities(item.priority);
-                        cusBL.fromCustomer = new List<ParcelAtCustomer>();
-                        cusBL.fromCustomer.Add(tmp);
-                    }
-                }
-                return cusBL;
-            }
-            catch (Exception e)
-            {
-                throw new BLgeneralException(e.Message, e);
-            }
-        }
-
-
-       
-
-         private Priorities GetParcelPriorities(DO.Priorities p)
-        {
-
-            if (p == DO.Priorities.emergency)
-                return Priorities.Emergency;
-            if (p == DO.Priorities.fast)
-                return Priorities.Fast;
-            if (p == DO.Priorities.normal)
-                return Priorities.Normal;
-
-            //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
-            return Priorities.Normal;
-        }
-
-
-        private ParcelStatus getParcelStatus(DO.Parcel p)
-        {
-            if (p.scheduled == null && p.requested != null)
-                return ParcelStatus.Created;
-            if (p.pickedUp == null && p.scheduled != null)
-                return ParcelStatus.Match;
-            if (p.delivered == null && p.pickedUp != null)
-                return ParcelStatus.PickedUp;
-            return ParcelStatus.Delivred;
-        }
-
-        public void deleteCustomer(int id)
-        {
-            dl.deleteSCustomer(id);
-        }
     }
 }

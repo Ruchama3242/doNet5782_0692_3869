@@ -15,10 +15,10 @@ namespace Dal
         /// </summary>
         /// <param name="StationCondition"></param>
         /// <returns></returns>
-        public IEnumerable<Parcel> GetPartParcel(Func<Parcel, bool> predicate = null)
+        public IEnumerable<Parcel> GetPartParcel()
         {
             var list = from Parcel in DataSource.ParcelList
-                       where (predicate(Parcel))
+                       
                        select Parcel;
 
             foreach (var item in list)

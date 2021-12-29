@@ -67,6 +67,8 @@ namespace PL
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
             c = new Customer();
+            c.fromCustomer = new List<ParcelAtCustomer>();
+            c.toCustomer = new List<ParcelAtCustomer>();
             c = bl.findCustomer(cus.ID);
             DataContext = c;
             this.updateBtn.Visibility = Visibility.Visible;
@@ -86,6 +88,35 @@ namespace PL
 
         }
 
+
+        public addCustomerWindoes(int id)
+        {
+            InitializeComponent();
+            bl = BlApi.BlFactory.GetBl();
+            c = new Customer();
+            c.fromCustomer = new List<ParcelAtCustomer>();
+            c.toCustomer = new List<ParcelAtCustomer>();
+            c = bl.findCustomer(id);
+            DataContext = c;
+            this.updateBtn.Visibility = Visibility.Hidden;
+            this.deleteBtn.Visibility = Visibility.Hidden ;
+            this.addBtn.Visibility = Visibility.Hidden;
+            this.nameBtn.IsReadOnly = true;
+            this.IDBtn.IsReadOnly = true;
+            this.phoneBtn.IsReadOnly = true;
+            longitudeBtn.IsReadOnly = true;
+            lattitudeBtn.IsReadOnly = true;
+             parcelLstView.ItemsSource = c.fromCustomer;
+            //var lst = bl.getAllParcels();
+            //myCollection = new ObservableCollection<BO.Parcel>();
+            //foreach (var item in c.fromCustomer)
+            //{
+            //    myCollection.Add(bl.findParcel(item.ID));
+            //}
+           // parcelLstView.DataContext = c.fromCustomer ;
+
+
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

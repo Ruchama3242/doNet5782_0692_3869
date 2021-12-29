@@ -9,8 +9,8 @@ namespace BO
          public class CustomerInParcel
         {
 
-            public int ID;
-            public string customerName;
+            public int ID { get; set; }
+            public string customerName { get; set; }
             public override string ToString()
             {
                 String result = "";
