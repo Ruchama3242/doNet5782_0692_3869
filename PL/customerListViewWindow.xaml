@@ -29,37 +29,38 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="143*"/>
             <ColumnDefinition Width="57*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
+        </Grid.ColumnDefinitions>-->
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="290"/>
             <RowDefinition Height="23*"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
 
 
 
-        <Button x:Name="add" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Add new customer"  Click="add_Click" Margin="86,10,86,10" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Button x:Name="add" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto"  Content="Add new customer"  Click="add_Click" Margin="-185,368,185,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
-        <ListView x:Name="customerLstView" DataContext="{Binding}"  ItemsSource="{Binding}"   Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="1" AutomationProperties.Name="customerLstView" 
-                  HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" MouseDoubleClick="customerLstView_MouseDoubleClick">
+        <ListView x:Name="customerLstView" DataContext="{Binding}" ItemsSource="{Binding}"   Margin="8,75,12,60"  AutomationProperties.Name="customerLstView" 
+         
+                  HorizontalContentAlignment="Stretch"   Background="#FFABC6E7" MouseDoubleClick="customerLstView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
 
-                    <!--<GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
+                    <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
                     <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />
-                    <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding Path=sendAndDeliveredParcel}"/>
+                    <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding sendAndDeliveredParcel}"/>
                     <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcel}"/>
                     <GridViewColumn Width="200" Header="parcel on way" DisplayMemberBinding="{Binding onTheWayParcels}"/>
-                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>-->
+                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <TextBox x:Name="serchTxtBx"  Text ="{Binding Mode=OneTime}"  HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
+        <TextBox x:Name="serchTxtBx"   HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" Grid.ColumnSpan="2" TouchEnter="Image_TouchEnter"/>
 
 

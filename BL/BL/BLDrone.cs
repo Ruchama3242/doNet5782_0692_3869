@@ -330,11 +330,11 @@ namespace BL
 
             //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
             var p = dl.getAllParcels();
-            var v = from item in p
-                    where item.priority == pri
-                    select item;
+            IEnumerable<DO.Parcel> pr = new List<DO.Parcel>();
+            pr = p.Where(item => item.priority == pri);
+                   
 
-            foreach (var item in v)
+            foreach (var item in pr)
             {
                 c = dl.findCustomer(item.senderID);
                 b.latitude = c.lattitude;
@@ -343,11 +343,14 @@ namespace BL
                 x = distance(b, new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude });//המרחק בין מיקום שולח למיקום יעד
                 double fromCusToSta = distance(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }, stationClose(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }).location);
                 double butteryUse = x * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0]+d*chargeCapacity[0];
-                if (d < far && (buttery - butteryUse) > 0&&item.scheduled==DateTime.MinValue&&weight(we,(WeightCategorie)item.weight)==true)
+                if (d < far && (buttery - butteryUse) > 0&&item.scheduled==null)
                 {
-                    far = d;
-                    theParcel = item;
-                    return theParcel;
+                    if (weight(we, (WeightCategorie)item.weight) == true)
+                    {
+                        far = d;
+                        theParcel = item;
+                        return theParcel;
+                    }
                 }
             }
 

@@ -55,7 +55,7 @@
             <Label Content="battery"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="27,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.358,0.599"/>
             <TextBox x:Name="batteryTxt" Text="{Binding battery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="parcel in delivery"  Style="{StaticResource myLableStyle}"  HorizontalAlignment="Left" Margin="3,189,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="parcelIdTxt" Text="{Binding parcel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,195,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="parcelIdTxt" Text="{Binding parcel.ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,195,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="longitude"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="26,227,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="longitudeTxt" Text="{Binding location.longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="132,231,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="lattitude"  Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="33,258,0,0" VerticalAlignment="Top"/>

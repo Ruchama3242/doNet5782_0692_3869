@@ -12,19 +12,16 @@
 
         <ListView x:Name="stationLst" DataContext="{Binding}"   ItemsSource="{Binding}"   Margin="10,85,10,79" AutomationProperties.Name="stationLst" 
             HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" MouseDoubleClick="stationLst_MouseDoubleClick" >
-            <!--<ListView.View>
-            <GridView>
-                
-                <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding XPath= ID }"  />
-                <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
-                <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />
-                <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding Path=sendAndDeliveredParcel}"/>
-                <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcel}"/>
-                <GridViewColumn Width="200" Header="parcel on way" DisplayMemberBinding="{Binding onTheWayParcels}"/>
-                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>
-                
-                </GridView>-->
-            <!--</ListView.View>-->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
+                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Width="150" Header="Available Charge Slots" DisplayMemberBinding="{Binding availableChargeSlots}" />
+                    <GridViewColumn Width="150" Header="Not Available Charge Slots" DisplayMemberBinding="{Binding notAvailableChargeSlots}"/>
+                    
+                </GridView>
+            </ListView.View>
+            
         </ListView>
         <TextBox x:Name="serchTxtBx"    HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48" KeyUp="serchTxtBx_KeyUp"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="/images/search.png" />

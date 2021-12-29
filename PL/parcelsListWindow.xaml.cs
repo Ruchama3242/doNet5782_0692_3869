@@ -22,13 +22,13 @@ namespace PL
     public partial class parcelsListWindow : Window
     {
         private BlApi.IBL bl;
-        private ObservableCollection<BO.ParcelToList> myObservableCollection;
+        private List<BO.ParcelToList> lst;
         public parcelsListWindow()
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
-            myObservableCollection = new ObservableCollection<BO.ParcelToList>(bl.getAllParcels());
-            DataContext = myObservableCollection;
+            lst = new List<BO.ParcelToList>(bl.getAllParcels());
+            DataContext = lst;
             statusCmb.ItemsSource= Enum.GetValues(typeof(BO.ParcelStatus));
         }
 
@@ -54,13 +54,13 @@ namespace PL
             {
                 IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
                 p = bl.getAllParcels().Where(x => x.status == (BO.ParcelStatus)statusCmb.SelectedItem);
-                myObservableCollection = new ObservableCollection<BO.ParcelToList>(p);
-                DataContext = myObservableCollection;
+                lst = new List<BO.ParcelToList>(bl.getAllParcels());
+                DataContext = lst;
             }
             else
             {
-                myObservableCollection = new ObservableCollection<BO.ParcelToList>(bl.getAllParcels());
-                DataContext = myObservableCollection;
+                lst = new List<BO.ParcelToList>(bl.getAllParcels());
+                DataContext = lst;
             }
         }
 
@@ -68,13 +68,28 @@ namespace PL
         {
             IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
             p = bl.getAllParcels().Where(x =>Convert.ToString(x.ID).StartsWith(serchTxtBx.Text));
-            myObservableCollection = new ObservableCollection<BO.ParcelToList>(p);
-            DataContext = myObservableCollection;
+            lst = new List<BO.ParcelToList>(bl.getAllParcels());
+            DataContext = lst;
         }
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new parcelWindow().ShowDialog();
+            lst = new List<BO.ParcelToList>(bl.getAllParcels());
+            DataContext = lst;
+        }
+
+        private void parcelistView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new parcelWindow((BO.ParcelToList)parcelistView.SelectedItem).ShowDialog();
+            lst = new List<BO.ParcelToList>(bl.getAllParcels());
+            DataContext = lst;
+
         }
     }
    

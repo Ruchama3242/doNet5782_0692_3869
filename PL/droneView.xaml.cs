@@ -69,6 +69,32 @@ namespace PL
             }
         }
 
+        public droneView(int id)
+        {
+            InitializeComponent();
+            // this.bl = bl;
+            dr = new Drone();
+            dr = bl.findDrone(id);
+            DataContext = dr;
+            addGrid.Visibility = Visibility.Hidden;
+            realeseFromCharg.Visibility = Visibility.Hidden;
+            // fillTextbox(d);
+              droneChargeBtn.Visibility = Visibility.Hidden;
+                sendToDeliveryBtn.Visibility = Visibility.Hidden;
+            modelTxt.IsReadOnly = true;
+            updateModelBtn.Visibility = Visibility.Hidden;
+
+           
+                relaseBtn.Visibility = Visibility.Hidden;
+           
+
+           
+                collectBtn.Visibility = Visibility.Hidden;
+                parcelDeliveryBtn.Visibility = Visibility.Hidden;
+                viewParcelbtn.Visibility = Visibility.Hidden;
+            
+        }
+
         public droneView(BO.DroneInCharge d)
         {
             InitializeComponent();

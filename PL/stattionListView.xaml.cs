@@ -24,27 +24,26 @@ namespace PL
         // private ObservableCollection<BO.StationToList> _myCollection =
         //new ObservableCollection<BO.StationToList>();
 
-       private ObservableCollection<BO.StationToList> myObservableCollection ;
-      //  private ObservableCollection<BO.StationToList> myObservableCollection = new ObservableCollection<BO.StationToList>();
+         private List<BO.StationToList> lst ;
+        //  private ObservableCollection<BO.StationToList> myObservableCollection = new ObservableCollection<BO.StationToList>();
+        
 
         public stattionListView()
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
             // _myCollection = (ObservableCollection<BO.StationToList>)bl.veiwListStation();
-            myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
-
-            DataContext = myObservableCollection;
+          lst = new List<BO.StationToList>(bl.veiwListStation());
+            DataContext = lst;
             clearBtn.Visibility = Visibility.Hidden;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             new stationWindow().ShowDialog();
-            myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
-
-            DataContext = myObservableCollection;
-            if(clearBtn.Visibility==Visibility.Visible)
+            lst = new List<BO.StationToList>(bl.veiwListStation());
+            DataContext = lst;
+            if (clearBtn.Visibility == Visibility.Visible)
             {
                 IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
                 DataContext = query;
@@ -59,9 +58,8 @@ namespace PL
         private void stationLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             new stationWindow((BO.StationToList)stationLst.SelectedItem).ShowDialog();
-            myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
-
-            DataContext = myObservableCollection;
+            lst = new List<BO.StationToList>(bl.veiwListStation());
+            DataContext = lst;
             if (clearBtn.Visibility == Visibility.Visible)
             {
                 IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
@@ -79,21 +77,19 @@ namespace PL
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {
-            myObservableCollection = new ObservableCollection<BO.StationToList>(bl.veiwListStation());
-
-            DataContext = myObservableCollection;
+            lst = new List<BO.StationToList>(bl.veiwListStation());
+            DataContext = lst;
             clearBtn.Visibility = Visibility.Hidden;
             sortBtn.Visibility = Visibility.Visible;
         }
 
         private void serchTxtBx_KeyUp(object sender, KeyEventArgs e)
         {
-              
+
             IEnumerable<BO.StationToList> p = new List<BO.StationToList>();
             p = bl.veiwListStation().Where(x => Convert.ToString(x.ID).StartsWith(serchTxtBx.Text));
-            myObservableCollection = new ObservableCollection<BO.StationToList>(p);
-
-            DataContext = myObservableCollection;
+            lst = new List<BO.StationToList>(bl.veiwListStation());
+            DataContext = lst;
         }
 
         //private  ObservableCollection<BO.StationToList> ToObservableCollection<T>(this IEnumerable<BO.StationToList> col)
