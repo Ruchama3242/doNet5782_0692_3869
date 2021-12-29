@@ -12,15 +12,15 @@ namespace BL
 {
    sealed internal partial  class BL: IBL
     {
+        #region ---------------------------------singelton----------------------------
         //singelton
 
         static readonly BlApi.IBL instance = new BL();
         internal static BlApi.IBL Instance { get { return instance; } }
+        #endregion
 
         internal IDal dl = DalFactory.GetDal();
 
-        //DalApi.IDal dl = DAL.DalFactory.GetDal("");
-        
         public double[] chargeCapacity;
 
         public List<DroneToList> DroneArr;
