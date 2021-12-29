@@ -38,7 +38,7 @@ namespace PL
 
         private void drone_Click(object sender, RoutedEventArgs e)
         {
-            new droneListView(bl).Show();
+            new droneListView().Show();
         }
 
         private void customer_Click(object sender, RoutedEventArgs e)

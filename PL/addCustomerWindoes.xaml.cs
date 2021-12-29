@@ -25,7 +25,7 @@ namespace PL
     {
         private BlApi.IBL bl;
         BO.Customer c;
-        private ObservableCollection<BO.Parcel> myCollection;
+        private List<BO.ParcelAtCustomer> myCollection;
         public addCustomerWindoes()
         {
             InitializeComponent();
@@ -39,6 +39,29 @@ namespace PL
           
         }
 
+        public addCustomerWindoes(Customer cus)
+        {
+            InitializeComponent();
+            bl = BlApi.BlFactory.GetBl();
+            c = new Customer();
+            c = bl.findCustomer(cus.ID);
+            DataContext = c;
+            this.updateBtn.Visibility = Visibility.Visible;
+            this.deleteBtn.Visibility = Visibility.Visible;
+            this.addBtn.Visibility = Visibility.Hidden;
+            this.nameBtn.IsReadOnly = false;
+            this.IDBtn.IsReadOnly = false;
+            this.phoneBtn.IsReadOnly = false;
+            longitudeBtn.IsReadOnly = true;
+            lattitudeBtn.IsReadOnly = true;
+            ;
+            myCollection = new List<ParcelAtCustomer>();
+            myCollection = c.fromCustomer;
+
+            parcelLstView.DataContext = myCollection;
+
+
+        }
         public addCustomerWindoes( CustomerToList cus)
         {
             InitializeComponent();
@@ -56,12 +79,10 @@ namespace PL
             this.phoneBtn.IsReadOnly = false;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
-            //var lst = bl.getAllParcels();
-            myCollection = new ObservableCollection<BO.Parcel>();
-            foreach (var item in c.fromCustomer)
-            {
-               myCollection.Add( bl.findParcel(item.ID));
-            }
+            ;
+            myCollection = new List<ParcelAtCustomer>();
+            myCollection = c.fromCustomer;
+        
             parcelLstView.DataContext = myCollection;
           
 
@@ -139,6 +160,7 @@ namespace PL
             try
             {
                 bl.updateCustomer(c.ID, c.name, c.phone);
+                MessageBox.Show("The customer successfuly updated ");
             }
             catch (Exception ex)
             {
@@ -151,6 +173,13 @@ namespace PL
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void parcelLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelAtCustomer p = new ParcelAtCustomer();
+            p = (ParcelAtCustomer)parcelLstView.SelectedItem;
+           // new parcelWindow(p).ShowDialog();
         }
     }
 }

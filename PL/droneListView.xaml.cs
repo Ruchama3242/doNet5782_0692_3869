@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections;
 using BO;
 
 namespace PL
@@ -20,63 +21,54 @@ namespace PL
     /// </summary>
     public partial class droneListView : Window
     {
-        
-        private BlApi.IBL bl=BlApi.BlFactory.GetBl();
 
-       
+        private BlApi.IBL bl = BlApi.BlFactory.GetBl();
+        private IEnumerable<DroneToList> myCollection = new List<DroneToList>();
+
 
         public droneListView()
         {
             InitializeComponent();
-        }
-
-        public droneListView(BlApi.IBL bl)
-        {
-            InitializeComponent();
-            this.bl = bl;
-
-            
             statusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
-            fillListView();
+            myCollection = bl.getAllDrones();
+            DronesListView.DataContext = myCollection;
+            
+
+            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
+            //PropertyGroupDescription groupDescription = new PropertyGroupDescription("status ");
+            //view.GroupDescriptions.Add(groupDescription);
+            // DronesListView.ItemsSource = myCollection;
+            //fillListView();
         }
 
-        
+
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new addDroneWindow().ShowDialog();
-           // new droneView(bl).ShowDialog();
-            fillListView();
+            myCollection = bl.getAllDrones();
+            DronesListView.DataContext = myCollection;
+
         }
-
-
-
-        //private void DronesListView_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
-        //{
-        //    DroneToList dr = new DroneToList();
-        //    dr = (DroneToList)DronesListView.SelectedItem;
-        //    new droneView(bl, dr).ShowDialog();
-        //    fillListView();
-        //}
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void fillListView()
-        {
-            IEnumerable<DroneToList> d = new List<DroneToList>();
-            d = bl.getAllDrones();
-            if (statusSelector.Text != "")
-                d = this.bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
-            if (weightSelector.Text != "")
-                d = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
+        //private void fillListView()
+        //{
+        //    IEnumerable<DroneToList> d = new List<DroneToList>();
+        //    d = bl.getAllDrones();
+        //    if (statusSelector.Text != "")
+        //        d = this.bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
+        //    if (weightSelector.Text != "")
+        //        d = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
 
-            DronesListView.ItemsSource = d;
-        }
+        //    DronesListView.ItemsSource = d;
+        //}
 
         private void close(object sender, RoutedEventArgs e)
         {
@@ -95,51 +87,23 @@ namespace PL
         {
             DroneToList dr = new DroneToList();
             dr = (DroneToList)DronesListView.SelectedItem;
-            new droneView( dr).ShowDialog();
-            fillListView();
+            new droneView(dr).ShowDialog();
+            // fillListView();
         }
 
         private void filtering(object sender, SelectionChangedEventArgs e)
         {
-            //if(statusSelector.Text=="Available"||statusSelector.Text=="Maintenance"||statusSelector.Text=="Delivery")
-               if(statusSelector.SelectedItem!=null)
+
+            if (statusSelector.SelectedItem != null)
                 DronesListView.ItemsSource = bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
-            
+
         }
 
-        //private void filterWeight(object sender, SelectionChangedEventArgs e)
-        //{
-        //    //string t = weightSelector.Text;
-        //    if(weightSelector.Text!="")
-        //       DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
-        //}
-
-        //private void deleteBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-                
-        //        DroneToList d = (DroneToList)DronesListView.SelectedItem;
-        //        if (d == null)
-        //            MessageBox.Show("ERROR! choose a drone");
-        //        else
-        //        {
-        //            bl.deleteDrone(d.ID);
-        //            MessageBox.Show("The drone was delete");
-        //            fillListView();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {
             DronesListView.ItemsSource = bl.getAllDrones();
-            weightSelector.Text="";
+            weightSelector.Text = "";
             statusSelector.Text = "";
         }
 
@@ -150,9 +114,19 @@ namespace PL
 
         private void weightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (weightSelector.SelectedItem !=null)
+            if (weightSelector.SelectedItem != null)
                 DronesListView.ItemsSource = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
         }
+
+        private void groupingBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("status ");
+            view.GroupDescriptions.Add(groupDescription);
+
+        }
+
+       
     }
-    }
+}
 

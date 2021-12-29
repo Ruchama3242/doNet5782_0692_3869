@@ -67,19 +67,16 @@
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="updateBtn_Click" />
         <Button x:Name="closeBtn" Content="Close" Grid.Column="2" HorizontalAlignment="Center" Margin="0,35,0,0" Grid.Row="5" VerticalAlignment="Top"
                 MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100"  Style="{StaticResource myButtonStyle}" Click="closeBtn_Click"/>
-        <ListView x:Name="parcelLstView" DataContext="{Binding}" ItemsSource="{Binding}" Grid.ColumnSpan="3" Margin="332,23,10,41" Grid.RowSpan="3">
+        <ListView x:Name="parcelLstView" DataContext="{Binding}" ItemsSource="{Binding}" Grid.ColumnSpan="3" Margin="332,23,10,41" Grid.RowSpan="3" MouseDoubleClick="parcelLstView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    
+
 
                     <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
-                    <GridViewColumn Width="200" Header="Target ID" DisplayMemberBinding="{Binding CustomerInParcel.ID}" />
                     <GridViewColumn Width="200" Header="Weight" DisplayMemberBinding="{Binding weight}" />
-                    <GridViewColumn Width="200" Header="Requested time" DisplayMemberBinding="{Binding requested}"/>
-                    <GridViewColumn Width="200" Header=" Scheduled" DisplayMemberBinding="{Binding scheduled}"/>
-                    <GridViewColumn Width="200" Header="Picked up" DisplayMemberBinding="{Binding pickedUp}"/>
-                    <GridViewColumn Width="200" Header="Delivered" DisplayMemberBinding="{Binding delivered}"/>
-                
+                    <GridViewColumn Width="200" Header="Priority" DisplayMemberBinding="{Binding priority}"/>
+                    <GridViewColumn Width="200" Header=" Status" DisplayMemberBinding="{Binding status}"/>
+
                 </GridView>
             </ListView.View>
         </ListView>
