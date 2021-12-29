@@ -23,33 +23,21 @@ namespace PL
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
         private Drone dr;
       
+       
+
         public droneView()
         {
             InitializeComponent();
-        }
-
-        public droneView(BlApi.IBL bl)
-        {
-            InitializeComponent();
-            //this.bl = bl;
-            addGrid.Visibility = Visibility.Visible;
-            updateGrid.Visibility = Visibility.Hidden;
-            realeseFromCharg.Visibility = Visibility.Hidden;
-            cmbStation.ItemsSource = bl.avilableCharginStation().Select(s => s.ID);
-           DroneMaxWeigtCmb.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
             
         }
 
         public droneView(DroneToList d)
         {
             InitializeComponent();
-           // this.bl = bl;
             dr =new Drone();
             dr = bl.findDrone(d.ID);
             DataContext = dr;
-            addGrid.Visibility = Visibility.Hidden;
-            realeseFromCharg.Visibility = Visibility.Hidden;
-           // fillTextbox(d);
+            parLst.DataContext = dr.parcel;
             if(dr.status==DroneStatus.Available)
             {
                 droneChargeBtn.Visibility = Visibility.Visible;
@@ -76,8 +64,8 @@ namespace PL
             dr = new Drone();
             dr = bl.findDrone(d.ID);
             DataContext = dr;
-            addGrid.Visibility = Visibility.Hidden;
-            realeseFromCharg.Visibility = Visibility.Hidden;
+            //addGrid.Visibility = Visibility.Hidden;
+            //realeseFromCharg.Visibility = Visibility.Hidden;
                 droneChargeBtn.Visibility = Visibility.Hidden;
                 sendToDeliveryBtn.Visibility = Visibility.Hidden;
                 relaseBtn.Visibility = Visibility.Hidden;
@@ -93,7 +81,7 @@ namespace PL
             try
             {
                 //StationToList s = (StationToList)cmbStation.SelectedItem;
-                bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(cmbStation.SelectedItem));
+              //  bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(cmbStation.SelectedItem));
               
                 MessageBox.Show("the drone was successfully added");
                 
@@ -206,7 +194,7 @@ namespace PL
                 //okBtn.Visibility = Visibility.Hidden;
                 droneChargeBtn.Visibility = Visibility.Visible;
                 sendToDeliveryBtn.Visibility = Visibility.Visible;
-                realeseFromCharg.Visibility = Visibility.Hidden;
+              //  realeseFromCharg.Visibility = Visibility.Hidden;
                 updateGrid.Visibility = Visibility.Visible;
                 //tp = 0;
             }
@@ -230,7 +218,7 @@ namespace PL
             //okBtn.Visibility = Visibility.Hidden;
             droneChargeBtn.Visibility = Visibility.Visible;
             sendToDeliveryBtn.Visibility = Visibility.Visible;
-            realeseFromCharg.Visibility = Visibility.Hidden;
+           // realeseFromCharg.Visibility = Visibility.Hidden;
             updateGrid.Visibility = Visibility.Visible;
         }
 
@@ -305,6 +293,14 @@ namespace PL
         private void viewParcelbtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void parLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelInTransfer p = new ParcelInTransfer();
+            p = (ParcelInTransfer)parLst.SelectedItem;
+            //לא לשכוח כשרוחמה תסיים עם חלון חבילה להוסיף שם בנאי מתאים
+            //new parcelWindow(p.id).ShowDialog();
         }
     }
 }

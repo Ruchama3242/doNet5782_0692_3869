@@ -39,6 +39,29 @@ namespace PL
           
         }
 
+        public addCustomerWindoes(Customer cus)
+        {
+            InitializeComponent();
+            bl = BlApi.BlFactory.GetBl();
+            c = new Customer();
+            c = bl.findCustomer(cus.ID);
+            DataContext = c;
+            this.updateBtn.Visibility = Visibility.Visible;
+            this.deleteBtn.Visibility = Visibility.Visible;
+            this.addBtn.Visibility = Visibility.Hidden;
+            this.nameBtn.IsReadOnly = false;
+            this.IDBtn.IsReadOnly = false;
+            this.phoneBtn.IsReadOnly = false;
+            longitudeBtn.IsReadOnly = true;
+            lattitudeBtn.IsReadOnly = true;
+            ;
+            myCollection = new List<ParcelAtCustomer>();
+            myCollection = c.fromCustomer;
+
+            parcelLstView.DataContext = myCollection;
+
+
+        }
         public addCustomerWindoes( CustomerToList cus)
         {
             InitializeComponent();
