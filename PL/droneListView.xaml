@@ -47,7 +47,7 @@
         <Label Content="Drone Status:" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" MaxHeight="70" MinHeight="30" FontSize="24" RenderTransformOrigin="0.773,-0.874" Height="38" Margin="23,103,0,0" />
         <Label Content="Drone Max Weight:" Style = "{StaticResource myLableStyle}" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="200" FontSize="22" Margin="0,108,0,0" Grid.RowSpan="2"/>
 
-        <ListView x:Name="DronesListView" Background="#FFABC6E7" AutomationProperties.Name="DronesListView" Height="407" VerticalAlignment="Top" Margin="5,3,99,0" MouseDoubleClick="mouse" Grid.RowSpan="2" SelectionChanged="DronesListView_SelectionChanged_1" Grid.ColumnSpan="5" Grid.Row="1">
+        <ListView x:Name="DronesListView" Background="#FFABC6E7" DataContext="{Binding}" ItemsSource="{Binding}" AutomationProperties.Name="DronesListView" Height="407" VerticalAlignment="Top" Margin="5,3,99,0" MouseDoubleClick="mouse" Grid.RowSpan="2" SelectionChanged="DronesListView_SelectionChanged_1" Grid.ColumnSpan="5" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
@@ -59,15 +59,26 @@
                     <GridViewColumn Width="70" Header="Parcel number" DisplayMemberBinding="{Binding parcelNumber}"/>
                 </GridView>
             </ListView.View>
-            <ListView.ItemsSource>
-                <VisualBasic:Collection/>
-            </ListView.ItemsSource>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
         </ListView>
+        <!--<ListView.ItemsSource>
+                <VisualBasic:Collection/>
+            </ListView.ItemsSource>-->
+        <!--</ListView>-->
         <Button x:Name="addDroneBtn" Style = "{StaticResource myButtonStyle}" Content="Add new drone" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" MinHeight="41" MaxHeight="60"  MinWidth="110" MaxWidth="170" FontSize="15" Click="Button_Click" Height="41" Width="202"/>
         <Button x:Name="closeBtn" Content="close" Style = "{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="10,45,0,0" Grid.Row="2" VerticalAlignment="Top" Height="41" Width="158" FontSize="15" Click="close" Grid.Column="4"/>
         <Button x:Name="clearBtn" Content="clear" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Height="45" Width="118" Click="clearBtn_Click" Style = "{StaticResource myButtonStyle}" Grid.Column="4"/>
         <ComboBox x:Name="weightSelector" Grid.Column="3" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Width="192" Height="54" SelectionChanged="weightSelector_SelectionChanged"/>
-
+        <Button x:Name="groupingBtn" Style="{StaticResource myButtonStyle}" Content="Group by status" Grid.Column="1" HorizontalAlignment="Left" Margin="119,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="417" Grid.ColumnSpan="3" Height="41" Click="groupingBtn_Click"/>
+        
 
     </Grid>
     <Window.Background>

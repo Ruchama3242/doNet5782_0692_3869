@@ -106,6 +106,7 @@ namespace PL
             try
             {
                 bl.updateCustomer(c.ID, c.name, c.phone);
+                MessageBox.Show("The customer successfuly updated ");
             }
             catch (Exception ex)
             {
