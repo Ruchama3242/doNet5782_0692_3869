@@ -88,6 +88,8 @@ namespace PL
             DroneToList dr = new DroneToList();
             dr = (DroneToList)DronesListView.SelectedItem;
             new droneView(dr).ShowDialog();
+            myCollection = bl.getAllDrones();
+            DronesListView.DataContext = myCollection;
             // fillListView();
         }
 

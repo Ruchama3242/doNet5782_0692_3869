@@ -88,7 +88,7 @@ namespace PL
 
             IEnumerable<BO.StationToList> p = new List<BO.StationToList>();
             p = bl.veiwListStation().Where(x => Convert.ToString(x.ID).StartsWith(serchTxtBx.Text));
-            lst = new List<BO.StationToList>(bl.veiwListStation());
+            lst = new List<BO.StationToList>(p);
             DataContext = lst;
         }
 
