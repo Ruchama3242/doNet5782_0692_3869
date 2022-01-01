@@ -132,6 +132,58 @@ namespace PL
             // updateGrid.Visibility = Visibility.Hidden;
         }
 
+
+        public parcelWindow(int id)
+        {
+            InitializeComponent();
+            bl = BlApi.BlFactory.GetBl();
+           
+            p = bl.findParcel(id);
+
+           
+            DataContext = p;
+           
+                deleteBtn.Visibility = Visibility.Hidden;
+            idLbl.Visibility = Visibility.Visible;
+            idTxt.Visibility = Visibility.Visible;
+            idTxt.IsReadOnly = true;
+            sender.Visibility = Visibility.Visible;
+            sender.IsReadOnly = true;
+            targetTxt.Visibility = Visibility.Visible;
+            targetTxt.IsReadOnly = true;
+            priorityTxt.Visibility = Visibility.Visible;
+            priorityTxt.IsReadOnly = true;
+            WeightTxt.Visibility = Visibility.Visible;
+            WeightTxt.IsReadOnly = true;
+            droneLbl.Visibility = Visibility.Visible;
+            droneTxt.Visibility = Visibility.Visible;
+            droneTxt.IsReadOnly = true;
+            reqLbl.Visibility = Visibility.Visible;
+            requeTxt.Visibility = Visibility.Visible;
+            requeTxt.IsReadOnly = true;
+            scheLbl.Visibility = Visibility.Visible;
+            scheTxt.Visibility = Visibility.Visible;
+            scheTxt.IsReadOnly = true;
+            pickLbl.Visibility = Visibility.Visible;
+            pickTxt.Visibility = Visibility.Visible;
+            pickTxt.IsReadOnly = true;
+            deliLbl.Visibility = Visibility.Visible;
+            deliTxt.Visibility = Visibility.Visible;
+            deliTxt.IsReadOnly = true;
+            addBtn.Visibility = Visibility.Hidden;
+            closeBtn.Visibility = Visibility.Hidden;
+            senderTxt.Visibility = Visibility.Hidden;
+            priorityCmb.Visibility = Visibility.Hidden;
+            targetCmb.Visibility = Visibility.Hidden;
+            WeightCmb.Visibility = Visibility.Hidden;
+            senderLbl.Visibility = Visibility.Hidden;
+            targetLbl.Visibility = Visibility.Hidden;
+            showSenderBtn.Visibility = Visibility.Hidden;
+            showTargetBtn.Visibility = Visibility.Hidden;
+           
+                showDroneBtn.Visibility = Visibility.Hidden;
+          
+        }
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -156,7 +208,7 @@ namespace PL
         {
            try
             {
-               int x= bl.addParcel(Convert.ToInt32(senderTxt.SelectedItem),Convert.ToInt32(senderTxt.SelectedItem),(int)p.weight,(int)p.priority);
+               int x= bl.addParcel(Convert.ToInt32(senderTxt.SelectedItem),Convert.ToInt32(targetCmb.SelectedItem),(int)p.weight,(int)p.priority);
                 MessageBox.Show("the parcel successfully added,the ID of the parcel is:"+x);
                 p.sender = new BO.CustomerInParcel();
                 p.target = new BO.CustomerInParcel();

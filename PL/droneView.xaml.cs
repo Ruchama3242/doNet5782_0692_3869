@@ -42,11 +42,15 @@ namespace PL
             {
                 droneChargeBtn.Visibility = Visibility.Visible;
                 sendToDeliveryBtn.Visibility = Visibility.Visible;
+                lbl.Visibility = Visibility.Hidden;
+                parLst.Visibility = Visibility.Hidden;
             }
 
             if(dr.status==DroneStatus.Maintenace)
             {
                 relaseBtn.Visibility = Visibility.Visible;
+                lbl.Visibility = Visibility.Hidden;
+                parLst.Visibility = Visibility.Hidden;
             }
 
             if(dr.status==DroneStatus.Delivery)
@@ -54,6 +58,8 @@ namespace PL
                 collectBtn.Visibility = Visibility.Visible;
                 parcelDeliveryBtn.Visibility = Visibility.Visible;
                 viewParcelbtn.Visibility = Visibility.Visible;
+                parcelBtn.Visibility = Visibility.Visible;
+                //parLst.ItemsSource = dr.parcel;
             }
         }
 
@@ -74,7 +80,7 @@ namespace PL
 
            
                 relaseBtn.Visibility = Visibility.Hidden;
-           
+            
 
            
                 collectBtn.Visibility = Visibility.Hidden;
@@ -100,6 +106,8 @@ namespace PL
                 viewParcelbtn.Visibility = Visibility.Hidden;
             updateModeltxt.IsReadOnly = true;
             updateModelBtn.Visibility = Visibility.Hidden;
+            lbl.Visibility = Visibility.Hidden;
+            parLst.Visibility = Visibility.Hidden;
         }
 
         private void addDroneBtn_Click(object sender, RoutedEventArgs e)
@@ -193,6 +201,7 @@ namespace PL
                 relaseBtn.Visibility = Visibility.Visible;
                 droneChargeBtn.Visibility = Visibility.Hidden;
                 sendToDeliveryBtn.Visibility = Visibility.Hidden;
+               
             }
             catch (Exception ex)
             {
@@ -250,10 +259,13 @@ namespace PL
 
         private void sendToDelivery(object sender, RoutedEventArgs e)
         {
-            try
+           try
             {
                 bl.parcelToDrone(dr.ID);
                 MessageBox.Show("the drone belongs to parcel");
+                lbl.Visibility = Visibility.Visible;
+                parLst.Visibility = Visibility.Visible;
+                parcelBtn.Visibility = Visibility.Visible;
                 dr = bl.findDrone(dr.ID);
                 //fillTextbox(drone);
                 DataContext = dr;
@@ -261,6 +273,7 @@ namespace PL
                 parcelDeliveryBtn.Visibility = Visibility.Visible;
                 droneChargeBtn.Visibility = Visibility.Hidden;
                 sendToDeliveryBtn.Visibility = Visibility.Hidden;
+                
             }
             catch (Exception ex)
             {
@@ -302,7 +315,9 @@ namespace PL
                 parcelDeliveryBtn.Visibility = Visibility.Hidden;
                 droneChargeBtn.Visibility = Visibility.Visible;
                 sendToDeliveryBtn.Visibility = Visibility.Visible;
-                
+                lbl.Visibility = Visibility.Hidden;
+                parLst.Visibility = Visibility.Hidden;
+                parcelBtn.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
@@ -323,10 +338,16 @@ namespace PL
 
         private void parLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelInTransfer p = new ParcelInTransfer();
-            p = (ParcelInTransfer)parLst.SelectedItem;
+            //ParcelInTransfer p = new ParcelInTransfer();
+           // p = (ParcelInTransfer)parLst.SelectedItem;
             //לא לשכוח כשרוחמה תסיים עם חלון חבילה להוסיף שם בנאי מתאים
-            //new parcelWindow(p.id).ShowDialog();
+            new parcelWindow().ShowDialog();
+        }
+
+        private void parcelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new parcelWindow(dr.parcel.ID).ShowDialog();
+
         }
     }
 }

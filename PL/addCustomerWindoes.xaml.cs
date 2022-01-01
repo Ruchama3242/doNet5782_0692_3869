@@ -36,7 +36,9 @@ namespace PL
             this.updateBtn.Visibility = Visibility.Hidden;
             this.deleteBtn.Visibility = Visibility.Hidden;
             this.parcelLstView.Visibility = Visibility.Hidden;
-          
+            parcelToLstView.Visibility = Visibility.Hidden;
+          fromLbl.Visibility = Visibility.Hidden;
+            toLbl.Visibility = Visibility.Hidden;
         }
 
         public addCustomerWindoes(Customer cus)
@@ -59,7 +61,8 @@ namespace PL
             myCollection = c.fromCustomer;
 
             parcelLstView.DataContext = myCollection;
-
+            
+            parcelToLstView.ItemsSource = c.toCustomer;
 
         }
         public addCustomerWindoes( CustomerToList cus)
@@ -85,6 +88,7 @@ namespace PL
         
             parcelLstView.DataContext = myCollection;
           
+            parcelToLstView.ItemsSource = c.toCustomer;
 
         }
 
@@ -179,7 +183,14 @@ namespace PL
         {
             ParcelAtCustomer p = new ParcelAtCustomer();
             p = (ParcelAtCustomer)parcelLstView.SelectedItem;
-           // new parcelWindow(p).ShowDialog();
+            new parcelWindow(p.ID).ShowDialog();
+        }
+
+        private void parcelToLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelAtCustomer p = new ParcelAtCustomer();
+            p = (ParcelAtCustomer)parcelToLstView.SelectedItem;
+            new parcelWindow(p.ID).ShowDialog();
         }
     }
 }

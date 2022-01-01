@@ -67,7 +67,25 @@
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="updateBtn_Click" />
         <Button x:Name="closeBtn" Content="Close" Grid.Column="2" HorizontalAlignment="Center" Margin="0,35,0,0" Grid.Row="5" VerticalAlignment="Top"
                 MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100"  Style="{StaticResource myButtonStyle}" Click="closeBtn_Click"/>
-        <ListView x:Name="parcelLstView" DataContext="{Binding}" ItemsSource="{Binding}" Grid.ColumnSpan="3" Margin="332,23,10,41" Grid.RowSpan="3" MouseDoubleClick="parcelLstView_MouseDoubleClick">
+        <ListView x:Name="parcelLstView" DataContext="{Binding}" ItemsSource="{Binding}" Grid.ColumnSpan="3" Margin="327,41,15,11" Grid.RowSpan="3" MouseDoubleClick="parcelLstView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+
+
+                    <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
+                    <GridViewColumn Width="200" Header="Weight" DisplayMemberBinding="{Binding weight}" />
+                    <GridViewColumn Width="200" Header="Priority" DisplayMemberBinding="{Binding priority}"/>
+                    <GridViewColumn Width="200" Header=" Status" DisplayMemberBinding="{Binding status}"/>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label x:Name="fromLbl" Content="Parcels from customer" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"
+               Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Height="25" Width="183"/>
+        <Label x:Name="toLbl" Content="Parcels to customer" HorizontalAlignment="Left" Margin="400,54,0,0" VerticalAlignment="Top" 
+               Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Height="23" Width="186" RenderTransformOrigin="-0.294,0.63" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <ListView x:Name="parcelToLstView"   Grid.ColumnSpan="3" Margin="327,23,15,16" Grid.RowSpan="2" MouseDoubleClick="parcelToLstView_MouseDoubleClick" Grid.Row="3">
             <ListView.View>
                 <GridView>
 
