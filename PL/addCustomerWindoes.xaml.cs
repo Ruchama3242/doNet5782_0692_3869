@@ -111,13 +111,15 @@ namespace PL
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
              parcelLstView.ItemsSource = c.fromCustomer;
+            parcelToLstView.ItemsSource = c.toCustomer;
+
             //var lst = bl.getAllParcels();
             //myCollection = new ObservableCollection<BO.Parcel>();
             //foreach (var item in c.fromCustomer)
             //{
             //    myCollection.Add(bl.findParcel(item.ID));
             //}
-           // parcelLstView.DataContext = c.fromCustomer ;
+            // parcelLstView.DataContext = c.fromCustomer ;
 
 
         }
@@ -181,16 +183,26 @@ namespace PL
 
         private void parcelLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelAtCustomer p = new ParcelAtCustomer();
-            p = (ParcelAtCustomer)parcelLstView.SelectedItem;
-            new parcelWindow(p.ID).ShowDialog();
+            if (parcelLstView.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
+            {
+                ParcelAtCustomer p = new ParcelAtCustomer();
+                p = (ParcelAtCustomer)parcelLstView.SelectedItem;
+                new parcelWindow(p.ID).ShowDialog();
+            }
         }
 
         private void parcelToLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ParcelAtCustomer p = new ParcelAtCustomer();
-            p = (ParcelAtCustomer)parcelToLstView.SelectedItem;
-            new parcelWindow(p.ID).ShowDialog();
+            if (parcelToLstView.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
+            {
+                ParcelAtCustomer p = new ParcelAtCustomer();
+                p = (ParcelAtCustomer)parcelToLstView.SelectedItem;
+                new parcelWindow(p.ID).ShowDialog();
+            }
         }
     }
 }

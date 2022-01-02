@@ -86,9 +86,14 @@ namespace PL
 
         private void parcelistView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            new parcelWindow((BO.ParcelToList)parcelistView.SelectedItem).ShowDialog();
-            lst = new List<BO.ParcelToList>(bl.getAllParcels());
-            DataContext = lst;
+            if (parcelistView.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
+            {
+                new parcelWindow((BO.ParcelToList)parcelistView.SelectedItem).ShowDialog();
+                lst = new List<BO.ParcelToList>(bl.getAllParcels());
+                DataContext = lst;
+            }
 
         }
     }

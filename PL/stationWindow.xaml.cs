@@ -86,7 +86,12 @@ namespace PL
 
         private void droneslst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            new droneView((BO.DroneInCharge)droneslst.SelectedItem).ShowDialog();
+            if (droneslst.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
+            {
+                new droneView((BO.DroneInCharge)droneslst.SelectedItem).ShowDialog();
+            }
         }
     }
 }

@@ -21,13 +21,9 @@ namespace PL
     public partial class stattionListView : Window
     {
         private BlApi.IBL bl;
-        // private ObservableCollection<BO.StationToList> _myCollection =
-        //new ObservableCollection<BO.StationToList>();
-
+       
          private List<BO.StationToList> lst ;
-        //  private ObservableCollection<BO.StationToList> myObservableCollection = new ObservableCollection<BO.StationToList>();
-        
-
+       
         public stattionListView()
         {
             InitializeComponent();
@@ -57,13 +53,18 @@ namespace PL
 
         private void stationLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            new stationWindow((BO.StationToList)stationLst.SelectedItem).ShowDialog();
-            lst = new List<BO.StationToList>(bl.veiwListStation());
-            DataContext = lst;
-            if (clearBtn.Visibility == Visibility.Visible)
+            if (stationLst.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
             {
-                IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
-                DataContext = query;
+                new stationWindow((BO.StationToList)stationLst.SelectedItem).ShowDialog();
+                lst = new List<BO.StationToList>(bl.veiwListStation());
+                DataContext = lst;
+                if (clearBtn.Visibility == Visibility.Visible)
+                {
+                    IEnumerable<BO.StationToList> query = bl.veiwListStation().OrderBy(x => x.availableChargeSlots);
+                    DataContext = query;
+                }
             }
         }
 
@@ -92,9 +93,6 @@ namespace PL
             DataContext = lst;
         }
 
-        //private  ObservableCollection<BO.StationToList> ToObservableCollection<T>(this IEnumerable<BO.StationToList> col)
-        //{
-        //    return new ObservableCollection<BO.StationToList>(col);
-        //}
+       
     }
 }

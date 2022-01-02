@@ -66,11 +66,16 @@ namespace PL
 
         private void customerLstView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            CustomerToList c = new CustomerToList();
-            c = (CustomerToList)customerLstView.SelectedItem;
-            new addCustomerWindoes(c).ShowDialog();
-            lst = new List<BO.CustomerToList>(bl.viewListCustomer());
-            DataContext = lst;
+            if (customerLstView.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
+            {
+                CustomerToList c = new CustomerToList();
+                c = (CustomerToList)customerLstView.SelectedItem;
+                new addCustomerWindoes(c).ShowDialog();
+                lst = new List<BO.CustomerToList>(bl.viewListCustomer());
+                DataContext = lst;
+            }
             // dr = (DroneToList)DronesListView.SelectedItem;
             //new droneView(bl, dr).ShowDialog();
             //DroneToList dr = new DroneToList();

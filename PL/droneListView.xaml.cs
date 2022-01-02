@@ -85,11 +85,16 @@ namespace PL
 
         private void mouse(object sender, MouseButtonEventArgs e)
         {
-            DroneToList dr = new DroneToList();
-            dr = (DroneToList)DronesListView.SelectedItem;
-            new droneView(dr).ShowDialog();
-            myCollection = bl.getAllDrones();
-            DronesListView.DataContext = myCollection;
+            if (DronesListView.SelectedItem == null)
+                MessageBox.Show("Error! choose an item");
+            else
+            {
+                DroneToList dr = new DroneToList();
+                dr = (DroneToList)DronesListView.SelectedItem;
+                new droneView(dr).ShowDialog();
+                myCollection = bl.getAllDrones();
+                DronesListView.DataContext = myCollection;
+            }
             // fillListView();
         }
 
