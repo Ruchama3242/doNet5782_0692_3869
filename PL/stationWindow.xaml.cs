@@ -93,5 +93,67 @@ namespace PL
                 new droneView((BO.DroneInCharge)droneslst.SelectedItem).ShowDialog();
             }
         }
+
+
+        private void checkInputdigit(KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left)//allow back,delete and errors keys
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return;
+            e.Handled = true;
+            MessageBox.Show("The input must be only digits");
+        }
+
+        private void checkInputdigitForFraction(KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left || e.Key == Key.OemPeriod)//allow back,delete and errors keys
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return;
+            e.Handled = true;
+            MessageBox.Show("The input must be only digits");
+        }
+
+        private void checkInputLetters(KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left)//allow back,delete and errors keys
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsLetter(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return;
+            e.Handled = true;
+            MessageBox.Show("The input must be only letters");
+        }
+
+        private void idTxt_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigit(e);
+        }
+
+        private void nameTxt_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputLetters(e);
+        }
+
+        private void longitudtTxt_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigitForFraction(e);
+        }
+
+        private void latitudeTxt_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigitForFraction(e);
+        }
+
+        private void slotsTxt_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigit(e);
+        }
     }
 }

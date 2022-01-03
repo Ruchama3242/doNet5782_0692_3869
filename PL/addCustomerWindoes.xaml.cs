@@ -241,6 +241,18 @@ namespace PL
             MessageBox.Show("The input must be only digits");
         }
 
+        private void checkInputdigitForFraction(KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left || e.Key == Key.OemPeriod)//allow back,delete and errors keys
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return;
+            e.Handled = true;
+            MessageBox.Show("The input must be only digits");
+        }
+
         private void checkInputLetters(KeyEventArgs e)
         {
             if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left)//allow back,delete and errors keys
@@ -271,11 +283,34 @@ namespace PL
         private void sendParBtn_Click(object sender, RoutedEventArgs e)
         {
             new parcelWindow("user",c.ID).ShowDialog();
+            int i = c.ID;
+            c = new Customer();
+            c = bl.findCustomer(i);
+            DataContext = c;
+            c.fromCustomer = new List<ParcelAtCustomer>();
+            c.toCustomer = new List<ParcelAtCustomer>();
+            parcelLstView.ItemsSource = c.fromCustomer;
+            parcelToLstView.ItemsSource = c.toCustomer;
+
         }
 
         private void confirmParBtn_Click(object sender, RoutedEventArgs e)
         {
             this.confirmParBtn.Visibility = Visibility.Hidden;
+        }
+
+       
+        
+
+        private void longitudeBtn_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigitForFraction(e);
+        }
+
+        private void lattitudeBtn_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigitForFraction(e);
+
         }
     }
 }
