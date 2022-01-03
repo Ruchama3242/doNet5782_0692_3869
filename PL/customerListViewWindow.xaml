@@ -42,6 +42,7 @@
 
 
         <Button x:Name="add" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto"  Content="Add new customer"  Click="add_Click" Margin="-185,368,185,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle }" FontSize="30"  Height="auto"  Content="Close"  Click="closeBtn_Click" Margin="497,364,53,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
         <ListView x:Name="customerLstView" DataContext="{Binding}" ItemsSource="{Binding}"   Margin="8,75,12,60"  AutomationProperties.Name="customerLstView" 
          
@@ -60,7 +61,7 @@
             </ListView.View>
         </ListView>
 
-        <TextBox x:Name="serchTxtBx"   HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48"/>
+        <TextBox x:Name="serchTxtBx"   HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48" KeyUp="serchTxtBx_KeyUp"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" Grid.ColumnSpan="2" TouchEnter="Image_TouchEnter"/>
 
 
