@@ -22,7 +22,7 @@ namespace PL
     {
         private BlApi.IBL bl;
         BO.Parcel p;
-        public parcelWindow()
+        public parcelWindow(string permission="", int id=0)
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
@@ -63,6 +63,14 @@ namespace PL
             //droneslst.Visibility = Visibility.Hidden;
             //updateBtn.Visibility = Visibility.Hidden;
             // updateGrid.Visibility = Visibility.Hidden;
+
+            if (permission == "user")
+            {
+                
+                senderTxt.ItemsSource = bl.viewListCustomer().Where(x => x.ID == id).Select(x => x.ID) ;
+                
+            }
+
         }
 
         public parcelWindow(ParcelToList pr)

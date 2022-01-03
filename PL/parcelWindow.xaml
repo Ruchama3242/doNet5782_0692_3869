@@ -94,6 +94,7 @@
         <Button x:Name="showDroneBtn" Content="Show Drone" HorizontalAlignment="Left" Grid.Column="5" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Top" Style="{StaticResource myButtonStyle}" Click="showDroneBtn_Click" Visibility="Hidden" />
         <Button x:Name="showSenderBtn" Content="Show Sender" HorizontalAlignment="Left" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" Style="{StaticResource myButtonStyle}" Click="showSenderBtn_Click" Visibility="Hidden" />
         <Button x:Name="showTargetBtn" Content="Show Target" HorizontalAlignment="Left" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Style="{StaticResource myButtonStyle}" Click="showTargetBtn_Click" Visibility="Hidden" />
+        <TextBlock x:Name="idSender" Grid.Column="3" HorizontalAlignment="Left" Margin="0,39,0,0" Text="" Visibility="Hidden" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="2" Width="120"/>
 
 
     </Grid>

@@ -39,9 +39,10 @@ namespace PL
             parcelToLstView.Visibility = Visibility.Hidden;
           fromLbl.Visibility = Visibility.Hidden;
             toLbl.Visibility = Visibility.Hidden;
+            sendParBtn.Visibility = Visibility.Hidden;
         }
 
-        public addCustomerWindoes(Customer cus)
+        public addCustomerWindoes(Customer cus, string permission)
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
@@ -56,16 +57,30 @@ namespace PL
             this.phoneBtn.IsReadOnly = false;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
-            ;
             myCollection = new List<ParcelAtCustomer>();
             myCollection = c.fromCustomer;
-
             parcelLstView.DataContext = myCollection;
-            
             parcelToLstView.ItemsSource = c.toCustomer;
+            sendParBtn.Visibility = Visibility.Hidden;
+
+            if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
+            {
+                confirmParBtn.Visibility = Visibility.Visible;
+                confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
+            }
+
+            if (permission=="user")
+            {
+                sendParBtn.Visibility = Visibility.Visible;
+            }
+            if (permission == "maneger")
+            {
+                
+            }
+            
 
         }
-        public addCustomerWindoes( CustomerToList cus)
+        public addCustomerWindoes( CustomerToList cus, string permission)
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
@@ -82,13 +97,19 @@ namespace PL
             this.phoneBtn.IsReadOnly = false;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
-            ;
+            sendParBtn.Visibility = Visibility.Hidden;
             myCollection = new List<ParcelAtCustomer>();
             myCollection = c.fromCustomer;
-        
             parcelLstView.DataContext = myCollection;
-          
             parcelToLstView.ItemsSource = c.toCustomer;
+            if (permission == "user")
+            {
+                sendParBtn.Visibility = Visibility.Visible;
+            }
+            if (permission == "maneger")
+            {
+                
+            }
 
         }
 
@@ -112,6 +133,7 @@ namespace PL
             lattitudeBtn.IsReadOnly = true;
              parcelLstView.ItemsSource = c.fromCustomer;
             parcelToLstView.ItemsSource = c.toCustomer;
+            sendParBtn.Visibility = Visibility.Hidden;
 
             //var lst = bl.getAllParcels();
             //myCollection = new ObservableCollection<BO.Parcel>();
@@ -203,6 +225,16 @@ namespace PL
                 p = (ParcelAtCustomer)parcelToLstView.SelectedItem;
                 new parcelWindow(p.ID).ShowDialog();
             }
+        }
+
+        private void sendParBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new parcelWindow("user",c.ID).ShowDialog();
+        }
+
+        private void confirmParBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.confirmParBtn.Visibility = Visibility.Hidden;
         }
     }
 }
