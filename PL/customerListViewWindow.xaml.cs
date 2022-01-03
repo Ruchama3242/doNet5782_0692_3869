@@ -26,7 +26,7 @@ namespace PL
     {
         private BlApi.IBL bl;
 
-        private List<BO.CustomerToList> lst;
+        private IEnumerable<BO.CustomerToList> lst;
       //new ObservableCollection<BO.Customer>();
         
        
@@ -34,7 +34,8 @@ namespace PL
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
-            lst = new List<BO.CustomerToList>(bl.viewListCustomer());
+            List<BO.CustomerToList> lst1 = new List<BO.CustomerToList>(bl.viewListCustomer());
+            lst = lst1;
             DataContext = lst;
             //customerLstView.ItemsSource = bl.viewListCustomer();
             // customerLstView.ItemsSource = myCollection;

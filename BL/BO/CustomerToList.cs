@@ -8,13 +8,13 @@ namespace BO
 {
     public class CustomerToList
     {
-        public int ID;
-        public string name;
-        public string phone;
-        public int sendAndDeliveredParcels;
-        public int sendAndNotDeliveredParcels;
-        public int gotParcels;
-        public int onTheWayParcels;
+        public int ID { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public int sendAndDeliveredParcels { get; set; }
+        public int sendAndNotDeliveredParcels { get; set; }
+        public int gotParcels { get; set; }
+        public int onTheWayParcels { get; set; }
         public override string ToString()
         {
             String result = "";
