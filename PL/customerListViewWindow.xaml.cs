@@ -82,5 +82,18 @@ namespace PL
             //dr = (DroneToList)DronesListView.SelectedItem;
             //new droneView(bl, dr).ShowDialog();
         }
+
+        private void serchTxtBx_KeyUp(object sender, KeyEventArgs e)
+        {
+            IEnumerable<BO.CustomerToList> p = new List<BO.CustomerToList>();
+            p = bl.viewListCustomer().Where(x => Convert.ToString(x.ID).StartsWith(serchTxtBx.Text));
+            lst = new List<BO.CustomerToList>(p);
+            DataContext = lst;
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
