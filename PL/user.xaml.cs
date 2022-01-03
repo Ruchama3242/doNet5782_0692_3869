@@ -37,7 +37,7 @@ namespace PL
             {
                 BO.Customer c = new BO.Customer();
                 c = bl.findCustomer(Convert.ToInt32(idTxtBlk.Text));
-                new addCustomerWindoes(c).ShowDialog();
+                new addCustomerWindoes(c,"user").ShowDialog();
                 this.Close();
             }
 

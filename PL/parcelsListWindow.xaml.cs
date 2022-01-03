@@ -30,6 +30,8 @@ namespace PL
             lst = new List<BO.ParcelToList>(bl.getAllParcels());
             DataContext = lst;
             statusCmb.ItemsSource= Enum.GetValues(typeof(BO.ParcelStatus));
+
+           
         }
 
         //private void filterByStatus_Checked(object sender, RoutedEventArgs e)
@@ -121,6 +123,30 @@ namespace PL
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {
             parcelistView.ItemsSource = bl.getAllParcels();
+        }
+
+        private void normalView_Checked(object sender, RoutedEventArgs e)
+        {
+            parcelistView.ItemsSource = bl.getAllParcels();
+           // parcelistView.DataContext = lst;
+                
+        }
+
+        private void groupingViewC_Checked(object sender, RoutedEventArgs e)
+        {
+            parcelistView.ItemsSource = bl.getAllParcels();
+           
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(parcelistView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("targetName");
+            view.GroupDescriptions.Add(groupDescription);
+        }
+
+        private void groupingViewS_Checked(object sender, RoutedEventArgs e)
+        {
+            parcelistView.ItemsSource = bl.getAllParcels();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(parcelistView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("senderName");
+            view.GroupDescriptions.Add(groupDescription);
         }
     }
    

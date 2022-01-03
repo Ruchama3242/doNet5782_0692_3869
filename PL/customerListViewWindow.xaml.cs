@@ -73,7 +73,7 @@ namespace PL
             {
                 CustomerToList c = new CustomerToList();
                 c = (CustomerToList)customerLstView.SelectedItem;
-                new addCustomerWindoes(c).ShowDialog();
+                new addCustomerWindoes(c,"maneger").ShowDialog();
                 lst = new List<BO.CustomerToList>(bl.viewListCustomer());
                 DataContext = lst;
             }

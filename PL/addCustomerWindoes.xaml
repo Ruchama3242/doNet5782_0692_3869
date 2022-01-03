@@ -51,8 +51,8 @@
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Width="109" Grid.Row="3" Height="24"/>
         <Label x:Name="lattitudeL" Content="Latitude" HorizontalAlignment="Left" Margin="25,26,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" RenderTransformOrigin="-0.67,-7.458" Grid.Row="4" Height="25" Width="69"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"
-                Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Grid.Row="5" Height="28" Width="60"  Click="Button_Click_1" RenderTransformOrigin="5.089,0.668" Grid.Column="1"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="35,32,0,0" VerticalAlignment="Top"
+                Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Grid.Row="5" Height="28" Width="60"  Click="Button_Click_1" RenderTransformOrigin="5.089,0.668" Grid.Column="2"/>
 
         <TextBox x:Name="IDBtn" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  MaxLength="9" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" PreviewKeyDown="IDBtn_PreviewKeyDown"/>
         <TextBox x:Name="nameBtn" Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Grid.Row="1" PreviewKeyDown="nameBtn_PreviewKeyDown"/>
@@ -61,43 +61,46 @@
         <TextBox  x:Name="phoneBtn" Text="{Binding phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="172,0,0,0"  MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="118" Height="20" Grid.Row="2" PreviewKeyDown="phoneBtn_PreviewKeyDown" />
         <Button x:Name="addBtn" Content="Add" HorizontalAlignment="Left" Margin="26,35,0,0" VerticalAlignment="Top"
                 Style = "{StaticResource myButtonStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="Button_Click" Grid.Row="5" Height="25" Width="60"/>
-        <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="168,35,0,0" Grid.Row="5"
+        <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="120,33,0,0" Grid.Row="5"
                 Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="deleteBtn_Click" />
-        <Button x:Name="updateBtn" Content="Save Changes" HorizontalAlignment="Left" Margin="290,35,0,0" Grid.Row="5"
+        <Button x:Name="updateBtn" Content="Save Changes" HorizontalAlignment="Left" Margin="228,35,0,0" Grid.Row="5"
                  Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Click="updateBtn_Click" />
-        <Button x:Name="closeBtn" Content="Close" Grid.Column="2" HorizontalAlignment="Center" Margin="0,35,0,0" Grid.Row="5" VerticalAlignment="Top"
+        <Button x:Name="closeBtn" Content="Close" Grid.Column="2" HorizontalAlignment="Left" Margin="170,35,0,0" Grid.Row="5" VerticalAlignment="Top"
                 MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100"  Style="{StaticResource myButtonStyle}" Click="closeBtn_Click"/>
-        <ListView x:Name="parcelLstView" DataContext="{Binding}" ItemsSource="{Binding}" Grid.ColumnSpan="3" Margin="327,41,15,11" Grid.RowSpan="3" MouseDoubleClick="parcelLstView_MouseDoubleClick">
+        <ListView x:Name="parcelLstView" DataContext="{Binding}" ItemsSource="{Binding}" Grid.ColumnSpan="3" Margin="327,41,20,11" Grid.RowSpan="3" MouseDoubleClick="parcelLstView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
 
 
                     <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
-                    <GridViewColumn Width="200" Header="Weight" DisplayMemberBinding="{Binding weight}" />
-                    <GridViewColumn Width="200" Header="Priority" DisplayMemberBinding="{Binding priority}"/>
-                    <GridViewColumn Width="200" Header=" Status" DisplayMemberBinding="{Binding status}"/>
+                    <GridViewColumn Width="100" Header="Weight" DisplayMemberBinding="{Binding weight}" />
+                    <GridViewColumn Width="100" Header="Priority" DisplayMemberBinding="{Binding priority}"/>
+                    <GridViewColumn Width="100" Header=" Status" DisplayMemberBinding="{Binding status}"/>
 
                 </GridView>
             </ListView.View>
         </ListView>
 
         <Label x:Name="fromLbl" Content="Parcels from customer" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"
-               Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Height="25" Width="183"/>
+               Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="900" Height="25" Width="183"/>
         <Label x:Name="toLbl" Content="Parcels to customer" HorizontalAlignment="Left" Margin="400,54,0,0" VerticalAlignment="Top" 
-               Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="100" Height="23" Width="186" RenderTransformOrigin="-0.294,0.63" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
-        <ListView x:Name="parcelToLstView"   Grid.ColumnSpan="3" Margin="327,23,15,16" Grid.RowSpan="2" MouseDoubleClick="parcelToLstView_MouseDoubleClick" Grid.Row="3">
+               Style = "{StaticResource myLableStyle}" MaxHeight="40" MinHeight="25" MinWidth="60" MaxWidth="900" Height="23" Width="186" RenderTransformOrigin="-0.294,0.63" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <ListView x:Name="parcelToLstView"   Grid.ColumnSpan="3" Margin="327,23,20,16" Grid.RowSpan="2" MouseDoubleClick="parcelToLstView_MouseDoubleClick" Grid.Row="3">
             <ListView.View>
                 <GridView>
 
 
                     <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
-                    <GridViewColumn Width="200" Header="Weight" DisplayMemberBinding="{Binding weight}" />
-                    <GridViewColumn Width="200" Header="Priority" DisplayMemberBinding="{Binding priority}"/>
-                    <GridViewColumn Width="200" Header=" Status" DisplayMemberBinding="{Binding status}"/>
+                    <GridViewColumn Width="100" Header="Weight" DisplayMemberBinding="{Binding weight}" />
+                    <GridViewColumn Width="100" Header="Priority" DisplayMemberBinding="{Binding priority}"/>
+                    <GridViewColumn Width="100" Header=" Status" DisplayMemberBinding="{Binding status}"/>
 
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="sendParBtn" Content="Send parcel" HorizontalAlignment="Left" Margin="327,38,0,0" Grid.Row="5"
+               Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="sendParBtn_Click"/>
+        <Button x:Name="confirmParBtn" Content= "" Style="{StaticResource myButtonStyle}" Visibility="Hidden" HorizontalAlignment="Left" Margin="327,65,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Grid.RowSpan="2" Width="442" Click="confirmParBtn_Click" Grid.ColumnSpan="3"/>
 
 
     </Grid>

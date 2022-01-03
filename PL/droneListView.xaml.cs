@@ -127,6 +127,7 @@ namespace PL
 
         private void groupingBtn_Click(object sender, RoutedEventArgs e)
         {
+            DronesListView.ItemsSource = bl.getAllDrones();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("status ");
             view.GroupDescriptions.Add(groupDescription);
