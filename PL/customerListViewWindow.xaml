@@ -44,7 +44,7 @@
         <Button x:Name="add" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto"  Content="Add new customer"  Click="add_Click" Margin="-185,368,185,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
         <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle }" FontSize="30"  Height="auto"  Content="Close"  Click="closeBtn_Click" Margin="497,364,53,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
-        <ListView x:Name="customerLstView" DataContext="{Binding}" ItemsSource="{Binding}"   Margin="8,75,12,60"  AutomationProperties.Name="customerLstView" 
+        <ListView x:Name="customerLstView" DataContext="{Binding}" ItemsSource="{Binding}"   Margin="8,75,12,60" 
          
                   HorizontalContentAlignment="Stretch"   Background="#FFABC6E7" MouseDoubleClick="customerLstView_MouseDoubleClick">
             <ListView.View>
@@ -53,10 +53,10 @@
                     <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
                     <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />
-                    <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding sendAndDeliveredParcel}"/>
-                    <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcel}"/>
+                    <GridViewColumn Width="200" Header="send parcel" DisplayMemberBinding="{Binding sendAndDeliveredParcels}"/>
+                    <GridViewColumn Width="200" Header="parcel in process" DisplayMemberBinding="{Binding sendAndNotDeliveredParcels}"/>
                     <GridViewColumn Width="200" Header="parcel on way" DisplayMemberBinding="{Binding onTheWayParcels}"/>
-                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcel}"/>
+                    <GridViewColumn Width="200" Header="Recived parcel" DisplayMemberBinding="{Binding gotParcels}"/>
                 </GridView>
             </ListView.View>
         </ListView>
