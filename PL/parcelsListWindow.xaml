@@ -63,10 +63,16 @@
         <RadioButton x:Name="groupingView" Content="Grouping view" HorizontalAlignment="Left" Margin="241,43,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="filterByDates" Content="By dates" HorizontalAlignment="Left" Margin="454,20,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="filterByStatus" Content="By status" HorizontalAlignment="Left" Margin="454,51,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="date1Txt" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,20,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="date2Txt" Grid.Column="1" HorizontalAlignment="Left" Margin="90,20,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="dateCmb" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,20,0,0"   VerticalAlignment="Top" Width="120" SelectionChanged="dateCmb_SelectionChanged">
+            <ComboBoxItem Content="Today"></ComboBoxItem>
+            <ComboBoxItem Content="This week"></ComboBoxItem>
+            <ComboBoxItem Content="This month"></ComboBoxItem>
+            <ComboBoxItem Content="This year"></ComboBoxItem>
+
+        </ComboBox>
         <ComboBox Name="statusCmb" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,42,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="statusCmb_SelectionChanged"/>
         <GroupBox Header="filter" Grid.ColumnSpan="2" Margin="434,-1,6,282" Grid.RowSpan="2"/>
+        <Button x:Name="clearBtn" Style="{StaticResource myButtonStyle }" FontSize="16"  Height="auto" Content="Clear all"   Margin="100,26,9,16" Background="{x:Null}" BorderBrush="{x:Null}" Click="clearBtn_Click" Grid.Column="1"/>
 
 
     </Grid>

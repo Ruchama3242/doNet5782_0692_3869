@@ -54,8 +54,9 @@ namespace PL
             {
                 IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
                 p = bl.getAllParcels().Where(x => x.status == (BO.ParcelStatus)statusCmb.SelectedItem);
-                lst = new List<BO.ParcelToList>(bl.getAllParcels());
-                DataContext = lst;
+                lst = new List<BO.ParcelToList>(p);
+                //DataContext = lst;
+                parcelistView.ItemsSource = p;
             }
             else
             {
@@ -95,6 +96,31 @@ namespace PL
                 DataContext = lst;
             }
 
+        }
+
+        private void dateCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (filterByDates.IsChecked == true)
+            {
+                IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
+                p = bl.getAllParcels();
+                if (dateCmb.SelectedIndex == 0)
+                    p = bl.getAllParcels().Where(x => bl.findParcel(x.ID).requested > DateTime.Now.AddDays(-1));
+                if (dateCmb.SelectedIndex == 1)
+                    p = bl.getAllParcels().Where(x => bl.findParcel(x.ID).requested > DateTime.Now.AddDays(-7));
+                if (dateCmb.SelectedIndex == 2)
+                    p = bl.getAllParcels().Where(x => bl.findParcel(x.ID).requested > DateTime.Now.AddMonths(-1));
+                if (dateCmb.SelectedIndex == 3)
+                    p = bl.getAllParcels().Where(x => bl.findParcel(x.ID).requested > DateTime.Now.AddYears(-1));
+                parcelistView.ItemsSource = p;
+            }
+            else
+                parcelistView.ItemsSource = bl.getAllParcels();
+        }
+
+        private void clearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            parcelistView.ItemsSource = bl.getAllParcels();
         }
     }
    

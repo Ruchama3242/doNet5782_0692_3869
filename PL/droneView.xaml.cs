@@ -36,9 +36,9 @@ namespace PL
             InitializeComponent();
             dr =new Drone();
             dr = bl.findDrone(d.ID);
-            dr.parcel = new ParcelInTransfer();
+           // dr.parcel = new ParcelInTransfer();
             DataContext = dr;
-            parLst.DataContext = dr.parcel;
+           // parLst.DataContext = dr.parcel;
             if(dr.status==DroneStatus.Available)
             {
                 droneChargeBtn.Visibility = Visibility.Visible;

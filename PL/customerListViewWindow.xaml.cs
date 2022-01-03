@@ -53,11 +53,11 @@ namespace PL
 
         }
 
-        private void ListBox_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-            //customerLstView.ItemsSource = bl.viewListCustomer();
-            DataContext =lst ;
-        }
+        //private void ListBox_SourceUpdated(object sender, DataTransferEventArgs e)
+        //{
+        //    //customerLstView.ItemsSource = bl.viewListCustomer();
+        //    DataContext =lst ;
+        //}
 
         private void Image_TouchEnter(object sender, TouchEventArgs e)
         {
