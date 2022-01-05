@@ -5,5 +5,15 @@
 		<list class="DalObject" namespace="Dal">DalObject</list>
 		<xml>DalXml</xml>
 	</dal-packages>j
-	<pacnum>12</pacnum>
+	<parcelId>1000</parcelId>
+	<chargeClear>0.001</chargeClear>
+	<chargeLightWeight>0.005</chargeLightWeight>
+	<chargeHavyWeight>0.05</chargeHavyWeight>
+	<chargeMediumWeight>0.01</chargeMediumWeight>
+	<chargineRate>0.50</chargineRate>
 </config>
+
+
+
+
+
