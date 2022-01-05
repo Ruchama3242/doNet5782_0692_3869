@@ -74,7 +74,7 @@ namespace PL
                 MessageBox.Show("the station successfully updated");
                 // s = new BO.Station();
                 s = bl.findStation(s.ID);
-                s.location = new BO.Location();
+                //s.location = new BO.Location();
                 DataContext = s;
             }
             catch (Exception ex)

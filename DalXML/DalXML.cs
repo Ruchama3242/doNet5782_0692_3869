@@ -26,7 +26,7 @@ namespace Dal
         string stationPath = @"StationsXml.xml";  //
         string parcelPath = @"ParcelXml.xml";//XElement
         string dronePath = @"DroneXml.xml";//XMLSerializer
-
+        string dronechargePath = @"DroneCharge.xml";
         static int runID = 0;
 
         #region ----------------------------------stattion------------------------------------
@@ -286,5 +286,133 @@ namespace Dal
         }
         #endregion
 
+        #region ----------------------------Drone-----------------------------------
+        public IEnumerable<DO.Drone> GetPartOfDrone(Func<DO.Drone, bool> droneCondition = null)
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+             var list = from Drone in droneList
+                      select Drone;
+            if (droneCondition == null)
+                return list;
+            return list.Where(droneCondition);
+        }
+
+        public void addDrone(DO.Drone temp)
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+            if(droneList.Exists(x=>x.ID==temp.ID))
+                throw new DO.IdExistsException();
+            droneList.Add(temp);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.Drone>(droneList, dronePath);
+
+        }
+
+        public DO.DroneCharge SendToCharge(int DroneID, int StationID)
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+            if (!droneList.Exists(x => x.ID == DroneID))
+                throw new DO.IdUnExistsException();
+          
+            DO.DroneCharge d = new DO.DroneCharge();
+            d.droneID = DroneID;
+            d.stationeld = StationID;
+            d.enterToCharge = DateTime.Now;
+            List<DO.Station> stationList= Dal.XMLTools.LoadListFromXMLSerializer<DO.Station>(stationPath);
+            DO.Station s = stationList.Find(x => x.ID == StationID);
+            stationList.Remove(s);
+            s.chargeSlots--;
+            stationList.Add(s);
+            List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(dronechargePath);
+            dr.Add(d);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.Station>(stationList, stationPath);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.DroneCharge>(dr, dronechargePath);
+            return d;
+        }
+        public void BatteryCharged(DO.DroneCharge dc)
+        {
+            List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(dronechargePath);
+            if (!dr.Exists(x => x.droneID == dc.droneID))
+                throw new DO.generalException("ERROR! value not found");
+            dr.Remove(dc);
+            List<DO.Station> stationList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Station>(stationPath);
+            DO.Station s = stationList.Find(x => x.ID == dc.stationeld);
+            stationList.Remove(s);
+            s.chargeSlots++;
+            stationList.Add(s);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.Station>(stationList, stationPath);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.DroneCharge>(dr, dronechargePath);
+        }
+        public DO.Drone findDrone(int id)
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+            if (!droneList.Exists(x => x.ID == id))
+                throw new DO.IdUnExistsException("ERROR! the drone doesn't exist");
+            return droneList.Find(x => x.ID == id);
+           
+        }
+
+        /// <summary>
+        /// return a list of all drones
+        /// </summary>
+        public IEnumerable<DO.Drone> getAllDrones()
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+            var lst = from Drone in droneList
+                      select Drone;
+            return lst;
+        }
+
+        public void deleteDrone(int id)
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+            if (!droneList.Exists(x => x.ID == id))
+                throw new DO.IdUnExistsException("ERROR! the drone doesn't exist");
+            var d = droneList.Find(x => x.ID == id);
+            droneList.Remove(d);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.Drone>(droneList, dronePath);
+        }
+
+        public void updateDrone(int id, int mod)
+        {
+            List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
+            if (!droneList.Exists(x => x.ID == id))
+                throw new DO.IdUnExistsException("ERROR! the drone doesn't exist");
+            var d = droneList.Find(x => x.ID == id);
+            droneList.Remove(d);
+            d.model = mod;
+            droneList.Add(d);
+            Dal.XMLTools.SaveListToXMLSerializer<DO.Drone>(droneList, dronePath);
+
+        }
+        public IEnumerable<DO.DroneCharge> findDroneCharge(int id)
+        {
+            List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(dronechargePath);
+
+            //find all the station with empty charge slots
+            var lst = from item in dr
+                      where item.stationeld == id
+                      select item;
+            foreach (var item2 in lst)
+                lst.ToList().Add(item2);
+            return lst;
+          
+        }
+
+        public DO.DroneCharge findStationOfDroneCharge(int id)
+        {
+            List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(dronechargePath);
+
+            DO.DroneCharge temp = new DO.DroneCharge();
+            foreach (DO.DroneCharge item in dr)
+                if (item.droneID == id)
+                    temp = item;
+
+            return temp;
+        }
+        #endregion
     }
 }
+
+        
+    
+
