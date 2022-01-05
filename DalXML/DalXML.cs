@@ -49,10 +49,7 @@ namespace Dal
         public static DalXml Instance => instance;
         #endregion
 
-        string customerPath = @"CustomerXml.xml";//
-        string stationPath = @"StationsXml.xml";  //
-        string parcelPath = @"ParcelXml.xml";//XElement
-        string dronePath = @"DroneXml.xml";//XMLSerializer
+       
         string dronechargePath = @"DroneCharge.xml";
         static int runID = 0;
 
