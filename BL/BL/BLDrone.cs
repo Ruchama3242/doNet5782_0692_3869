@@ -164,7 +164,7 @@ namespace BL
                     pt.targetLocation = new Location();
                     pt.targetLocation.longitude = target.longitude;
                     pt.targetLocation.latitude = target.lattitude;
-                    pt.distance = distance(pt.collectionLocation, pt.targetLocation);
+                    pt.distance = distance(drn.currentLocation, pt.targetLocation);
 
                     d.parcel = new ParcelInTransfer();
                     d.parcel = pt;
