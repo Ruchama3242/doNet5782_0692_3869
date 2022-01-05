@@ -13,11 +13,10 @@ namespace Dal
 {
     static internal class XMLTools
     {
-        static string dir = @"xml\";
+        
         static XMLTools()
         {
-            if (!Directory.Exists(dir))
-             Directory.CreateDirectory(dir);
+           
         }
         #region SaveLoadWithXElement
 
@@ -103,6 +102,8 @@ namespace Dal
                 throw new LoadingException(filePath, $"fail to load xml file: {filePath}", ex);
             }
         }
+
+
         #endregion
     }
 }

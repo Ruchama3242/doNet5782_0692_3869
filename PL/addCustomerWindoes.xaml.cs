@@ -52,8 +52,9 @@ namespace PL
             this.updateBtn.Visibility = Visibility.Visible;
             this.deleteBtn.Visibility = Visibility.Visible;
             this.addBtn.Visibility = Visibility.Hidden;
+            cencelBtn.Visibility = Visibility.Hidden;
             this.nameBtn.IsReadOnly = false;
-            this.IDBtn.IsReadOnly = false;
+            this.IDBtn.IsReadOnly = true;
             this.phoneBtn.IsReadOnly = false;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
@@ -92,8 +93,9 @@ namespace PL
             this.updateBtn.Visibility = Visibility.Visible;
             this.deleteBtn.Visibility = Visibility.Visible;
             this.addBtn.Visibility = Visibility.Hidden;
+            cencelBtn.Visibility = Visibility.Hidden;
             this.nameBtn.IsReadOnly = false;
-            this.IDBtn.IsReadOnly = false;
+            this.IDBtn.IsReadOnly = true;
             this.phoneBtn.IsReadOnly = false;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;

@@ -4,5 +4,6 @@
 	<dal-packages>
 		<list class="DalObject" namespace="Dal">DalObject</list>
 		<xml>DalXml</xml>
-	</dal-packages>
+	</dal-packages>j
+	<pacnum>12</pacnum>
 </config>

@@ -14,23 +14,50 @@ namespace Dal
 {
    sealed public class DalXml // : IDal
     {
+        static string dir = @"..\..\..\..\xml\";
+
+        string customerPath = @"CustomerXml.xml";//
+        string stationPath = @"StationsXml.xml";  //
+        string parcelPath = @"ParcelXml.xml";//
+        string dronePath = @"DroneXml.xml";//XMLSerializer
+        string droneChargePath = @"DroneCharge.xml";
         #region singelton
 
         static readonly DalXml instance = new DalXml();
         static DalXml() { }
-        DalXml() { }
+        DalXml() 
+        { 
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(dir + customerPath))
+                Directory.CreateDirectory(dir + customerPath);
+               
+
+            if (!File.Exists(dir + dronePath))
+                Directory.CreateDirectory(dir + dronePath);
+
+            if (!File.Exists(dir + droneChargePath))
+                Directory.CreateDirectory(dir + droneChargePath);
+
+            if (!File.Exists(dir + parcelPath))
+                Directory.CreateDirectory(dir + parcelPath);
+
+            if(!File.Exists(dir+stationPath))
+                Directory.CreateDirectory(dir + stationPath);
+        }
         public static DalXml Instance => instance;
         #endregion
 
-        string customerPath = @"CustomerXml.xml";//
-        string stationPath = @"StationsXml.xml";  //
-        string parcelPath = @"ParcelXml.xml";//XElement
-        string dronePath = @"DroneXml.xml";//XMLSerializer
+       
 
         static int runID = 0;
 
         #region ----------------------------------stattion------------------------------------
 
+       // DalName = dalConfig.Element("packnum").Value;
+        //    dalConfig.Element("packnum").Value = 8887;
+        //    dalConfig.Save(path);
         public IEnumerable<DO.Station> getAllStations()
         {
             List<DO.Station> list = new List<DO.Station>();
@@ -117,6 +144,7 @@ namespace Dal
             throw new DO.IdUnExistsException("ERROR! the station doesn't found");
         }
         #endregion
+
         #region-------------------------------------parcel-----------------------------------------
         public IEnumerable<Parcel> GetPartParcel()
         {
