@@ -2,138 +2,138 @@
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <ID>230189233</ID>
-    <name>noa</name>
+    <name>Noa</name>
     <phone>0529371271</phone>
-    <longitude>33</longitude>
-    <lattitude>35</lattitude>
-    <active>False</active>
+    <longitude>33.102</longitude>
+    <lattitude>34.901</lattitude>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>280427252</ID>
-    <name>efrat</name>
+    <name>Efrat</name>
     <phone>0537283882</phone>
-    <longitude>30</longitude>
-    <lattitude>35</lattitude>
+    <longitude>30.021</longitude>
+    <lattitude>34.99</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>322316186</ID>
-    <name>michal</name>
+    <name>Michal</name>
     <phone>0539530107</phone>
-    <longitude>33</longitude>
-    <lattitude>34</lattitude>
+    <longitude>33.106</longitude>
+    <lattitude>34.901</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>301930430</ID>
     <name>Liam</name>
     <phone>0522496236</phone>
-    <longitude>33</longitude>
-    <lattitude>36</lattitude>
+    <longitude>33.432</longitude>
+    <lattitude>35.901</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>237143865</ID>
     <name>Olivia</name>
     <phone>0527547090</phone>
-    <longitude>32</longitude>
-    <lattitude>35</lattitude>
+    <longitude>32.001</longitude>
+    <lattitude>35.001</lattitude>
     <active>False</active>
   </Customer>
   <Customer>
     <ID>286172857</ID>
     <name>Noah</name>
     <phone>0539667528</phone>
-    <longitude>31</longitude>
-    <lattitude>34</lattitude>
+    <longitude>31.91</longitude>
+    <lattitude>34.909</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>223576776</ID>
     <name>Emma</name>
     <phone>0545865748</phone>
-    <longitude>31</longitude>
-    <lattitude>35</lattitude>
+    <longitude>31.123</longitude>
+    <lattitude>35.10002</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>307320813</ID>
     <name>Oliver</name>
     <phone>0526218030</phone>
-    <longitude>31</longitude>
-    <lattitude>34</lattitude>
+    <longitude>31.90</longitude>
+    <lattitude>34.9987</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>299922833</ID>
     <name>Ava</name>
     <phone>0522489550</phone>
-    <longitude>30</longitude>
-    <lattitude>34</lattitude>
+    <longitude>30.9919</longitude>
+    <lattitude>34.109</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>219746310</ID>
     <name>Elijah</name>
     <phone>0528067407</phone>
-    <longitude>31</longitude>
-    <lattitude>36</lattitude>
+    <longitude>31.908</longitude>
+    <lattitude>36.00</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>282996889</ID>
-    <name>noa</name>
+    <name>Noa</name>
     <phone>0524292589</phone>
-    <longitude>33</longitude>
-    <lattitude>35</lattitude>
+    <longitude>33.12</longitude>
+    <lattitude>35.02</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>227694220</ID>
-    <name>efrat</name>
+    <name>Efrat</name>
     <phone>0545593540</phone>
-    <longitude>33</longitude>
-    <lattitude>34</lattitude>
+    <longitude>33.90</longitude>
+    <lattitude>34.45</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>282651689</ID>
-    <name>michal</name>
+    <name>Michal</name>
     <phone>0544238771</phone>
-    <longitude>32</longitude>
-    <lattitude>36</lattitude>
+    <longitude>32.909</longitude>
+    <lattitude>36.0001</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>268886992</ID>
     <name>Liam</name>
     <phone>0527084847</phone>
-    <longitude>30</longitude>
-    <lattitude>35</lattitude>
+    <longitude>30.908</longitude>
+    <lattitude>35.23</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>227511864</ID>
     <name>Olivia</name>
     <phone>0547302111</phone>
-    <longitude>32</longitude>
-    <lattitude>34</lattitude>
+    <longitude>32.090</longitude>
+    <lattitude>34.54</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>294210198</ID>
     <name>Noah</name>
     <phone>0539578345</phone>
-    <longitude>31</longitude>
-    <lattitude>34</lattitude>
+    <longitude>31.01010</longitude>
+    <lattitude>34.0010</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
     <ID>284552766</ID>
     <name>Emma</name>
     <phone>0543943084</phone>
-    <longitude>30</longitude>
-    <lattitude>34</lattitude>
+    <longitude>30.9090</longitude>
+    <lattitude>34.0101</lattitude>
     <active>true</active>
   </Customer>
   <Customer>
@@ -162,7 +162,7 @@
   </Customer>
   <Customer>
     <ID>309352175</ID>
-    <name>noa</name>
+    <name>Noa</name>
     <phone>0549149499</phone>
     <longitude>32</longitude>
     <lattitude>35</lattitude>
@@ -170,7 +170,7 @@
   </Customer>
   <Customer>
     <ID>256717607</ID>
-    <name>efrat</name>
+    <name>Efrat</name>
     <phone>0528364131</phone>
     <longitude>32</longitude>
     <lattitude>36</lattitude>
@@ -178,7 +178,7 @@
   </Customer>
   <Customer>
     <ID>300418996</ID>
-    <name>michal</name>
+    <name>Michal</name>
     <phone>0540655449</phone>
     <longitude>30</longitude>
     <lattitude>35</lattitude>
@@ -238,6 +238,22 @@
     <phone>0532470062</phone>
     <longitude>33</longitude>
     <lattitude>35</lattitude>
+    <active>true</active>
+  </Customer>
+  <Customer>
+    <ID>313132375</ID>
+    <name>Shir</name>
+    <phone>0534487988</phone>
+    <longitude>33</longitude>
+    <lattitude>34</lattitude>
+    <active>true</active>
+  </Customer>
+  <Customer>
+    <ID>313132364</ID>
+    <name>Rachel</name>
+    <phone>0539981744</phone>
+    <longitude>33.102</longitude>
+    <lattitude>34.109</lattitude>
     <active>true</active>
   </Customer>
 </ArrayOfCustomer>

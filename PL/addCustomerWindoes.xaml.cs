@@ -40,6 +40,8 @@ namespace PL
           fromLbl.Visibility = Visibility.Hidden;
             toLbl.Visibility = Visibility.Hidden;
             sendParBtn.Visibility = Visibility.Hidden;
+            activeLbl.Visibility = Visibility.Hidden;
+            activeTxtBlock.Visibility = Visibility.Hidden;
         }
 
         public addCustomerWindoes(Customer cus, string permission)
@@ -55,6 +57,7 @@ namespace PL
             cencelBtn.Visibility = Visibility.Hidden;
             this.nameBtn.IsReadOnly = false;
             this.IDBtn.IsReadOnly = true;
+            activeTxtBlock.IsReadOnly = true;
             this.phoneBtn.IsReadOnly = false;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
@@ -104,6 +107,14 @@ namespace PL
             myCollection = c.fromCustomer;
             parcelLstView.DataContext = myCollection;
             parcelToLstView.ItemsSource = c.toCustomer;
+            activeTxtBlock.IsReadOnly = true;
+
+            if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
+            {
+                confirmParBtn.Visibility = Visibility.Visible;
+                confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
+            }
+
             if (permission == "user")
             {
                 sendParBtn.Visibility = Visibility.Visible;
@@ -131,12 +142,18 @@ namespace PL
             this.nameBtn.IsReadOnly = true;
             this.IDBtn.IsReadOnly = true;
             this.phoneBtn.IsReadOnly = true;
+            activeTxtBlock.IsReadOnly = true;
             longitudeBtn.IsReadOnly = true;
             lattitudeBtn.IsReadOnly = true;
              parcelLstView.ItemsSource = c.fromCustomer;
             parcelToLstView.ItemsSource = c.toCustomer;
             sendParBtn.Visibility = Visibility.Hidden;
 
+            if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
+            {
+                confirmParBtn.Visibility = Visibility.Visible;
+                confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
+            }
             //var lst = bl.getAllParcels();
             //myCollection = new ObservableCollection<BO.Parcel>();
             //foreach (var item in c.fromCustomer)

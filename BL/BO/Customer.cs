@@ -8,7 +8,9 @@ namespace BO
     {
          public class Customer
         {
-            public int ID { get; set; }
+        public bool active { get; set; }
+
+        public int ID { get; set; }
             public string name { get; set; }
             public string phone { get; set; }
             public Location location { get; set; }
