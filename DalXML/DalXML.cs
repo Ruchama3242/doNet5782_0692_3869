@@ -428,21 +428,13 @@ namespace Dal
         {
             List<Parcel> list = new List<Parcel>();
             list = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
-            var l = from Parcel in list
-                    where Parcel.ID == parcelID
-                    select new
-                    {
-                        ID = Parcel.ID,
-                        pickedUp = Parcel.pickedUp,
-                        delivered = day,
-                        priority = Parcel.priority,
-                        requested = Parcel.requested,
-                        scheduled = Parcel.scheduled,
-                        senderID = Parcel.senderID,
-                        targetID = Parcel.targetId,
-                        weight = Parcel.weight
-                    };
-
+            if(!list.Exists(x=>x.ID==parcelID))
+                throw new DO.generalException("ERROR! the value not found");
+            var p = list.Find(x => x.ID == parcelID);
+            list.Remove(p);
+            p.delivered = day;
+            list.Add(p);
+            
             XMLTools.SaveListToXMLSerializer(list, parcelPath);
             //foreach (var item in list)
             //{
@@ -454,7 +446,7 @@ namespace Dal
             //        return;
             //    }
             //}
-            throw new DO.generalException("ERROR! the value not found");
+           
         }
 
         public DO.Parcel findParcel(int id)
