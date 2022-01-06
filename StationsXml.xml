@@ -1,27 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <ID>7647</ID>
-    <name>Sophia</name>
-    <longitude>33.74841772473809</longitude>
-    <lattitude>34.20983656552147</lattitude>
-    <chargeSlots>84</chargeSlots>
-  </Station>
-  <Station>
-    <ID>8860</ID>
-    <name>Elijah</name>
-    <longitude>33.27416501253572</longitude>
-    <lattitude>34.22174361824139</lattitude>
-    <chargeSlots>84</chargeSlots>
-  </Station>
-  <Station>
-    <ID>7747</ID>
-    <name>Sophia</name>
-    <longitude>31.740421152087123</longitude>
-    <lattitude>36.17279362686574</lattitude>
-    <chargeSlots>0</chargeSlots>
-  </Station>
-  <Station>
     <ID>5407</ID>
     <name>Elijah</name>
     <longitude>31.410672826418036</longitude>
@@ -33,20 +12,41 @@
     <name>Elijah</name>
     <longitude>30.79383209198426</longitude>
     <lattitude>36.9010661709593</lattitude>
-    <chargeSlots>-5</chargeSlots>
+    <chargeSlots>-6</chargeSlots>
   </Station>
   <Station>
     <ID>3456</ID>
     <name>fghj</name>
     <longitude>32</longitude>
     <lattitude>35</lattitude>
-    <chargeSlots>61</chargeSlots>
+    <chargeSlots>59</chargeSlots>
+  </Station>
+  <Station>
+    <ID>8860</ID>
+    <name>Elijah</name>
+    <longitude>33.27416501253572</longitude>
+    <lattitude>34.22174361824139</lattitude>
+    <chargeSlots>82</chargeSlots>
   </Station>
   <Station>
     <ID>5194</ID>
     <name>Sophia</name>
     <longitude>32.790903444770215</longitude>
     <lattitude>35.330378577267</lattitude>
-    <chargeSlots>72</chargeSlots>
+    <chargeSlots>71</chargeSlots>
+  </Station>
+  <Station>
+    <ID>7747</ID>
+    <name>Sophia</name>
+    <longitude>31.740421152087123</longitude>
+    <lattitude>36.17279362686574</lattitude>
+    <chargeSlots>-1</chargeSlots>
+  </Station>
+  <Station>
+    <ID>7647</ID>
+    <name>Sophia</name>
+    <longitude>33.74841772473809</longitude>
+    <lattitude>34.20983656552147</lattitude>
+    <chargeSlots>81</chargeSlots>
   </Station>
 </ArrayOfStation>
