@@ -2,35 +2,49 @@
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <ID>5407</ID>
-    <name>Elijah</name>
+    <name>The dog</name>
     <longitude>31.410672826418036</longitude>
     <lattitude>36.86003895795906</lattitude>
-    <chargeSlots>63</chargeSlots>
+    <chargeSlots>49</chargeSlots>
   </Station>
   <Station>
     <ID>3837</ID>
-    <name>Elijah</name>
+    <name>The cut</name>
     <longitude>30.79383209198426</longitude>
     <lattitude>36.9010661709593</lattitude>
-    <chargeSlots>-6</chargeSlots>
+    <chargeSlots>3</chargeSlots>
   </Station>
   <Station>
-    <ID>3456</ID>
-    <name>fghj</name>
-    <longitude>32</longitude>
-    <lattitude>35</lattitude>
-    <chargeSlots>59</chargeSlots>
+    <ID>7747</ID>
+    <name>The elefent</name>
+    <longitude>31.740421152087123</longitude>
+    <lattitude>36.17279362686574</lattitude>
+    <chargeSlots>8</chargeSlots>
   </Station>
   <Station>
     <ID>8860</ID>
-    <name>Elijah</name>
+    <name>Hatamar</name>
     <longitude>33.27416501253572</longitude>
     <lattitude>34.22174361824139</lattitude>
-    <chargeSlots>82</chargeSlots>
+    <chargeSlots>67</chargeSlots>
+  </Station>
+  <Station>
+    <ID>7647</ID>
+    <name>The bird</name>
+    <longitude>33.74841772473809</longitude>
+    <lattitude>34.20983656552147</lattitude>
+    <chargeSlots>73</chargeSlots>
+  </Station>
+  <Station>
+    <ID>3456</ID>
+    <name>Horanim</name>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <chargeSlots>44</chargeSlots>
   </Station>
   <Station>
     <ID>5194</ID>
-    <name>Sophia</name>
+    <name>Hagefen</name>
     <longitude>32.790903444770215</longitude>
     <lattitude>35.330378577267</lattitude>
     <chargeSlots>71</chargeSlots>
@@ -48,5 +62,6 @@
     <longitude>33.74841772473809</longitude>
     <lattitude>34.20983656552147</lattitude>
     <chargeSlots>81</chargeSlots>
+    <chargeSlots>56</chargeSlots>
   </Station>
 </ArrayOfStation>

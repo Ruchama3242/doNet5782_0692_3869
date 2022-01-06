@@ -49,7 +49,7 @@
                   HorizontalContentAlignment="Stretch"   Background="#FFABC6E7" MouseDoubleClick="customerLstView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-
+                    <GridViewColumn Width="120" Header="Active"   DisplayMemberBinding="{Binding  active }"  />
                     <GridViewColumn Width="120" Header="ID"   DisplayMemberBinding="{Binding  ID }"  />
                     <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Width="200" Header="Phone number" DisplayMemberBinding="{Binding phone}" />

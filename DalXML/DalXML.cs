@@ -167,14 +167,16 @@ namespace Dal
             if (customerElement != null)
                 throw new IdExistsException("The customer already exist in the system");
 
-            XElement customerElemnt = new XElement("ID", new XElement("ID", temp.ID),
-                                      new XElement("lattitude", temp.lattitude),
-                                      new XElement("longitude", temp.longitude),
+            XElement theNewOne = new XElement("Customer",
+                                      new XElement("ID", temp.ID),
                                       new XElement("name", temp.name),
-                                      new XElement("active", temp.active),
-                                      new XElement("phone", temp.phone));
+                                      new XElement("phone", temp.phone),
+                                      new XElement("longitude", temp.longitude),
+                                      new XElement("lattitude", temp.lattitude),
+                                      new XElement("active", temp.active));
+                                      
 
-            customerRoot.Add(customerElement);
+            customerRoot.Add(theNewOne);
             XMLTools.SaveListToXMLElement(customerRoot, customerPath);
         }
 
@@ -188,8 +190,8 @@ namespace Dal
                 {
                     c.active = Convert.ToBoolean(item.Element("active").Value);
                     c.ID = Convert.ToInt32(item.Element("ID").Value);
-                    c.lattitude = Convert.ToInt32(item.Element("lattitude").Value);
-                    c.longitude = Convert.ToInt32(item.Element("longitude").Value);
+                    c.lattitude = Convert.ToDouble(item.Element("lattitude").Value);
+                    c.longitude = Convert.ToDouble(item.Element("longitude").Value);
                     c.name = item.Element("name").Value;
                     c.phone = item.Element("phone").Value;
                     return c;
@@ -208,8 +210,8 @@ namespace Dal
                        ID = Convert.ToInt32(p.Element("ID").Value),
                        name = p.Element("name").Value,
                        active = Convert.ToBoolean(p.Element("active").Value),
-                       lattitude = Convert.ToInt32(p.Element("lattitude").Value),
-                       longitude = Convert.ToInt32(p.Element("longitude").Value),
+                       lattitude = Convert.ToDouble(p.Element("lattitude").Value),
+                       longitude = Convert.ToDouble(p.Element("longitude").Value),
                        phone = p.Element("phone").Value,
                    };
         }

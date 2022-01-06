@@ -75,6 +75,7 @@ namespace BL
                 List<ParcelAtCustomer> p2 = new List<ParcelAtCustomer>();
 
                 cusBL.ID = cusDal.ID;
+                cusBL.active = cusDal.active;
                 cusBL.location = new Location();
                 cusBL.location.latitude = cusDal.lattitude;
                 cusBL.location.longitude = cusDal.longitude;
@@ -167,6 +168,7 @@ namespace BL
             foreach (var item in lst)
             {
                 CustomerToList c = new CustomerToList();
+                c.active = item.active;
                 c.ID = item.ID;
                 c.name = item.name;
                 c.phone = item.phone;

@@ -66,11 +66,6 @@
     <weight>medium</weight>
   </Drone>
   <Drone>
-    <ID>34287</ID>
-    <model>6493</model>
-    <weight>heavy</weight>
-  </Drone>
-  <Drone>
     <ID>46930</ID>
     <model>2228</model>
     <weight>medium</weight>
@@ -79,5 +74,10 @@
     <ID>99967</ID>
     <model>9350</model>
     <weight>medium</weight>
+  </Drone>
+  <Drone>
+    <ID>34287</ID>
+    <model>1001</model>
+    <weight>heavy</weight>
   </Drone>
 </ArrayOfDrone>
