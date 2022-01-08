@@ -37,7 +37,7 @@ namespace BL
             //dl = new DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
-            IEnumerable<DO.Drone> d = dl.GetPartOfDrone(null);
+            IEnumerable<DO.Drone> d = dl.getAllDrones();
             //foreach (var item in d)
             //{
             //    if(ite)
@@ -46,19 +46,21 @@ namespace BL
             IEnumerable<DO.Parcel> p = dl.getAllParcels();
             foreach (var item in d)
             {
+                flag = false;
                 DroneToList drt = new DroneToList();
                 drt.weight = convertWeight( item.weight);
                 drt.ID = item.ID;
                 drt.droneModel = item.model;
                 foreach (var pr in p)
                 {
-                    if (pr.droneID == item.ID && pr.delivered == DateTime.MinValue)
+                    if (pr.droneID == item.ID && pr.delivered== null)
                     {
                         DO.Customer sender = dl.findCustomer(pr.senderID);
                         DO.Customer target = dl.findCustomer(pr.targetId);
                         Location senderLocation = new Location { latitude = sender.lattitude, longitude = sender.longitude };
                         Location targetLocation = new Location { latitude = target.lattitude, longitude = target.longitude };
                         drt.status = DroneStatus.Delivery;
+                        drt.parcelNumber = pr.ID;
                         if (pr.pickedUp == null && pr.scheduled != null)//החבילה שויכה אבל עדיין לא נאספה
                         {
                             drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
@@ -78,8 +80,9 @@ namespace BL
                         break;
                     }
                 }
-                if (!flag)
+                if (flag==false)
                 {
+                    
                     int temp = rnd.Next(1, 3);
                     if (temp == 1)
                         drt.status = DroneStatus.Available;

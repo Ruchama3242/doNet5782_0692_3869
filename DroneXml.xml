@@ -1,83 +1,33 @@
 <?xml version="1.0"?>
 <ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Drone>
-    <ID>27535</ID>
-    <model>9043</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>33473</ID>
-    <model>3921</model>
+    <ID>20647</ID>
+    <model>5568</model>
     <weight>light</weight>
   </Drone>
   <Drone>
-    <ID>56679</ID>
-    <model>4942</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>12902</ID>
-    <model>2586</model>
+    <ID>49253</ID>
+    <model>1367</model>
     <weight>heavy</weight>
   </Drone>
   <Drone>
-    <ID>81494</ID>
-    <model>6091</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>14946</ID>
-    <model>9817</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>88188</ID>
-    <model>3369</model>
+    <ID>18009</ID>
+    <model>9206</model>
     <weight>light</weight>
   </Drone>
   <Drone>
-    <ID>12556</ID>
-    <model>4561</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>81559</ID>
-    <model>5212</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>68479</ID>
-    <model>9267</model>
+    <ID>55714</ID>
+    <model>7773</model>
     <weight>heavy</weight>
   </Drone>
   <Drone>
-    <ID>99999</ID>
+    <ID>81038</ID>
+    <model>8962</model>
+    <weight>light</weight>
+  </Drone>
+  <Drone>
+    <ID>12345</ID>
     <model>567</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>49674</ID>
-    <model>9211</model>
-    <weight>heavy</weight>
-  </Drone>
-  <Drone>
-    <ID>91458</ID>
-    <model>7542</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>46930</ID>
-    <model>2228</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>99967</ID>
-    <model>9350</model>
-    <weight>medium</weight>
-  </Drone>
-  <Drone>
-    <ID>34287</ID>
-    <model>1001</model>
     <weight>heavy</weight>
   </Drone>
 </ArrayOfDrone>
