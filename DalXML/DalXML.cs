@@ -31,10 +31,30 @@ namespace Dal
         public static IDal Instance { get => instance; }
 
 
-        private DalXml() {  }
+        private DalXml()
+        {
+            List<DroneCharge> droneCharge = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
+            foreach (var item in droneCharge)
+            {
+                UpdatePluseChargeSlots(item.stationeld);
+            }
+            droneCharge.Clear();
+            XMLTools.SaveListToXMLSerializer(droneCharge, droneChargePath);
+        }
 
 
-
+      private void UpdatePluseChargeSlots(int id)
+        {
+            List<Station> list = new List<Station>();
+            list = XMLTools.LoadListFromXMLSerializer<DO.Station>(stationPath);
+            if (!list.Exists(x => x.ID == id))
+                throw new DO.generalException("ERROR! the value not found");
+            var p = list.Find(x => x.ID == id);
+            list.Remove(p);
+            p.chargeSlots++;
+            list.Add(p);
+            XMLTools.SaveListToXMLSerializer(list, stationPath);
+        }
         //    public  void Initialize()
         //{
         //    Random r = new Random();
@@ -47,10 +67,10 @@ namespace Dal
         //        temp.model = r.Next(1111, 9999);
         //        var x = (DO.WeightCategories)(r.Next(0, 3));
         //        temp.weight = x;
-               
-               
+
+
         //        droneList.Add(temp);
-                
+
         //    }
         //    Dal.XMLTools.SaveListToXMLSerializer<DO.Drone>(droneList,  dronePath);
         //    List<Station> list = new List<Station>();
@@ -90,7 +110,7 @@ namespace Dal
         //    dalConfig.Save(@"xml\dal-config.xml");
         //    List<Parcel> parLst = new List<Parcel>();
         //    parLst = XMLTools.LoadListFromXMLSerializer<Parcel>( parcelPath);
-            
+
         //    //loop for 10 parcels
         //    for (int i = 0; i < 10; i++)
         //    {
@@ -115,12 +135,12 @@ namespace Dal
         //        temp.weight = (DO.WeightCategories)(r.Next() % 3);
         //        temp.priority = (DO.Priorities)(r.Next() % 3);
         //        parLst.Add(temp);
-               
+
         //    }
         //    XMLTools.SaveListToXMLSerializer(parLst,  parcelPath);
         //}
-    
-            //DalXml()
+
+        //DalXml()
         //{
         //    if (!Directory.Exists(dir))
         //        Directory.CreateDirectory(dir);
@@ -141,7 +161,7 @@ namespace Dal
         //    if (!File.Exists(dir + stationPath))
         //        Directory.CreateDirectory(dir + stationPath);
         //}
-       
+
         #endregion
 
 
@@ -205,6 +225,7 @@ namespace Dal
         {
             XElement customerRoot = XMLTools.LoadListFromXMLElement(customerPath);
             return from p in customerRoot.Elements()
+                   where Convert.ToBoolean( p.Element("active").Value)==true
                    select new Customer()
                    {
                        ID = Convert.ToInt32(p.Element("ID").Value),

@@ -256,4 +256,20 @@
     <lattitude>34.109</lattitude>
     <active>true</active>
   </Customer>
+  <Customer>
+    <ID>324280692</ID>
+    <name>ruchama</name>
+    <phone>0533151355</phone>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <active>False</active>
+  </Customer>
+  <Customer>
+    <ID>666666666</ID>
+    <name>vghjk</name>
+    <phone>7777777777</phone>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <active>False</active>
+  </Customer>
 </ArrayOfCustomer>

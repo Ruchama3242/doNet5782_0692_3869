@@ -36,8 +36,14 @@ namespace PL
             try
             {
                 BO.Customer c = new BO.Customer();
-                c = bl.findCustomer(Convert.ToInt32(idTxtBlk.Text));
-                new addCustomerWindoes(c,"user").ShowDialog();
+                var cs = bl.viewListCustomer().ToList();
+                if (!cs.Exists(x => x.ID == Convert.ToInt32(idTxtBlk.Text)))
+                    MessageBox.Show("Error! the customer not exist or deleted");
+                else
+                {
+                    c = bl.findCustomer(Convert.ToInt32(idTxtBlk.Text));
+                    new addCustomerWindoes(c, "user").ShowDialog();
+                }
                 this.Close();
             }
 

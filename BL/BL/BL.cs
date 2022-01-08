@@ -38,6 +38,11 @@ namespace BL
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
             IEnumerable<DO.Drone> d = dl.GetPartOfDrone(null);
+            //foreach (var item in d)
+            //{
+            //    if(ite)
+            //    releaseFromCharge(item.ID);
+            //}
             IEnumerable<DO.Parcel> p = dl.getAllParcels();
             foreach (var item in d)
             {
