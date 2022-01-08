@@ -43,6 +43,13 @@
     <chargeSlots>91</chargeSlots>
   </Station>
   <Station>
+    <ID>3456</ID>
+    <name>Horanim</name>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <chargeSlots>43</chargeSlots>
+  </Station>
+  <Station>
     <ID>7647</ID>
     <name>The bird</name>
     <longitude>33.74841772473809</longitude>

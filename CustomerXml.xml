@@ -6,7 +6,7 @@
     <phone>0529371271</phone>
     <longitude>33.102</longitude>
     <lattitude>34.901</lattitude>
-    <active>True</active>
+    <active>False</active>
   </Customer>
   <Customer>
     <ID>280427252</ID>
