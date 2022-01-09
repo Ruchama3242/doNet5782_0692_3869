@@ -1,28 +1,28 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <ID>270666671</ID>
-    <name>noa</name>
+    <name>Noa</name>
     <phone>0530967237</phone>
     <longitude>30</longitude>
     <lattitude>36</lattitude>
-    <active>true</active>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>326549681</ID>
-    <name>efrat</name>
+    <name>Efrat</name>
     <phone>0547613039</phone>
     <longitude>31</longitude>
     <lattitude>36</lattitude>
-    <active>true</active>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>288751611</ID>
-    <name>michal</name>
+    <name>Michal</name>
     <phone>0530916923</phone>
     <longitude>33</longitude>
     <lattitude>35</lattitude>
-    <active>true</active>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>325279982</ID>
@@ -42,11 +42,11 @@
   </Customer>
   <Customer>
     <ID>281186915</ID>
-    <name>Noah</name>
+    <name>Noam</name>
     <phone>0548894375</phone>
     <longitude>32</longitude>
     <lattitude>36</lattitude>
-    <active>true</active>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>235922095</ID>
@@ -78,6 +78,14 @@
     <phone>0543071419</phone>
     <longitude>32</longitude>
     <lattitude>34</lattitude>
+    <active>true</active>
+  </Customer>
+  <Customer>
+    <ID>325103869</ID>
+    <name>Iris</name>
+    <phone>0538859899</phone>
+    <longitude>33.102</longitude>
+    <lattitude>35.909</lattitude>
     <active>true</active>
   </Customer>
 </ArrayOfCustomer>

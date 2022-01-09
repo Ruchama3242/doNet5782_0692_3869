@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,17 +9,18 @@ using BO;
 
 namespace BL
 {
-    internal partial class BL 
+    internal partial class BL
     {
-        
+
         Random rnd = new Random();
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> droneFilterWheight(WeightCategorie w)
         {
-            DO.WeightCategories x= DO.WeightCategories.light;//הקומפיילר מחייב לאתחל תמשתנה כדי ששאר הפונקציה תהיה תקינה
+            DO.WeightCategories x = DO.WeightCategories.light;//הקומפיילר מחייב לאתחל תמשתנה כדי ששאר הפונקציה תהיה תקינה
             List<DroneToList> lst = new List<DroneToList>();
             if (w == WeightCategorie.Heavy)
-                 x = DO.WeightCategories.heavy;
+                x = DO.WeightCategories.heavy;
 
             if (w == WeightCategorie.Light)
                 x = DO.WeightCategories.light;
@@ -33,6 +36,7 @@ namespace BL
             return lst;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> droneFilterStatus(DroneStatus w)
         {
             List<DroneToList> lst = new List<DroneToList>();
@@ -56,6 +60,7 @@ namespace BL
             return dr;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void addDrone(int id, int model, int weight, int stationId)
         {
             if (id < 10000 || id > 99999)
@@ -71,15 +76,18 @@ namespace BL
                 d.weight = (WeightCategorie)weight;
                 d.battery = rnd.Next(20, 40);
                 d.status = DroneStatus.Maintenace;
-               
+
                 try
                 {
-                    DO.Station s = dl.findStation(stationId);
-                    d.currentLocation = new Location();
-                    d.currentLocation.latitude = s.lattitude;
-                    d.currentLocation.longitude = s.longitude;
+                    lock (dl)
+                    {
+                        DO.Station s = dl.findStation(stationId);
+                        d.currentLocation = new Location();
+                        d.currentLocation.latitude = s.lattitude;
+                        d.currentLocation.longitude = s.longitude;
+                    }
                 }
-                catch (Exception e )
+                catch (Exception e)
                 {
                     throw new BLIdUnExistsException(e.Message/*,e*/);
                 }
@@ -87,7 +95,7 @@ namespace BL
                 dl.addDrone(dr);//add drone to the list in the dal
                 DroneArr.Add(d);//add drone to the list of the drones in the BL
                 DO.DroneCharge dc = new DO.DroneCharge { droneID = id, stationeld = stationId };
-                dl.SendToCharge(id,stationId);//send the drone to charge
+                dl.SendToCharge(id, stationId);//send the drone to charge
             }
             catch (Exception e)
             {
@@ -95,11 +103,12 @@ namespace BL
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateNameDrone(int ID, int model)
         {
             try
             {
-                if (model !=0)
+                if (model != 0)
                 {
                     int m = model;
                     if (m <= 0)
@@ -118,7 +127,8 @@ namespace BL
 
         }
 
-         public Drone findDrone(int id)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public Drone findDrone(int id)
         {
             try
             {
@@ -136,38 +146,41 @@ namespace BL
                 ParcelInTransfer pt = new ParcelInTransfer();
                 if (drn.status == DroneStatus.Delivery)
                 {
-                    pt.ID = drn.parcelNumber;
-                    DO.Parcel p=new DO.Parcel();
-                    try
+                    lock (dl)
                     {
-                        p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
-                    }
-                    catch (Exception)
-                    {
-                        throw new BLIdUnExistsException("Error! the parcel not found");
-                    }
-                    if (p.pickedUp == DateTime.MinValue)
-                        pt.status = false;
-                    else
-                        pt.status = true;
-                    pt.priority = (Priorities)p.priority;
-                    pt.weight = (WeightCategorie)p.weight;
-                    pt.sender = new CustomerInParcel();
-                    pt.sender = getCustomerInParcel(p.senderID);
-                    pt.target = new CustomerInParcel();
-                    pt.target = getCustomerInParcel(p.targetId);
-                    DO.Customer sender = dl.findCustomer(p.senderID);
-                    DO.Customer target = dl.findCustomer(p.targetId);
-                    pt.collectionLocation = new Location();
-                    pt.collectionLocation.longitude = sender.longitude;
-                    pt.collectionLocation.latitude = sender.lattitude;
-                    pt.targetLocation = new Location();
-                    pt.targetLocation.longitude = target.longitude;
-                    pt.targetLocation.latitude = target.lattitude;
-                    pt.distance = distance(drn.currentLocation, pt.targetLocation);
+                        pt.ID = drn.parcelNumber;
+                        DO.Parcel p = new DO.Parcel();
+                        try
+                        {
+                            p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
+                        }
+                        catch (Exception)
+                        {
+                            throw new BLIdUnExistsException("Error! the parcel not found");
+                        }
+                        if (p.pickedUp == DateTime.MinValue)
+                            pt.status = false;
+                        else
+                            pt.status = true;
+                        pt.priority = (Priorities)p.priority;
+                        pt.weight = (WeightCategorie)p.weight;
+                        pt.sender = new CustomerInParcel();
+                        pt.sender = getCustomerInParcel(p.senderID);
+                        pt.target = new CustomerInParcel();
+                        pt.target = getCustomerInParcel(p.targetId);
+                        DO.Customer sender = dl.findCustomer(p.senderID);
+                        DO.Customer target = dl.findCustomer(p.targetId);
+                        pt.collectionLocation = new Location();
+                        pt.collectionLocation.longitude = sender.longitude;
+                        pt.collectionLocation.latitude = sender.lattitude;
+                        pt.targetLocation = new Location();
+                        pt.targetLocation.longitude = target.longitude;
+                        pt.targetLocation.latitude = target.lattitude;
+                        pt.distance = distance(drn.currentLocation, pt.targetLocation);
 
-                    d.parcel = new ParcelInTransfer();
-                    d.parcel = pt;
+                        d.parcel = new ParcelInTransfer();
+                        d.parcel = pt;
+                    }
                 }
                 return d;
             }
@@ -184,38 +197,44 @@ namespace BL
         /// <returns></returns>
         private CustomerInParcel getCustomerInParcel(int id)
         {
-            CustomerInParcel c = new CustomerInParcel();
-            c.ID = id;
-            DO.Customer cs = dl.findCustomer(id);
-            c.customerName = cs.name;
-            return c;
+            lock (dl)
+            {
+                CustomerInParcel c = new CustomerInParcel();
+                c.ID = id;
+                DO.Customer cs = dl.findCustomer(id);
+                c.customerName = cs.name;
+                return c;
+            }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void releaseFromCharge(int id)
         {
             try
             {
                 DroneToList d = DroneArr.Find(p => p.ID == id);
-
-                if (d.status == DroneStatus.Maintenace)
+                lock (dl)
                 {
-                    DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
-                    double t = DateTime.Now.TimeOfDay.TotalMinutes;
-                    double total = t - tmp.enterToCharge.TimeOfDay.TotalMinutes;
-                    //the time* charging rate per hour, couldnt be more then 100%
-                    d.battery += total * chargeCapacity[4];
-                    if (d.battery > 100)
-                        d.battery = 100;
+                    if (d.status == DroneStatus.Maintenace)
+                    {
+                        DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
+                        double t = DateTime.Now.TimeOfDay.TotalMinutes;
+                        double total = t - tmp.enterToCharge.TimeOfDay.TotalMinutes;
+                        //the time* charging rate per hour, couldnt be more then 100%
+                        d.battery += total * chargeCapacity[4];
+                        if (d.battery > 100)
+                            d.battery = 100;
 
-                    d.status = DroneStatus.Available;
+                        d.status = DroneStatus.Available;
 
-                    // up the number of the empty charge slots
-                    //DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
-                    
-                    //remove the drone frome the list of the droneCharge
-                    dl.BatteryCharged(tmp);
+                        // up the number of the empty charge slots
+                        //DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
+
+                        //remove the drone frome the list of the droneCharge
+                        dl.BatteryCharged(tmp);
+                    }
+                    else throw new BLgeneralException("Error! the drone dont was in charge");
                 }
-                else throw new BLgeneralException("Error! the drone dont was in charge");
             }
             catch (Exception e)
             {
@@ -228,6 +247,7 @@ namespace BL
         /// </summary>
         /// <param name="deg"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private double deg2rad(double deg)
         {
             return deg * (Math.PI / 180);
@@ -239,10 +259,13 @@ namespace BL
         /// <returns></returns>
         public IEnumerable<DroneToList> getAllDrones()
         {
-            List<DroneToList> lst = new List<DroneToList>();
-            foreach (var item in DroneArr)
-                lst.Add(item);
-            return lst;
+            lock (dl)
+            {
+                List<DroneToList> lst = new List<DroneToList>();
+                foreach (var item in DroneArr)
+                    lst.Add(item);
+                return lst;
+            }
         }
 
         /// <summary>
@@ -250,6 +273,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private DroneToList findDroneDal(int id)
         {
             try
@@ -263,49 +287,57 @@ namespace BL
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void sendToCharge(int id)
         {
-            try
+            lock (dl)
             {
-                var myDrone = findDroneDal(id);
-                if (myDrone.status != DroneStatus.Available)
-                    throw new BLgeneralException("the drone isn'n  avilable");
-                Station closed = stationClose(myDrone.currentLocation);
-                if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0))
-                    throw new BLgeneralException("the drone doesn't have enough charge");
+                try
+                {
+                    var myDrone = findDroneDal(id);
+                    if (myDrone.status != DroneStatus.Available)
+                        throw new BLgeneralException("the drone isn'n  avilable");
+                    Station closed = stationClose(myDrone.currentLocation);
+                    if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0))
+                        throw new BLgeneralException("the drone doesn't have enough charge");
 
-                // drone
-                myDrone.currentLocation = closed.location;
-                myDrone.status = DroneStatus.Maintenace;
-                myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
+                    // drone
+                    myDrone.currentLocation = closed.location;
+                    myDrone.status = DroneStatus.Maintenace;
+                    myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
 
-                //הפונקציה הזו דואגת לשנות את עמדות הטעינה ולהוסיך יישות לרשימה המתאימה
-                dl.SendToCharge(id, closed.ID);
-            }
-            catch (Exception e)
-            {
-                throw new BLgeneralException(e.Message, e);
+                    //הפונקציה הזו דואגת לשנות את עמדות הטעינה ולהוסיך יישות לרשימה המתאימה
+                    dl.SendToCharge(id, closed.ID);
+                }
+                catch (Exception e)
+                {
+                    throw new BLgeneralException(e.Message, e);
+                }
             }
         }
 
-       public void parcelToDrone(int id)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void parcelToDrone(int id)
         {
-            try
+            lock (dl)
             {
-                var myDrone = findDroneDal(id);
-                if (myDrone.status != DroneStatus.Available)
-                    throw new BLgeneralException("the drone not avilable");
+                try
+                {
+                    var myDrone = findDroneDal(id);
+                    if (myDrone.status != DroneStatus.Available)
+                        throw new BLgeneralException("the drone not avilable");
 
-                DO.Parcel myParcel = findTheParcel(myDrone.weight,myDrone.currentLocation, myDrone.battery,DO.Priorities.emergency);
-                dl.ParcelDrone(myParcel.ID, myDrone.ID);
-                DroneArr.Remove(myDrone);
-                myDrone.status = DroneStatus.Delivery;
-                myDrone.parcelNumber = myParcel.ID;
-                DroneArr.Add(myDrone);
-            }
-            catch (Exception e)
-            {
-                throw new BLgeneralException(e.Message,e);
+                    DO.Parcel myParcel = findTheParcel(myDrone.weight, myDrone.currentLocation, myDrone.battery, DO.Priorities.emergency);
+                    dl.ParcelDrone(myParcel.ID, myDrone.ID);
+                    DroneArr.Remove(myDrone);
+                    myDrone.status = DroneStatus.Delivery;
+                    myDrone.parcelNumber = myParcel.ID;
+                    DroneArr.Add(myDrone);
+                }
+                catch (Exception e)
+                {
+                    throw new BLgeneralException(e.Message, e);
+                }
             }
         }
 
@@ -316,50 +348,53 @@ namespace BL
         /// <param name="a"></param>
         /// <param name="buttery"></param>
         /// <returns></returns>
-        private DO.Parcel findTheParcel(BO.WeightCategorie we,BO.Location a, double buttery, DO.Priorities pri)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private DO.Parcel findTheParcel(BO.WeightCategorie we, BO.Location a, double buttery, DO.Priorities pri)
         {
-        
 
-            double d,x;
+
+            double d, x;
             DO.Parcel theParcel = new DO.Parcel();
-          
-           Location b = new Location();
+
+            Location b = new Location();
             DO.Customer c = new DO.Customer();
             double far = 1000000;
-           // bool flug = false;
+            // bool flug = false;
 
-            //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
-            var p = dl.getAllParcels();
-            IEnumerable<DO.Parcel> pr = new List<DO.Parcel>();
-            pr = p.Where(item => item.priority == pri);
-                   
-
-            foreach (var item in pr)
+            lock (dl)
             {
-                c = dl.findCustomer(item.senderID);
-                b.latitude = c.lattitude;
-                b.longitude = c.longitude;
-                d = distance(a, b);//המרחק בין מיקום נוכחי למיקום השולח
-                x = distance(b, new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude });//המרחק בין מיקום שולח למיקום יעד
-                double fromCusToSta = distance(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }, stationClose(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }).location);
-                double butteryUse = x * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0]+d*chargeCapacity[0];
-                if (d < far && (buttery - butteryUse) > 0&&item.scheduled==null)
+                //השאילתא אחראית למצוא את כל החבילות בעדיפות המבוקשת
+                var p = dl.getAllParcels();
+                IEnumerable<DO.Parcel> pr = new List<DO.Parcel>();
+                pr = p.Where(item => item.priority == pri);
+
+                foreach (var item in pr)
                 {
-                    if (weight(we, (WeightCategorie)item.weight) == true)
+                    c = dl.findCustomer(item.senderID);
+                    b.latitude = c.lattitude;
+                    b.longitude = c.longitude;
+                    d = distance(a, b);//המרחק בין מיקום נוכחי למיקום השולח
+                    x = distance(b, new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude });//המרחק בין מיקום שולח למיקום יעד
+                    double fromCusToSta = distance(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }, stationClose(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }).location);
+                    double butteryUse = x * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0] + d * chargeCapacity[0];
+                    if (d < far && (buttery - butteryUse) > 0 && item.scheduled == null)
                     {
-                        far = d;
-                        theParcel = item;
-                        return theParcel;
+                        if (weight(we, (WeightCategorie)item.weight) == true)
+                        {
+                            far = d;
+                            theParcel = item;
+                            return theParcel;
+                        }
                     }
                 }
             }
 
-            if ( pri == DO.Priorities.emergency)//אם לא מצא בעדיפות הכי גבוהה מחפש בעדיפות מתחתיה
-                theParcel = findTheParcel(we,a, buttery, DO.Priorities.fast);
+            if (pri == DO.Priorities.emergency)//אם לא מצא בעדיפות הכי גבוהה מחפש בעדיפות מתחתיה
+                theParcel = findTheParcel(we, a, buttery, DO.Priorities.fast);
 
             if (pri == DO.Priorities.fast)
-                theParcel = findTheParcel(we,a, buttery, DO.Priorities.normal);
-            if (theParcel.ID==0)
+                theParcel = findTheParcel(we, a, buttery, DO.Priorities.normal);
+            if (theParcel.ID == 0)
                 throw new BLgeneralException("ERROR! there is not a parcel that match to the drone ");
             return theParcel;
 
@@ -371,7 +406,7 @@ namespace BL
         /// <param name="dr"></param>
         /// <param name="pa"></param>
         /// <returns></returns>
-        private bool weight(WeightCategorie dr,WeightCategorie pa)
+        private bool weight(WeightCategorie dr, WeightCategorie pa)
         {
             if (dr == WeightCategorie.Heavy)
                 return true;
@@ -400,6 +435,7 @@ namespace BL
 
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void deleteDrone(int id)
         {
             dl.deleteDrone(id);
@@ -409,4 +445,4 @@ namespace BL
     }
 
 }
- 
+
