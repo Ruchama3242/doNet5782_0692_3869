@@ -130,6 +130,11 @@ namespace BL
         }
         #endregion
 
+        public void playSimolator(int id, Action myDelegate, Func<bool> func)
+        {
+
+        }
+
         #region-------------privateMethod--------------------------
 
         /// <summary>

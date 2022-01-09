@@ -38,7 +38,7 @@
     <phone>0521951910</phone>
     <longitude>32</longitude>
     <lattitude>34</lattitude>
-    <active>true</active>
+    <active>False</active>
   </Customer>
   <Customer>
     <ID>281186915</ID>
@@ -78,7 +78,7 @@
     <phone>0543071419</phone>
     <longitude>32</longitude>
     <lattitude>34</lattitude>
-    <active>true</active>
+    <active>False</active>
   </Customer>
   <Customer>
     <ID>325103869</ID>
@@ -86,6 +86,6 @@
     <phone>0538859899</phone>
     <longitude>33.102</longitude>
     <lattitude>35.909</lattitude>
-    <active>true</active>
+    <active>False</active>
   </Customer>
 </ArrayOfCustomer>

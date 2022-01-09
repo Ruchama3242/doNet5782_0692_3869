@@ -9,7 +9,13 @@ namespace BlApi
 {
     public interface IBL
     {
-     
+        /// <summary>
+        /// start the action of the simolator
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="myDelegate"></param>
+        /// <param name="func"></param>
+    public  void playSimolator(int id, Action myDelegate, Func<bool> func);
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
         /// <summary>
         /// get a customer of BL and add it to the list of DAL
