@@ -8,6 +8,7 @@ using DO;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Runtime.CompilerServices;
 using System.Linq;
 
 namespace Dal
@@ -177,32 +178,34 @@ namespace Dal
             double[] arr = new double[] { cl,li,me,ha,ra };
             return arr;
         }
-        #region ----------------------------------------------customer-------------------------------------------
+        #region ----------------------------------------------customer---------------------------------------
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void addCustomer(DO.Customer temp)
         {
-
-            XElement customerRoot = XMLTools.LoadListFromXMLElement(customerPath);
-            var customerElement = (from p in customerRoot.Elements()
-                                   where Convert.ToInt32(p.Element("ID").Value) == temp.ID
-                                   select p).FirstOrDefault();
-            if (customerElement != null)
-                    throw new IdExistsException("The customer already exist in the system");
             
+            
+                XElement customerRoot = XMLTools.LoadListFromXMLElement(customerPath);
+                var customerElement = (from p in customerRoot.Elements()
+                                       where Convert.ToInt32(p.Element("ID").Value) == temp.ID
+                                       select p).FirstOrDefault();
+                if (customerElement != null)
+                    throw new IdExistsException("The customer already exist in the system");
+
+                XElement theNewOne = new XElement("Customer",
+                                          new XElement("ID", temp.ID),
+                                          new XElement("name", temp.name),
+                                          new XElement("phone", temp.phone),
+                                          new XElement("longitude", temp.longitude),
+                                          new XElement("lattitude", temp.lattitude),
+                                          new XElement("active", temp.active));
 
 
-            XElement theNewOne = new XElement("Customer",
-                                      new XElement("ID", temp.ID),
-                                      new XElement("name", temp.name),
-                                      new XElement("phone", temp.phone),
-                                      new XElement("longitude", temp.longitude),
-                                      new XElement("lattitude", temp.lattitude),
-                                      new XElement("active", temp.active));
-                                      
-
-            customerRoot.Add(theNewOne);
-            XMLTools.SaveListToXMLElement(customerRoot, customerPath);
+                customerRoot.Add(theNewOne);
+                XMLTools.SaveListToXMLElement(customerRoot, customerPath);
+            
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Customer findCustomer(int id)
         {
             XElement customerRoot = XMLTools.LoadListFromXMLElement( customerPath);
@@ -224,6 +227,7 @@ namespace Dal
         }
 
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Customer> getAllCustomers()
         {
             XElement customerRoot = XMLTools.LoadListFromXMLElement(customerPath);
@@ -239,6 +243,7 @@ namespace Dal
                        phone = p.Element("phone").Value,
                    };
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void deleteSCustomer(int id)
         {
             try
@@ -262,6 +267,7 @@ namespace Dal
         }
 
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateCustomer(int id, DO.Customer c)
         {
             try
@@ -296,6 +302,7 @@ namespace Dal
         // DalName = dalConfig.Element("packnum").Value;
         //    dalConfig.Element("packnum").Value = 8887;
         //    dalConfig.Save(path);
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> getAllStations()
         {
             List<DO.Station> list = new List<DO.Station>();
@@ -304,6 +311,7 @@ namespace Dal
                    select Station;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Station findStation(int id)
         {
             List<DO.Station> list = new List<DO.Station>();
@@ -317,6 +325,7 @@ namespace Dal
             throw new DO.IdUnExistsException("ERROR! the station doesn't exist");
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> getStationsWithChargeSlots()
         {
             List<DO.Station> list = new List<DO.Station>();
@@ -328,6 +337,7 @@ namespace Dal
             return s;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void addStations(DO.Station temp)
         {
             bool flug = true;
@@ -347,6 +357,8 @@ namespace Dal
 
             XMLTools.SaveListToXMLSerializer(list, stationPath);
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void deleteStation(int id)
         {
 
@@ -364,6 +376,7 @@ namespace Dal
             throw new DO.IdUnExistsException("ERROR! the station doesn't found");
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateStation(int id, DO.Station st)
         {
             List<Station> list = new List<Station>();
@@ -384,6 +397,7 @@ namespace Dal
         #endregion
 
         #region-------------------------------------parcel-----------------------------------------
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetPartParcel()
         {
             List<Parcel> list = new List<Parcel>();
@@ -392,6 +406,7 @@ namespace Dal
                    select Parcel;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public int addParcel(DO.Parcel temp)
         {
             XElement dalConfig = XElement.Load(@"xml\dal-config.xml");
@@ -409,6 +424,7 @@ namespace Dal
             return id;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ParcelDrone(int parcelID, int droneID)
         {
             List<Parcel> list = new List<Parcel>();
@@ -429,6 +445,7 @@ namespace Dal
             throw new DO.generalException("ERROR! the value not found");
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ParcelPickedUp(int parcelID, DateTime day)
         {
             List<Parcel> list = new List<Parcel>();
@@ -450,6 +467,7 @@ namespace Dal
             throw new DO.generalException("ERROR! the value not found");
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ParcelReceived(int parcelID, DateTime day)
         {
             List<Parcel> list = new List<Parcel>();
@@ -475,6 +493,7 @@ namespace Dal
            
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Parcel findParcel(int id)
         {
             List<Parcel> list = new List<Parcel>();
@@ -489,6 +508,7 @@ namespace Dal
         }
 
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> getAllParcels()
         {
             List<Parcel> list = new List<Parcel>();
@@ -500,6 +520,7 @@ namespace Dal
         /// <summary>
         /// print all parcels that have no yet drone
         /// </summary>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> getParcelsWithoutDrone()
         {
             List<DO.Parcel> list = new List<DO.Parcel>();
@@ -513,6 +534,7 @@ namespace Dal
             return temp;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void deleteSParcel(int id)
         {
             List<DO.Parcel> list = new List<DO.Parcel>();
@@ -529,6 +551,7 @@ namespace Dal
             throw new DO.IdUnExistsException("ERROR! the parcel doesn't found");
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateParcel(int id, DO.Parcel p)
         {
             List<DO.Parcel> list = new List<DO.Parcel>();
@@ -550,6 +573,7 @@ namespace Dal
 
         #region-------------------------------drone----------------------------------
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Drone> GetPartOfDrone(Func<DO.Drone, bool> droneCondition = null)
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
@@ -560,6 +584,7 @@ namespace Dal
             return list.Where(droneCondition);
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void addDrone(DO.Drone temp)
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
@@ -570,6 +595,7 @@ namespace Dal
 
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.DroneCharge SendToCharge(int DroneID, int StationID)
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
@@ -591,6 +617,8 @@ namespace Dal
             Dal.XMLTools.SaveListToXMLSerializer<DO.DroneCharge>(dr, droneChargePath);
             return d;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void BatteryCharged(DO.DroneCharge dc)
         {
             List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>( droneChargePath);
@@ -605,6 +633,8 @@ namespace Dal
             Dal.XMLTools.SaveListToXMLSerializer<DO.Station>(stationList,  stationPath);
             Dal.XMLTools.SaveListToXMLSerializer<DO.DroneCharge>(dr, droneChargePath);
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Drone findDrone(int id)
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>( dronePath);
@@ -617,6 +647,7 @@ namespace Dal
         /// <summary>
         /// return a list of all drones
         /// </summary>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Drone> getAllDrones()
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>( dronePath);
@@ -625,6 +656,7 @@ namespace Dal
             return lst;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void deleteDrone(int id)
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
@@ -635,6 +667,7 @@ namespace Dal
             Dal.XMLTools.SaveListToXMLSerializer<DO.Drone>(droneList, dronePath);
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateDrone(int id, int mod)
         {
             List<DO.Drone> droneList = Dal.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dronePath);
@@ -647,6 +680,7 @@ namespace Dal
             Dal.XMLTools.SaveListToXMLSerializer<DO.Drone>(droneList,  dronePath);
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.DroneCharge> findDroneCharge(int id)
         {
             List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(droneChargePath);
@@ -661,6 +695,7 @@ namespace Dal
 
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.DroneCharge findStationOfDroneCharge(int id)
         {
             List<DO.DroneCharge> dr = Dal.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(droneChargePath);

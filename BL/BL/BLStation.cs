@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace BL
 {
    internal partial class BL 
     {
-        
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void addStation(Station station)
         {
             try
@@ -37,6 +39,7 @@ namespace BL
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateStation(int id, string name, int chargeSlot)
         {
             if (chargeSlot <= 0)
@@ -44,14 +47,16 @@ namespace BL
             try
             {
                 DO.Station stationDal = new DO.Station();
+                lock (dl)
+                {
+                    stationDal = dl.findStation(id);
+                    if (name != "")
+                        stationDal.name = name;
+                    if (chargeSlot != 0)
+                        stationDal.chargeSlots = chargeSlot;
 
-                stationDal = dl.findStation(id);
-                if (name != "")
-                    stationDal.name = name;
-                if (chargeSlot != 0)
-                    stationDal.chargeSlots = chargeSlot;
-
-                dl.updateStation(id, stationDal);
+                    dl.updateStation(id, stationDal);
+                }
             }
             catch (Exception e)
             {
@@ -59,46 +64,55 @@ namespace BL
             }
         }
 
-       public IEnumerable<StationToList> veiwListStation()
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<StationToList> veiwListStation()
         {
-           //get the list of the station from dal
-            IEnumerable<DO.Station> lstD= new List<DO.Station>();
-            lstD = dl.getAllStations();
-
-            //copy all the dal station to bl statio
-            List<StationToList> lstBL= new List<StationToList>();
-           
-            foreach (var item in lstD)
+            lock (dl)
             {
-               StationToList temp = new StationToList();
-                temp.ID = item.ID;
-                temp.name = item.name;
-                temp.availableChargeSlots = item.chargeSlots;
-                //findDroneCharge return a list that contain all the drone in charge 
-                temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count();
-               
+                //get the list of the station from dal
+                IEnumerable<DO.Station> lstD = new List<DO.Station>();
+                lstD = dl.getAllStations();
 
-                lstBL.Add(temp);
+                //copy all the dal station to bl statio
+                List<StationToList> lstBL = new List<StationToList>();
+
+                foreach (var item in lstD)
+                {
+                    StationToList temp = new StationToList();
+                    temp.ID = item.ID;
+                    temp.name = item.name;
+                    temp.availableChargeSlots = item.chargeSlots;
+                    //findDroneCharge return a list that contain all the drone in charge 
+                    temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count();
+
+
+                    lstBL.Add(temp);
+                }
+                return lstBL;
             }
-            return lstBL;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Station findStation(int id)
         {
-            try
+            lock (dl)
             {
-                Station s = new Station();
-                DO.Station sD = dl.findStation(id);
-                s = convertStation(sD);
-                List<DO.DroneCharge> drCh = new List<DO.DroneCharge>();
-                return s;
-            }
-            catch (Exception e)
-            {
-                throw new BLgeneralException(e.Message, e);
+                try
+                {
+                    Station s = new Station();
+                    DO.Station sD = dl.findStation(id);
+                    s = convertStation(sD);
+                    List<DO.DroneCharge> drCh = new List<DO.DroneCharge>();
+                    return s;
+                }
+                catch (Exception e)
+                {
+                    throw new BLgeneralException(e.Message, e);
+                }
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> avilableCharginStation()
         {
             //IEnumerable<DO.Station> stations = dl.getAllStations();
@@ -117,6 +131,7 @@ namespace BL
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private Station convertStation(DO.Station s)
         {
             Station tmp = new Station();
@@ -144,6 +159,7 @@ namespace BL
         }
 
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void deleteStation(int id)
         {
             dl.deleteStation(id);

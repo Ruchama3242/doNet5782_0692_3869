@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +28,15 @@ namespace BL
         public List<DroneToList> DroneArr;
         //static double time;
 
+        #region-------------------constructor---------------------
         /// <summary>
         ///// constructor
         /// </summary>
-          BL()
+        BL()
         {
-            bool flag = false;
+            lock (dl)
+            { 
+                bool flag = false;
             Random rnd = new Random();
             double minBatery = 0;
             //dl = new DO.DalObject.DalObject();
@@ -44,84 +49,93 @@ namespace BL
             //    releaseFromCharge(item.ID);
             //}
             IEnumerable<DO.Parcel> p = dl.getAllParcels();
-            foreach (var item in d)
-            {
-                flag = false;
-                DroneToList drt = new DroneToList();
-                drt.weight = convertWeight( item.weight);
-                drt.ID = item.ID;
-                drt.droneModel = item.model;
-                foreach (var pr in p)
+                foreach (var item in d)
                 {
-                    if (pr.droneID == item.ID && pr.delivered== null)
+                    flag = false;
+                    DroneToList drt = new DroneToList();
+                    drt.weight = convertWeight(item.weight);
+                    drt.ID = item.ID;
+                    drt.droneModel = item.model;
+                    foreach (var pr in p)
                     {
-                        DO.Customer sender = dl.findCustomer(pr.senderID);
-                        DO.Customer target = dl.findCustomer(pr.targetId);
-                        Location senderLocation = new Location { latitude = sender.lattitude, longitude = sender.longitude };
-                        Location targetLocation = new Location { latitude = target.lattitude, longitude = target.longitude };
-                        drt.status = DroneStatus.Delivery;
-                        drt.parcelNumber = pr.ID;
-                        if (pr.pickedUp == null && pr.scheduled != null)//החבילה שויכה אבל עדיין לא נאספה
+                        if (pr.droneID == item.ID && pr.delivered == null)
                         {
-                            drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
-                            minBatery = distance(drt.currentLocation, senderLocation) * chargeCapacity[0];
-                            minBatery += distance(senderLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];
-                            minBatery += distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
+                            DO.Customer sender = dl.findCustomer(pr.senderID);
+                            DO.Customer target = dl.findCustomer(pr.targetId);
+                            Location senderLocation = new Location { latitude = sender.lattitude, longitude = sender.longitude };
+                            Location targetLocation = new Location { latitude = target.lattitude, longitude = target.longitude };
+                            drt.status = DroneStatus.Delivery;
+                            drt.parcelNumber = pr.ID;
+                            if (pr.pickedUp == null && pr.scheduled != null)//החבילה שויכה אבל עדיין לא נאספה
+                            {
+                                drt.currentLocation = new Location { latitude = stationCloseToCustomer(pr.senderID).lattitude, longitude = stationCloseToCustomer(pr.senderID).longitude };
+                                minBatery = distance(drt.currentLocation, senderLocation) * chargeCapacity[0];
+                                minBatery += distance(senderLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];
+                                minBatery += distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
+                            }
+                            if (pr.pickedUp != null && pr.delivered == null)//החבילה נאספה אבל עדיין לא הגיעה ליעד
+                            {
+                                drt.currentLocation = new Location();
+                                drt.currentLocation = senderLocation;
+                                minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
+                                minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];
+                            }
+                            drt.battery = rnd.Next((int)minBatery, 101);
+                            flag = true;
+                            break;
                         }
-                        if (pr.pickedUp != null && pr.delivered == null)//החבילה נאספה אבל עדיין לא הגיעה ליעד
-                        {
-                            drt.currentLocation = new Location();
-                            drt.currentLocation = senderLocation;
-                            minBatery = distance(targetLocation, new Location { latitude = stationCloseToCustomer(pr.targetId).lattitude, longitude = stationCloseToCustomer(pr.targetId).longitude }) * chargeCapacity[0];
-                            minBatery += distance(drt.currentLocation, targetLocation) * chargeCapacity[indexOfChargeCapacity(pr.weight)];               
-                        }
-                        drt.battery = rnd.Next((int)minBatery, 101) ;
-                        flag = true;
-                        break;
                     }
-                }
-                if (flag==false)
-                {
-                    
-                    int temp = rnd.Next(1, 3);
-                    if (temp == 1)
-                        drt.status = DroneStatus.Available;
-                    else
-                        drt.status = DroneStatus.Maintenace;
-                    if (drt.status == DroneStatus.Maintenace)
+                    if (flag == false)
                     {
-                        int l = rnd.Next(0, dl.getAllStations().Count()), i = 0;
-                        DO.Station s = new DO.Station();
-                        foreach (var ite in dl.getAllStations())
-                        {
-                            s = ite;
-                            if (i == l)
-                                break;
-                            i++;
-                        }
-                        drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
-                        drt.battery = rnd.Next(0, 21) ;
-                        dl.SendToCharge(drt.ID, s.ID);
-                        
-                    }
-                    else
-                    {
-                        List<DO.Customer> lst = new List<DO.Customer>();
-                        foreach (var pr in p)
-                        {
-                            if (pr.delivered != null)
-                                lst.Add(dl.findCustomer(pr.targetId));
-                        }
 
-                        int l = rnd.Next(0, lst.Count());
-                        drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
-                        minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];
-                        drt.battery = rnd.Next((int)minBatery, 101);
+                        int temp = rnd.Next(1, 3);
+                        if (temp == 1)
+                            drt.status = DroneStatus.Available;
+                        else
+                            drt.status = DroneStatus.Maintenace;
+                        if (drt.status == DroneStatus.Maintenace)
+                        {
+                            int l = rnd.Next(0, dl.getAllStations().Count()), i = 0;
+                            DO.Station s = new DO.Station();
+                            foreach (var ite in dl.getAllStations())
+                            {
+                                s = ite;
+                                if (i == l)
+                                    break;
+                                i++;
+                            }
+                            drt.currentLocation = new Location { latitude = s.lattitude, longitude = s.longitude };
+                            drt.battery = rnd.Next(0, 21);
+                            dl.SendToCharge(drt.ID, s.ID);
+
+                        }
+                        else
+                        {
+                            List<DO.Customer> lst = new List<DO.Customer>();
+                            foreach (var pr in p)
+                            {
+                                if (pr.delivered != null)
+                                    lst.Add(dl.findCustomer(pr.targetId));
+                            }
+
+                            int l = rnd.Next(0, lst.Count());
+                            drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
+                            minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];
+                            drt.battery = rnd.Next((int)minBatery, 101);
+                        }
                     }
+                    DroneArr.Add(drt);
                 }
-                DroneArr.Add(drt);
             }
         }
+        #endregion
+
+        public void playSimolator(int id, Action myDelegate, Func<bool> func)
+        {
+
+        }
+
+        #region-------------privateMethod--------------------------
 
         /// <summary>
         /// calculate a distance between 2 points
@@ -165,21 +179,24 @@ namespace BL
         /// <returns></returns>
         private BO.Station stationClose(Location a)
         {
-            DO.Station station = new DO.Station();//the closest station to the customer
-            Location l = new Location();
-            l = a;
-            IEnumerable<DO.Station> st = dl.getAllStations();//the list of the stations
-            double d = distance(l, new Location { latitude = st.First().lattitude, longitude = st.First().longitude });//d is the smallest distance between the cudtomer and a station, now its the first statio in the list
-            station = st.First();
-            foreach (var item in st)
+            lock (dl)
             {
-                if (distance(l, new Location { latitude = item.lattitude, longitude = item.longitude }) < d)
+                DO.Station station = new DO.Station();//the closest station to the customer
+                Location l = new Location();
+                l = a;
+                IEnumerable<DO.Station> st = dl.getAllStations();//the list of the stations
+                double d = distance(l, new Location { latitude = st.First().lattitude, longitude = st.First().longitude });//d is the smallest distance between the cudtomer and a station, now its the first statio in the list
+                station = st.First();
+                foreach (var item in st)
                 {
-                    d = distance(l, new Location { latitude = item.lattitude, longitude = item.longitude });
-                    station = item;
+                    if (distance(l, new Location { latitude = item.lattitude, longitude = item.longitude }) < d)
+                    {
+                        d = distance(l, new Location { latitude = item.lattitude, longitude = item.longitude });
+                        station = item;
+                    }
                 }
+                return convertStation(station);
             }
-            return convertStation(station);
         }
 
 
@@ -209,12 +226,7 @@ namespace BL
             }
             return station;
         }
-
-       
+        #endregion
 
     }
 }
-
-
-    
-
