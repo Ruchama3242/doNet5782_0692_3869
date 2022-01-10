@@ -429,7 +429,7 @@ namespace PL
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            bl.playSimolator(dr.ID, Worker_ProgressChanged, worker.);
+            //bl.playSimolator(dr.ID, Worker_ProgressChanged, worker.);
         }
     }
 }

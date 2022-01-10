@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <ID>9727</ID>
-    <name>Sophia</name>
-    <longitude>32.044930299764935</longitude>
-    <lattitude>35.60462540881924</lattitude>
-    <chargeSlots>42</chargeSlots>
-  </Station>
-  <Station>
     <ID>7763</ID>
     <name>Elijah</name>
     <longitude>32.19698335984582</longitude>
     <lattitude>34.15205271176624</lattitude>
-    <chargeSlots>12</chargeSlots>
+    <chargeSlots>14</chargeSlots>
   </Station>
   <Station>
     <ID>4444</ID>
     <name>ruc</name>
     <longitude>32.43</longitude>
     <lattitude>36.1</lattitude>
-    <chargeSlots>3</chargeSlots>
+    <chargeSlots>4</chargeSlots>
+  </Station>
+  <Station>
+    <ID>9727</ID>
+    <name>Sophia</name>
+    <longitude>32.044930299764935</longitude>
+    <lattitude>35.60462540881924</lattitude>
+    <chargeSlots>39</chargeSlots>
   </Station>
 </ArrayOfStation>
