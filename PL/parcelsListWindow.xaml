@@ -43,7 +43,7 @@
         <Button x:Name="addBtn" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Add new parcel"   Margin="86,10,86,10" Background="{x:Null}" BorderBrush="{x:Null}" Click="addBtn_Click"/>
         <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto" Grid.Row="2" Content="Close"  Margin="411,8,24,6" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Click="closeBtn_Click"/>
 
-        <ListView x:Name="parcelistView" DataContext="{Binding}"  ItemsSource="{Binding}"   Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="1" AutomationProperties.Name="customerLstView" 
+        <ListView x:Name="parcelistView" DataContext="{Binding}" ItemsSource="{Binding}"    Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="1" AutomationProperties.Name="customerLstView" 
                   HorizontalContentAlignment="Stretch"  Background="#FFABC6E7" MouseDoubleClick="parcelistView_MouseDoubleClick">
             <ListView.View>
                 <GridView>

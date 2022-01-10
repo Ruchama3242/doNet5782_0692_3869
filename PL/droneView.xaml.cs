@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
+using System.Threading;
 
+using System.ComponentModel;
 namespace PL
 {
     /// <summary>
@@ -22,7 +24,7 @@ namespace PL
     {
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
         private Drone dr;
-      
+        BackgroundWorker worker;
        
 
         public droneView()
@@ -76,6 +78,13 @@ namespace PL
                 parcelBtn.Visibility = Visibility.Visible;
                 //parLst.ItemsSource = dr.parcel;
             }
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
         }
 
         public droneView(int id)
@@ -287,13 +296,14 @@ namespace PL
                 collectBtn.Visibility = Visibility.Visible;
                 //parcelDeliveryBtn.Visibility = Visibility.Visible;
                 droneChargeBtn.Visibility = Visibility.Visible;
-                sendToDeliveryBtn.Visibility = Visibility.Visible;
+                parcelDeliveryBtn.Visibility = Visibility.Visible;
                 distanceLbl.Visibility = Visibility.Visible;
                 priorityLbl.Visibility = Visibility.Visible;
                 weightLbl.Visibility = Visibility.Visible;
                 priorityTxt.Visibility = Visibility.Visible;
                 distanceTxt.Visibility = Visibility.Visible;
                 WeightTxt.Visibility = Visibility.Visible;
+                sendToDeliveryBtn.Visibility = Visibility.Hidden;
 
 
             }
@@ -399,6 +409,27 @@ namespace PL
         private void updateModeltxt_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             checkInputdigit(e);
+        }
+
+        private void simolatorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            worker.RunWorkerAsync();
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+           
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            dr = bl.findDrone(dr.ID);
+            DataContext = dr;
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            bl.playSimolator(dr.ID, Worker_ProgressChanged, worker.);
         }
     }
 }

@@ -12,6 +12,13 @@
     <name>Elijah</name>
     <longitude>32.19698335984582</longitude>
     <lattitude>34.15205271176624</lattitude>
-    <chargeSlots>14</chargeSlots>
+    <chargeSlots>12</chargeSlots>
+  </Station>
+  <Station>
+    <ID>4444</ID>
+    <name>ruc</name>
+    <longitude>32.43</longitude>
+    <lattitude>36.1</lattitude>
+    <chargeSlots>3</chargeSlots>
   </Station>
 </ArrayOfStation>

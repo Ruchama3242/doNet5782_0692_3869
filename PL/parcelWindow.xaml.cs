@@ -214,14 +214,19 @@ namespace PL
 
         private void addBtn_Click_1(object sender, RoutedEventArgs e)
         {
-           try
+            try
             {
-               int x= bl.addParcel(Convert.ToInt32(senderTxt.SelectedItem),Convert.ToInt32(targetCmb.SelectedItem),(int)p.weight,(int)p.priority);
-                MessageBox.Show("the parcel successfully added,the ID of the parcel is:"+x);
-                p.sender = new BO.CustomerInParcel();
-                p.target = new BO.CustomerInParcel();
-                DataContext = p;
-                Close();
+                if (Convert.ToInt32(senderTxt.SelectedItem) == Convert.ToInt32(targetCmb.SelectedItem))
+                    MessageBox.Show("Error! the sender and the target can't be same");
+                else
+                {
+                    int x = bl.addParcel(Convert.ToInt32(senderTxt.SelectedItem), Convert.ToInt32(targetCmb.SelectedItem), (int)p.weight, (int)p.priority);
+                    MessageBox.Show("the parcel successfully added,the ID of the parcel is:" + x);
+                    p.sender = new BO.CustomerInParcel();
+                    p.target = new BO.CustomerInParcel();
+                    DataContext = p;
+                    Close();
+                }
             }
             catch (Exception ex)
             {
