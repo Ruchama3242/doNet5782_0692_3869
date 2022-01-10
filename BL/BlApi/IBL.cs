@@ -15,7 +15,7 @@ namespace BlApi
         /// <param name="id"></param>
         /// <param name="myDelegate"></param>
         /// <param name="func"></param>
-    public  void playSimolator(int id, Action myDelegate, bool func);
+    public  void playSimolator(int id, Action myDelegate, Func<bool> func);
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
         /// <summary>
         /// get a customer of BL and add it to the list of DAL

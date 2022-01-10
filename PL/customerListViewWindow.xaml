@@ -29,18 +29,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="143*"/>
-            <ColumnDefinition Width="57*"/>
-        </Grid.ColumnDefinitions>-->
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="290"/>
-            <RowDefinition Height="23*"/>
-        </Grid.RowDefinitions>-->
-
-
-
+      
         <Button x:Name="add" Style="{StaticResource myButtonStyle }" FontSize="30" MinWidth="400" MaxWidth="700" Height="auto"  Content="Add new customer"  Click="add_Click" Margin="-185,368,185,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
         <Button x:Name="closeBtn" Style="{StaticResource myButtonStyle }" FontSize="30"  Height="auto"  Content="Close"  Click="closeBtn_Click" Margin="497,364,53,-8" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
