@@ -127,7 +127,6 @@ namespace BL
 
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone findDrone(int id)
         {
             try
@@ -147,7 +146,7 @@ namespace BL
                 if (drn.status == DroneStatus.Delivery)
                 {
                     pt.ID = drn.parcelNumber;
-                    DO.Parcel p=new DO.Parcel();
+                    DO.Parcel p = new DO.Parcel();
                     try
                     {
                         p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
@@ -174,45 +173,50 @@ namespace BL
                     pt.targetLocation = new Location();
                     pt.targetLocation.longitude = target.longitude;
                     pt.targetLocation.latitude = target.lattitude;
-                    if(pt.status==true)
+                    if (pt.status == true)
                         pt.distance = distance(drn.currentLocation, pt.targetLocation);// המרחק אחרי שהחבילה נאספה עד המיקום של המקבל
-                   else
+                    else
                         pt.distance = distance(drn.currentLocation, pt.collectionLocation);//המרחק לפני שהחבילה נאספה עד המיקום של שולח
-                    lock (dl)
-                    {
-                        pt.ID = drn.parcelNumber;
-                        DO.Parcel p = new DO.Parcel();
-                        try
-                        {
-                            p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
-                        }
-                        catch (Exception)
-                        {
-                            throw new BLIdUnExistsException("Error! the parcel not found");
-                        }
-                        if (p.pickedUp == DateTime.MinValue)
-                            pt.status = false;
-                        else
-                            pt.status = true;
-                        pt.priority = (Priorities)p.priority;
-                        pt.weight = (WeightCategorie)p.weight;
-                        pt.sender = new CustomerInParcel();
-                        pt.sender = getCustomerInParcel(p.senderID);
-                        pt.target = new CustomerInParcel();
-                        pt.target = getCustomerInParcel(p.targetId);
-                        DO.Customer sender = dl.findCustomer(p.senderID);
-                        DO.Customer target = dl.findCustomer(p.targetId);
-                        pt.collectionLocation = new Location();
-                        pt.collectionLocation.longitude = sender.longitude;
-                        pt.collectionLocation.latitude = sender.lattitude;
-                        pt.targetLocation = new Location();
-                        pt.targetLocation.longitude = target.longitude;
-                        pt.targetLocation.latitude = target.lattitude;
-                        pt.distance = distance(drn.currentLocation, pt.targetLocation);
-
-                        d.parcel = new ParcelInTransfer();
+                    d.parcel = new ParcelInTransfer();
                         d.parcel = pt;
-                    }
+                    //lock (dl)
+                    //{
+                    //    pt.ID = drn.parcelNumber;
+                    //    DO.Parcel p = new DO.Parcel();
+                    //    try
+                    //    {
+                    //        p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
+                    //    }
+                    //    catch (Exception)
+                    //    {
+                    //        throw new BLIdUnExistsException("Error! the parcel not found");
+                    //    }
+                    //    if (p.pickedUp == DateTime.MinValue)
+                    //        pt.status = false;
+                    //    else
+                    //        pt.status = true;
+                    //    pt.priority = (Priorities)p.priority;
+                    //    pt.weight = (WeightCategorie)p.weight;
+                    //    pt.sender = new CustomerInParcel();
+                    //    pt.sender = getCustomerInParcel(p.senderID);
+                    //    pt.target = new CustomerInParcel();
+                    //    pt.target = getCustomerInParcel(p.targetId);
+                    //    DO.Customer sender = dl.findCustomer(p.senderID);
+                    //    DO.Customer target = dl.findCustomer(p.targetId);
+                    //    pt.collectionLocation = new Location();
+                    //    pt.collectionLocation.longitude = sender.longitude;
+                    //    pt.collectionLocation.latitude = sender.lattitude;
+                    //    pt.targetLocation = new Location();
+                    //    pt.targetLocation.longitude = target.longitude;
+                    //    pt.targetLocation.latitude = target.lattitude;
+                    //    if (pt.status == true)
+                    //        pt.distance = distance(drn.currentLocation, pt.targetLocation);// המרחק אחרי שהחבילה נאספה עד המיקום של המקבל
+                    //    else
+                    //        pt.distance = distance(drn.currentLocation, pt.collectionLocation);//המרחק לפני שהחבילה נאספה עד המיקום של שולח
+
+                    //    d.parcel = new ParcelInTransfer();
+                    //    d.parcel = pt;
+                    //}
                 }
                 return d;
             }
@@ -221,6 +225,72 @@ namespace BL
                 throw new BLgeneralException(e.Message/*,e*/);
             }
         }
+
+        //[MethodImpl(MethodImplOptions.Synchronized)]
+        //public Drone findDrone(int id)
+        //{
+        //    try
+        //    {
+        //        var drn = DroneArr.Find(x => x.ID == id);
+        //        if (drn == null)
+        //            throw new BLIdUnExistsException("Error! the drone doesn't found");
+        //        Drone d = new Drone();
+        //        d.ID = drn.ID;
+        //        d.model = drn.droneModel;
+        //        d.weight = drn.weight;
+        //        d.status = drn.status;
+        //        d.battery = drn.battery;
+        //        d.location = new Location();
+        //        d.location = drn.currentLocation;
+        //        ParcelInTransfer pt = new ParcelInTransfer();
+        //        if (drn.status == DroneStatus.Delivery)
+        //        {
+        //            lock (dl)
+        //            {
+        //                pt.ID = drn.parcelNumber;
+        //                DO.Parcel p = new DO.Parcel();
+        //                try
+        //                {
+        //                    p = dl.findParcel(drn.parcelNumber);//get the parcel from the dal
+        //                }
+        //                catch (Exception)
+        //                {
+        //                    throw new BLIdUnExistsException("Error! the parcel not found");
+        //                }
+        //                if (p.pickedUp == DateTime.MinValue)
+        //                    pt.status = false;
+        //                else
+        //                    pt.status = true;
+        //                pt.priority = (Priorities)p.priority;
+        //                pt.weight = (WeightCategorie)p.weight;
+        //                pt.sender = new CustomerInParcel();
+        //                pt.sender = getCustomerInParcel(p.senderID);
+        //                pt.target = new CustomerInParcel();
+        //                pt.target = getCustomerInParcel(p.targetId);
+        //                DO.Customer sender = dl.findCustomer(p.senderID);
+        //                DO.Customer target = dl.findCustomer(p.targetId);
+        //                pt.collectionLocation = new Location();
+        //                pt.collectionLocation.longitude = sender.longitude;
+        //                pt.collectionLocation.latitude = sender.lattitude;
+        //                pt.targetLocation = new Location();
+        //                pt.targetLocation.longitude = target.longitude;
+        //                pt.targetLocation.latitude = target.lattitude;
+        //                pt.targetLocation.latitude = target.lattitude;
+        //                if (pt.status == true)
+        //                    pt.distance = distance(drn.currentLocation, pt.targetLocation);// המרחק אחרי שהחבילה נאספה עד המיקום של המקבל
+        //                else
+        //                    pt.distance = distance(drn.currentLocation, pt.collectionLocation);//המרחק לפני שהחבילה נאספה עד המיקום של שולח
+        //                d.parcel = new ParcelInTransfer();
+        //                d.parcel = pt;
+        //            }
+        //        }
+        //        return d;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new BLgeneralException(e.Message/*,e*/);
+        //    }
+        //}
 
         /// <summary>
         /// return the customer with this id

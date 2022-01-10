@@ -35,7 +35,7 @@ namespace BL
         BL()
         {
             lock (dl)
-            { 
+            {
                 bool flag = false;
             Random rnd = new Random();
             double minBatery = 0;
