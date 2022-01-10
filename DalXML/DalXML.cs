@@ -34,7 +34,7 @@ namespace Dal
 
         private DalXml()
         {
-            // Initialize();
+            //  Initialize();
             List<DroneCharge> droneCharge = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
             foreach (var item in droneCharge)
             {
