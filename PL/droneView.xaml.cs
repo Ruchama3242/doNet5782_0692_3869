@@ -45,6 +45,13 @@ namespace PL
                 sendToDeliveryBtn.Visibility = Visibility.Visible;
                 lbl.Visibility = Visibility.Hidden;
                 parLst.Visibility = Visibility.Hidden;
+                distanceLbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                WeightTxt.Visibility = Visibility.Hidden;
+
             }
 
             if(dr.status==DroneStatus.Maintenace)
@@ -52,9 +59,16 @@ namespace PL
                 relaseBtn.Visibility = Visibility.Visible;
                 lbl.Visibility = Visibility.Hidden;
                 parLst.Visibility = Visibility.Hidden;
+                distanceLbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                WeightTxt.Visibility = Visibility.Hidden;
+
             }
 
-            if(dr.status==DroneStatus.Delivery)
+            if (dr.status==DroneStatus.Delivery)
             {
                 collectBtn.Visibility = Visibility.Visible;
                 parcelDeliveryBtn.Visibility = Visibility.Visible;
@@ -271,10 +285,17 @@ namespace PL
                 //fillTextbox(drone);
                 DataContext = dr;
                 collectBtn.Visibility = Visibility.Visible;
-                parcelDeliveryBtn.Visibility = Visibility.Visible;
-                droneChargeBtn.Visibility = Visibility.Hidden;
-                sendToDeliveryBtn.Visibility = Visibility.Hidden;
-                
+                //parcelDeliveryBtn.Visibility = Visibility.Visible;
+                droneChargeBtn.Visibility = Visibility.Visible;
+                sendToDeliveryBtn.Visibility = Visibility.Visible;
+                distanceLbl.Visibility = Visibility.Visible;
+                priorityLbl.Visibility = Visibility.Visible;
+                weightLbl.Visibility = Visibility.Visible;
+                priorityTxt.Visibility = Visibility.Visible;
+                distanceTxt.Visibility = Visibility.Visible;
+                WeightTxt.Visibility = Visibility.Visible;
+
+
             }
             catch (Exception ex)
             {
@@ -292,6 +313,9 @@ namespace PL
                 //fillTextbox(drone);
                 DataContext = dr;
                 MessageBox.Show("the parcel was collected by the parcel");
+                parcelDeliveryBtn.Visibility = Visibility.Visible;
+                collectBtn.Visibility = Visibility.Hidden;
+
             }
             catch (Exception ex)
             {
@@ -319,6 +343,12 @@ namespace PL
                 lbl.Visibility = Visibility.Hidden;
                 parLst.Visibility = Visibility.Hidden;
                 parcelBtn.Visibility = Visibility.Hidden;
+                distanceLbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                WeightTxt.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {

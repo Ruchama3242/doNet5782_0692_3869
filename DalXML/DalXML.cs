@@ -186,7 +186,9 @@ namespace Dal
                                    where Convert.ToInt32(p.Element("ID").Value) == temp.ID
                                    select p).FirstOrDefault();
             if (customerElement != null)
-                throw new IdExistsException("The customer already exist in the system");
+                    throw new IdExistsException("The customer already exist in the system");
+            
+
 
             XElement theNewOne = new XElement("Customer",
                                       new XElement("ID", temp.ID),

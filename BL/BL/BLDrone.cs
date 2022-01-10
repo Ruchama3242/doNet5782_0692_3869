@@ -164,7 +164,10 @@ namespace BL
                     pt.targetLocation = new Location();
                     pt.targetLocation.longitude = target.longitude;
                     pt.targetLocation.latitude = target.lattitude;
-                    pt.distance = distance(drn.currentLocation, pt.targetLocation);
+                    if(pt.status==true)
+                        pt.distance = distance(drn.currentLocation, pt.targetLocation);// המרחק אחרי שהחבילה נאספה עד המיקום של המקבל
+                   else
+                        pt.distance = distance(drn.currentLocation, pt.collectionLocation);//המרחק לפני שהחבילה נאספה עד המיקום של שולח
 
                     d.parcel = new ParcelInTransfer();
                     d.parcel = pt;

@@ -153,7 +153,31 @@
     <requested>2022-01-09T00:31:57.7490542+02:00</requested>
     <droneID>18009</droneID>
     <scheduled>2022-01-09T00:32:05.086826+02:00</scheduled>
-    <pickedUp xsi:nil="true" />
+    <pickedUp>2022-01-10T09:35:36.1286519+02:00</pickedUp>
+    <delivered>2022-01-10T09:35:44.2490271+02:00</delivered>
+  </Parcel>
+  <Parcel>
+    <ID>1050</ID>
+    <senderID>214021412</senderID>
+    <targetId>215365125</targetId>
+    <weight>light</weight>
+    <priority>normal</priority>
+    <requested>2022-01-10T09:42:54.4378272+02:00</requested>
+    <droneID>81038</droneID>
+    <scheduled>2022-01-10T09:43:12.8795292+02:00</scheduled>
+    <pickedUp>2022-01-10T09:43:27.9066093+02:00</pickedUp>
+    <delivered>2022-01-10T09:43:37.7947064+02:00</delivered>
+  </Parcel>
+  <Parcel>
+    <ID>1051</ID>
+    <senderID>325279982</senderID>
+    <targetId>250833771</targetId>
+    <weight>light</weight>
+    <priority>normal</priority>
+    <requested>2022-01-10T10:23:48.1324312+02:00</requested>
+    <droneID>18009</droneID>
+    <scheduled>2022-01-10T10:24:00.855472+02:00</scheduled>
+    <pickedUp>2022-01-10T10:24:07.1216548+02:00</pickedUp>
     <delivered xsi:nil="true" />
   </Parcel>
 </ArrayOfParcel>
