@@ -19,6 +19,8 @@ namespace BL
         {
             DO.WeightCategories x = DO.WeightCategories.light;//הקומפיילר מחייב לאתחל תמשתנה כדי ששאר הפונקציה תהיה תקינה
             List<DroneToList> lst = new List<DroneToList>();
+
+            
             if (w == WeightCategorie.Heavy)
                 x = DO.WeightCategories.heavy;
 
@@ -364,8 +366,15 @@ namespace BL
             lock (dl)
             {
                 List<DroneToList> lst = new List<DroneToList>();
+
+                
+
                 foreach (var item in DroneArr)
                     lst.Add(item);
+
+                var v = from item in lst
+                        orderby item.ID
+                        select item;
                 return lst;
             }
         }
