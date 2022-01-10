@@ -67,22 +67,23 @@ namespace PL
             parcelToLstView.ItemsSource = c.toCustomer;
             sendParBtn.Visibility = Visibility.Hidden;
 
-            if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
+            IEnumerable<ParcelAtCustomer> confirmList = new List<ParcelAtCustomer>();
+            confirmList = c.toCustomer.Where(x => x.status == ParcelStatus.Delivred);
+           
+
+            foreach (var item in confirmList)
             {
-                confirmParBtn.Visibility = Visibility.Visible;
-                confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
+                if (item.confirmation == false)
+                {
+                    MessageBox.Show(@$"confirm receipt of packages {item.ID}");
+                    item.confirmation = true;
+                }
             }
 
             if (permission=="user")
             {
                 sendParBtn.Visibility = Visibility.Visible;
             }
-            if (permission == "maneger")
-            {
-                
-            }
-            
-
         }
         public addCustomerWindoes( CustomerToList cus, string permission)
         {
@@ -109,11 +110,23 @@ namespace PL
             parcelToLstView.ItemsSource = c.toCustomer;
             activeTxtBlock.IsReadOnly = true;
 
-            if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
-            {
-                confirmParBtn.Visibility = Visibility.Visible;
-                confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
-            }
+            IEnumerable<ParcelAtCustomer> confirmList = new List<ParcelAtCustomer>();
+            confirmList = c.toCustomer.Where(x => x.status == ParcelStatus.Delivred);
+
+            //foreach (var item in confirmList)
+            //{
+            //    if (item.confirmation == false)
+            //    {
+            //        MessageBox.Show(@$"confirm receipt of packages {item.ID}");
+            //        item.confirmation = true;
+            //    }
+            //}
+
+            //if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
+            //{
+            //    confirmParBtn.Visibility = Visibility.Visible;
+            //    confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
+            //}
 
             if (permission == "user")
             {
@@ -154,14 +167,7 @@ namespace PL
                 confirmParBtn.Visibility = Visibility.Visible;
                 confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
             }
-            //var lst = bl.getAllParcels();
-            //myCollection = new ObservableCollection<BO.Parcel>();
-            //foreach (var item in c.fromCustomer)
-            //{
-            //    myCollection.Add(bl.findParcel(item.ID));
-            //}
-            // parcelLstView.DataContext = c.fromCustomer ;
-
+            
 
         }
 

@@ -130,7 +130,7 @@ namespace BL
         }
         #endregion
 
-        public void playSimolator(int id, Action myDelegate, bool func)
+        public void playSimolator(int id, Action myDelegate, Func<bool> func)
         {
             Simolatur s = new Simolatur(this, id, myDelegate, func);
         }
