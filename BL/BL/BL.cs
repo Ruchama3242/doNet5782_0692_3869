@@ -26,8 +26,6 @@ namespace BL
         public double[] chargeCapacity;
 
         public List<DroneToList> DroneArr;
-        //static int dis = 0;
-        //static double time;
 
         #region-------------------constructor---------------------
         /// <summary>
@@ -159,6 +157,11 @@ namespace BL
             return d;
         }
 
+        /// <summary>
+        /// get a weight of DO.WeightCategories anbnnd convert it to bl.WeightCategorie
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
         private WeightCategorie convertWeight(DO.WeightCategories w)
         {
             if (w == DO.WeightCategories.light)
@@ -174,7 +177,7 @@ namespace BL
         }
 
         /// <summary>
-        /// מחזירה את התחנה הקרובה ביותר שיש לה עמדות טעינה פנויות
+        /// Returns to the nearest station with free charging stations
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
@@ -202,9 +205,6 @@ namespace BL
             }
         }
 
-
-
-
         /// <summary>
         /// the function get an id of a customer and return the closest station to it
         /// </summary>
@@ -230,15 +230,6 @@ namespace BL
             return station;
         }
         #endregion
-        public int parcels()
-        {
-           
-            return dl.parcels();
-        }
 
-        public void confirm(int parcelId)
-        {
-            dl.confirm(parcelId);
-        }
     }
 }

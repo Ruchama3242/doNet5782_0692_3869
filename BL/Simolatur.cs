@@ -63,9 +63,6 @@ namespace BL
                             break;
 
                         case DroneStatus.Maintenace:
-
-
-                            //צריך קודם שיגמור את הטעינה
                             bl.releaseFromCharge(id, true);
                             myDelegate();
                             Thread.Sleep(delay);
@@ -80,8 +77,6 @@ namespace BL
                             Thread.Sleep(delay);
                             break;
                     }
-
-
                 }
             }
             catch(Exception ex)

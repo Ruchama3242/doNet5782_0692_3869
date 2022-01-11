@@ -154,8 +154,6 @@ namespace BL
             }
         }
 
-        
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void packageCollection(int droneid,bool flag=false)
         {
@@ -249,13 +247,11 @@ namespace BL
                                 }
                                 else
                                 {
-
                                     d.currentLocation.latitude += ((1 / distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude })) * (dl.findCustomer(item.targetId).lattitude - d.currentLocation.latitude)) * KmPerSecond;
                                     d.currentLocation.longitude += (1 / distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude })) * (dl.findCustomer(item.targetId).longitude - d.currentLocation.longitude) * KmPerSecond;
                                 }
 
                                 d.battery = d.battery - distance(d.currentLocation, l) * chargeCapacity[indexOfChargeCapacity(item.weight)];
-
 
                                 if (distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.targetId).lattitude, longitude = dl.findCustomer(item.targetId).longitude }) <= 0)
                                 {
@@ -277,6 +273,10 @@ namespace BL
         public void deleteParcel(int id)
         {
             dl.deleteSParcel(id);
+        }
+        public void confirm(int parcelId)
+        {
+            dl.confirm(parcelId);
         }
     }
 }

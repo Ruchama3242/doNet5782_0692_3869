@@ -277,11 +277,6 @@ namespace PL
             }
         }
 
-        //private void timeInChargeTxt_KeyDown(object sender, KeyEventArgs e)
-        //{
-
-        //}
-
         private void viewParcelbtn_Click(object sender, RoutedEventArgs e)
         {
 

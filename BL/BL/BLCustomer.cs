@@ -94,7 +94,7 @@ namespace BL
                     IEnumerable<DO.Parcel> lstP = dl.getAllParcels();
                     foreach (var item in lstP)
                     {
-                        //מוצא את כל החבילות שהלקוח מקבל
+                        //Finds all the packages the customer receives
                         if (item.targetId == cusBL.ID)
                         {
                             ParcelAtCustomer tmp = new ParcelAtCustomer();
@@ -107,7 +107,7 @@ namespace BL
                             tmp.confirmation = item.confirm;
                             p1.Add(tmp);
                         }
-                        //מוצא את כל החבילות שהלקוח שולח
+                        //Finds all the packages the customer sends
                         if (item.senderID == cusBL.ID)
                         {
                             ParcelAtCustomer tmp = new ParcelAtCustomer();
@@ -133,6 +133,12 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// Convert from the Dal type to the Bl type priority
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         private Priorities GetParcelPriorities(DO.Priorities p)
         {
@@ -144,10 +150,15 @@ namespace BL
             if (p == DO.Priorities.normal)
                 return Priorities.Normal;
 
-            //הוספתי עוד שורה רק כדי שהפונקציה תהיה חוקית
+            //This line is only to preserve the legality of the kimpol
             return Priorities.Normal;
         }
 
+        /// <summary>
+        /// Convert from the Dal type to the Bl type status
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         private ParcelStatus getParcelStatus(DO.Parcel p)
         {
@@ -202,10 +213,10 @@ namespace BL
                         //if the parcel arrived
                         if (parcel.senderID == item.ID && parcel.delivered != null)
                             counterDelivered++;
-                        //החבילה עוד לא שוייכה
+                        //Package not yet associated
                         if (parcel.senderID == item.ID && parcel.scheduled == null)
                             counterDontDelivered++;
-                        // החבילה שוייכה לרחפן ועוד לא הגיעה
+                        // A package was assigned to the glider but has not yet arrived
                         if (parcel.senderID == item.ID && parcel.scheduled != null && parcel.delivered == null)
                             counterOnWay++;
                     }
