@@ -257,7 +257,7 @@ namespace BL
                                 {
                                     d.status = DroneStatus.Available;
                                     d.parcelNumber = 0;
-                                    dl.ParcelPickedUp(item.ID, DateTime.Now);
+                                    dl.ParcelReceived(item.ID, DateTime.Now);
                                 }
                             }
                             DroneArr.Add(d);

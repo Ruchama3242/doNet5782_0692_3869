@@ -99,6 +99,7 @@ namespace PL
             parcelDeliveryBtn.Visibility = Visibility.Hidden;
             viewParcelbtn.Visibility = Visibility.Hidden;
             stopBtn.Visibility = Visibility.Hidden;
+            simolatorBtn.Visibility = Visibility.Hidden;
              if(dr.status!=DroneStatus.Delivery)
                 parcelBtn.Visibility = Visibility.Hidden;
         }
@@ -122,6 +123,7 @@ namespace PL
             stopBtn.Visibility = Visibility.Hidden;
             if (dr.status != DroneStatus.Delivery)
                 parcelBtn.Visibility = Visibility.Hidden;
+            simolatorBtn.Visibility = Visibility.Hidden;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -437,6 +439,7 @@ namespace PL
                 lbl.Visibility = Visibility.Hidden;
                 priorityLbl.Visibility = Visibility.Hidden;
                 distanceLbl.Visibility = Visibility.Hidden;
+                viewParcelbtn.Visibility = Visibility.Hidden;
             }
         }
     }
