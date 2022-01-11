@@ -70,13 +70,13 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-     
+
         <ComboBox x:Name="DroneMaxWeigtCmb"  HorizontalAlignment="Left" Margin="183,0,0,0" VerticalAlignment="Center" Width="120" AutomationProperties.Name="DroneMaxWeight"
                   DataContext="{Binding status}" Height="20" Grid.Row="3"/>
         <Label Content="Max Weight" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="90" Height="31" RenderTransformOrigin="0.437,1.508" Grid.Row="3"/>
         <Label Content="Id Station" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="90" Height="25" Grid.Row="4"/>
-        <Button x:Name="addDroneBtn" Style="{StaticResource myButtonStyle}" Content="Add Drone" HorizontalAlignment="Center" VerticalAlignment="Center" Click="addDroneBtn_Click" Grid.Row="5" Height="64" Width="145"/>
-        <Button x:Name="cancelBtn" Style="{StaticResource myButtonStyle}" Content="Cancel" HorizontalAlignment="Left" Margin="28,7,0,0" VerticalAlignment="Top" Click="cancelBtn_Click" Grid.Row="5" Height="61" Width="136"/>
+        <Button x:Name="addDroneBtn" Style="{StaticResource myButtonStyle}" Content="Add Drone" HorizontalAlignment="Left" VerticalAlignment="Center" Click="addDroneBtn_Click" Grid.Row="5" MinHeight="27" MaxHeight="40" MinWidth="80" MaxWidth="120" Margin="28,0,0,0"/>
+        <Button x:Name="cancelBtn" Style="{StaticResource myButtonStyle}" Content="Cancel" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Center" Click="cancelBtn_Click" Grid.Row="5" MinHeight="27" MaxHeight="40" MinWidth="80" MaxWidth="120"/>
         <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="183,0,0,0" VerticalAlignment="Center" Width="120 "
                    Height="20" Grid.Row="4"/>
 

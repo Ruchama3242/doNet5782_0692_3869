@@ -96,4 +96,12 @@
     <lattitude>35.1</lattitude>
     <active>true</active>
   </Customer>
+  <Customer>
+    <ID>313132375</ID>
+    <name>Rachel</name>
+    <phone>0533411559</phone>
+    <longitude>33.102</longitude>
+    <lattitude>36.1</lattitude>
+    <active>true</active>
+  </Customer>
 </ArrayOfCustomer>

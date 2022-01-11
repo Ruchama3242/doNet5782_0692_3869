@@ -25,8 +25,6 @@ namespace PL
 
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
         public IEnumerable<DroneToList> myCollection = new List<DroneToList>();
-
-
         public droneListView()
         {
             InitializeComponent();
@@ -34,24 +32,13 @@ namespace PL
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategorie));
             myCollection = bl.getAllDrones();
             DronesListView.DataContext = myCollection;
-            
-
-            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
-            //PropertyGroupDescription groupDescription = new PropertyGroupDescription("status ");
-            //view.GroupDescriptions.Add(groupDescription);
-            // DronesListView.ItemsSource = myCollection;
-            //fillListView();
         }
-
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new addDroneWindow().ShowDialog();
             myCollection = bl.getAllDrones();
-            DronesListView.DataContext = myCollection;
-
+            DronesListView.ItemsSource = myCollection;
         }
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,30 +46,10 @@ namespace PL
 
         }
 
-        //private void fillListView()
-        //{
-        //    IEnumerable<DroneToList> d = new List<DroneToList>();
-        //    d = bl.getAllDrones();
-        //    if (statusSelector.Text != "")
-        //        d = this.bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
-        //    if (weightSelector.Text != "")
-        //        d = bl.droneFilterWheight((WeightCategorie)weightSelector.SelectedItem);
-
-        //    DronesListView.ItemsSource = d;
-        //}
-
         private void close(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-        //private void DronesListView_Selected(object sender, RoutedEventArgs e)
-        //{
-        //    DroneToList dr = new DroneToList();
-        //    dr = (DroneToList)DronesListView.SelectedItem;
-        //    new droneView(bl, dr).ShowDialog();
-        //    fillListView();
-        //}
 
         private void mouse(object sender, MouseButtonEventArgs e)
         {
@@ -96,7 +63,6 @@ namespace PL
                 myCollection = bl.getAllDrones();
                 DronesListView.DataContext = myCollection;
             }
-            // fillListView();
         }
 
         private void filtering(object sender, SelectionChangedEventArgs e)
@@ -104,9 +70,7 @@ namespace PL
 
             if (statusSelector.SelectedItem != null)
                 DronesListView.ItemsSource = bl.droneFilterStatus((DroneStatus)statusSelector.SelectedItem);
-
         }
-
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {

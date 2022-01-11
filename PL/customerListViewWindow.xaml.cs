@@ -37,28 +37,14 @@ namespace PL
             List<BO.CustomerToList> lst1 = new List<BO.CustomerToList>(bl.viewListCustomer());
             lst = lst1;
             DataContext = lst;
-            //customerLstView.ItemsSource = bl.viewListCustomer();
-            // customerLstView.ItemsSource = myCollection;
-            //costomerLstBx.DataContext = myCollection;
-            //customerLstView.ItemsSource = bl.viewListCustomer();
         }
-
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
             new addCustomerWindoes().ShowDialog();
             lst = new List<BO.CustomerToList>(bl.viewListCustomer());
             DataContext = lst;
-            //customerLstView.ItemsSource = bl.viewListCustomer();
-            // customerListView.DataContext = bl.viewListCustomer();
-
         }
-
-        //private void ListBox_SourceUpdated(object sender, DataTransferEventArgs e)
-        //{
-        //    //customerLstView.ItemsSource = bl.viewListCustomer();
-        //    DataContext =lst ;
-        //}
 
         private void Image_TouchEnter(object sender, TouchEventArgs e)
         {
@@ -73,15 +59,10 @@ namespace PL
             {
                 CustomerToList c = new CustomerToList();
                 c = (CustomerToList)customerLstView.SelectedItem;
-                new addCustomerWindoes(c,"maneger").ShowDialog();
+                new addCustomerWindoes(c, "maneger").ShowDialog();
                 lst = new List<BO.CustomerToList>(bl.viewListCustomer());
                 DataContext = lst;
             }
-            // dr = (DroneToList)DronesListView.SelectedItem;
-            //new droneView(bl, dr).ShowDialog();
-            //DroneToList dr = new DroneToList();
-            //dr = (DroneToList)DronesListView.SelectedItem;
-            //new droneView(bl, dr).ShowDialog();
         }
 
         private void serchTxtBx_KeyUp(object sender, KeyEventArgs e)

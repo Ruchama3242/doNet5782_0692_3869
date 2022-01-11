@@ -21,7 +21,7 @@ namespace PL
     public partial class parcelsListWindow : Window
     {
         private BlApi.IBL bl;
-        private List<BO.ParcelToList> lst;
+        private IEnumerable<BO.ParcelToList> lst;
         public parcelsListWindow()
         {
             InitializeComponent();
@@ -29,25 +29,7 @@ namespace PL
             lst = new List<BO.ParcelToList>(bl.getAllParcels());
             DataContext = lst;
             statusCmb.ItemsSource= Enum.GetValues(typeof(BO.ParcelStatus));
-
-           
         }
-
-        //private void filterByStatus_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    if(filterByStatus.IsChecked==true)
-        //    {
-        //        IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
-        //        p = bl.getAllParcels().Where(x => x.status == (BO.ParcelStatus)statusCmb.SelectedItem);
-        //        myObservableCollection = new ObservableCollection<BO.ParcelToList>(p);
-        //        DataContext = myObservableCollection;
-        //    }
-        //    else
-        //    {
-        //        myObservableCollection = new ObservableCollection<BO.ParcelToList>(bl.getAllParcels());
-        //        DataContext = myObservableCollection;
-        //    }
-        //}
 
         private void statusCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -56,7 +38,6 @@ namespace PL
                 IEnumerable<BO.ParcelToList> p = new List<BO.ParcelToList>();
                 p = bl.getAllParcels().Where(x => x.status == (BO.ParcelStatus)statusCmb.SelectedItem);
                 lst = new List<BO.ParcelToList>(p);
-                //DataContext = lst;
                 parcelistView.ItemsSource = p;
             }
             else
@@ -82,8 +63,8 @@ namespace PL
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             new parcelWindow().ShowDialog();
-            lst = new List<BO.ParcelToList>(bl.getAllParcels());
-            DataContext = lst;
+            lst = new List<BO.ParcelToList>();
+            parcelistView.ItemsSource = bl.getAllParcels();
         }
 
         private void parcelistView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -126,9 +107,7 @@ namespace PL
 
         private void normalView_Checked(object sender, RoutedEventArgs e)
         {
-            parcelistView.ItemsSource = bl.getAllParcels();
-           // parcelistView.DataContext = lst;
-                
+            parcelistView.ItemsSource = bl.getAllParcels();   
         }
 
         private void groupingViewC_Checked(object sender, RoutedEventArgs e)
@@ -147,8 +126,7 @@ namespace PL
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("senderName");
             view.GroupDescriptions.Add(groupDescription);
         }
-
-        
+ 
     }
    
 }

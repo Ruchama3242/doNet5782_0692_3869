@@ -17,7 +17,7 @@ namespace BlApi
         /// <param name="func"></param>
     public  void playSimolator(int id, Action myDelegate, Func<bool> func);
 
-        public int parcels();
+       // public int parcels();
         
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
         /// <summary>
@@ -46,7 +46,10 @@ namespace BlApi
         /// <returns></returns>
         public global::BO.Customer findCustomer(int id);
 
-
+        /// <summary>
+        /// change the status(active) of the customer to false
+        /// </summary>
+        /// <param name="id"></param>
         public void deleteCustomer(int id);
         #endregion
 

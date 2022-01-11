@@ -57,18 +57,18 @@
 
         <TextBox x:Name="IDBtn" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  MaxLength="9" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" PreviewKeyDown="IDBtn_PreviewKeyDown">
             <TextBox.Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Foreground" Value= "Black"></Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="Red" />
-                        <Setter Property="TextDecorations" Value="Underline" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Foreground" Value= "Black"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Red" />
+                            <Setter Property="TextDecorations" Value="Underline" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
             </TextBox.Style>
-            </TextBox>
-            <TextBox x:Name="nameBtn" Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Grid.Row="1" PreviewKeyDown="nameBtn_PreviewKeyDown">
+        </TextBox>
+        <TextBox x:Name="nameBtn" Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Grid.Row="1" PreviewKeyDown="nameBtn_PreviewKeyDown">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Foreground" Value= "Black"></Setter>
@@ -160,7 +160,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="sendParBtn" Content="Send parcel" HorizontalAlignment="Left" Margin="327,4,0,0" Grid.Row="6"
-               Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="sendParBtn_Click" Height="18" Width="77"/>
+               Style="{StaticResource myButtonStyle}" VerticalAlignment="Top" Click="sendParBtn_Click" Height="22" Width="99"/>
         <Button x:Name="confirmParBtn" Content= "" Style="{StaticResource myButtonStyle}" Visibility="Hidden" HorizontalAlignment="Left" Margin="327,65,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Grid.RowSpan="2" Width="442" Click="confirmParBtn_Click" Grid.ColumnSpan="3"/>
         <Label x:Name="activeLbl" Content="Active" Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="34,7,0,0" Grid.Row="5" VerticalAlignment="Top"/>
         <TextBox x:Name="activeTxtBlock" HorizontalAlignment="Center" Margin="0,13,0,0" Grid.Row="5" Text="{Binding active, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">

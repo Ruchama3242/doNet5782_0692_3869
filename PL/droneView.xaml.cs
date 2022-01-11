@@ -29,7 +29,7 @@ namespace PL
         private bool checkStop() => worker.CancellationPending;
 
         private droneListView dronewi;
-        bool Auto;
+        //bool Auto;
         public droneView()
         {
             InitializeComponent();
@@ -55,6 +55,8 @@ namespace PL
                     priorityTxt.Visibility = Visibility.Hidden;
                     distanceTxt.Visibility = Visibility.Hidden;
                     WeightTxt.Visibility = Visibility.Hidden;
+                    parcelBtn.Visibility = Visibility.Hidden;
+                    stopBtn.Visibility = Visibility.Hidden;
                     break;
 
                 case DroneStatus.Maintenace:
@@ -67,6 +69,8 @@ namespace PL
                     priorityTxt.Visibility = Visibility.Hidden;
                     distanceTxt.Visibility = Visibility.Hidden;
                     WeightTxt.Visibility = Visibility.Hidden;
+                    parcelBtn.Visibility = Visibility.Hidden;
+                    stopBtn.Visibility = Visibility.Hidden;
                     break;
 
                 case DroneStatus.Delivery:
@@ -74,6 +78,7 @@ namespace PL
                     parcelDeliveryBtn.Visibility = Visibility.Visible;
                     viewParcelbtn.Visibility = Visibility.Visible;
                     parcelBtn.Visibility = Visibility.Visible;
+                    stopBtn.Visibility = Visibility.Hidden;
                     break;
             }
            
@@ -93,17 +98,17 @@ namespace PL
             collectBtn.Visibility = Visibility.Hidden;
             parcelDeliveryBtn.Visibility = Visibility.Hidden;
             viewParcelbtn.Visibility = Visibility.Hidden;
+            stopBtn.Visibility = Visibility.Hidden;
+             if(dr.status!=DroneStatus.Delivery)
+                parcelBtn.Visibility = Visibility.Hidden;
         }
 
         public droneView(BO.DroneInCharge d)
         {
             InitializeComponent();
- 
             dr = new Drone();
             dr = bl.findDrone(d.ID);
             DataContext = dr;
-            //addGrid.Visibility = Visibility.Hidden;
-            //realeseFromCharg.Visibility = Visibility.Hidden;
             droneChargeBtn.Visibility = Visibility.Hidden;
             sendToDeliveryBtn.Visibility = Visibility.Hidden;
             relaseBtn.Visibility = Visibility.Hidden;
@@ -114,25 +119,9 @@ namespace PL
             updateModelBtn.Visibility = Visibility.Hidden;
             lbl.Visibility = Visibility.Hidden;
             parLst.Visibility = Visibility.Hidden;
-        }
-
-        private void addDroneBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //StationToList s = (StationToList)cmbStation.SelectedItem;
-                //  bl.addDrone(Convert.ToInt32(idTxt.Text), Convert.ToInt32(modelTxt.Text), Convert.ToInt32(DroneMaxWeigtCmb.SelectedItem), Convert.ToInt32(cmbStation.SelectedItem));
-
-                MessageBox.Show("the drone was successfully added");
-
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-
-            }
+            stopBtn.Visibility = Visibility.Hidden;
+            if (dr.status != DroneStatus.Delivery)
+                parcelBtn.Visibility = Visibility.Hidden;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -146,7 +135,6 @@ namespace PL
             {
                 bl.updateNameDrone(dr.ID, dr.model);
                 MessageBox.Show("the model of the drone was successfully updated");
-
                 dr = bl.findDrone(dr.ID);
                 DataContext = dr;
             }
@@ -289,10 +277,10 @@ namespace PL
             }
         }
 
-        private void timeInChargeTxt_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
+        //private void timeInChargeTxt_KeyDown(object sender, KeyEventArgs e)
+        //{
+
+        //}
 
         private void viewParcelbtn_Click(object sender, RoutedEventArgs e)
         {
@@ -322,8 +310,6 @@ namespace PL
             MessageBox.Show("The input must be only digits");
         }
 
-
-
         private void updateModeltxt_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             checkInputdigit(e);
@@ -333,7 +319,7 @@ namespace PL
         {
 
             //droneListView d = new droneListView();
-            Auto = true;
+            //Auto = true;
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
@@ -353,7 +339,8 @@ namespace PL
             simolatorBtn.Visibility = Visibility.Hidden;
             updateModelBtn.Visibility = Visibility.Hidden;
             viewParcelbtn.Visibility = Visibility.Hidden;
-            
+            stopBtn.Visibility = Visibility.Visible;
+            simolatorBtn.Visibility = Visibility.Hidden;
             worker.RunWorkerAsync();
         }
 
@@ -371,7 +358,7 @@ namespace PL
             }
            
 
-            Auto = false;
+            //Auto = false;
             if(dr.status==DroneStatus.Delivery)
             {
                 if (dr.parcel.status == true)
@@ -429,6 +416,7 @@ namespace PL
         {
             if (worker.WorkerSupportsCancellation == true)
                 worker.CancelAsync();
+            
             closeBtn.Visibility = Visibility.Visible;
             collectBtn.Visibility = Visibility.Visible;
             droneChargeBtn.Visibility = Visibility.Visible;
@@ -439,6 +427,22 @@ namespace PL
             simolatorBtn.Visibility = Visibility.Visible;
             updateModelBtn.Visibility = Visibility.Visible;
             viewParcelbtn.Visibility = Visibility.Visible;
+            simolatorBtn.Visibility = Visibility.Visible;
+            stopBtn.Visibility = Visibility.Hidden;
+
+            if (dr.status != DroneStatus.Delivery)
+            {
+                parcelBtn.Visibility = Visibility.Hidden;
+                parLst.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                weightTxt.Visibility = Visibility.Hidden;
+                distanceLbl.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                lbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                distanceLbl.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
