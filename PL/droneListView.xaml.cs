@@ -92,7 +92,7 @@ namespace PL
             {
                 DroneToList dr = new DroneToList();
                 dr = (DroneToList)DronesListView.SelectedItem;
-                new droneView(dr).Show();
+                new droneView(dr,this).ShowDialog();
                 myCollection = bl.getAllDrones();
                 DronesListView.DataContext = myCollection;
             }
@@ -137,16 +137,12 @@ namespace PL
 
         public  void Worker_ProgressChanged2(object sender, ProgressChangedEventArgs e)
         {
-            updateList();
-        }
-
-        private void updateList()
-        {
             myCollection = bl.getAllDrones();
-            // DronesListView.DataContext = myCollection;
+         
             DronesListView.ItemsSource = myCollection;
         }
 
+       
     }
 }
 

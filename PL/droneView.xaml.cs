@@ -27,19 +27,21 @@ namespace PL
         BackgroundWorker worker;
         private void updateDrone() => worker.ReportProgress(2);
         private bool checkStop() => worker.CancellationPending;
+
+        private droneListView dronewi;
         bool Auto;
         public droneView()
         {
             InitializeComponent();
         }
 
-        public droneView(DroneToList d)
+        public droneView(DroneToList d,droneListView dw=null)
         {
             InitializeComponent();
             dr = new Drone();
             dr = bl.findDrone(d.ID);
             DataContext = dr;
-
+            dronewi = dw;
             switch (dr.status)
             {
                 case DroneStatus.Available:
@@ -330,13 +332,13 @@ namespace PL
         private void simolatorBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            droneListView d = new droneListView();
+            //droneListView d = new droneListView();
             Auto = true;
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             
-            worker.ProgressChanged +=d.Worker_ProgressChanged2;
+            worker.ProgressChanged +=dronewi.Worker_ProgressChanged2;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
             worker.WorkerReportsProgress = true;

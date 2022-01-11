@@ -287,32 +287,6 @@
     <confirm>false</confirm>
   </Parcel>
   <Parcel>
-    <ID>1056</ID>
-    <senderID>278171857</senderID>
-    <targetId>324280692</targetId>
-    <weight>light</weight>
-    <priority>emergency</priority>
-    <requested>2022-01-11T18:38:45.5420032+02:00</requested>
-    <droneID>28501</droneID>
-    <scheduled>2022-01-11T18:47:37.6682705+02:00</scheduled>
-    <pickedUp>2022-01-11T18:54:06.8868444+02:00</pickedUp>
-    <delivered>2022-01-11T19:00:42.8738619+02:00</delivered>
-    <confirm>false</confirm>
-  </Parcel>
-  <Parcel>
-    <ID>1058</ID>
-    <senderID>268935245</senderID>
-    <targetId>278171857</targetId>
-    <weight>heavy</weight>
-    <priority>normal</priority>
-    <requested>2022-01-11T18:50:54.4960791+02:00</requested>
-    <droneID>28501</droneID>
-    <scheduled>2022-01-11T18:54:07.9400956+02:00</scheduled>
-    <pickedUp>2022-01-11T19:01:44.5897894+02:00</pickedUp>
-    <delivered xsi:nil="true" />
-    <confirm>false</confirm>
-  </Parcel>
-  <Parcel>
     <ID>1062</ID>
     <senderID>314081338</senderID>
     <targetId>324280692</targetId>
@@ -337,5 +311,31 @@
     <pickedUp>2022-01-11T19:11:57.4733764+02:00</pickedUp>
     <delivered>2022-01-11T19:15:31.6936347+02:00</delivered>
     <confirm>false</confirm>
+  </Parcel>
+  <Parcel>
+    <ID>1058</ID>
+    <senderID>268935245</senderID>
+    <targetId>278171857</targetId>
+    <weight>heavy</weight>
+    <priority>normal</priority>
+    <requested>2022-01-11T18:50:54.4960791+02:00</requested>
+    <droneID>28501</droneID>
+    <scheduled>2022-01-11T18:54:07.9400956+02:00</scheduled>
+    <pickedUp>2022-01-11T20:03:26.1384192+02:00</pickedUp>
+    <delivered>2022-01-11T20:07:45.9199978+02:00</delivered>
+    <confirm>false</confirm>
+  </Parcel>
+  <Parcel>
+    <ID>1056</ID>
+    <senderID>278171857</senderID>
+    <targetId>324280692</targetId>
+    <weight>light</weight>
+    <priority>emergency</priority>
+    <requested>2022-01-11T18:38:45.5420032+02:00</requested>
+    <droneID>28501</droneID>
+    <scheduled>2022-01-11T18:47:37.6682705+02:00</scheduled>
+    <pickedUp>2022-01-11T18:54:06.8868444+02:00</pickedUp>
+    <delivered>2022-01-11T19:00:42.8738619+02:00</delivered>
+    <confirm>true</confirm>
   </Parcel>
 </ArrayOfParcel>
