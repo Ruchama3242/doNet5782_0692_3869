@@ -70,7 +70,7 @@
     <phone>0525137665</phone>
     <longitude>32</longitude>
     <lattitude>36</lattitude>
-    <active>true</active>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>317709053</ID>
@@ -102,6 +102,22 @@
     <phone>0533411559</phone>
     <longitude>33.102</longitude>
     <lattitude>36.1</lattitude>
+    <active>true</active>
+  </Customer>
+  <Customer>
+    <ID>115365125</ID>
+    <name>moshe</name>
+    <phone>0505172910</phone>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <active>true</active>
+  </Customer>
+  <Customer>
+    <ID>325450633</ID>
+    <name>Ayelet</name>
+    <phone>0556723233</phone>
+    <longitude>30</longitude>
+    <lattitude>34</lattitude>
     <active>true</active>
   </Customer>
 </ArrayOfCustomer>
