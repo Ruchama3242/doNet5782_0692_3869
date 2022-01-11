@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections;
 using BO;
+using System.ComponentModel;
 
 namespace PL
 {
@@ -23,7 +24,7 @@ namespace PL
     {
 
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
-        private IEnumerable<DroneToList> myCollection = new List<DroneToList>();
+        public IEnumerable<DroneToList> myCollection = new List<DroneToList>();
 
 
         public droneListView()
@@ -134,7 +135,13 @@ namespace PL
 
         }
 
-       
+        public  void Worker_ProgressChanged2(object sender, ProgressChangedEventArgs e)
+        {
+            myCollection = bl.getAllDrones();
+            // DronesListView.DataContext = myCollection;
+            DronesListView.ItemsSource = myCollection;
+        }
+
     }
 }
 

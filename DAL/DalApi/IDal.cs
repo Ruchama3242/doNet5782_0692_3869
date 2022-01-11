@@ -16,6 +16,8 @@ namespace DalApi
         /// <returns></returns>
         public double[] chargeCapacity();
 
+        public int parcels();
+
         #region-------------------- station----------------------
         /// <summary>
         /// Gets a station and adds it to the list DataSource

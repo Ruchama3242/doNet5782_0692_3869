@@ -16,6 +16,9 @@ namespace BlApi
         /// <param name="myDelegate"></param>
         /// <param name="func"></param>
     public  void playSimolator(int id, Action myDelegate, Func<bool> func);
+
+        public int parcels();
+        
         #region - - - - - - - - - - - - customer- - - - - - - - - - - - - - - 
         /// <summary>
         /// get a customer of BL and add it to the list of DAL
@@ -88,7 +91,7 @@ namespace BlApi
         /// </summary>
         /// <param name="id"></param>
         /// <param name="time"></param>
-        public void releaseFromCharge(int id);
+        public void releaseFromCharge(int id,bool flag=false);
 
         /// <summary>
         /// return a IEnumerable<IBL.BO.DroneToList>
@@ -151,7 +154,7 @@ namespace BlApi
         /// the function update the parcel to be collected by the drone
         /// </summary>
         /// <param name="droneid"></param>
-        public void packageCollection(int droneid);
+        public void packageCollection(int droneid,bool fa=false);
 
         /// <summary>
         /// The function update the parcel to be delivered

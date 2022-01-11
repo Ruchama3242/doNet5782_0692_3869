@@ -148,6 +148,8 @@ namespace PL
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("senderName");
             view.GroupDescriptions.Add(groupDescription);
         }
+
+        
     }
    
 }

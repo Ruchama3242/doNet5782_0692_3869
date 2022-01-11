@@ -30,6 +30,16 @@ namespace Dal
             return list;
         }
 
+        public int parcels()
+        {
+            List<Parcel> list = new List<Parcel>();
+           
+            var x = from Parcel in DataSource.ParcelList
+                    where Parcel.scheduled == null
+                    select Parcel;
+            return x.Count();
+        }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int addParcel(DO.Parcel temp)
         {

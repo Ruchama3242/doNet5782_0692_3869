@@ -12,7 +12,7 @@ namespace BL
 {
     class Simolatur
     {
-        const int delay = 500;
+        const int delay = 1000;
         const double speed = 100;
 
         #region
@@ -24,8 +24,8 @@ namespace BL
             Drone drone = new Drone();
             Parcel parcel = new Parcel();
             lock (bl) { drone = bl.findDrone(id); }
-            
-            while(!flug()==true)
+
+            while (!flug())
             {
                 lock (bl) { drone = bl.findDrone(id); }
 
@@ -36,19 +36,28 @@ namespace BL
                         {
                             //send the drone to delivery
                             bl.parcelToDrone(id);
+                            myDelegate();
                             Thread.Sleep(delay);
+                           
                         }
                         catch (Exception)
                         {
-                            bl.sendToCharge(id);
-                            Thread.Sleep(delay);
+                            if (drone.battery != 100)
+                            {
+                                bl.sendToCharge(id);
+                                myDelegate();
+                                Thread.Sleep(delay);
+                            }
+                            
                         }
                         break;
 
                     case DroneStatus.Maintenace:
-
+                    double x = (100 - drone.battery) * 10*10;
+                   // Thread.Sleep(Convert.ToInt32( x));
                         //צריך קודם שיגמור את הטעינה
-                        bl.releaseFromCharge(id);
+                        bl.releaseFromCharge(id,true);
+                        myDelegate();
                         Thread.Sleep(delay);
                         break;
 
@@ -56,42 +65,12 @@ namespace BL
                         if (drone.parcel.status == true)
                             bl.packageDelivery(id);
                         else
-                            bl.packageCollection(id);
+                            bl.packageCollection(id,true);
+                        myDelegate();
                         Thread.Sleep(delay);
                         break;
                 }
-                //if (drone.status == DroneStatus.Available)
-                //{
-                //    try
-                //    { 
-                //        //send the drone to delivery
-                //        bl.parcelToDrone(id);
-                //        //collect the parcel from the customer
-
-                //        //send the parcel to customer
-                //        Thread.Sleep(delay);
-                //    }
-                //    catch(Exception)
-                //    { 
-                //        bl.sendToCharge(id);
-                //        Thread.Sleep(delay);
-                //    }
-                    
-                //}
-                //if(drone.status==DroneStatus.Maintenace)
-                //{
-                //    //צריך קודם שיגמור את הטעינה
-                //    bl.releaseFromCharge(id);
-                //    Thread.Sleep(delay);
-                //}
-                //if(drone.status==DroneStatus.Delivery)
-                //{
-                //    if(drone.parcel.status==true)
-                //        bl.packageDelivery(id);
-                //    else
-                //        bl.packageCollection(id);
-                //    Thread.Sleep(delay);
-                //}
+               
                 
             }
 

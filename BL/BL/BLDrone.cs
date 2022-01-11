@@ -155,7 +155,7 @@ namespace BL
                     {
                         throw new BLIdUnExistsException("Error! the parcel not found");
                     }
-                    if (p.pickedUp == DateTime.MinValue)
+                    if (p.pickedUp == null)
                         pt.status = false;
                     else
                         pt.status = true;
@@ -310,7 +310,7 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void releaseFromCharge(int id)
+        public void releaseFromCharge(int id ,bool flag=false)
         {
             try
             {
@@ -320,20 +320,29 @@ namespace BL
                     if (d.status == DroneStatus.Maintenace)
                     {
                         DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
-                        double t = DateTime.Now.TimeOfDay.TotalMinutes;
-                        double total = t - tmp.enterToCharge.TimeOfDay.TotalMinutes;
+                        double t = DateTime.Now.TimeOfDay.TotalSeconds;
+                        double total = t - tmp.enterToCharge.TimeOfDay.TotalSeconds;
                         //the time* charging rate per hour, couldnt be more then 100%
                         d.battery += total * chargeCapacity[4];
                         if (d.battery > 100)
                             d.battery = 100;
-
-                        d.status = DroneStatus.Available;
+                        if (d.battery == 100&&flag==true)
+                        { 
+                           d.status = DroneStatus.Available;
+                            dl.BatteryCharged(tmp); 
+                        }
+                        else if(flag==false)
+                        {
+                            d.status = DroneStatus.Available;
+                            dl.BatteryCharged(tmp);
+                        }
+                        
 
                         // up the number of the empty charge slots
                         //DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
 
                         //remove the drone frome the list of the droneCharge
-                        dl.BatteryCharged(tmp);
+                        //dl.BatteryCharged(tmp);
                     }
                     else throw new BLgeneralException("Error! the drone dont was in charge");
                 }
@@ -400,14 +409,15 @@ namespace BL
                     if (myDrone.status != DroneStatus.Available)
                         throw new BLgeneralException("the drone isn'n  avilable");
                     Station closed = stationClose(myDrone.currentLocation);
-                    if ((myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0))
+                    if (myDrone.battery - (chargeCapacity[0] * distance(closed.location, myDrone.currentLocation)) < 0)
                         throw new BLgeneralException("the drone doesn't have enough charge");
-
+                    DroneArr.Remove(myDrone);
                     // drone
+                    myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
                     myDrone.currentLocation = closed.location;
                     myDrone.status = DroneStatus.Maintenace;
-                    myDrone.battery -= chargeCapacity[0] * distance(closed.location, myDrone.currentLocation);
-
+                   
+                    DroneArr.Add(myDrone);
                     //הפונקציה הזו דואגת לשנות את עמדות הטעינה ולהוסיך יישות לרשימה המתאימה
                     dl.SendToCharge(id, closed.ID);
                 }

@@ -149,9 +149,12 @@ namespace BL
             }
         }
 
+        
+
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void packageCollection(int droneid)
+        public void packageCollection(int droneid,bool flag=false)
         {
+            double KmPerSecond = 5;
             var d = DroneArr.Find(x => x.ID == droneid);
             if (d == null)
                 throw new BLgeneralException("Error! the drone not found");
@@ -164,11 +167,36 @@ namespace BL
                         if (item.pickedUp == null)
                         {
                             DroneArr.Remove(d);
-                            d.battery = d.battery - distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude }) * chargeCapacity[0];
-                            d.currentLocation.longitude = dl.findCustomer(item.senderID).longitude;
-                            d.currentLocation.latitude = dl.findCustomer(item.senderID).lattitude;
+                           
+                            if (!flag)//if not in simulator
+                            {
+                                d.battery = d.battery - distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude }) * chargeCapacity[0];
+                                d.currentLocation.longitude = dl.findCustomer(item.senderID).longitude;
+                                d.currentLocation.latitude = dl.findCustomer(item.senderID).lattitude;
+                                dl.ParcelPickedUp(item.ID, DateTime.Now);
+                            }
+                            else
+                            {
+                                Location l = new Location { longitude = d.currentLocation.longitude, latitude = d.currentLocation.latitude };
 
-                            dl.ParcelPickedUp(item.ID, DateTime.Now);
+                                if (distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude }) <= 4)
+                                {
+                                    d.currentLocation.latitude = dl.findCustomer(item.senderID).lattitude;
+                                    d.currentLocation.longitude = dl.findCustomer(item.senderID).longitude;
+
+                                }
+                                else
+                                {
+                                    //if (Math.Abs(d.currentLocation.latitude - dl.findCustomer(item.senderID).lattitude) != 0)
+                                    d.currentLocation.latitude += (1 / KmPerSecond) * (dl.findCustomer(item.senderID).lattitude - d.currentLocation.latitude);
+                                    d.currentLocation.longitude += (1 / KmPerSecond) * (dl.findCustomer(item.senderID).longitude - d.currentLocation.longitude);
+                                }
+                                d.battery = d.battery - distance(d.currentLocation, l) * chargeCapacity[0];
+
+
+                                if (distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude }) <= 0)
+                                    dl.ParcelPickedUp(item.ID, DateTime.Now);
+                            }
                             DroneArr.Add(d);
                             return;
                         }

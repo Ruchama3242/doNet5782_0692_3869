@@ -25,4 +25,9 @@
     <model>9167</model>
     <weight>light</weight>
   </Drone>
+  <Drone>
+    <ID>33333</ID>
+    <model>345</model>
+    <weight>medium</weight>
+  </Drone>
 </ArrayOfDrone>

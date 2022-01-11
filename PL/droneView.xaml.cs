@@ -25,6 +25,9 @@ namespace PL
         private BlApi.IBL bl = BlApi.BlFactory.GetBl();
         private Drone dr;
         BackgroundWorker worker;
+        private void updateDrone() => worker.ReportProgress(2);
+        private bool checkStop() => worker.CancellationPending;
+        bool Auto;
         public droneView()
         {
             InitializeComponent();
@@ -71,14 +74,7 @@ namespace PL
                     parcelBtn.Visibility = Visibility.Visible;
                     break;
             }
-
-            worker = new BackgroundWorker();
-            worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Worker_ProgressChanged;
-            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
+           
         }
 
         public droneView(int id)
@@ -333,23 +329,98 @@ namespace PL
 
         private void simolatorBtn_Click(object sender, RoutedEventArgs e)
         {
+
+            droneListView d = new droneListView();
+            Auto = true;
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            
+            worker.ProgressChanged +=d.Worker_ProgressChanged2;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            closeBtn.Visibility = Visibility.Hidden;
+            collectBtn.Visibility = Visibility.Hidden;
+            droneChargeBtn.Visibility = Visibility.Hidden;
+            parcelBtn.Visibility = Visibility.Hidden;
+            parcelDeliveryBtn.Visibility = Visibility.Hidden;
+            relaseBtn.Visibility = Visibility.Hidden;
+            sendToDeliveryBtn.Visibility = Visibility.Hidden;
+            simolatorBtn.Visibility = Visibility.Hidden;
+            updateModelBtn.Visibility = Visibility.Hidden;
+            viewParcelbtn.Visibility = Visibility.Hidden;
+            
             worker.RunWorkerAsync();
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (e.Cancelled == true)
+            {
+                // e.Result throw System.InvalidOperationException
+                MessageBox.Show("The simulator is ended");
+            }
+            else if (e.Error != null)
+            {
+                // e.Result throw System.Reflection.TargetInvocationException
+                MessageBox.Show("Error"); //Exception Message
+            }
+           
 
+            Auto = false;
+            MessageBox.Show("The simulator is ended");
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             dr = bl.findDrone(dr.ID);
+            if(dr.status==DroneStatus.Delivery)
+            {
+                distanceLbl.Visibility = Visibility.Visible;
+                priorityLbl.Visibility = Visibility.Visible;
+                weightLbl.Visibility = Visibility.Visible;
+                priorityTxt.Visibility = Visibility.Visible;
+                distanceTxt.Visibility = Visibility.Visible;
+                WeightTxt.Visibility = Visibility.Visible;
+                lbl.Visibility = Visibility.Visible;
+                parLst.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                distanceLbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                WeightTxt.Visibility = Visibility.Hidden;
+                lbl.Visibility = Visibility.Hidden;
+                parLst.Visibility = Visibility.Hidden;
+            }
             DataContext = dr;
+           
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            // bl.playSimolator(dr.ID,  Worker_ProgressChanged, worker.);
+             bl.playSimolator(dr.ID,updateDrone, checkStop);
+        }
+
+        private void stopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (worker.WorkerSupportsCancellation == true)
+                worker.CancelAsync();
+            closeBtn.Visibility = Visibility.Visible;
+            collectBtn.Visibility = Visibility.Visible;
+            droneChargeBtn.Visibility = Visibility.Visible;
+            parcelBtn.Visibility = Visibility.Visible;
+            parcelDeliveryBtn.Visibility = Visibility.Visible;
+            relaseBtn.Visibility = Visibility.Visible;
+            sendToDeliveryBtn.Visibility = Visibility.Visible;
+            simolatorBtn.Visibility = Visibility.Visible;
+            updateModelBtn.Visibility = Visibility.Visible;
+            viewParcelbtn.Visibility = Visibility.Visible;
         }
     }
 }

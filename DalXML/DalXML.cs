@@ -406,6 +406,16 @@ namespace Dal
                    select Parcel;
         }
 
+        public int parcels()
+        {
+            List<Parcel> list = new List<Parcel>();
+            list = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            var x= from Parcel in list
+                   where Parcel.scheduled == null
+                   select Parcel;
+            return x.Count();
+        }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int addParcel(DO.Parcel temp)
         {

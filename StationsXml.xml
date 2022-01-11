@@ -12,6 +12,6 @@
     <name>ruc</name>
     <longitude>32.43</longitude>
     <lattitude>36.1</lattitude>
-    <chargeSlots>4</chargeSlots>
+    <chargeSlots>3</chargeSlots>
   </Station>
 </ArrayOfStation>

@@ -26,6 +26,7 @@ namespace BL
         public double[] chargeCapacity;
 
         public List<DroneToList> DroneArr;
+        //static int dis = 0;
         //static double time;
 
         #region-------------------constructor---------------------
@@ -121,7 +122,7 @@ namespace BL
                             int l = rnd.Next(0, lst.Count());
                             drt.currentLocation = new Location { latitude = lst[l].lattitude, longitude = lst[l].longitude };
                             minBatery += distance(drt.currentLocation, new Location { longitude = stationCloseToCustomer(lst[l].ID).longitude, latitude = stationCloseToCustomer(lst[l].ID).lattitude }) * chargeCapacity[0];
-                            drt.battery = rnd.Next((int)minBatery, 101);
+                            drt.battery = rnd.Next((int)minBatery+7, 101);
                         }
                     }
                     DroneArr.Add(drt);
@@ -227,6 +228,10 @@ namespace BL
             return station;
         }
         #endregion
-
+        public int parcels()
+        {
+           
+            return dl.parcels();
+        }
     }
 }
