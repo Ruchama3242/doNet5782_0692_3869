@@ -21,57 +21,72 @@ namespace BL
         /// </summary>
         public Simolatur(BlApi.IBL bl ,int id, Action myDelegate, Func<bool> flug)
         {
-            Drone drone = new Drone();
-            Parcel parcel = new Parcel();
-            lock (bl) { drone = bl.findDrone(id); }
-
-            while (!flug())
+            try
             {
+                Drone drone = new Drone();
+                Parcel parcel = new Parcel();
                 lock (bl) { drone = bl.findDrone(id); }
 
-                switch(drone.status)
+                while (!flug())
                 {
-                    case DroneStatus.Available:
-                        try
-                        {
-                            //send the drone to delivery
-                            bl.parcelToDrone(id);
-                            myDelegate();
-                            Thread.Sleep(delay);
-                           
-                        }
-                        catch (Exception)
-                        {
-                            if (drone.battery != 100)
+                    lock (bl) { drone = bl.findDrone(id); }
+
+                    switch (drone.status)
+                    {
+                        case DroneStatus.Available:
+                            try
                             {
-                                bl.sendToCharge(id);
+                                //send the drone to delivery
+                                bl.parcelToDrone(id);
                                 myDelegate();
                                 Thread.Sleep(delay);
+
                             }
-                            
-                        }
-                        break;
+                            catch (Exception)
+                            {
+                                if (drone.battery != 100)
+                                {
+                                    try
+                                    {
+                                        bl.sendToCharge(id);
+                                        myDelegate();
+                                        Thread.Sleep(delay);
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Thread.Sleep(delay);
+                                    }
+                                }
 
-                    case DroneStatus.Maintenace:
-                    double x = (100 - drone.battery) * 10*10;
-                   // Thread.Sleep(Convert.ToInt32( x));
-                        //צריך קודם שיגמור את הטעינה
-                        bl.releaseFromCharge(id,true);
-                        myDelegate();
-                        Thread.Sleep(delay);
-                        break;
 
-                    case DroneStatus.Delivery:
-                        if (drone.parcel.status == true)
-                            bl.packageDelivery(id);
-                        else
-                            bl.packageCollection(id,true);
-                        myDelegate();
-                        Thread.Sleep(delay);
-                        break;
+                            }
+                            break;
+
+                        case DroneStatus.Maintenace:
+
+
+                            //צריך קודם שיגמור את הטעינה
+                            bl.releaseFromCharge(id, true);
+                            myDelegate();
+                            Thread.Sleep(delay);
+                            break;
+
+                        case DroneStatus.Delivery:
+                            if (drone.parcel.status == true)
+                                bl.packageDelivery(id, true);
+                            else
+                                bl.packageCollection(id, true);
+                            myDelegate();
+                            Thread.Sleep(delay);
+                            break;
+                    }
+
+
                 }
-               
-                
+            }
+            catch(Exception ex)
+            {
+                throw new BLgeneralException(ex.Message);
             }
 
         }

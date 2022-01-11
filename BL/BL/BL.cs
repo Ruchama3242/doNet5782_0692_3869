@@ -43,7 +43,7 @@ namespace BL
             //dl = new DO.DalObject.DalObject();
             DroneArr = new List<DroneToList>();
             chargeCapacity = dl.chargeCapacity();
-            IEnumerable<DO.Drone> d = dl.getAllDrones();
+            IEnumerable<DO.Drone> d = dl.GetPartOfDrone(null);
             //foreach (var item in d)
             //{
             //    if(ite)
@@ -185,7 +185,9 @@ namespace BL
                 DO.Station station = new DO.Station();//the closest station to the customer
                 Location l = new Location();
                 l = a;
-                IEnumerable<DO.Station> st = dl.getAllStations();//the list of the stations
+                IEnumerable<DO.Station> st = dl.getStationsWithChargeSlots();//the list of the stations
+                if (st.Count() == 0)
+                    throw new BLgeneralException("There is not station available");
                 double d = distance(l, new Location { latitude = st.First().lattitude, longitude = st.First().longitude });//d is the smallest distance between the cudtomer and a station, now its the first statio in the list
                 station = st.First();
                 foreach (var item in st)
@@ -232,6 +234,11 @@ namespace BL
         {
            
             return dl.parcels();
+        }
+
+        public void confirm(int parcelId)
+        {
+            dl.confirm(parcelId);
         }
     }
 }

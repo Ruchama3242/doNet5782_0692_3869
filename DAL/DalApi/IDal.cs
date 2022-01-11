@@ -168,6 +168,7 @@ namespace DalApi
         #endregion
 
         #region ----------------------parcel---------------------
+        public void confirm(int id);
 
         /// <summary>
         ///מקבלת פרדיקט ומחזירה את כל האיברים העונים לפרדיקט

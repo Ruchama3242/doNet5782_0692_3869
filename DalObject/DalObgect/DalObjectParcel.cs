@@ -163,6 +163,17 @@ namespace Dal
             }
             throw new DO.IdUnExistsException("ERROR! the parcel doesn't found");
         }
+
+        public void confirm(int id)
+        {
+            
+            
+            var pr = DataSource.ParcelList.Find(x => x.ID == id);
+            DataSource.ParcelList.Remove(pr);
+            pr.confirm = true;
+            DataSource.ParcelList.Add(pr);
+           
+        }
     }
 }
 

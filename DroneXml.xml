@@ -25,4 +25,14 @@
     <model>6084</model>
     <weight>light</weight>
   </Drone>
+  <Drone>
+    <ID>11111</ID>
+    <model>123</model>
+    <weight>light</weight>
+  </Drone>
+  <Drone>
+    <ID>12345</ID>
+    <model>567</model>
+    <weight>heavy</weight>
+  </Drone>
 </ArrayOfDrone>

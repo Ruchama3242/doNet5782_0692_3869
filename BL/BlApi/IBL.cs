@@ -131,6 +131,8 @@ namespace BlApi
         /// <returns></returns>
         public int addParcel(int senderId, int targetId, int weight, int priority);
 
+
+        public void confirm(int parcelId);
         /// <summary>
         /// return the list of all parcels
         /// </summary>
@@ -160,7 +162,7 @@ namespace BlApi
         /// The function update the parcel to be delivered
         /// </summary>
         /// <param name="droneid"></param>
-        public void packageDelivery(int droneid);
+        public void packageDelivery(int droneid,bool f=false);
 
 
         public void deleteParcel(int id);

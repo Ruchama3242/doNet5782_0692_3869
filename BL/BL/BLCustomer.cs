@@ -104,7 +104,7 @@ namespace BL
                             tmp.senderOrTarget = new CustomerInParcel();
                             tmp.senderOrTarget.ID = item.senderID;
                             tmp.senderOrTarget.customerName = dl.findCustomer(item.senderID).name;
-
+                            tmp.confirmation = item.confirm;
                             p1.Add(tmp);
                         }
                         //מוצא את כל החבילות שהלקוח שולח

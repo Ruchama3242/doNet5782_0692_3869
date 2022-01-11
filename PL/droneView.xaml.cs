@@ -370,6 +370,15 @@ namespace PL
            
 
             Auto = false;
+            if(dr.status==DroneStatus.Delivery)
+            {
+                if (dr.parcel.status == true)
+                    bl.packageDelivery(dr.ID);
+                else
+                    bl.packageCollection(dr.ID);
+                dr = bl.findDrone(dr.ID);
+                DataContext = dr;
+            }
             MessageBox.Show("The simulator is ended");
         }
 
@@ -404,7 +413,14 @@ namespace PL
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-             bl.playSimolator(dr.ID,updateDrone, checkStop);
+            try
+            {
+                bl.playSimolator(dr.ID, updateDrone, checkStop);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)

@@ -74,8 +74,9 @@ namespace PL
             {
                 if (item.confirmation == false)
                 {
+                   
                     MessageBox.Show(@$"confirm receipt of packages {item.ID}");
-                    item.confirmation = true;
+                    bl.confirm(item.ID);
                 }
             }
 

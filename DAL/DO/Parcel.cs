@@ -19,6 +19,7 @@ using DO;
             public DateTime? scheduled { get; set; }
             public DateTime? pickedUp { get; set; }
             public DateTime? delivered { get; set; }
+        public bool confirm { get; set; }
             public override string ToString()
             {
                 String result = "";

@@ -410,6 +410,17 @@ namespace Dal
                    select Parcel;
         }
 
+        public void confirm(int id)
+        {
+            List<Parcel> list = new List<Parcel>();
+            list = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            var pr = list.Find(x => x.ID == id);
+            list.Remove(pr);
+            pr.confirm = true;
+            list.Add(pr);
+            XMLTools.SaveListToXMLSerializer(list, parcelPath);
+        }
+
         public int parcels()
         {
             List<Parcel> list = new List<Parcel>();
