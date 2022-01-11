@@ -55,6 +55,11 @@ namespace BL
             lock (dl)
             {
                 List<ParcelToList> lst = new List<ParcelToList>();//create the list
+
+                var v = from item in lst
+                        orderby item.ID descending
+                        select item;
+
                 foreach (var item in dl.GetPartParcel())//pass on the list of the parcels and copy them to the new list
                 {
                     lst.Add(getParcelTolist(item));

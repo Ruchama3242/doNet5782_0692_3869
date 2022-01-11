@@ -307,6 +307,7 @@ namespace Dal
         {
             List<DO.Station> list = new List<DO.Station>();
             list = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+
             return from Station in list
                    select Station;
         }

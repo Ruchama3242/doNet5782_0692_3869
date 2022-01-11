@@ -18,9 +18,9 @@ namespace BL
             try
             {
                 if (station.location.longitude < 29.3 || station.location.longitude > 33.5)
-                    throw new BLgeneralException("Error! the longitude is incorrect");
+                    throw new BLgeneralException("Error! the longitude is incorrect, (longitude 29.3 - 33.5, lattitude 33.7 - 36.3 ");
                 if (station.location.latitude < 33.7 || station.location.latitude > 36.3)
-                    throw new BLgeneralException("Error! the latitude is incorrect");
+                    throw new BLgeneralException("Error! the latitude is incorrect, (longitude 29.3 - 33.5, lattitude 33.7 - 36.3 ");
                 if (station.ID < 1000 || station.ID > 9999)
                     throw new BLgeneralException("ERROR! the id must be with 4 digits ");
                 if (station.chargeSlots <= 0)
@@ -73,6 +73,10 @@ namespace BL
                 IEnumerable<DO.Station> lstD = new List<DO.Station>();
                 lstD = dl.getAllStations();
 
+                var v = from item in lstD
+                        orderby item.ID descending
+                        select item;
+
                 //copy all the dal station to bl statio
                 List<StationToList> lstBL = new List<StationToList>();
 
@@ -84,8 +88,6 @@ namespace BL
                     temp.availableChargeSlots = item.chargeSlots;
                     //findDroneCharge return a list that contain all the drone in charge 
                     temp.notAvailableChargeSlots = dl.findDroneCharge(item.ID).Count();
-
-
                     lstBL.Add(temp);
                 }
                 return lstBL;

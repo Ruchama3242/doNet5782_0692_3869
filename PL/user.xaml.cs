@@ -47,7 +47,7 @@ namespace PL
                 this.Close();
             }
 
-            catch(Exception ex)
+            catch(Exception )
             {
                 MessageBox.Show("the id wrong");
                 idTxtBlk.Clear();
