@@ -34,6 +34,7 @@ namespace Dal
 
         private DalXml()
         {
+            // Initialize();
             //  Initialize();
             List<DroneCharge> droneCharge = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
             foreach (var item in droneCharge)
@@ -42,6 +43,8 @@ namespace Dal
             }
             droneCharge.Clear();
             XMLTools.SaveListToXMLSerializer(droneCharge, droneChargePath);
+
+
         }
 
 
@@ -85,7 +88,7 @@ namespace Dal
                 temp.longitude = r.Next(30, 34) + r.NextDouble();
                 temp.lattitude = r.Next(34, 37) + r.NextDouble();
                 temp.chargeSlots = r.Next(6, 100);
-                Names namesTmp = (DO.Names)(i + 9);//for a diffrent name
+                Names namesTmp = (DO.Names)(i + 10);//for a diffrent name
                 temp.name = namesTmp.ToString();
                 list.Add(temp);
             }
