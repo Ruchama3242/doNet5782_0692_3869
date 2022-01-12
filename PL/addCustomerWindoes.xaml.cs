@@ -277,7 +277,7 @@ e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up
  || e.Key == Key.RightShift || e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl
  || e.Key == Key.LeftAlt || e.Key == Key.RightAlt || e.Key == Key.LWin ||
  e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up
- || e.Key == Key.Down || e.Key == Key.Right) return;
+ || e.Key == Key.Down || e.Key == Key.Right || e.Key == Key.OemPeriod) return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))
                 if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
