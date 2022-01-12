@@ -97,8 +97,13 @@ namespace PL
 
         private void checkInputdigit(KeyEventArgs e)
         {
-            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left)//allow back,delete and errors keys
-                return;
+            if (e.Key == Key.Escape || e.Key == Key.Tab || e.Key == Key.Back ||
+ e.Key == Key.Delete || e.Key == Key.CapsLock || e.Key == Key.LeftShift
+ || e.Key == Key.RightShift || e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl
+ || e.Key == Key.LeftAlt || e.Key == Key.RightAlt || e.Key == Key.LWin || 
+ e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up 
+ ||e.Key == Key.Down || e.Key == Key.Right) return;
+
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))
                 if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
@@ -109,8 +114,12 @@ namespace PL
 
         private void checkInputdigitForFraction(KeyEventArgs e)
         {
-            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left || e.Key == Key.OemPeriod)//allow back,delete and errors keys
-                return;
+            if (e.Key == Key.Escape || e.Key == Key.Tab || e.Key == Key.Back ||
+ e.Key == Key.Delete || e.Key == Key.CapsLock || e.Key == Key.LeftShift
+ || e.Key == Key.RightShift || e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl
+ || e.Key == Key.LeftAlt || e.Key == Key.RightAlt || e.Key == Key.LWin ||
+ e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up
+ || e.Key == Key.Down || e.Key == Key.Right) return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))
                 if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
@@ -121,8 +130,12 @@ namespace PL
 
         private void checkInputLetters(KeyEventArgs e)
         {
-            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left)//allow back,delete and errors keys
-                return;
+            if (e.Key == Key.Escape || e.Key == Key.Tab || e.Key == Key.Back ||
+e.Key == Key.Delete || e.Key == Key.CapsLock || e.Key == Key.LeftShift
+|| e.Key == Key.RightShift || e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl
+|| e.Key == Key.LeftAlt || e.Key == Key.RightAlt || e.Key == Key.LWin ||
+e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up
+|| e.Key == Key.Down || e.Key == Key.Right) return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsLetter(c))
                 if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))

@@ -572,4 +572,17 @@
     <delivered>2022-01-12T10:19:43.8072987+02:00</delivered>
     <confirm>false</confirm>
   </Parcel>
+  <Parcel>
+    <ID>1079</ID>
+    <senderID>249149520</senderID>
+    <targetId>228279203</targetId>
+    <weight>light</weight>
+    <priority>normal</priority>
+    <requested>2022-01-12T10:45:36.7863908+02:00</requested>
+    <droneID>97979</droneID>
+    <scheduled>2022-01-12T10:45:36.8987526+02:00</scheduled>
+    <pickedUp>2022-01-12T10:45:44.9566133+02:00</pickedUp>
+    <delivered>2022-01-12T10:45:59.0384542+02:00</delivered>
+    <confirm>false</confirm>
+  </Parcel>
 </ArrayOfParcel>
