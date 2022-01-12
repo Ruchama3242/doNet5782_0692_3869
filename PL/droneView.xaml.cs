@@ -57,6 +57,10 @@ namespace PL
                     WeightTxt.Visibility = Visibility.Hidden;
                     parcelBtn.Visibility = Visibility.Hidden;
                     stopBtn.Visibility = Visibility.Hidden;
+                    relaseBtn.Visibility = Visibility.Hidden;
+                    collectBtn.Visibility = Visibility.Hidden;
+                    parcelDeliveryBtn.Visibility = Visibility.Hidden;
+
                     break;
 
                 case DroneStatus.Maintenace:
@@ -71,6 +75,9 @@ namespace PL
                     WeightTxt.Visibility = Visibility.Hidden;
                     parcelBtn.Visibility = Visibility.Hidden;
                     stopBtn.Visibility = Visibility.Hidden;
+                    sendToDeliveryBtn.Visibility = Visibility.Hidden;
+                    collectBtn.Visibility = Visibility.Hidden;
+                    parcelDeliveryBtn.Visibility = Visibility.Hidden;
                     break;
 
                 case DroneStatus.Delivery:
@@ -79,6 +86,9 @@ namespace PL
                     viewParcelbtn.Visibility = Visibility.Visible;
                     parcelBtn.Visibility = Visibility.Visible;
                     stopBtn.Visibility = Visibility.Hidden;
+                    droneChargeBtn.Visibility = Visibility.Hidden;
+                    relaseBtn.Visibility = Visibility.Hidden;
+                    sendToDeliveryBtn.Visibility = Visibility.Hidden;
                     break;
             }
            
@@ -100,8 +110,12 @@ namespace PL
             viewParcelbtn.Visibility = Visibility.Hidden;
             stopBtn.Visibility = Visibility.Hidden;
             simolatorBtn.Visibility = Visibility.Hidden;
-             if(dr.status!=DroneStatus.Delivery)
+            if (dr.status != DroneStatus.Delivery)
+            {
                 parcelBtn.Visibility = Visibility.Hidden;
+                
+            }
+            
         }
 
         public droneView(BO.DroneInCharge d)
@@ -124,6 +138,14 @@ namespace PL
             if (dr.status != DroneStatus.Delivery)
                 parcelBtn.Visibility = Visibility.Hidden;
             simolatorBtn.Visibility = Visibility.Hidden;
+            lbl.Visibility = Visibility.Hidden;
+            parLst.Visibility = Visibility.Hidden;
+            distanceLbl.Visibility = Visibility.Hidden;
+            priorityLbl.Visibility = Visibility.Hidden;
+            weightLbl.Visibility = Visibility.Hidden;
+            priorityTxt.Visibility = Visibility.Hidden;
+            distanceTxt.Visibility = Visibility.Hidden;
+            WeightTxt.Visibility = Visibility.Hidden;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -413,33 +435,83 @@ namespace PL
         {
             if (worker.WorkerSupportsCancellation == true)
                 worker.CancelAsync();
-            
+
             closeBtn.Visibility = Visibility.Visible;
-            collectBtn.Visibility = Visibility.Visible;
-            droneChargeBtn.Visibility = Visibility.Visible;
-            parcelBtn.Visibility = Visibility.Visible;
-            parcelDeliveryBtn.Visibility = Visibility.Visible;
-            relaseBtn.Visibility = Visibility.Visible;
-            sendToDeliveryBtn.Visibility = Visibility.Visible;
+            
+
             simolatorBtn.Visibility = Visibility.Visible;
             updateModelBtn.Visibility = Visibility.Visible;
-            viewParcelbtn.Visibility = Visibility.Visible;
+           
             simolatorBtn.Visibility = Visibility.Visible;
             stopBtn.Visibility = Visibility.Hidden;
 
-            if (dr.status != DroneStatus.Delivery)
+            //if (dr.status != DroneStatus.Delivery)
+            //{
+            //    parcelBtn.Visibility = Visibility.Hidden;
+            //    parLst.Visibility = Visibility.Hidden;
+            //    priorityTxt.Visibility = Visibility.Hidden;
+            //    weightLbl.Visibility = Visibility.Hidden;
+            //    weightTxt.Visibility = Visibility.Hidden;
+            //    distanceLbl.Visibility = Visibility.Hidden;
+            //    distanceTxt.Visibility = Visibility.Hidden;
+            //    lbl.Visibility = Visibility.Hidden;
+            //    priorityLbl.Visibility = Visibility.Hidden;
+            //    distanceLbl.Visibility = Visibility.Hidden;
+            //    viewParcelbtn.Visibility = Visibility.Hidden;
+            //}
+            //if (dr.status == DroneStatus.Available)
+            //{
+
+            //}
+
+            switch (dr.status)
             {
-                parcelBtn.Visibility = Visibility.Hidden;
-                parLst.Visibility = Visibility.Hidden;
-                priorityTxt.Visibility = Visibility.Hidden;
-                weightLbl.Visibility = Visibility.Hidden;
-                weightTxt.Visibility = Visibility.Hidden;
-                distanceLbl.Visibility = Visibility.Hidden;
-                distanceTxt.Visibility = Visibility.Hidden;
-                lbl.Visibility = Visibility.Hidden;
-                priorityLbl.Visibility = Visibility.Hidden;
-                distanceLbl.Visibility = Visibility.Hidden;
-                viewParcelbtn.Visibility = Visibility.Hidden;
+                case DroneStatus.Available:
+                    droneChargeBtn.Visibility = Visibility.Visible;
+                    sendToDeliveryBtn.Visibility = Visibility.Visible;
+                    lbl.Visibility = Visibility.Hidden;
+                    parLst.Visibility = Visibility.Hidden;
+                    distanceLbl.Visibility = Visibility.Hidden;
+                    priorityLbl.Visibility = Visibility.Hidden;
+                    weightLbl.Visibility = Visibility.Hidden;
+                    priorityTxt.Visibility = Visibility.Hidden;
+                    distanceTxt.Visibility = Visibility.Hidden;
+                    WeightTxt.Visibility = Visibility.Hidden;
+                    parcelBtn.Visibility = Visibility.Hidden;
+                    stopBtn.Visibility = Visibility.Hidden;
+                    relaseBtn.Visibility = Visibility.Hidden;
+                    collectBtn.Visibility = Visibility.Hidden;
+                    parcelDeliveryBtn.Visibility = Visibility.Hidden;
+
+                    break;
+
+                case DroneStatus.Maintenace:
+                    relaseBtn.Visibility = Visibility.Visible;
+                    lbl.Visibility = Visibility.Hidden;
+                    parLst.Visibility = Visibility.Hidden;
+                    distanceLbl.Visibility = Visibility.Hidden;
+                    priorityLbl.Visibility = Visibility.Hidden;
+                    weightLbl.Visibility = Visibility.Hidden;
+                    priorityTxt.Visibility = Visibility.Hidden;
+                    distanceTxt.Visibility = Visibility.Hidden;
+                    WeightTxt.Visibility = Visibility.Hidden;
+                    parcelBtn.Visibility = Visibility.Hidden;
+                    stopBtn.Visibility = Visibility.Hidden;
+                    sendToDeliveryBtn.Visibility = Visibility.Hidden;
+                    collectBtn.Visibility = Visibility.Hidden;
+                    parcelDeliveryBtn.Visibility = Visibility.Hidden;
+                    break;
+
+                case DroneStatus.Delivery:
+                    collectBtn.Visibility = Visibility.Visible;
+                    parcelDeliveryBtn.Visibility = Visibility.Visible;
+                    viewParcelbtn.Visibility = Visibility.Visible;
+                    parcelBtn.Visibility = Visibility.Visible;
+                    stopBtn.Visibility = Visibility.Hidden;
+                    droneChargeBtn.Visibility = Visibility.Hidden;
+                    relaseBtn.Visibility = Visibility.Hidden;
+                    sendToDeliveryBtn.Visibility = Visibility.Hidden;
+                    break;
             }
         }
     }

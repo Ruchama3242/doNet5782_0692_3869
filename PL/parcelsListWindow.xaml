@@ -66,7 +66,7 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        <TextBox x:Name="serchTxtBx"    HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="48" KeyUp="serchTxtBx_KeyUp"/>
+        <TextBox x:Name="serchTxtBx"    HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="48" KeyUp="serchTxtBx_KeyUp" PreviewKeyDown="serchTxtBx_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="133,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" />
         <RadioButton x:Name="normalView" Content="Normal view" HorizontalAlignment="Left" Margin="241,16,0,0" VerticalAlignment="Top" Checked="normalView_Checked"/>
         <RadioButton x:Name="groupingViewT" Content="Grouping view by target" HorizontalAlignment="Left" Margin="241,36,0,0" VerticalAlignment="Top" Checked="groupingViewC_Checked"/>

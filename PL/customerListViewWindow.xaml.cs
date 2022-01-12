@@ -77,5 +77,23 @@ namespace PL
         {
             Close();
         }
+
+
+        private void checkInputdigit(KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Right || e.Key == Key.Left)//allow back,delete and errors keys
+                return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return;
+            e.Handled = true;
+            MessageBox.Show("The input must be only digits");
+        }
+
+        private void serchTxtBx_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            checkInputdigit(e);
+        }
     }
 }

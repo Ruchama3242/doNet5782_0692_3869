@@ -51,7 +51,7 @@
             </ListView.View>
         </ListView>
 
-        <TextBox x:Name="serchTxtBx"   HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48" KeyUp="serchTxtBx_KeyUp"/>
+        <TextBox x:Name="serchTxtBx"   HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="462" Height="48" KeyUp="serchTxtBx_KeyUp" PreviewKeyDown="serchTxtBx_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="487,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" Grid.ColumnSpan="2" TouchEnter="Image_TouchEnter"/>
 
 
