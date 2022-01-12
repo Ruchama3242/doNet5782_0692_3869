@@ -1,43 +1,28 @@
 <?xml version="1.0"?>
 <ArrayOfDroneCharge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneCharge>
-    <enterToCharge>2022-01-12T09:50:24.1055294+02:00</enterToCharge>
-    <droneID>94737</droneID>
-    <stationeld>5829</stationeld>
+    <enterToCharge>2022-01-12T10:15:30.7636925+02:00</enterToCharge>
+    <droneID>97979</droneID>
+    <stationeld>4567</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-12T09:50:24.1655364+02:00</enterToCharge>
+    <enterToCharge>2022-01-12T10:15:30.7762299+02:00</enterToCharge>
     <droneID>28501</droneID>
-    <stationeld>5829</stationeld>
+    <stationeld>4276</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-12T09:50:24.1780356+02:00</enterToCharge>
+    <enterToCharge>2022-01-12T10:15:30.7847159+02:00</enterToCharge>
     <droneID>40042</droneID>
-    <stationeld>1234</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-12T09:50:24.2131701+02:00</enterToCharge>
-    <droneID>10000</droneID>
     <stationeld>4567</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-12T09:50:24.2385619+02:00</enterToCharge>
-    <droneID>11101</droneID>
-    <stationeld>4444</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-12T09:50:24.2532212+02:00</enterToCharge>
-    <droneID>11111</droneID>
-    <stationeld>4567</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-12T09:51:03.0578168+02:00</enterToCharge>
+    <enterToCharge>2022-01-12T10:15:30.7966143+02:00</enterToCharge>
     <droneID>11010</droneID>
-    <stationeld>1234</stationeld>
+    <stationeld>4567</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-12T09:51:44.7134785+02:00</enterToCharge>
+    <enterToCharge>2022-01-12T10:15:30.8148438+02:00</enterToCharge>
     <droneID>11115</droneID>
-    <stationeld>1234</stationeld>
+    <stationeld>4276</stationeld>
   </DroneCharge>
 </ArrayOfDroneCharge>

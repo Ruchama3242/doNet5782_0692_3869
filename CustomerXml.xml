@@ -120,4 +120,12 @@
     <lattitude>34</lattitude>
     <active>true</active>
   </Customer>
+  <Customer>
+    <ID>143553437</ID>
+    <name>chana</name>
+    <phone>0536360240</phone>
+    <longitude>32.67</longitude>
+    <lattitude>34.234</lattitude>
+    <active>False</active>
+  </Customer>
 </ArrayOfCustomer>
