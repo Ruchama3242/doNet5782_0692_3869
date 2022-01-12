@@ -42,7 +42,7 @@
         <Label Content="Enter your id" Grid.Column="1" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Height="60" Width="246"
                FontSize="28" Style="{StaticResource myLableStyle}" />
         <Button Content="New user click here" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="9,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="236" Height="65" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click" Grid.Column="1"/>
-        <Button Content="Continue" Style="{StaticResource myButtonStyle}" Grid.Column="1" Margin="76,87,88,63" Grid.Row="1" Height="23" Width="102" Background="{x:Null}" Click="Button_Click_1"/>
+        <Button Content="Continue" Style="{StaticResource myButtonStyle}" Grid.Column="1" Margin="76,87,88,63" Grid.Row="1" Height="23" Width="102" Background="{x:Null}" Click="Button_Click_1" BorderBrush="{x:Null}"/>
     </Grid>
     <Window.Background>
         <ImageBrush Opacity="0.5"  ImageSource="images\backround.jpg"/>
