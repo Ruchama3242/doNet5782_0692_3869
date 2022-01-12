@@ -1,28 +1,48 @@
 <?xml version="1.0"?>
 <ArrayOfDroneCharge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneCharge>
-    <enterToCharge>2022-01-12T14:01:26.034226+02:00</enterToCharge>
+    <enterToCharge>2022-01-12T14:52:21.6543369+02:00</enterToCharge>
+    <droneID>94737</droneID>
+    <stationeld>2590</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-12T14:52:21.6747156+02:00</enterToCharge>
     <droneID>28501</droneID>
-    <stationeld>2590</stationeld>
+    <stationeld>3456</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-12T14:01:26.082212+02:00</enterToCharge>
+    <enterToCharge>2022-01-12T14:52:21.6922815+02:00</enterToCharge>
+    <droneID>11010</droneID>
+    <stationeld>4444</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-12T14:52:21.7283493+02:00</enterToCharge>
     <droneID>11115</droneID>
-    <stationeld>4567</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-12T14:01:26.1082952+02:00</enterToCharge>
-    <droneID>10101</droneID>
-    <stationeld>4567</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-12T14:01:26.1343161+02:00</enterToCharge>
-    <droneID>12345</droneID>
     <stationeld>2590</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-12T14:01:26.1956608+02:00</enterToCharge>
-    <droneID>28146</droneID>
-    <stationeld>1234</stationeld>
+    <enterToCharge>2022-01-12T14:52:21.7469161+02:00</enterToCharge>
+    <droneID>11101</droneID>
+    <stationeld>2590</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-12T14:52:21.8176281+02:00</enterToCharge>
+    <droneID>40042</droneID>
+    <stationeld>2590</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-12T14:52:21.8344413+02:00</enterToCharge>
+    <droneID>11111</droneID>
+    <stationeld>5829</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-12T14:52:21.8515769+02:00</enterToCharge>
+    <droneID>97979</droneID>
+    <stationeld>2590</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-12T14:52:21.8838684+02:00</enterToCharge>
+    <droneID>30303</droneID>
+    <stationeld>3456</stationeld>
   </DroneCharge>
 </ArrayOfDroneCharge>
