@@ -154,7 +154,7 @@ namespace BL
               ;
             var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             var d = R * c; // Distance in km
-            return d;
+            return Math.Round( d,4);
         }
 
         /// <summary>

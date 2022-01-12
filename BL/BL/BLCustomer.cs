@@ -85,8 +85,8 @@ namespace BL
                     cusBL.ID = cusDal.ID;
                     cusBL.active = cusDal.active;
                     cusBL.location = new Location();
-                    cusBL.location.latitude = cusDal.lattitude;
-                    cusBL.location.longitude = cusDal.longitude;
+                    cusBL.location.latitude =Math.Round( cusDal.lattitude,2);
+                    cusBL.location.longitude = Math.Round( cusDal.longitude,2);
                     cusBL.phone = cusDal.phone;
                     cusBL.name = cusDal.name;
                     cusBL.fromCustomer = new List<ParcelAtCustomer>();

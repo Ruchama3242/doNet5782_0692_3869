@@ -191,8 +191,8 @@ namespace BL
                                 else
                                 {
                                     //if (Math.Abs(d.currentLocation.latitude - dl.findCustomer(item.senderID).lattitude) != 0)
-                                    d.currentLocation.latitude += ((1 / distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })) * (dl.findCustomer(item.senderID).lattitude - d.currentLocation.latitude)) * KmPerSecond;
-                                    d.currentLocation.longitude += (1 / distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })) * (dl.findCustomer(item.senderID).longitude - d.currentLocation.longitude) * KmPerSecond;
+                                    d.currentLocation.latitude +=Math.Round( ((1 / distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })) * (dl.findCustomer(item.senderID).lattitude - d.currentLocation.latitude)) * KmPerSecond,3);
+                                    d.currentLocation.longitude += Math.Round( (1 / distance(d.currentLocation, new Location { latitude = dl.findCustomer(item.senderID).lattitude, longitude = dl.findCustomer(item.senderID).longitude })) * (dl.findCustomer(item.senderID).longitude - d.currentLocation.longitude) * KmPerSecond,3);
                                 }
                                 d.battery = d.battery - distance(d.currentLocation, l) * chargeCapacity[0];
 

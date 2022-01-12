@@ -324,8 +324,7 @@ e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up
             c = new Customer();
             c = bl.findCustomer(i);
             DataContext = c;
-            c.fromCustomer = new List<ParcelAtCustomer>();
-            c.toCustomer = new List<ParcelAtCustomer>();
+          
             parcelLstView.ItemsSource = c.fromCustomer;
             parcelToLstView.ItemsSource = c.toCustomer;
 

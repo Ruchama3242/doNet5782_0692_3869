@@ -132,7 +132,7 @@ namespace BL
                         double t = DateTime.Now.TimeOfDay.TotalSeconds;
                         double total = t - tmp.enterToCharge.TimeOfDay.TotalSeconds;
                         //the time* charging rate per hour, couldnt be more then 100%
-                        d.battery += total * chargeCapacity[4];
+                        d.battery += Math.Round(total * chargeCapacity[4], 0);
                         if (d.battery > 100)
                             d.battery = 100;
                         if (d.battery == 100 && flag == true)

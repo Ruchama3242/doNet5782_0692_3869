@@ -140,8 +140,8 @@ namespace BL
             tmp.chargeSlots = s.chargeSlots;
             tmp.ID = s.ID;
             tmp.location = new Location();
-            tmp.location.latitude = s.lattitude;
-            tmp.location.longitude = s.longitude;
+            tmp.location.latitude = Math.Round(s.lattitude, 2);
+            tmp.location.longitude = Math.Round(s.longitude, 2);
             tmp.name = s.name;
 
             IEnumerable<DO.DroneCharge> d = dl.findDroneCharge(s.ID);
