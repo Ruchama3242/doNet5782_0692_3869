@@ -22,11 +22,11 @@
     <chargeSlots>22</chargeSlots>
   </Station>
   <Station>
-    <ID>4567</ID>
-    <name>bird</name>
-    <longitude>29.45</longitude>
-    <lattitude>36.2</lattitude>
-    <chargeSlots>40</chargeSlots>
+    <ID>2590</ID>
+    <name>Dora</name>
+    <longitude>33</longitude>
+    <lattitude>36</lattitude>
+    <chargeSlots>30</chargeSlots>
   </Station>
   <Station>
     <ID>2590</ID>
