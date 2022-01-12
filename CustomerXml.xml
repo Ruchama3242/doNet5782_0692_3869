@@ -128,4 +128,20 @@
     <lattitude>34.234</lattitude>
     <active>False</active>
   </Customer>
+  <Customer>
+    <ID>323445679</ID>
+    <name>Rachel</name>
+    <phone>0548976554</phone>
+    <longitude>32.56</longitude>
+    <lattitude>35.3</lattitude>
+    <active>False</active>
+  </Customer>
+  <Customer>
+    <ID>126559320</ID>
+    <name>Adina</name>
+    <phone>0528385683</phone>
+    <longitude>32</longitude>
+    <lattitude>33.8</lattitude>
+    <active>True</active>
+  </Customer>
 </ArrayOfCustomer>
