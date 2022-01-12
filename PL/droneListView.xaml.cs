@@ -106,7 +106,6 @@ namespace PL
             DronesListView.ItemsSource = myCollection;
         }
 
-       
     }
 }
 
