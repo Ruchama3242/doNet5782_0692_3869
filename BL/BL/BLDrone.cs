@@ -145,12 +145,6 @@ namespace BL
                             d.status = DroneStatus.Available;
                             dl.BatteryCharged(tmp);
                         }
-
-                        // up the number of the empty charge slots
-                        //DO.DroneCharge tmp = dl.findStationOfDroneCharge(id);
-
-                        //remove the drone frome the list of the droneCharge
-                        //dl.BatteryCharged(tmp);
                     }
                     else throw new BLgeneralException("Error! the drone dont was in charge");
                 }
@@ -353,7 +347,7 @@ namespace BL
             }
             catch (Exception e)
             {
-                throw new BLgeneralException(e.Message/*,e*/);
+                throw new BLgeneralException(e.Message, e);
             }
         }
 

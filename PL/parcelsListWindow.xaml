@@ -68,9 +68,9 @@
         </ListView>
         <TextBox x:Name="serchTxtBx"    HorizontalAlignment="Left" Margin="20,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="48" KeyUp="serchTxtBx_KeyUp" PreviewKeyDown="serchTxtBx_PreviewKeyDown"/>
         <Image HorizontalAlignment="Left" Height="47" Margin="133,10,0,0" VerticalAlignment="Top" Width="100" Source="images\search.png" />
-        <RadioButton x:Name="normalView" Content="Normal view" HorizontalAlignment="Left" Margin="241,16,0,0" VerticalAlignment="Top" Checked="normalView_Checked"/>
-        <RadioButton x:Name="groupingViewT" Content="Grouping view by target" HorizontalAlignment="Left" Margin="241,36,0,0" VerticalAlignment="Top" Checked="groupingViewC_Checked"/>
-        <RadioButton x:Name="groupingViewS" Content="Grouping view by sender" HorizontalAlignment="Left" Margin="241,63,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Checked="groupingViewS_Checked"/>
+        <RadioButton x:Name="normalView" Content="Normal view" HorizontalAlignment="Left" Margin="241,8,0,0" VerticalAlignment="Top" Checked="normalView_Checked" Width="106"/>
+        <RadioButton x:Name="groupingViewT" Content="Grouping view by target" HorizontalAlignment="Left" Margin="241,27,0,0" VerticalAlignment="Top" Checked="groupingViewC_Checked"/>
+        <RadioButton x:Name="groupingViewS" Content="Grouping view by sender" HorizontalAlignment="Left" Margin="241,47,0,0" VerticalAlignment="Top" Checked="groupingViewS_Checked"/>
         <CheckBox x:Name="filterByDates" Content="By dates" HorizontalAlignment="Left" Margin="454,20,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="filterByStatus" Content="By status" HorizontalAlignment="Left" Margin="454,51,0,0" VerticalAlignment="Top" />
         <ComboBox x:Name="dateCmb" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="534,20,0,0"   VerticalAlignment="Top" Width="120" SelectionChanged="dateCmb_SelectionChanged">

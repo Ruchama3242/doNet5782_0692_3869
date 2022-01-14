@@ -144,4 +144,12 @@
     <lattitude>33.8</lattitude>
     <active>True</active>
   </Customer>
+  <Customer>
+    <ID>286847020</ID>
+    <name>Iris</name>
+    <phone>0522047469</phone>
+    <longitude>33.09</longitude>
+    <lattitude>35.89</lattitude>
+    <active>true</active>
+  </Customer>
 </ArrayOfCustomer>

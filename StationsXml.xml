@@ -1,20 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <ID>1234</ID>
-    <name>hamefaked</name>
-    <longitude>32.65</longitude>
-    <lattitude>35.1</lattitude>
-    <chargeSlots>52</chargeSlots>
-  </Station>
-  <Station>
-    <ID>3869</ID>
-    <name>Barbor</name>
-    <longitude>32</longitude>
-    <lattitude>35</lattitude>
-    <chargeSlots>22</chargeSlots>
-  </Station>
-  <Station>
     <ID>4276</ID>
     <name>Dolfin</name>
     <longitude>31.86994988651478</longitude>
@@ -26,14 +12,21 @@
     <name>Dora</name>
     <longitude>33</longitude>
     <lattitude>36</lattitude>
-    <chargeSlots>26</chargeSlots>
+    <chargeSlots>24</chargeSlots>
   </Station>
   <Station>
-    <ID>4444</ID>
-    <name>cat</name>
-    <longitude>31</longitude>
-    <lattitude>34</lattitude>
-    <chargeSlots>5</chargeSlots>
+    <ID>2590</ID>
+    <name>Dora</name>
+    <longitude>33</longitude>
+    <lattitude>36</lattitude>
+    <chargeSlots>36</chargeSlots>
+  </Station>
+  <Station>
+    <ID>1234</ID>
+    <name>hamefaked</name>
+    <longitude>32.65</longitude>
+    <lattitude>35.1</lattitude>
+    <chargeSlots>51</chargeSlots>
   </Station>
   <Station>
     <ID>5829</ID>
@@ -50,10 +43,17 @@
     <chargeSlots>7</chargeSlots>
   </Station>
   <Station>
-    <ID>2590</ID>
-    <name>Dora</name>
-    <longitude>33</longitude>
-    <lattitude>36</lattitude>
-    <chargeSlots>34</chargeSlots>
+    <ID>4444</ID>
+    <name>cat</name>
+    <longitude>31</longitude>
+    <lattitude>34</lattitude>
+    <chargeSlots>6</chargeSlots>
+  </Station>
+  <Station>
+    <ID>3869</ID>
+    <name>Barbor</name>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <chargeSlots>21</chargeSlots>
   </Station>
 </ArrayOfStation>

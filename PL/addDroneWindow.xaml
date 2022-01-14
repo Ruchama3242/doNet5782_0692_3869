@@ -10,7 +10,7 @@
         <Style x:Key="myLableStyle"
  TargetType="Label">
             <Setter Property="FontSize"
- Value="12" />
+ Value="20" />
             <Setter Property="FontFamily"
  Value="Consolas" />
             <Setter Property="FontWeight"
@@ -20,7 +20,7 @@
         <Style x:Key="myButtonStyle"
  TargetType="Button">
             <Setter Property="FontSize"
- Value="12" />
+ Value="16" />
             <Setter Property="FontFamily"
  Value="Consolas" />
             <Setter Property="FontWeight"
@@ -41,7 +41,7 @@
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
         <TextBox x:Name="idTxt" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-                 HorizontalAlignment="Left" Margin="183,21,0,0"  TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneID" Grid.Row="1" Height="18" PreviewKeyDown="idTxt_PreviewKeyDown">
+                 HorizontalAlignment="Left" Margin="183,5,0,0"  TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneID" Grid.Row="1" Height="26" PreviewKeyDown="idTxt_PreviewKeyDown">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Foreground" Value= "Black"></Setter>
@@ -54,10 +54,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Label Content="Drone Id" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="90" Grid.Row="1" Height="24"/>
-        <Label Content="Drone Model" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="90" Grid.Row="2" Height="24"/>
-        <TextBox x:Name="modelTxt" HorizontalAlignment="Left" Margin="183,0,0,0" Text="{Binding model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-                 TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="18" PreviewKeyDown="modelTxt_PreviewKeyDown">
+        <Label Content="Drone Id" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="119" Grid.Row="1" Height="63"/>
+        <Label Content="Drone Model" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="150" Grid.Row="2" Height="62"/>
+        <TextBox x:Name="modelTxt" HorizontalAlignment="Left" Margin="183,10,0,0" Text="{Binding model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2" Height="26" PreviewKeyDown="modelTxt_PreviewKeyDown">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Foreground" Value= "Black"></Setter>
@@ -71,14 +71,14 @@
             </TextBox.Style>
         </TextBox>
 
-        <ComboBox x:Name="DroneMaxWeigtCmb"  HorizontalAlignment="Left" Margin="183,0,0,0" VerticalAlignment="Center" Width="120" AutomationProperties.Name="DroneMaxWeight"
-                  DataContext="{Binding status}" Height="20" Grid.Row="3"/>
-        <Label Content="Max Weight" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="90" Height="31" RenderTransformOrigin="0.437,1.508" Grid.Row="3"/>
-        <Label Content="Id Station" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="90" Height="25" Grid.Row="4"/>
-        <Button x:Name="addDroneBtn" Style="{StaticResource myButtonStyle}" Content="Add Drone" HorizontalAlignment="Left" VerticalAlignment="Center" Click="addDroneBtn_Click" Grid.Row="5" MinHeight="27" MaxHeight="40" MinWidth="80" MaxWidth="120" Margin="28,0,0,0"/>
-        <Button x:Name="cancelBtn" Style="{StaticResource myButtonStyle}" Content="Cancel" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Center" Click="cancelBtn_Click" Grid.Row="5" MinHeight="27" MaxHeight="40" MinWidth="80" MaxWidth="120"/>
-        <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="183,0,0,0" VerticalAlignment="Center" Width="120 "
-                   Height="20" Grid.Row="4"/>
+        <ComboBox x:Name="DroneMaxWeigtCmb"  HorizontalAlignment="Left" Margin="183,17,0,0" VerticalAlignment="Top" Width="120" AutomationProperties.Name="DroneMaxWeight"
+                  DataContext="{Binding status}" Height="26" Grid.Row="3"/>
+        <Label Content="Max Weight" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="150" Height="61" RenderTransformOrigin="0.437,1.508" Grid.Row="3"/>
+        <Label Content="Id Station" Style = "{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Center" Width="150" Height="64" Grid.Row="4"/>
+        <Button x:Name="addDroneBtn" Style="{StaticResource myButtonStyle}" Content="Add Drone" HorizontalAlignment="Left" VerticalAlignment="Center" Click="addDroneBtn_Click" Grid.Row="5" MinHeight="27" MaxHeight="40" MinWidth="80" MaxWidth="120" Margin="28,0,0,0" Width="119"/>
+        <Button x:Name="cancelBtn" Style="{StaticResource myButtonStyle}" Content="Cancel" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Center" Click="cancelBtn_Click" Grid.Row="5" MinHeight="27" MaxHeight="40" MinWidth="80" MaxWidth="120" Width="115"/>
+        <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="183,17,0,0" VerticalAlignment="Top" Width="120 "
+                   Height="26" Grid.Row="4"/>
 
     </Grid>
     <Window.Background>
