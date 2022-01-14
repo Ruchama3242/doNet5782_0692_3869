@@ -15,7 +15,6 @@ namespace BL
         const int delay = 1000;
         const double speed = 100;
 
-        #region
         /// <summary>
         /// constructor
         /// </summary>
@@ -57,8 +56,6 @@ namespace BL
                                         Thread.Sleep(delay);
                                     }
                                 }
-
-
                             }
                             break;
 
@@ -85,6 +82,5 @@ namespace BL
             }
 
         }
-        #endregion
     }
 }

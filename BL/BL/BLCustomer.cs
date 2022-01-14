@@ -186,10 +186,6 @@ namespace BL
                 IEnumerable<DO.Customer> lst = new List<DO.Customer>();
                 lst = dl.getAllCustomers();
 
-                var v = from item in lst
-                        orderby item.ID
-                        select item;
-
                 List<CustomerToList> listBL = new List<CustomerToList>();
                 foreach (var item in lst)
                 {

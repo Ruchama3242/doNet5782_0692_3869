@@ -238,11 +238,6 @@ namespace DalApi
         public void updateParcel(int id, Parcel p);
 
         #endregion
-
-        /// <summary>
-        ///  return array of five values ​​in the following order: free, light, medium, heavy and load rate
-        /// </summary>
-        /// <returns></returns>
         
     }
 }

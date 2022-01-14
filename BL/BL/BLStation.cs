@@ -117,7 +117,6 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> avilableCharginStation()
         {
-            //IEnumerable<DO.Station> stations = dl.getAllStations();
             IEnumerable<StationToList> stations = veiwListStation();
             List<StationToList> avilable = new List<StationToList>();
             foreach (var item in stations)
@@ -151,7 +150,6 @@ namespace BL
                 DroneInCharge charge = new DroneInCharge();
                 charge.ID = item.droneID;
                 charge.battery = findDrone(item.droneID).battery;
-                //charge.enterToCharge = item.enterToCharge;
                 dr.Add(charge);
             }
             tmp.dronesInChargeList = new List<DroneInCharge>();

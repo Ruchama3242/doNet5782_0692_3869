@@ -375,12 +375,13 @@ namespace BL
 
                 foreach (var item in pr)
                 {
+                    DO.Customer cus = dl.findCustomer(item.targetId);
                     c = dl.findCustomer(item.senderID);
                     b.latitude = c.lattitude;
                     b.longitude = c.longitude;
                     d = distance(a, b);//המרחק בין מיקום נוכחי למיקום השולח
-                    x = distance(b, new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude });//המרחק בין מיקום שולח למיקום יעד
-                    double fromCusToSta = distance(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }, stationClose(new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = dl.findCustomer(item.targetId).lattitude }).location);
+                    x = distance(b, new Location { longitude = dl.findCustomer(item.targetId).longitude, latitude = cus.lattitude });//המרחק בין מיקום שולח למיקום יעד
+                    double fromCusToSta = distance(new Location { longitude = cus.longitude, latitude = cus.lattitude }, stationClose(new Location { longitude = cus.longitude, latitude = cus.lattitude }).location);
                     double butteryUse = x * chargeCapacity[indexOfChargeCapacity(item.weight)] + fromCusToSta * chargeCapacity[0] + d * chargeCapacity[0];
                     if (d < far && (buttery - butteryUse) > 0 && item.scheduled == null)
                     {
