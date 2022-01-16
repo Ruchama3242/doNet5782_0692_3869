@@ -113,30 +113,10 @@ namespace PL
             IEnumerable<ParcelAtCustomer> confirmList = new List<ParcelAtCustomer>();
             confirmList = c.toCustomer.Where(x => x.status == ParcelStatus.Delivred);
 
-            //foreach (var item in confirmList)
-            //{
-            //    if (item.confirmation == false)
-            //    {
-            //        MessageBox.Show(@$"confirm receipt of packages {item.ID}");
-            //        item.confirmation = true;
-            //    }
-            //}
-
-            //if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
-            //{
-            //    confirmParBtn.Visibility = Visibility.Visible;
-            //    confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
-            //}
-
             if (permission == "user")
             {
                 sendParBtn.Visibility = Visibility.Visible;
             }
-            if (permission == "maneger")
-            {
-                
-            }
-
         }
 
 
@@ -161,14 +141,6 @@ namespace PL
              parcelLstView.ItemsSource = c.fromCustomer;
             parcelToLstView.ItemsSource = c.toCustomer;
             sendParBtn.Visibility = Visibility.Hidden;
-
-            if ((c.toCustomer.Where(x => x.status == ParcelStatus.Delivred).Count() > 0))
-            {
-                confirmParBtn.Visibility = Visibility.Visible;
-                confirmParBtn.Content = @$"Click to confirm receipt of packages marked ""delivered""";
-            }
-            
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -332,7 +304,7 @@ e.Key == Key.RWin || e.Key == Key.System || e.Key == Key.Left || e.Key == Key.Up
 
         private void confirmParBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.confirmParBtn.Visibility = Visibility.Hidden;
+            
         }
 
        

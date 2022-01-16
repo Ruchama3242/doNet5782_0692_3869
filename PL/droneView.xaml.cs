@@ -60,7 +60,6 @@ namespace PL
                     relaseBtn.Visibility = Visibility.Hidden;
                     collectBtn.Visibility = Visibility.Hidden;
                     parcelDeliveryBtn.Visibility = Visibility.Hidden;
-
                     break;
 
                 case DroneStatus.Maintenace:
@@ -113,9 +112,15 @@ namespace PL
             if (dr.status != DroneStatus.Delivery)
             {
                 parcelBtn.Visibility = Visibility.Hidden;
-                
+                parLst.Visibility = Visibility.Hidden;
+                distanceLbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                WeightTxt.Visibility = Visibility.Hidden;
+                parcelBtn.Visibility = Visibility.Hidden;
             }
-            
         }
 
         public droneView(BO.DroneInCharge d)
@@ -313,7 +318,16 @@ namespace PL
 
         private void parcelBtn_Click(object sender, RoutedEventArgs e)
         {
-            new parcelWindow(dr.parcel.ID).ShowDialog();
+            try
+            {
+                if (dr.parcel == null)
+                    throw new Exception();
+                new parcelWindow(dr.parcel.ID).ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR! no parcel ");
+            }
         }
 
 
@@ -340,9 +354,6 @@ namespace PL
 
         private void simolatorBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            //droneListView d = new droneListView();
-            //Auto = true;
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
@@ -369,20 +380,7 @@ namespace PL
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Cancelled == true)
-            {
-                // e.Result throw System.InvalidOperationException
-                MessageBox.Show("The simulator is ended");
-            }
-            else if (e.Error != null)
-            {
-                // e.Result throw System.Reflection.TargetInvocationException
-                MessageBox.Show("Error"); //Exception Message
-            }
-           
-
-            //Auto = false;
-            if(dr.status==DroneStatus.Delivery)
+            if (dr.status == DroneStatus.Delivery)
             {
                 if (dr.parcel.status == true)
                     bl.packageDelivery(dr.ID);
@@ -391,6 +389,28 @@ namespace PL
                 dr = bl.findDrone(dr.ID);
                 DataContext = dr;
             }
+            else
+            {
+                distanceLbl.Visibility = Visibility.Hidden;
+                priorityLbl.Visibility = Visibility.Hidden;
+                weightLbl.Visibility = Visibility.Hidden;
+                priorityTxt.Visibility = Visibility.Hidden;
+                distanceTxt.Visibility = Visibility.Hidden;
+                WeightTxt.Visibility = Visibility.Hidden;
+                lbl.Visibility = Visibility.Hidden;
+                parLst.Visibility = Visibility.Hidden;
+            }
+
+            if (e.Cancelled == true)
+            {
+                MessageBox.Show("The simulator is ended");
+            }
+            else if (e.Error != null)
+            {
+                MessageBox.Show("Error"); //Exception Message
+            }
+           
+            
             MessageBox.Show("The simulator is ended");
         }
 
@@ -449,24 +469,6 @@ namespace PL
             simolatorBtn.Visibility = Visibility.Visible;
             stopBtn.Visibility = Visibility.Hidden;
 
-            //if (dr.status != DroneStatus.Delivery)
-            //{
-            //    parcelBtn.Visibility = Visibility.Hidden;
-            //    parLst.Visibility = Visibility.Hidden;
-            //    priorityTxt.Visibility = Visibility.Hidden;
-            //    weightLbl.Visibility = Visibility.Hidden;
-            //    weightTxt.Visibility = Visibility.Hidden;
-            //    distanceLbl.Visibility = Visibility.Hidden;
-            //    distanceTxt.Visibility = Visibility.Hidden;
-            //    lbl.Visibility = Visibility.Hidden;
-            //    priorityLbl.Visibility = Visibility.Hidden;
-            //    distanceLbl.Visibility = Visibility.Hidden;
-            //    viewParcelbtn.Visibility = Visibility.Hidden;
-            //}
-            //if (dr.status == DroneStatus.Available)
-            //{
-
-            //}
 
             switch (dr.status)
             {

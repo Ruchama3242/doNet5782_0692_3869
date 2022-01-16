@@ -5,4 +5,4 @@
     <list class="DalXml" namespace="Dal">DalXml</list>
     <xml>DalXML</xml>
   </dal-packages>j
-	<parcelId>1096</parcelId><chargeClear>0.1</chargeClear><chargeLightWeight>0.2</chargeLightWeight><chargeHavyWeight>0.4</chargeHavyWeight><chargeMediumWeight>0.3</chargeMediumWeight><chargineRate>0.1</chargineRate></config>
+	<parcelId>1098</parcelId><chargeClear>0.1</chargeClear><chargeLightWeight>0.2</chargeLightWeight><chargeHavyWeight>0.4</chargeHavyWeight><chargeMediumWeight>0.3</chargeMediumWeight><chargineRate>0.1</chargineRate></config>

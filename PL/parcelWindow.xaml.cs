@@ -27,8 +27,7 @@ namespace PL
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
             p = new BO.Parcel();
-            //senderTxt.ItemsSource = bl.viewListCustomer();
-
+           
             senderTxt.ItemsSource = bl.viewListCustomer().Select(x => x.ID);
             targetCmb.ItemsSource = bl.viewListCustomer().Select(x => x.ID);
             priorityCmb.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
@@ -37,9 +36,7 @@ namespace PL
             p.sender = new BO.CustomerInParcel();
             p.target = new BO.CustomerInParcel();
             p.drone = new DroneInParcel();
-            //p.sender.ID = Convert.ToInt32(senderTxt.SelectedItem);
-            //p.target.ID = Convert.ToInt32(senderTxt.SelectedItem);
-
+            
             DataContext = p;
             idLbl.Visibility = Visibility.Hidden;
             idTxt.Visibility = Visibility.Hidden;
@@ -57,12 +54,7 @@ namespace PL
             pickTxt.Visibility = Visibility.Hidden;
             deliLbl.Visibility = Visibility.Hidden;
             deliTxt.Visibility = Visibility.Hidden;
-            deleteBtn.Visibility = Visibility.Hidden;
             CloseBtn.Visibility = Visibility.Hidden;
-            //lstLbl.Visibility = Visibility.Hidden;
-            //droneslst.Visibility = Visibility.Hidden;
-            //updateBtn.Visibility = Visibility.Hidden;
-            // updateGrid.Visibility = Visibility.Hidden;
 
             if (permission == "user")
             {
@@ -77,25 +69,9 @@ namespace PL
         {
             InitializeComponent();
             bl = BlApi.BlFactory.GetBl();
-            //p = new BO.Parcel();
-            //p.sender = new BO.CustomerInParcel();
-            //p.target = new BO.CustomerInParcel();
             p = bl.findParcel(pr.ID);
 
-            //senderTxt.ItemsSource = bl.viewListCustomer().Select(x => x.ID);
-            //targetCmb.ItemsSource = bl.viewListCustomer().Select(x => x.ID);
-            //priorityCmb.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
-            //WeightCmb.ItemsSource = Enum.GetValues(typeof(BO.WeightCategorie));
-
-
-            //p.sender.ID = Convert.ToInt32(senderTxt.SelectedItem);
-            //p.target.ID = Convert.ToInt32(senderTxt.SelectedItem);
-
             DataContext = p;
-            if (pr.status == ParcelStatus.Created)
-                deleteBtn.Visibility = Visibility.Visible;
-            else
-                deleteBtn.Visibility = Visibility.Hidden;
             idLbl.Visibility = Visibility.Visible;
             idTxt.Visibility = Visibility.Visible;
             idTxt.IsReadOnly = true;
@@ -134,10 +110,7 @@ namespace PL
             showTargetBtn.Visibility = Visibility.Visible;
             if(pr.status==ParcelStatus.Match||pr.status==ParcelStatus.PickedUp)
                 showDroneBtn.Visibility = Visibility.Visible;
-            //lstLbl.Visibility = Visibility.Hidden;
-            //droneslst.Visibility = Visibility.Hidden;
-            //updateBtn.Visibility = Visibility.Hidden;
-            // updateGrid.Visibility = Visibility.Hidden;
+           
         }
 
 
@@ -148,10 +121,8 @@ namespace PL
            
             p = bl.findParcel(id);
 
-           
             DataContext = p;
-           
-                deleteBtn.Visibility = Visibility.Hidden;
+          
             idLbl.Visibility = Visibility.Visible;
             idTxt.Visibility = Visibility.Visible;
             idTxt.IsReadOnly = true;

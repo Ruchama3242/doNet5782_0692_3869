@@ -19,7 +19,6 @@ namespace BO
         public DateTime? pickedUp { get; set; }//איסוף
         public DateTime? delivered { get; set; }//אספקה
         public bool confirmationRecipt { get; set; }//confirmation on recipt of shipment
-        public bool confirmationCillection { get; set; }//confirmation of parcel collection
 
         public override string ToString()
         {

@@ -90,11 +90,11 @@
   </Customer>
   <Customer>
     <ID>325103869</ID>
-    <name>noah</name>
+    <name>Noa</name>
     <phone>0538859899</phone>
     <longitude>32.67</longitude>
     <lattitude>35.1</lattitude>
-    <active>true</active>
+    <active>True</active>
   </Customer>
   <Customer>
     <ID>313132375</ID>

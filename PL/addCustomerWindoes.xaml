@@ -161,7 +161,7 @@
         </ListView>
         <Button x:Name="sendParBtn" Content="Send parcel" HorizontalAlignment="Left" Margin="400,0,0,0" Grid.Row="6"
                Style="{StaticResource myButtonStyle}" VerticalAlignment="Center" Click="sendParBtn_Click" Height="28" MaxWidth="130" Grid.ColumnSpan="2"/>
-        <Button x:Name="confirmParBtn" Content= "" Style="{StaticResource myButtonStyle}" Visibility="Hidden" HorizontalAlignment="Left" Margin="327,65,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Grid.RowSpan="2" Width="442" Click="confirmParBtn_Click" Grid.ColumnSpan="3"/>
+     
         <Label x:Name="activeLbl" Content="Active" Style="{StaticResource myLableStyle}" HorizontalAlignment="Left" Margin="34,7,0,0" Grid.Row="5" VerticalAlignment="Top"/>
         <TextBox x:Name="activeTxtBlock" HorizontalAlignment="Left" Margin="172,0,0,0" Grid.Row="5" Text="{Binding active, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="26">
 
