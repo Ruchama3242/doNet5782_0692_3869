@@ -8,18 +8,18 @@
     <chargeSlots>7</chargeSlots>
   </Station>
   <Station>
-    <ID>2590</ID>
-    <name>Dora</name>
-    <longitude>33</longitude>
-    <lattitude>36</lattitude>
-    <chargeSlots>44</chargeSlots>
+    <ID>3869</ID>
+    <name>Barbor</name>
+    <longitude>32</longitude>
+    <lattitude>35</lattitude>
+    <chargeSlots>22</chargeSlots>
   </Station>
   <Station>
     <ID>3456</ID>
     <name>alon</name>
     <longitude>32</longitude>
     <lattitude>35</lattitude>
-    <chargeSlots>7</chargeSlots>
+    <chargeSlots>8</chargeSlots>
   </Station>
   <Station>
     <ID>4276</ID>
@@ -29,11 +29,11 @@
     <chargeSlots>26</chargeSlots>
   </Station>
   <Station>
-    <ID>5829</ID>
-    <name>flower</name>
-    <longitude>31.48816861374684</longitude>
-    <lattitude>35.56790962562334</lattitude>
-    <chargeSlots>24</chargeSlots>
+    <ID>2590</ID>
+    <name>Dora</name>
+    <longitude>33</longitude>
+    <lattitude>36</lattitude>
+    <chargeSlots>15</chargeSlots>
   </Station>
   <Station>
     <ID>1234</ID>
@@ -43,17 +43,17 @@
     <chargeSlots>51</chargeSlots>
   </Station>
   <Station>
-    <ID>3869</ID>
-    <name>Barbor</name>
-    <longitude>32</longitude>
-    <lattitude>35</lattitude>
-    <chargeSlots>20</chargeSlots>
-  </Station>
-  <Station>
     <ID>2590</ID>
     <name>Dora</name>
     <longitude>33</longitude>
     <lattitude>36</lattitude>
-    <chargeSlots>15</chargeSlots>
+    <chargeSlots>43</chargeSlots>
+  </Station>
+  <Station>
+    <ID>5829</ID>
+    <name>flower</name>
+    <longitude>31.48816861374684</longitude>
+    <lattitude>35.56790962562334</lattitude>
+    <chargeSlots>25</chargeSlots>
   </Station>
 </ArrayOfStation>

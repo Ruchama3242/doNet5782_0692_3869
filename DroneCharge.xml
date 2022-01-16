@@ -1,43 +1,28 @@
 <?xml version="1.0"?>
 <ArrayOfDroneCharge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.3577552+02:00</enterToCharge>
-    <droneID>94737</droneID>
-    <stationeld>3456</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4313282+02:00</enterToCharge>
-    <droneID>11115</droneID>
-    <stationeld>5829</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4348517+02:00</enterToCharge>
-    <droneID>11101</droneID>
+    <enterToCharge>2022-01-16T19:44:32.1386337+02:00</enterToCharge>
+    <droneID>28501</droneID>
     <stationeld>4276</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4552003+02:00</enterToCharge>
-    <droneID>20202</droneID>
-    <stationeld>3869</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4584075+02:00</enterToCharge>
-    <droneID>12345</droneID>
+    <enterToCharge>2022-01-16T19:44:32.1869114+02:00</enterToCharge>
+    <droneID>11101</droneID>
     <stationeld>5829</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4615273+02:00</enterToCharge>
-    <droneID>40042</droneID>
+    <enterToCharge>2022-01-16T19:44:32.2860175+02:00</enterToCharge>
+    <droneID>97979</droneID>
+    <stationeld>2590</stationeld>
+  </DroneCharge>
+  <DroneCharge>
+    <enterToCharge>2022-01-16T19:44:32.3326089+02:00</enterToCharge>
+    <droneID>28146</droneID>
     <stationeld>1234</stationeld>
   </DroneCharge>
   <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4647705+02:00</enterToCharge>
-    <droneID>11111</droneID>
-    <stationeld>3869</stationeld>
-  </DroneCharge>
-  <DroneCharge>
-    <enterToCharge>2022-01-16T20:03:28.4851877+02:00</enterToCharge>
-    <droneID>28146</droneID>
+    <enterToCharge>2022-01-16T19:44:32.3495308+02:00</enterToCharge>
+    <droneID>30303</droneID>
     <stationeld>2590</stationeld>
   </DroneCharge>
 </ArrayOfDroneCharge>
