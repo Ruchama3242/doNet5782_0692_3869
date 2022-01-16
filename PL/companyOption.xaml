@@ -35,8 +35,6 @@
                  Style="{StaticResource myButtonStyle}" MaxHeight="70" MinHeight="20" MaxWidth="300" MinWidth="50" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Click="station_Click_1"/>
         <Button x:Name="parcel" FontSize="30"  Foreground="#FFEEF5F6" Content="Parcel"
                  Style="{StaticResource myButtonStyle}" MaxHeight="70" MinHeight="20" MaxWidth="300" MinWidth="50" Grid.Row="3"  Background="{x:Null}" BorderBrush="{x:Null}" Margin="10,22,1,32" RenderTransformOrigin="0.438,0.476" Click="parcel_Click"/>
-
-
     </Grid>
     <Window.Background>
         <ImageBrush Opacity="0.5" ImageSource="images\backround.jpg" />
