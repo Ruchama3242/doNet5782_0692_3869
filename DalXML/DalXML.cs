@@ -320,12 +320,16 @@ namespace Dal
         {
             List<DO.Station> list = new List<DO.Station>();
             list = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-
-            foreach (DO.Station item in list)
-            {
-                if (item.ID == id)
-                    return item;
-            }
+            return (from station in list
+                    where station.ID == id
+                    select station).FirstOrDefault();
+           
+                   
+            //foreach (DO.Station item in list)
+            //{
+            //    if (item.ID == id)
+            //        return item;
+            //}
             throw new DO.IdUnExistsException("ERROR! the station doesn't exist");
         }
 

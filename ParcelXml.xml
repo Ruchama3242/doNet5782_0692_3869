@@ -794,19 +794,6 @@
     <confirm>true</confirm>
   </Parcel>
   <Parcel>
-    <ID>1097</ID>
-    <senderID>313132375</senderID>
-    <targetId>286847020</targetId>
-    <weight>light</weight>
-    <priority>normal</priority>
-    <requested>2022-01-16T18:52:52.8098143+02:00</requested>
-    <droneID>0</droneID>
-    <scheduled xsi:nil="true" />
-    <pickedUp xsi:nil="true" />
-    <delivered xsi:nil="true" />
-    <confirm>false</confirm>
-  </Parcel>
-  <Parcel>
     <ID>1096</ID>
     <senderID>325103869</senderID>
     <targetId>245465816</targetId>
@@ -820,16 +807,29 @@
     <confirm>false</confirm>
   </Parcel>
   <Parcel>
+    <ID>1097</ID>
+    <senderID>313132375</senderID>
+    <targetId>286847020</targetId>
+    <weight>light</weight>
+    <priority>normal</priority>
+    <requested>2022-01-16T18:52:52.8098143+02:00</requested>
+    <droneID>10101</droneID>
+    <scheduled>2022-08-01T14:14:03.6710511+03:00</scheduled>
+    <pickedUp>2022-08-01T14:14:05.8259699+03:00</pickedUp>
+    <delivered>2022-08-01T14:14:08.8775165+03:00</delivered>
+    <confirm>false</confirm>
+  </Parcel>
+  <Parcel>
     <ID>1098</ID>
     <senderID>324280692</senderID>
     <targetId>314081338</targetId>
     <weight>light</weight>
     <priority>normal</priority>
     <requested>2022-01-16T19:48:33.9047683+02:00</requested>
-    <droneID>0</droneID>
-    <scheduled xsi:nil="true" />
-    <pickedUp xsi:nil="true" />
-    <delivered xsi:nil="true" />
+    <droneID>10101</droneID>
+    <scheduled>2022-08-01T14:14:10.1965558+03:00</scheduled>
+    <pickedUp>2022-08-01T14:14:17.6006828+03:00</pickedUp>
+    <delivered>2022-08-01T14:14:26.9622699+03:00</delivered>
     <confirm>false</confirm>
   </Parcel>
 </ArrayOfParcel>

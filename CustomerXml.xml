@@ -86,7 +86,7 @@
     <phone>0533151355</phone>
     <longitude>32</longitude>
     <lattitude>35</lattitude>
-    <active>true</active>
+    <active>False</active>
   </Customer>
   <Customer>
     <ID>325103869</ID>

@@ -94,9 +94,9 @@ namespace BL
                             drt.status = DroneStatus.Maintenace;
                         if (drt.status == DroneStatus.Maintenace)
                         {
-                            int l = rnd.Next(0, dl.getAllStations().Count()), i = 0;
+                            int l = rnd.Next(0, dl.getStationsWithChargeSlots().Count()), i = 0;
                             DO.Station s = new DO.Station();
-                            foreach (var ite in dl.getAllStations())
+                            foreach (var ite in dl.getStationsWithChargeSlots())
                             {
                                 s = ite;
                                 if (i == l)
